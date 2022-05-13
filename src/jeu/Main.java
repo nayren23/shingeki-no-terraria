@@ -1,5 +1,5 @@
-package model;
-	
+package jeu;
+
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.stage.Stage;
@@ -21,22 +21,14 @@ public class Main extends Application {
 			primaryStage.setScene(scene);
 			primaryStage.show();
 			primaryStage.setResizable(false);
-			
-			
 			//Savoir les touches
 			scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 
 				@Override
 				public void handle(KeyEvent event) {
-
 					System.out.println(event.getCode());
-				}
-				
-				
+				}	
 			});
-			
-			
-			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -44,6 +36,5 @@ public class Main extends Application {
 	
 	public static void main(String[] args) {
 		launch(args);
-	
 	}
 }
