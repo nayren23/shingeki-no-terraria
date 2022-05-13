@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane fx:id="BorderPaneId" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.controleur">
+<BorderPane fx:id="BorderPaneId" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jeu.controleur.controleur">
    <center>
       <TilePane fx:id="tuilesFond" prefHeight="447.0" prefWidth="503.0" BorderPane.alignment="CENTER" />
    </center>
