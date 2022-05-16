@@ -22,10 +22,13 @@ public class TerrainVue {
 			ImageView img;
 			switch(terrain.getTerrain()[cases]) {
 
+			case 58 :
+				img = new ImageView(new Image("jeu/image/terre.png"));
+				break;
 			case 0 :
 				img = new ImageView(new Image("jeu/image/ciel.png"));
 				break;
-
+				
 			case 1 :
 				img = new ImageView(new Image("jeu/image/1.png"));
 				break;
@@ -64,6 +67,14 @@ public class TerrainVue {
 				
 			case 10 :
 				img = new ImageView(new Image("jeu/image/10.png"));
+				break;
+				
+			case 11 :
+				img = new ImageView(new Image("jeu/image/11.png"));
+				break;
+				
+			case 12 :
+				img = new ImageView(new Image("jeu/image/12.png"));
 				break;
 				
 			default : 

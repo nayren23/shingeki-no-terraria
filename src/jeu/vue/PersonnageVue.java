@@ -18,7 +18,7 @@ public class PersonnageVue extends Circle{
 	public void creeCercle() {
 		this.setRadius(10);
 		this.setCenterX(200);
-		this.setCenterY(225);
+		this.setCenterY(370);
 	}
 	
 }
