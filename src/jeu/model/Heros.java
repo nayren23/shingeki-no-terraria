@@ -2,6 +2,7 @@ package jeu.model;
 
 import javafx.beans.property.IntegerProperty;
 import jeu.Parametre;
+import jeu.controleur.KeyPressed;
 
 public class Heros extends Personnage{
 
@@ -15,17 +16,27 @@ public class Heros extends Personnage{
 	public void seDeplace(Parametre.DIRECTION d) {
 		switch(d) {
 		case LEFT:
-			this.xProp.setValue(xProp.getValue() - 6);
+			this.xProperty().setValue(xProperty().getValue() - 6);
 			break;
 
 		case RIGHT:
-			this.xProp.setValue(xProp.getValue() + 6);
+			this.xProperty().setValue(xProperty().getValue() + 6);
+			break;
+		
+		case SPACE:
+			while(getY() >= -20) {
+				this.setY(getY() - 20);
+			}
+
 			break;
 			
 		default:
 			System.out.println("Entrée incorrecte");
             break;
 		}
+		
 	}
+	
+	
 	
 }

@@ -14,14 +14,14 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("fenetre_principale.fxml"));
+			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("/jeu/vue/fenetre_principale.fxml"));
 			final Scene scene = new Scene(root,500,400);
 			root.requestFocus();
 			primaryStage.setTitle("SNT");
 			primaryStage.setScene(scene);
 			primaryStage.show();
 			primaryStage.setResizable(false);
-			//Savoir les touches
+			//Savoir les touches      !!! à enlever !!!
 			scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 
 				@Override

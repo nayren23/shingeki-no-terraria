@@ -9,7 +9,7 @@ public abstract class Personnage {
 
 	IntegerProperty xProp,yProp;
 	private int vitesse;
-	private int pv;
+	private int pv; // property
 	private Terrain terrain;
 	
 	
@@ -24,13 +24,36 @@ public abstract class Personnage {
 	
 	public abstract void seDeplace(Parametre.DIRECTION d);
 	
-	public IntegerProperty getX() {
-		return xProp;
+	
+	
+	public final int getX() {
+		return this.xProp.getValue();
 	}
 	
-	public IntegerProperty getY() {
-		return yProp;
+	public final int getY() {
+		return this.yProp.getValue();
 	}
+	
+	public final void setX(int val) {
+		this.xProp.setValue(val);
+	}
+	
+	public final void setY(int val) {
+		this.yProp.setValue(val);
+	}
+	
+	public final IntegerProperty xProperty() {
+		return this.xProp;
+	}
+	public final IntegerProperty yProperty() {
+		return this.yProp;
+	}
+	
+	
+
+	
+	
+	
 	
 	public int getVitesse() {
 		return vitesse;
