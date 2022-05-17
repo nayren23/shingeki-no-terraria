@@ -19,7 +19,6 @@ import jeu.model.Environnement;
 import jeu.model.Heros;
 import jeu.model.Personnage;
 import jeu.model.Terrain;
-import jeu.vue.HerosVieVue;
 import jeu.vue.PersonnageVue;
 import jeu.vue.TerrainVue;
 
