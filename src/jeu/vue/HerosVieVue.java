@@ -32,7 +32,6 @@ public class HerosVieVue extends Pane  {
 		this.PaneVieHero.setLayoutY(100);
 		this.PaneVieHero.setVisible(true);
 		this.tuilesFond.getChildren().add(this.PaneVieHero);
-		tuilesFond.getChildren().add(this.PaneVieHero);
 	}
 
 
@@ -40,13 +39,14 @@ public class HerosVieVue extends Pane  {
 
 
 	public void affichageVie(int pv) {
+		
 		//	ps1.bind(hero.getPv());
 		//	this.translateXProperty().bind(p.getX());	//la position du cercle va être mise à jour en mm temps que la position du personnage
 
-
+		
 
 		ImageView img;
-		switch(pv) {
+		switch(hero.getPv().getValue()) {
 
 		case 0 :
 			img = new ImageView(new Image("jeu/image/coeur10.png"));
@@ -89,10 +89,10 @@ public class HerosVieVue extends Pane  {
 			img = null;
 			break;
 		}
-		img.setFitHeight(20);
-		img.setFitWidth(200);
-		img.setX(500);
-		img.setY(100);
+		img.setFitHeight(75);
+		img.setFitWidth(75);
+		img.setX(1200); //droite ou gauche
+		img.setY(-720);// pour monter le coeur
 		PaneVieHero.getChildren().add(img);
 
 	}

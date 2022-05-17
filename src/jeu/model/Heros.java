@@ -3,6 +3,7 @@ package jeu.model;
 
 import javafx.beans.property.IntegerProperty;
 import jeu.Parametre;
+import jeu.vue.HerosVieVue;
 
 public class Heros extends Personnage{
 
@@ -31,6 +32,7 @@ public class Heros extends Personnage{
 	@Override
 	public void perdrePv() {
 		this.getPv().setValue(this.getPv().getValue()-1);  // -1 pour le héros 
+		
 	}
 	
 }

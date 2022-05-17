@@ -49,20 +49,21 @@ public class Controleur implements Initializable{
 		PersonnageVue pers1= new PersonnageVue(hero);
 		this.BorderPaneId.getChildren().add(pers1);
 
+		HerosVieVue viehero = new HerosVieVue(hero, tuilesFond);
 
-		BorderPaneId.addEventHandler(KeyEvent.KEY_PRESSED,new KeyPressed(hero));	//pour savoir les touches qui sont appuyés
-		BorderPaneId.addEventHandler(KeyEvent.KEY_RELEASED,new KeyPressed(hero) );	//pour savoir les touches qui sont relachés
+		BorderPaneId.addEventHandler(KeyEvent.KEY_PRESSED,new KeyPressed(hero, viehero));	//pour savoir les touches qui sont appuyés
+		BorderPaneId.addEventHandler(KeyEvent.KEY_RELEASED,new KeyPressed(hero,viehero) );	//pour savoir les touches qui sont relachés
 		
 		
 		////////////
-		HerosVieVue viehero = new HerosVieVue(hero, tuilesFond);
 		this.BorderPaneId.getChildren().add(viehero);
 		
 
 
-		BorderPaneId.addEventHandler(KeyEvent.KEY_PRESSED,new KeyPressed(hero));	//pour savoir les touches qui sont appuyés
-		BorderPaneId.addEventHandler(KeyEvent.KEY_RELEASED,new KeyPressed(hero) );	//pour savoir les touches qui sont relachés
-		viehero.affichageVie(0);
+		
+		//	this.translateXProperty().bind(p.getX());	//la position du cercle va être mise à jour en mm temps que la position du personnage
+		
+		viehero.affichageVie(hero.getPv().getValue());
 	}
 	
 }
