@@ -2,6 +2,7 @@ package jeu.controleur;
 
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Pane;
 import jeu.Parametre;
 import jeu.model.Heros;
 import jeu.model.Personnage;
@@ -39,11 +40,20 @@ public class KeyPressed implements EventHandler<KeyEvent>{
 		
 		case F1:
 			hero.perdrePv();
-// faire un clear
-			heroVue.affichageVie(hero.getPv().getValue());
-			System.out.println(hero.getPv());
+			heroVue.clearPanVieHero(); 			// faire un clear pour éviter superposition coeur
+
+			heroVue.affichageVie(hero.PvProperty().getValue());
+			System.out.println(hero.PvProperty());
 			break;
 
+		case F2:
+			hero.augmenterPv(); //test pour voir si le coeur change d'image quand on augmente les pv
+			heroVue.clearPanVieHero();// faire un clear pour éviter superposition coeur
+
+			heroVue.affichageVie(hero.PvProperty().getValue()); //rafraichir la vue du coeur
+			System.out.println(hero.PvProperty());
+			break;	
+			
 		default:
 			System.out.println("Entrée incorrecte"  );
             break;

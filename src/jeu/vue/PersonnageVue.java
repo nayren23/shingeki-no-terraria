@@ -12,7 +12,7 @@ public class PersonnageVue extends Circle{
 		creeCercle();
 		this.p = p;
 		this.translateXProperty().bind(p.getX());	//la position du cercle va être mise à jour en mm temps que la position du personnage
-		this.translateYProperty().bind(p.getY());
+		this.translateYProperty().bind(p.CoordonneeYProperty());
 	}
 	
 	public void creeCercle() {

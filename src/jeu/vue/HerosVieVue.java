@@ -34,9 +34,10 @@ public class HerosVieVue extends Pane  {
 		this.tuilesFond.getChildren().add(this.PaneVieHero);
 	}
 
-
-
-
+	
+	public void clearPanVieHero() {
+		this.PaneVieHero.getChildren().clear();
+	}
 
 	public void affichageVie(int pv) {
 		
@@ -45,55 +46,55 @@ public class HerosVieVue extends Pane  {
 
 		
 
-		ImageView img;
-		switch(hero.getPv().getValue()) {
+		ImageView imageCoeur;
+		switch(hero.PvProperty().getValue()) {
 
 		case 0 :
-			img = new ImageView(new Image("jeu/image/coeur10.png"));
+			imageCoeur = new ImageView(new Image("jeu/image/coeur10.png"));
 			break;
 
 		case 1 :
-			img = new ImageView(new Image("jeu/image/coeur9.png"));
+			imageCoeur = new ImageView(new Image("jeu/image/coeur9.png"));
 			break;
 
 		case 2 :
-			img = new ImageView(new Image("jeu/image/coeur8.png"));
+			imageCoeur = new ImageView(new Image("jeu/image/coeur8.png"));
 			break;
 
 		case 3 :
-			img = new ImageView(new Image("jeu/image/coeur7.png"));
+			imageCoeur = new ImageView(new Image("jeu/image/coeur7.png"));
 			break;
 		case 4 :
-			img = new ImageView(new Image("jeu/image/coeur6.png"));
+			imageCoeur = new ImageView(new Image("jeu/image/coeur6.png"));
 			break;
 
 		case 5 :
-			img = new ImageView(new Image("jeu/image/coeur5.png"));
+			imageCoeur = new ImageView(new Image("jeu/image/coeur5.png"));
 			break;
 
 		case 6 :
-			img = new ImageView(new Image("jeu/image/coeur4.png"));
+			imageCoeur = new ImageView(new Image("jeu/image/coeur4.png"));
 			break;
 
 		case 7 :
-			img = new ImageView(new Image("jeu/image/coeur3.png"));
+			imageCoeur = new ImageView(new Image("jeu/image/coeur3.png"));
 			break;
 		case 8 :
-			img = new ImageView(new Image("jeu/image/coeur2.png"));
+			imageCoeur = new ImageView(new Image("jeu/image/coeur2.png"));
 			break;
 		case 9 :
-			img = new ImageView(new Image("jeu/image/coeur1.png"));
+			imageCoeur = new ImageView(new Image("jeu/image/coeur1.png"));
 			break;
 
 		default : 
-			img = null;
+			imageCoeur = null;
 			break;
 		}
-		img.setFitHeight(75);
-		img.setFitWidth(75);
-		img.setX(1200); //droite ou gauche
-		img.setY(-720);// pour monter le coeur
-		PaneVieHero.getChildren().add(img);
+		imageCoeur.setFitHeight(75);
+		imageCoeur.setFitWidth(75);
+		imageCoeur.setX(1200); //droite ou gauche
+		imageCoeur.setY(-720);// pour monter le coeur
+		PaneVieHero.getChildren().add(imageCoeur);
 
 	}
 

@@ -7,61 +7,74 @@ import jeu.Parametre;
 public abstract class Personnage {
 
 
-	private IntegerProperty xProp,yProp;
+	private IntegerProperty CoordonneeXProperty,CoordonneeYProperty;
 	private int vitesse;
-	private IntegerProperty pv;
+	private IntegerProperty PvProperty;
 	private Terrain terrain;
 	
 	
 	
 	public Personnage(int x, int y, int vitesse, int pv, Terrain terrain) {
 		this.setxProp(new SimpleIntegerProperty(x));
-		this.yProp = new SimpleIntegerProperty(y);
+		this.CoordonneeYProperty = new SimpleIntegerProperty(y);
 		this.vitesse = vitesse;
-		this.pv = new SimpleIntegerProperty(pv);
+		this.PvProperty = new SimpleIntegerProperty(pv) ;
 		this.terrain = terrain;
 	}
 	
-	public Terrain getTerrain() {
-		return terrain;
-	}
+	//-------------------------------------------------------------------//
 
-	public void setTerrain(Terrain terrain) {
-		this.terrain = terrain;
-	}
-
-	public void setPv(IntegerProperty pv) {
-		this.pv = pv;
-	}
-	
+	//Methodes Abstract//
 	public abstract void perdrePv();
+	
+	public abstract void augmenterPv();
 
 	public abstract void seDeplace(Parametre.DIRECTION d);
 	
-	public IntegerProperty getX() {  // changer mettre bonne syntaxe
-		return getxProp();
+	
+	//-------------------------------------------------------------------//
+
+	
+	//Getters
+	public final IntegerProperty PvProperty() {
+		return PvProperty;
+	}
+
+	public final IntegerProperty CoordonneeXProperty() {
+		return CoordonneeXProperty;
 	}
 	
-	public IntegerProperty getY() {
-		return yProp;
+	public final IntegerProperty CoordonneeYProperty() {
+		return CoordonneeYProperty;
+	}
+	
+	public IntegerProperty getX() {  // changer mettre bonne syntaxe
+		return CoordonneeXProperty();
 	}
 	
 	public int getVitesse() {
 		return vitesse;
 	}
 	
-	public IntegerProperty getPv() {
-		return pv;
+	public Terrain getTerrain() {
+		return terrain;
 	}
 
-	public IntegerProperty getxProp() {
-		return xProp;
-	}
-
+	
+	//-------------------------------------------------------------------//
+	//Setters
+	
 	public void setxProp(IntegerProperty xProp) {
-		this.xProp = xProp;
+		this.CoordonneeXProperty = xProp;
 	}
 	
+	public void setTerrain(Terrain terrain) {
+		this.terrain = terrain;
+	}
+
+	public void setPv(IntegerProperty pv) {
+		this.PvProperty = pv;
+	}
 }
 
 

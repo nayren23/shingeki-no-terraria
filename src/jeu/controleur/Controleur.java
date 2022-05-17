@@ -63,7 +63,7 @@ public class Controleur implements Initializable{
 		
 		//	this.translateXProperty().bind(p.getX());	//la position du cercle va être mise à jour en mm temps que la position du personnage
 		
-		viehero.affichageVie(hero.getPv().getValue());
+		viehero.affichageVie(hero.PvProperty().getValue());
 	}
 	
 }

@@ -16,23 +16,53 @@ public class Heros extends Personnage{
 	public void seDeplace(Parametre.DIRECTION d) {
 		switch(d) {
 		case LEFT:
-			this.getxProp().setValue(getxProp().getValue() - 6);
+			this.CoordonneeXProperty().setValue(CoordonneeXProperty().getValue() - 6);
 			break;
 
 		case RIGHT:
-			this.getxProp().setValue(getxProp().getValue() + 6);
+			this.CoordonneeXProperty().setValue(CoordonneeXProperty().getValue() + 6);
 			break;
-			
+
 		default:
 			System.out.println("EntrÃ©e incorrecte");
-            break;
+			break;
 		}
 	}
 
 	@Override
 	public void perdrePv() {
-		this.getPv().setValue(this.getPv().getValue()-1);  // -1 pour le héros 
-		
+		//if(this.PvProperty().getValue()>=0) {
+//		if (verificationPv(this.PvProperty().getValue())==true) {
+			this.PvProperty().setValue(this.PvProperty().getValue() -1);  // -1 pour le héros 
+
+//		}
+//		else
+//			System.out.println("nop");
+
+		//}
 	}
-	
+
+	@Override
+	public void augmenterPv() {
+		//if(this.PvProperty().getValue()<10) {
+//		if (verificationPv(this.PvProperty().getValue())==true) {
+
+			
+			this.PvProperty().setValue(this.PvProperty().getValue() +1);  // -1 pour le héros 
+//		}
+		//}
+
+	}
+
+//	public boolean verificationPv (int pv) {
+//		boolean peutFaireAction = false;
+//		
+//		if(pv == -1 && pv>10) {  //changer avec 0 et 9 mais bug a cause de property
+//			peutFaireAction = false;
+//		}
+//		else 
+//			peutFaireAction = true;
+//		
+//		return peutFaireAction;
+//	}
 }
