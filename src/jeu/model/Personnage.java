@@ -7,25 +7,39 @@ import jeu.Parametre;
 public abstract class Personnage {
 
 
-	IntegerProperty xProp,yProp;
+	private IntegerProperty xProp,yProp;
 	private int vitesse;
-	private int pv;
+	private IntegerProperty pv;
 	private Terrain terrain;
 	
 	
 	
 	public Personnage(int x, int y, int vitesse, int pv, Terrain terrain) {
-		this.xProp = new SimpleIntegerProperty(x);
+		this.setxProp(new SimpleIntegerProperty(x));
 		this.yProp = new SimpleIntegerProperty(y);
 		this.vitesse = vitesse;
-		this.pv = pv;
+		this.pv = new SimpleIntegerProperty(pv);
 		this.terrain = terrain;
 	}
 	
+	public Terrain getTerrain() {
+		return terrain;
+	}
+
+	public void setTerrain(Terrain terrain) {
+		this.terrain = terrain;
+	}
+
+	public void setPv(IntegerProperty pv) {
+		this.pv = pv;
+	}
+	
+	public abstract void perdrePv();
+
 	public abstract void seDeplace(Parametre.DIRECTION d);
 	
-	public IntegerProperty getX() {
-		return xProp;
+	public IntegerProperty getX() {  // changer mettre bonne syntaxe
+		return getxProp();
 	}
 	
 	public IntegerProperty getY() {
@@ -36,8 +50,16 @@ public abstract class Personnage {
 		return vitesse;
 	}
 	
-	public int getPv() {
+	public IntegerProperty getPv() {
 		return pv;
+	}
+
+	public IntegerProperty getxProp() {
+		return xProp;
+	}
+
+	public void setxProp(IntegerProperty xProp) {
+		this.xProp = xProp;
 	}
 	
 }
