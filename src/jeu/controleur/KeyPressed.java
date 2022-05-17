@@ -1,21 +1,17 @@
 package jeu.controleur;
 
-import javax.jws.soap.SOAPBinding.ParameterStyle;
-
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.shape.Circle;
 import jeu.Parametre;
 import jeu.model.Heros;
 import jeu.model.Personnage;
-import jeu.vue.PersonnageVue;
 
 public class KeyPressed implements EventHandler<KeyEvent>{
 
 	private Heros hero;
 	
 
-	public KeyPressed(Personnage hero2 , PersonnageVue pers1) {
+	public KeyPressed(Personnage hero2 ) {
 		this.hero = (Heros) hero2;
 	}
 
@@ -38,11 +34,11 @@ public class KeyPressed implements EventHandler<KeyEvent>{
 		case RIGHT:
 			hero.seDeplace(Parametre.DIRECTION.RIGHT);
 			break;
-			
+		
+
 		default:
-			System.out.println("EntrÃ©e incorrecte");
+			System.out.println("Entrée incorrecte");
             break;
 		}
 	}
 }
-
