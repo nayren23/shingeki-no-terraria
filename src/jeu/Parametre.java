@@ -4,6 +4,6 @@ public class Parametre {
 
 	
 		public static	enum DIRECTION {
-			RIGHT, LEFT, BOTTOM, TOP;
+			RIGHT, LEFT, BOTTOM, TOP, EnlevVie;
 		} 
 }

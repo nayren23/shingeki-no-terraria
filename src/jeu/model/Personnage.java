@@ -7,39 +7,74 @@ import jeu.Parametre;
 public abstract class Personnage {
 
 
-	IntegerProperty xProp,yProp;
+	private IntegerProperty CoordonneeXProperty,CoordonneeYProperty;
 	private int vitesse;
-	private int pv;
+	private IntegerProperty PvProperty;
 	private Terrain terrain;
 	
 	
 	
 	public Personnage(int x, int y, int vitesse, int pv, Terrain terrain) {
-		this.xProp = new SimpleIntegerProperty(x);
-		this.yProp = new SimpleIntegerProperty(y);
+		this.setxProp(new SimpleIntegerProperty(x));
+		this.CoordonneeYProperty = new SimpleIntegerProperty(y);
 		this.vitesse = vitesse;
-		this.pv = pv;
+		this.PvProperty = new SimpleIntegerProperty(pv) ;
 		this.terrain = terrain;
 	}
 	
+	//-------------------------------------------------------------------//
+
+	//Methodes Abstract//
+	public abstract void perdrePv();
+	
+	public abstract void augmenterPv();
+
 	public abstract void seDeplace(Parametre.DIRECTION d);
 	
-	public IntegerProperty getX() {
-		return xProp;
+	
+	//-------------------------------------------------------------------//
+
+	
+	//Getters
+	public final IntegerProperty PvProperty() {
+		return PvProperty;
+	}
+
+	public final IntegerProperty CoordonneeXProperty() {
+		return CoordonneeXProperty;
 	}
 	
-	public IntegerProperty getY() {
-		return yProp;
+	public final IntegerProperty CoordonneeYProperty() {
+		return CoordonneeYProperty;
+	}
+	
+	public IntegerProperty getX() {  // changer mettre bonne syntaxe
+		return CoordonneeXProperty();
 	}
 	
 	public int getVitesse() {
 		return vitesse;
 	}
 	
-	public int getPv() {
-		return pv;
+	public Terrain getTerrain() {
+		return terrain;
+	}
+
+	
+	//-------------------------------------------------------------------//
+	//Setters
+	
+	public void setxProp(IntegerProperty xProp) {
+		this.CoordonneeXProperty = xProp;
 	}
 	
+	public void setTerrain(Terrain terrain) {
+		this.terrain = terrain;
+	}
+
+	public void setPv(IntegerProperty pv) {
+		this.PvProperty = pv;
+	}
 }
 
 
