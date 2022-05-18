@@ -1,9 +1,7 @@
 
 package jeu.model;
 
-import javafx.beans.property.IntegerProperty;
 import jeu.Parametre;
-import jeu.vue.HerosVieVue;
 
 public class Heros extends Personnage{
 
@@ -29,40 +27,35 @@ public class Heros extends Personnage{
 		}
 	}
 
-	@Override
-	public void perdrePv() {
-		//if(this.PvProperty().getValue()>=0) {
-//		if (verificationPv(this.PvProperty().getValue())==true) {
-			this.PvProperty().setValue(this.PvProperty().getValue() -1);  // -1 pour le héros 
-
-//		}
-//		else
-//			System.out.println("nop");
-
-		//}
+	private int clamp (int val1 , int min, int max) {  // Pour borner un chiffre entre 2valeur pour pas que l'image s'enleve
+		int valeurClamp = val1;
+		
+		if(valeurClamp<min) {
+			valeurClamp = min;
+		}
+		else if(valeurClamp>max) {
+			valeurClamp= max;
+		}
+		return valeurClamp;
 	}
-
+	
 	@Override
-	public void augmenterPv() {
-		//if(this.PvProperty().getValue()<10) {
-//		if (verificationPv(this.PvProperty().getValue())==true) {
-
+	public void perdrePv() { // en option mettre le nb de pv perdu en paramètre
 			
-			this.PvProperty().setValue(this.PvProperty().getValue() +1);  // -1 pour le héros 
-//		}
-		//}
+			int pv = clamp(this.PvProperty().getValue()-1, 0, 9);
+			this.PvProperty().setValue(pv);  // -1 pour le héros 
+		}
+	
+
+	@Override
+	public void augmenterPv() { // en option mettre le nb de pv augmenter en paramètre
+
+			int pv = clamp(this.PvProperty().getValue()+1, 0, 9);
+			
+			this.PvProperty().setValue(pv);  // -1 pour le héros 
+
 
 	}
 
-//	public boolean verificationPv (int pv) {
-//		boolean peutFaireAction = false;
-//		
-//		if(pv == -1 && pv>10) {  //changer avec 0 et 9 mais bug a cause de property
-//			peutFaireAction = false;
-//		}
-//		else 
-//			peutFaireAction = true;
-//		
-//		return peutFaireAction;
-//	}
+
 }
