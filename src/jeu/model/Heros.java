@@ -50,12 +50,22 @@ public class Heros extends Personnage{
 	@Override
 	public void augmenterPv() { // en option mettre le nb de pv augmenter en paramètre
 
-			int pv = clamp(this.PvProperty().getValue()+1, 0, 9);
-			
+			int pv = clamp(this.PvProperty().getValue()+1, 0, 9);	
 			this.PvProperty().setValue(pv);  // -1 pour le héros 
-
-
 	}
 
+	public boolean estMort(int pv) { // a finir
+			boolean estMort = false;
+			
+			if(pv==0) {
+				estMort =true;
+			}
+			return estMort;
+			
+	}
+	
+	
+	
+	
 
 }

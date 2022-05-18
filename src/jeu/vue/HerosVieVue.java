@@ -29,7 +29,7 @@ public class HerosVieVue extends Pane  {
 	}
 
 	
-	public void clearPanVieHero() {
+	public void clearPanVieHero() {  // pour éviter que  les coeur s'affiche en meme temp
 		this.PaneVieHero.getChildren().clear();
 	}
 
