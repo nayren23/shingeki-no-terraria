@@ -29,6 +29,29 @@ public class TerrainVue {
 			case 192 :
 				img = new ImageView(new Image("jeu/image/terre.png"));
 				break;
+				
+			case 0 :
+				img = new ImageView(new Image("jeu/image/ciel.png"));
+				break;
+				
+			case 1 :
+				img = new ImageView(new Image("jeu/image/1.png"));
+				break;
+			case 2 :
+				img = new ImageView(new Image("jeu/image/2.png"));
+				break;
+			case 3 :
+				img = new ImageView(new Image("jeu/image/3.png"));
+				break;
+			case 4 :
+				img = new ImageView(new Image("jeu/image/4.png"));
+				break;
+			case 5 :
+				img = new ImageView(new Image("jeu/image/5.png"));
+				break;
+			case 6 :
+				img = new ImageView(new Image("jeu/image/trou.png"));
+				break;
 
 			default : 
 				img = null;

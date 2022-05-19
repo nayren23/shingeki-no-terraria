@@ -25,10 +25,10 @@ public class HeroVue extends ImageView{
 	//mettre le bind et l'image du personnage
 
 	public HeroVue(Heros h) {
-		super(new Image("jeu/image/Eren1.png"));
+		super(new Image("jeu/image/Eren2.png"));
 		this.h = h;
 		this.h.setX(200);
-		this.h.setY(185);
+		this.h.setY(364);
 
 
 	}
