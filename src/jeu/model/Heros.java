@@ -2,9 +2,12 @@
 package jeu.model;
 
 import jeu.Parametre;
+import jeu.controleur.MouseClick;
+import jeu.controleur.MouseMoved;
 
 public class Heros extends Personnage{
 
+	private MouseMoved sourisCoordonnées;
 	//changer le type terrain en type environnement
 	public Heros(int x, int y, Terrain terrain) {
 		super(x, y, 5, 9, terrain);
@@ -54,15 +57,18 @@ public class Heros extends Personnage{
 			this.PvProperty().setValue(pv);  // -1 pour le héros 
 	}
 
-	public boolean estMort(int pv) { // a finir
-			boolean estMort = false;
-			
-			if(pv==0) {
-				estMort =true;
-			}
-			return estMort;
-			
+	public void miner () {
+		
 	}
+//	public boolean estMort(int pv) { // a finir
+//			boolean estMort = false;
+//			
+//			if(pv==0) {
+//				estMort =true;
+//			}
+//			return estMort;
+//			
+//	}
 	
 	
 	
