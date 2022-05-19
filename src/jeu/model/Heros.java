@@ -1,4 +1,3 @@
-
 package jeu.model;
 
 import jeu.Parametre;
@@ -64,9 +63,7 @@ public class Heros extends Personnage{
 			
 	}
 	
-	public void miner() {
-		
-	}
+	
 	
 	
 

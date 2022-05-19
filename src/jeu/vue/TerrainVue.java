@@ -7,7 +7,7 @@ import jeu.model.Terrain;
 
 public class TerrainVue {
 	
-	//accÃ¨s au terrain
+	//accès au terrain
 	private TilePane tuilesFond;
 	private Terrain terrain;
 	

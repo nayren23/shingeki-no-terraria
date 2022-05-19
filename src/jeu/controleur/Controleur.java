@@ -31,7 +31,7 @@ public class Controleur implements Initializable{
 
 		Environnement env = new Environnement();
 		// juste new environnement
-		TerrainVue terrainVue = new TerrainVue(tuilesFond, env.getTerrain());	//crÃ©e le terrain vue
+		TerrainVue terrainVue = new TerrainVue(tuilesFond, env.getTerrain());	//crée le terrain vue
 		//Personnage hero = new Hero ();
 
 		terrainVue.dessinerTerrain();
@@ -42,8 +42,8 @@ public class Controleur implements Initializable{
 
 		HerosVieVue viehero = new HerosVieVue(hero, tuilesFond);
 
-		BorderPaneId.addEventHandler(KeyEvent.KEY_PRESSED,new KeyPressed(hero, viehero));	//pour savoir les touches qui sont appuyÃ©s
-//		BorderPaneId.addEventHandler(KeyEvent.KEY_RELEASED,new KeyPressed(hero,viehero) );	//pour savoir les touches qui sont relachÃ©s enlever car sinon fait les actions 2 fois pour les pv
+		BorderPaneId.addEventHandler(KeyEvent.KEY_PRESSED,new KeyPressed(hero, viehero));	//pour savoir les touches qui sont appuyés
+//		BorderPaneId.addEventHandler(KeyEvent.KEY_RELEASED,new KeyPressed(hero,viehero) );	//pour savoir les touches qui sont relachés enlever car sinon fait les actions 2 fois pour les pv
 		
 		
 		////////////
@@ -52,18 +52,9 @@ public class Controleur implements Initializable{
 
 
 		
-		//	this.translateXProperty().bind(p.getX());	//la position du cercle va Ãªtre mise Ã  jour en mm temps que la position du personnage
+		//	this.translateXProperty().bind(p.getX());	//la position du cercle va être mise à jour en mm temps que la position du personnage
 		
 		viehero.affichageVie(hero.PvProperty().getValue());
 	}
 	
 }
-
-
-
-
-
-
-
-
-
