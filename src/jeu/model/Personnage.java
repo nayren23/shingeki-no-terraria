@@ -7,7 +7,7 @@ import jeu.Parametre;
 public abstract class Personnage {
 
 
-	IntegerProperty xProp,yProp;
+	final IntegerProperty xProp,yProp;
 	private int vitesse;
 	private int pv; // property
 	private Terrain terrain;
@@ -34,8 +34,8 @@ public abstract class Personnage {
 		return this.yProp.getValue();
 	}
 	
-	public final void setX(int val) {
-		this.xProp.setValue(val);
+	public final void setX(double d) {
+		this.xProp.setValue(d);
 	}
 	
 	public final void setY(int val) {
