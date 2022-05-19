@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane fx:id="BorderPaneId" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jeu.controleur.Controleur">
+   <center>
+      <TilePane fx:id="tuilesFond" prefHeight="447.0" prefWidth="503.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fx:id="eren">
+               <image>
+                  <Image url="@../image/Eren1.png" />
+               </image>
+            </ImageView>
+         </children></TilePane>
+   </center>
+</BorderPane>
