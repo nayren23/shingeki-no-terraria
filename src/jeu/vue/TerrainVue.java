@@ -56,5 +56,9 @@ public class TerrainVue {
 			tuilesFond.getChildren().add(img);
 		}
 	}
+	
+//	public void changementTuileMinage(int numéroTuile) {
+//		
+//	}
 
 }

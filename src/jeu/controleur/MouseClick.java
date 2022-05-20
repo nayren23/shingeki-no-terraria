@@ -33,7 +33,7 @@ public class MouseClick implements EventHandler<MouseEvent> {
 
 		
 			eren.miner(positionTuileDansTableau,terrain);
-			terrainVue.dessinerTerrain();
+			terrainVue.dessinerTerrain(); // changer et faire une fonction qui actualise juste l'image changé
 
 			System.out.println("\n positionTuileDansTableau" + positionTuileDansTableau);
 
