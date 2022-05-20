@@ -57,8 +57,18 @@ public class TerrainVue {
 		}
 	}
 	
-//	public void changementTuileMinage(int numéroTuile) {
+//	public void changementTuileMinage(int numéroTuile , Terrain terrain) {
+//
+//		System.out.println("\nhello"+numéroTuile);
 //		
+//		ImageView img = new ImageView();
+//		System.out.println("\nbonjour"+ terrain.getTerrain()[numéroTuile]);
+//			if(Terrain.listeBlocMinable().contains (terrain.getTerrain()[numéroTuile] )) {
+//				Image nvImage = new  Image("jeu/image/trou.png");
+//                img .setImage(nvImage); 
+//			}
+//			tuilesFond.getChildren().add(img);
+//
 //	}
 
 }

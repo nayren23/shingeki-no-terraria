@@ -4,6 +4,18 @@ import java.util.ArrayList;
 
 public class Terrain {
 
+	public static ArrayList<Integer> listeBlocMinable()  {
+		
+		ArrayList<Integer> blocminable = new ArrayList<Integer>();
+		blocminable.add(1);
+		blocminable.add(2);
+		blocminable.add(3);
+		blocminable.add(4);
+		blocminable.add(5);
+		// mettre les block minables ici 
+		return blocminable;
+	}
+
 	private final int [] terrain ={
 			0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 			0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -31,23 +43,16 @@ public class Terrain {
 	};
 
 	public void changerTuiles (int numéroTuile) {
-		ArrayList<Integer> blocminable = new ArrayList<Integer>(); // mettre les block minables ici 
-		blocminable.add(1);
-		blocminable.add(2);
-		blocminable.add(3);
-		blocminable.add(4);
-		blocminable.add(5);
+
 
 		int blocTerre = 5;
 
 		for (int i = 0 ; i< terrain.length;i++) {
-			if(blocminable.contains(terrain[i]) && i == numéroTuile )  {
+			if(listeBlocMinable().contains(terrain[i]) && i == numéroTuile )  {
 				terrain[i] = blocTerre;
 			}
 
-			else {
-				System.out.println("Impossible de miner");
-			}
+
 		}
 	}
 
