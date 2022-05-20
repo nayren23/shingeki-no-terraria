@@ -1,5 +1,7 @@
 package jeu.model;
 
+import java.util.ArrayList;
+
 public class Terrain {
 	
 	private final int [] terrain ={
@@ -28,12 +30,35 @@ public class Terrain {
             4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 4
 	};
 	
+	public void changerTuiles (int numéroTuile) {
+		ArrayList<Integer> blocminable = new ArrayList<Integer>();
+		blocminable.add(1);
+		blocminable.add(2);
+		blocminable.add(3);
+		blocminable.add(4);
+		blocminable.add(5);
+		
+		int blocTerre = 5;
+		for (int i = 0 ; i< terrain.length;i++) {
+			if (i == numéroTuile) {
+				terrain[i] = blocTerre;
+			}
+		}
+		
+	}
 	
-	
-	
+	public void affichertableau(Terrain terrain) {
+		
+		for (int i = 0 ; i<terrain.longueurterrain(); i++) {
+			System.out.print(terrain.getTerrain()[i]);
+		}
+	}
 
 	public  int[] getTerrain() {
 		return terrain;
 	}
-
+	
+	public int longueurterrain() {
+		return terrain.length;
+	}
 }
