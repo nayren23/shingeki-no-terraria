@@ -19,6 +19,7 @@ public class TerrainVue {
 	
 	
 	public void dessinerTerrain () {
+		tuilesFond.setMaxSize(40*32, 23*32); // largeur * taille tuile hauteur * nb tuiles pour pas que la fenetre quand on l'agrandit change
 		tuilesFond.getChildren().clear();
 		for(int cases = 0; cases < terrain.getTerrain().length ; cases++) {
 			ImageView img;

@@ -1,6 +1,8 @@
 
 package jeu.model;
 
+import java.util.ArrayList;
+
 import jeu.Parametre;
 import jeu.controleur.MouseClick;
 import jeu.controleur.MouseMoved;
@@ -62,20 +64,15 @@ public class Heros extends Personnage{
 		System.out.println("minage" + numéroTuilesCasser);
 		System.out.println("Affichage du terrain"+terrain.getTerrain());
 		terrain.affichertableau(terrain);
-				// faire une liste 
 		
-			if(terrain.getTerrain()[numéroTuilesCasser]== 1 || terrain.getTerrain()[numéroTuilesCasser]==2 || terrain.getTerrain()[numéroTuilesCasser]== 3 || terrain.getTerrain()[numéroTuilesCasser]== 4 || terrain.getTerrain()[numéroTuilesCasser]== 5 ) { // ce qu'on peut miner
 				terrain.changerTuiles(numéroTuilesCasser);
 				System.out.println("C'est cassé Yes");			
 				terrain.affichertableau(terrain);
 			}
-			else {
-				System.out.println("Impossible de miner");
 
-			}
 
 		}
-}
+//}
 	//}
 //	public boolean estMort(int pv) { // a finir
 //			boolean estMort = false;
