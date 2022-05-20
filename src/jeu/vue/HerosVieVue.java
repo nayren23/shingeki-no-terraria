@@ -36,44 +36,57 @@ public class HerosVieVue extends Pane  {
 	public void affichageVie(int pv) {
 		
 
-		ImageView imageCoeur;
+		ImageView imageCoeur = new ImageView();
+		
+		Image imageduCoeur10 =new Image("jeu/image/coeur/coeur10.png");
+		Image imageduCoeur9 = new Image("jeu/image/coeur/coeur9.png");
+		Image imageduCoeur8= new Image("jeu/image/coeur/coeur8.png");
+		Image imageduCoeur7 = new Image("jeu/image/coeur/coeur7.png");
+		Image imageduCoeur6 = new Image("jeu/image/coeur/coeur6.png");
+		Image imageduCoeur5 = new Image("jeu/image/coeur/coeur5.png");
+		Image imageduCoeur4 = new Image("jeu/image/coeur/coeur4.png");
+		Image imageduCoeur3 = new Image("jeu/image/coeur/coeur3.png");
+		Image imageduCoeur2 = new Image("jeu/image/coeur/coeur2.png");
+		Image imageduCoeur1 = new Image("jeu/image/coeur/coeur1.png");
+
+		
 		switch(hero.PvProperty().getValue()) {
 
 		case 0 :
-			imageCoeur = new ImageView(new Image("jeu/image/coeur/coeur10.png"));
+			imageCoeur.setImage(imageduCoeur10);
 			break;
 
 		case 1 :
-			imageCoeur = new ImageView(new Image("jeu/image/coeur/coeur9.png"));
+			imageCoeur.setImage(imageduCoeur9);
 			break;
 
 		case 2 :
-			imageCoeur = new ImageView(new Image("jeu/image/coeur/coeur8.png"));
+			imageCoeur.setImage(imageduCoeur8);
 			break;
 
 		case 3 :
-			imageCoeur = new ImageView(new Image("jeu/image/coeur/coeur7.png"));
+			imageCoeur.setImage(imageduCoeur7);
 			break;
 		case 4 :
-			imageCoeur = new ImageView(new Image("jeu/image/coeur/coeur6.png"));
+			imageCoeur.setImage(imageduCoeur6);
 			break;
 
 		case 5 :
-			imageCoeur = new ImageView(new Image("jeu/image/coeur/coeur5.png"));
+			imageCoeur.setImage(imageduCoeur5);
 			break;
 
 		case 6 :
-			imageCoeur = new ImageView(new Image("jeu/image/coeur/coeur4.png"));
+			imageCoeur.setImage(imageduCoeur4);
 			break;
 
 		case 7 :
-			imageCoeur = new ImageView(new Image("jeu/image/coeur/coeur3.png"));
+			imageCoeur.setImage(imageduCoeur3);
 			break;
 		case 8 :
-			imageCoeur = new ImageView(new Image("jeu/image/coeur/coeur2.png"));
+			imageCoeur.setImage(imageduCoeur2);
 			break;
 		case 9 :
-			imageCoeur = new ImageView(new Image("jeu/image/coeur/coeur1.png"));
+			imageCoeur.setImage(imageduCoeur1);
 			break;
 
 		default : 
