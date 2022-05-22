@@ -60,7 +60,7 @@ public class Heros extends Personnage{
 			this.PvProperty().setValue(pv);  // -1 pour le héros 
 	}
 
-	public void miner (int numéroTuilesCasser, Terrain terrain) {
+	public void miner (int numéroTuilesCasser, Terrain terrain) {  // ensuite rajouter l'objet miner dans l'inventaire 
 		System.out.println("minage" + numéroTuilesCasser);
 		System.out.println("Affichage du terrain"+terrain.getTerrain());
 		terrain.affichertableau(terrain);
@@ -70,7 +70,9 @@ public class Heros extends Personnage{
 				terrain.affichertableau(terrain);
 			}
 
-
+//		public void construire(Terrain terrain) {
+//			
+//		}
 		}
 //}
 	//}
