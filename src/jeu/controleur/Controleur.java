@@ -25,20 +25,17 @@ public class Controleur implements Initializable{
 	@FXML
 	private BorderPane BorderPaneId;
 
-    @FXML
-    private Pane PanePrincipale;
-    
+	@FXML
+	private Pane PanePrincipale;
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
 
 
+		//Création de l'environnement qui lui récupére le Terrain
 		Environnement env = new Environnement();
-		// juste new environnement
 		TerrainVue terrainVue = new TerrainVue(tuilesFond, env.getTerrain());	//crée le terrain vue
-
-		//Personnage hero = new Hero ();
-
 		terrainVue.dessinerTerrain();
 
 		hero = new Heros(0, 0, env.getTerrain());
@@ -48,16 +45,12 @@ public class Controleur implements Initializable{
 		HerosVieVue viehero = new HerosVieVue(hero, PanePrincipale);
 
 		BorderPaneId.addEventHandler(KeyEvent.KEY_PRESSED,new KeyPressed(hero, viehero));	//pour savoir les touches qui sont appuyés
-//		BorderPaneId.addEventHandler(KeyEvent.KEY_RELEASED,new KeyPressed(hero,viehero) );	//pour savoir les touches qui sont relachés enlever car sinon fait les actions 2 fois pour les pv
-	//	BorderPaneId.addEventFilter(MouseEvent.MOUSE_ENTERED_TARGET, new MouseClick(hero,viehero));
 		BorderPaneId.addEventHandler(MouseEvent.MOUSE_CLICKED, new MouseClick(hero,env.getTerrain(),terrainVue)); 
 
-		////////////
-		//this.BorderPaneId.getChildren().add(viehero);
 		viehero.affichageVie(hero.PvProperty().getValue()); //affichage vie hero en haut droite
-		
+
 	}
-	
+
 }
 
 

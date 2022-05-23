@@ -15,21 +15,17 @@ public class HerosVieVue extends Pane  {
 	public HerosVieVue(Personnage hero, Pane PanePrincipale) {
 		this.hero = hero;
 		this.PanePrincipale = PanePrincipale;
-		this.imageCoeur = new ImageView();
+		this.imageCoeur = new ImageView(); //faire aussi ça dans la map
 		PanePrincipale.getChildren().add(imageCoeur); //afficher les coeurs
-
-
-
 	}
 
-	
+
 	public void clearPanVieHero() {  // pour éviter que  les coeur s'affiche en meme temp
 		this.PanePrincipale.getChildren().clear();
 	}
-
+		
 	public void affichageVie(int pv) {
-		
-		
+
 		Image imageduCoeur10 =new Image("jeu/image/coeur/coeur10.png");
 		Image imageduCoeur9 = new Image("jeu/image/coeur/coeur9.png");
 		Image imageduCoeur8= new Image("jeu/image/coeur/coeur8.png");
@@ -41,7 +37,7 @@ public class HerosVieVue extends Pane  {
 		Image imageduCoeur2 = new Image("jeu/image/coeur/coeur2.png");
 		Image imageduCoeur1 = new Image("jeu/image/coeur/coeur1.png");
 
-		
+
 		switch(hero.PvProperty().getValue()) {
 
 		case 0 :
@@ -90,7 +86,7 @@ public class HerosVieVue extends Pane  {
 		imageCoeur.setFitWidth(75);	 //taille image
 		imageCoeur.setX(1200); //droite ou gauche
 		imageCoeur.setY(10);// pour monter le coeur
-		
+
 
 	}
 
