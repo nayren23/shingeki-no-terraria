@@ -1,4 +1,3 @@
-
 package jeu.model;
 
 import jeu.Parametre;

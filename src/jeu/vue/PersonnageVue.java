@@ -11,7 +11,7 @@ public class PersonnageVue extends Circle{
 	public PersonnageVue(Personnage p) {
 		creeCercle();
 		this.p = p;
-		this.translateXProperty().bind(p.getX());	//la position du cercle va Ãªtre mise Ã  jour en mm temps que la position du personnage
+		this.translateXProperty().bind(p.getX());	//la position du cercle va être mise à jour en mm temps que la position du personnage
 		this.translateYProperty().bind(p.CoordonneeYProperty());
 	}
 	

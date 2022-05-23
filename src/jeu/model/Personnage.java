@@ -76,5 +76,3 @@ public abstract class Personnage {
 		this.PvProperty = pv;
 	}
 }
-
-
