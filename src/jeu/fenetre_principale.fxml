@@ -8,7 +8,7 @@
    <center>
       <Pane fx:id="PanePrincipale" BorderPane.alignment="CENTER">
          <children>
-            <TilePane fx:id="tuilesFond" prefColumns="40" prefRows="100" />
+            <TilePane fx:id="tuilesFond" prefColumns="40" prefRows="23" />
          </children>
       </Pane>
    </center>

@@ -39,7 +39,7 @@ public class HerosVieVue extends Pane  {
 
 	public void affichageVie(int pv) {
 
-		switch(hero.PvProperty().getValue()) {
+		switch(hero.PvProperty().getValue()) { // changer avec un listener
 
 		case 0 :
 			imageCoeur.setImage(tableauImageCoeur()[0]);

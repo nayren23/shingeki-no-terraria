@@ -5,13 +5,13 @@ import java.util.ArrayList;
 public class Terrain {
 
 	public static ArrayList<Integer> listeBlocMinable()  {
-		
+
 		ArrayList<Integer> blocminable = new ArrayList<Integer>();
 		blocminable.add(1);
 		blocminable.add(2);
 		blocminable.add(3);
 		blocminable.add(4);
-		blocminable.add(5);
+		//blocminable.add(5);
 		// mettre les block minables ici 
 		return blocminable;
 	}
@@ -45,14 +45,12 @@ public class Terrain {
 	public void changerTuiles (int numéroTuile) {
 
 
-		int blocTerre = 5;
+		int blocCiel = 0;
 
 		for (int i = 0 ; i< terrain.length;i++) {
 			if(listeBlocMinable().contains(terrain[i]) && i == numéroTuile )  {
-				terrain[i] = blocTerre;
+				terrain[i] = blocCiel;
 			}
-
-
 		}
 	}
 
