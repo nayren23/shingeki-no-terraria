@@ -1,7 +1,5 @@
 package jeu.vue;
 
-import java.util.ArrayList;
-
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -37,7 +35,8 @@ public class HerosVieVue extends Pane  {
 		return tableauImage;
 	}
 
-		
+	
+
 	public void affichageVie(int pv) {
 
 		switch(hero.PvProperty().getValue()) {
@@ -88,8 +87,6 @@ public class HerosVieVue extends Pane  {
 		imageCoeur.setFitWidth(75);	 //taille image
 		imageCoeur.setX(1200); //droite ou gauche
 		imageCoeur.setY(10);// pour monter le coeur
-
-
 	}
 
 }
