@@ -9,34 +9,26 @@ import jeu.model.Personnage;
 public class HerosVieVue extends Pane  {
 
 	private Personnage hero;
+	private Pane PanePrincipale;
+	private ImageView imageCoeur;
 
-	private TilePane tuilesFond;
-	private Pane PaneVieHero;
-	private ImageView image;
-
-	public HerosVieVue(Personnage hero, TilePane tuilesFond) {
+	public HerosVieVue(Personnage hero, Pane PanePrincipale) {
 		this.hero = hero;
-		this.tuilesFond=tuilesFond;
-		
-		
-		this.PaneVieHero = new Pane();
-		this.PaneVieHero.setMaxWidth(15);
-		this.PaneVieHero.setMaxHeight(10);
-		this.PaneVieHero.setLayoutX(500);
-		this.PaneVieHero.setLayoutY(100);
-		this.PaneVieHero.setVisible(true);
-		this.tuilesFond.getChildren().add(this.PaneVieHero);
+		this.PanePrincipale = PanePrincipale;
+		this.imageCoeur = new ImageView();
+		PanePrincipale.getChildren().add(imageCoeur); //afficher les coeurs
+
+
+
 	}
 
 	
 	public void clearPanVieHero() {  // pour éviter que  les coeur s'affiche en meme temp
-		this.PaneVieHero.getChildren().clear();
+		this.PanePrincipale.getChildren().clear();
 	}
 
 	public void affichageVie(int pv) {
 		
-
-		ImageView imageCoeur = new ImageView();
 		
 		Image imageduCoeur10 =new Image("jeu/image/coeur/coeur10.png");
 		Image imageduCoeur9 = new Image("jeu/image/coeur/coeur9.png");
@@ -86,6 +78,7 @@ public class HerosVieVue extends Pane  {
 			imageCoeur.setImage(imageduCoeur2);
 			break;
 		case 9 :
+			System.out.println(imageCoeur);
 			imageCoeur.setImage(imageduCoeur1);
 			break;
 
@@ -96,8 +89,8 @@ public class HerosVieVue extends Pane  {
 		imageCoeur.setFitHeight(75); //taille image
 		imageCoeur.setFitWidth(75);	 //taille image
 		imageCoeur.setX(1200); //droite ou gauche
-		imageCoeur.setY(-720);// pour monter le coeur
-		PaneVieHero.getChildren().add(imageCoeur); //afficher les coeurs
+		imageCoeur.setY(10);// pour monter le coeur
+		
 
 	}
 

@@ -42,7 +42,7 @@ public class KeyPressed implements EventHandler<KeyEvent>{
 			System.out.println("Pas OK");
 
 			hero.perdrePv();
-			heroVue.clearPanVieHero(); 			// faire un clear pour éviter superposition coeur
+			//heroVue.clearPanVieHero(); 			// faire un clear pour éviter superposition coeur
 
 			heroVue.affichageVie(hero.PvProperty().getValue());
 			System.out.println(hero.PvProperty());
@@ -51,7 +51,7 @@ public class KeyPressed implements EventHandler<KeyEvent>{
 		case F2:
 			System.out.println("OK");
 			hero.augmenterPv(); //test pour voir si le coeur change d'image quand on augmente les pv
-			heroVue.clearPanVieHero();// faire un clear pour éviter superposition coeur
+			//heroVue.clearPanVieHero();// faire un clear pour éviter superposition coeur
 
 			heroVue.affichageVie(hero.PvProperty().getValue()); //rafraichir la vue du coeur
 			System.out.println(hero.PvProperty());
