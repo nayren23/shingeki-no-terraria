@@ -23,6 +23,7 @@ public class MouseClick implements EventHandler<MouseEvent> {
 	@Override
 	public void handle(MouseEvent arg0) {
 
+		
 		int x = (int)arg0.getX()/tailleTuile;
 		int y = (int)arg0.getY()/tailleTuile;
 
