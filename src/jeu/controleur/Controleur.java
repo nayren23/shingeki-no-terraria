@@ -40,7 +40,7 @@ public class Controleur implements Initializable{
 		PersonnageVue pers1= new PersonnageVue(hero);
 		this.BorderPaneId.getChildren().add(pers1);
 
-		HerosVieVue viehero = new HerosVieVue(hero, tuilesFond);
+		HerosVieVue viehero = new HerosVieVue(hero);
 
 		BorderPaneId.addEventHandler(KeyEvent.KEY_PRESSED,new KeyPressed(hero, viehero));	//pour savoir les touches qui sont appuyés
 //		BorderPaneId.addEventHandler(KeyEvent.KEY_RELEASED,new KeyPressed(hero,viehero) );	//pour savoir les touches qui sont relachés enlever car sinon fait les actions 2 fois pour les pv

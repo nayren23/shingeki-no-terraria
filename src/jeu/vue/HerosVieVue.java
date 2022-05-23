@@ -10,13 +10,11 @@ public class HerosVieVue extends Pane  {
 
 	private Personnage hero;
 
-	private TilePane tuilesFond;
 	private Pane PaneVieHero;
 	private ImageView image;
 
-	public HerosVieVue(Personnage hero, TilePane tuilesFond) {
+	public HerosVieVue(Personnage hero) {
 		this.hero = hero;
-		this.tuilesFond=tuilesFond;
 		
 		
 		this.PaneVieHero = new Pane();
@@ -25,7 +23,7 @@ public class HerosVieVue extends Pane  {
 		this.PaneVieHero.setLayoutX(500);
 		this.PaneVieHero.setLayoutY(100);
 		this.PaneVieHero.setVisible(true);
-		this.tuilesFond.getChildren().add(this.PaneVieHero);
+		this.PaneVieHero.getChildren().add(this.PaneVieHero);
 	}
 
 	
