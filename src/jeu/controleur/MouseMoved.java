@@ -8,8 +8,6 @@ public class MouseMoved implements EventHandler<MouseEvent> {
 	public static int tailleTuile = 32;
 	public static int tailleMapLongueur = 40;  // nombre de tuiles dans une ligne
 
-		
-	
 	public MouseMoved() {
 		}
 
@@ -25,10 +23,4 @@ public class MouseMoved implements EventHandler<MouseEvent> {
 			positionTuileDansTableau = (y * tailleMapLongueur  ) + x;
 			System.out.println("\n positionTuileDansTableau" + positionTuileDansTableau);
 			}
-	
-	
-	
 	}
-
-
-

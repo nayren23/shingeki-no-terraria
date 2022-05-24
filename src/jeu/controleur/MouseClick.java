@@ -22,8 +22,6 @@ public class MouseClick implements EventHandler<MouseEvent> {
 
 	@Override
 	public void handle(MouseEvent arg0) {
-
-		
 		int x = (int)arg0.getX()/tailleTuile;
 		int y = (int)arg0.getY()/tailleTuile;
 
@@ -31,13 +29,11 @@ public class MouseClick implements EventHandler<MouseEvent> {
 
 		System.out.println("\nAffichage X" + x+ "Affichage Y"+ y);
 		positionTuileDansTableau = (y * tailleMapLongueur  ) + x;
-
 		
 			eren.miner(positionTuileDansTableau,terrain);
 			terrainVue.dessinerTerrain();; // changer et faire une fonction qui actualise juste l'image changé
 
 			System.out.println("\n positionTuileDansTableau" + positionTuileDansTableau);
-
 	}
 
 }
