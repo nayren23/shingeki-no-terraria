@@ -25,7 +25,6 @@ public abstract class Personnage {
 	public abstract void seDeplace(Parametre.DIRECTION d);
 	
 	
-	
 	public final int getX() {
 		return this.xProp.getValue();
 	}

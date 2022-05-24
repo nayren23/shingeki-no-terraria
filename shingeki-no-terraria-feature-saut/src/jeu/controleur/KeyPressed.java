@@ -12,7 +12,7 @@ public class KeyPressed implements EventHandler<KeyEvent>{
 	private Heros hero;
 
 
-	public KeyPressed(Personnage hero2 ) {
+	public KeyPressed(Personnage hero2) {
 		this.hero = (Heros) hero2;
 	}
 
@@ -31,17 +31,16 @@ public class KeyPressed implements EventHandler<KeyEvent>{
 			break;
 		case D:
 			hero.seDeplace(Parametre.DIRECTION.RIGHT);
+
 			break;
 		case RIGHT:
 			hero.seDeplace(Parametre.DIRECTION.RIGHT);
+
 			break;
 		case SPACE:
 			hero.seDeplace(Parametre.DIRECTION.SPACE);
+			hero.setSpace(true);
 			break;
-
-
-
-
 		default:
 			System.out.println("Entrée incorrecte");
 			break;

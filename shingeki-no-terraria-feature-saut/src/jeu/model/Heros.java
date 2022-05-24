@@ -2,18 +2,24 @@ package jeu.model;
 
 import javafx.animation.TranslateTransition;
 import javafx.beans.property.IntegerProperty;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.transform.Translate;
 import javafx.util.Duration;
 import jeu.Parametre;
 import jeu.controleur.KeyPressed;
+import jeu.vue.HeroVue;
 
 public class Heros extends Personnage{
 
-	int direction;
+	int direction, dirY = -7;
+	boolean space = false;
 
 	//changer le type terrain en type environnement
 	public Heros(int x, int y, Terrain terrain) {
 		super(x, y, 5, 6, terrain);
+
 
 	}
 
@@ -21,35 +27,15 @@ public class Heros extends Personnage{
 	public void seDeplace(Parametre.DIRECTION d) {
 		switch(d) {
 		case LEFT:
-			
-			this.xProperty().setValue(xProperty().getValue() - 6);
-			this.direction  = -1;
+			setDirection(-3);
 			break;
 
 		case RIGHT:
-			this.xProperty().setValue(xProperty().getValue() + 6);
-			this.direction = 2;
+			setDirection(3);
 			break;
 
-
 		case SPACE:
-//			TranslateTransition saut = new TranslateTransition(Duration.millis(direction));
-			
-			if(this.direction == -1) {
-				this.setY(getY() - 40);
-				this.setX(getX() - 40);
-
-			}
-			else if(this.direction == 2){
-				this.setY(getY() - 40);
-				this.setX(getX() + 40);
-			}
-			else {
-				this.setY(getY() - 40);
-			}
-
-
-
+			dirY = -5;
 			break;
 
 		default:
@@ -59,14 +45,72 @@ public class Heros extends Personnage{
 
 
 	}
-	
+
+	public void move () {
+		if(yProp.get() >= 149) {
+			System.out.println(yProp);
+			this.xProp.set(xProp.get() + direction);
+			if(space == true) {
+				this.yProp.set(yProp.get() + dirY);
+
+			}
+			
+
+
+		}
+
+	}
+
+
+	public void gravite() {
+		if(getY() <= 185)  {
+
+			if(getDirection() == -3) {
+				setX(getX() - 2);
+				setY(getY() + 2);
+
+
+			}
+			else if (getDirection() == 3){
+				setY(getY() + 2);
+				setX(getX() + 2);
+
+
+			}
+			else {
+				setY(getY() + 2);
+
+
+			}
+
+		}
+	}
+
+
 	public int getDirection() {
 		return this.direction;
 	}
 
 	public int setDirection(int i) {
-		 return this.direction = i;
+		return this.direction = i;
 	}
+
+	public int getDirY() {
+		return dirY;
+	}
+
+	public void setDirY(int dirY) {
+		this.dirY = dirY;
+	}
+
+	public boolean isSpace() {
+		return space;
+	}
+
+	public void setSpace(boolean space) {
+		this.space = space;
+	}
+
 
 
 

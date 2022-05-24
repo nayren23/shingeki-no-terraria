@@ -31,7 +31,7 @@ public class Controleur implements Initializable{
 
 	private Timeline gameLoop;
 	private Heros hero;
-	
+
 	@FXML
 	private Pane idPane;
 	@FXML
@@ -53,29 +53,29 @@ public class Controleur implements Initializable{
 		//Personnage hero = new Hero ();
 
 		terrainVue.dessinerTerrain();
-				
+
 		hero = new Heros(0, 0, env.getTerrain());
 
 		HeroVue hero1 = new HeroVue(hero);
 		this.idPane.getChildren().add(hero1);
 		hero1.affichageEren(hero);
-		
-		
-		
-//		PersonnageVue pers1= new PersonnageVue(hero);
-//		this.BorderPaneId.getChildren().add(pers1);
 
-		
-		
 
-		
+
+		//		PersonnageVue pers1= new PersonnageVue(hero);
+		//		this.BorderPaneId.getChildren().add(pers1);
+
+
+
+
+
 		BorderPaneId.addEventHandler(KeyEvent.KEY_PRESSED,new KeyPressed(hero));	//pour savoir les touches qui sont appuyés
 		BorderPaneId.addEventHandler(KeyEvent.KEY_RELEASED,new KeyReleased(hero));	//pour savoir les touches qui sont relachés
 
 
 
-		
-		
+
+
 		initAnimation();
 		//		// demarre l'animation
 		gameLoop.play();
@@ -100,24 +100,8 @@ public class Controleur implements Initializable{
 
 					System.out.println(hero.getDirection());
 
-					if(hero.getY() <= 185)  {
-					
-						this.hero.setY(hero.getY() + 1);
-
-						if(hero.getDirection() == -1) {
-							this.hero.setX(hero.getX() - 1);
-
-						}
-						else if (hero.getDirection() == 2){
-							this.hero.setX(hero.getX() + 1);
-
-						}
-						else {
-							
-						}
-
-					}
-
+					hero.gravite();
+					hero.move();
 
 				}
 						));

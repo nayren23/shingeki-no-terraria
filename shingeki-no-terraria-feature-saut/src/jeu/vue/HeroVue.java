@@ -16,7 +16,7 @@ import jeu.model.Personnage;
 public class HeroVue extends ImageView{
 	
 	private Heros h;
-	
+	private static String image = "jeu/image/Eren1.png";
 	
 	//@FXML
 	//private ImageView eren;
@@ -25,12 +25,10 @@ public class HeroVue extends ImageView{
 	//mettre le bind et l'image du personnage
 
 	public HeroVue(Heros h) {
-		super(new Image("jeu/image/Eren1.png"));
+		super(new Image(image));
 		this.h = h;
 		this.h.setX(200);
 		this.h.setY(185);
-
-
 	}
 	
 	public void affichageEren(Heros h) {
@@ -38,5 +36,12 @@ public class HeroVue extends ImageView{
 		this.translateYProperty().bind(h.yProperty());
 	
 	}
+
+	public static void setImage(String image) {
+		HeroVue.image = image;
+	}
+	
+	
+	
 	
 }
