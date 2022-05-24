@@ -6,18 +6,20 @@ import jeu.Parametre;
 import jeu.model.Heros;
 import jeu.model.Personnage;
 import jeu.vue.HerosVieVue;
+import jeu.vue.PersonnageVue;
+import jeu.vue.inventaire.InventaireVue;
 
 public class KeyPressed implements EventHandler<KeyEvent>{
 
 	private Heros hero;
+	private InventaireVue inventaire;
 	private HerosVieVue heroVue;
 
-	public KeyPressed(Personnage hero2 , HerosVieVue heroVue ) {
+	public KeyPressed(Personnage hero2 , HerosVieVue heroVue, InventaireVue inv) {
 		this.hero = (Heros) hero2;
+		this.inventaire=inv;
 		this.heroVue = heroVue;
 	}
-
-
 
 	@Override
 	//Deplacement
@@ -56,8 +58,11 @@ public class KeyPressed implements EventHandler<KeyEvent>{
 			System.out.println(hero.PvProperty());
 			break;	
 			
+		case I: 
+			inventaire.afficherInventaire();
+			break;
 		default:
-			System.out.println("Entrée incorrecte"  );
+			System.out.println("Entrï¿½e incorrecte"  );
             break;
 		}
 	}

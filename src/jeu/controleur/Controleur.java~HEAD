@@ -33,9 +33,9 @@ public class Controleur implements Initializable{
 
 
 
-		//Crï¿½ation de l'environnement qui lui rï¿½cupï¿½re le Terrain
+		//Création de l'environnement qui lui récupére le Terrain
 		Environnement env = new Environnement();
-		TerrainVue terrainVue = new TerrainVue(tuilesFond, env.getTerrain());	//crï¿½e le terrain vue
+		TerrainVue terrainVue = new TerrainVue(tuilesFond, env.getTerrain());	//crée le terrain vue
 		terrainVue.dessinerTerrain();
 
 		hero = new Heros(0, 0, env.getTerrain());
@@ -44,7 +44,7 @@ public class Controleur implements Initializable{
 
 		HerosVieVue viehero = new HerosVieVue(hero, PanePrincipale);
 
-		BorderPaneId.addEventHandler(KeyEvent.KEY_PRESSED,new KeyPressed(hero, viehero));	//pour savoir les touches qui sont appuyï¿½s
+		BorderPaneId.addEventHandler(KeyEvent.KEY_PRESSED,new KeyPressed(hero, viehero));	//pour savoir les touches qui sont appuyés
 		BorderPaneId.addEventHandler(MouseEvent.MOUSE_CLICKED, new MouseClick(hero,env.getTerrain(),terrainVue)); 
 
 		viehero.affichageVie(hero.PvProperty().getValue()); //affichage vie hero en haut droite

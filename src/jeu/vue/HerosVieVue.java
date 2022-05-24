@@ -16,7 +16,7 @@ public class HerosVieVue extends Pane  {
 	public HerosVieVue(Heros hero, Pane PanePrincipale) {
 		this.hero = hero;
 		this.PanePrincipale = PanePrincipale;
-		this.imageCoeur = new ImageView(); //faire aussi ça dans la map
+		this.imageCoeur = new ImageView(); //faire aussi ï¿½a dans la map
 
 		//Redimensionne et place l'image au bon endroit
 		imageCoeur.setFitHeight(75); //taille image
@@ -28,12 +28,12 @@ public class HerosVieVue extends Pane  {
 		PanePrincipale.getChildren().add(imageCoeur); //afficher les coeurs
 		this. tableauImage = new Image[10] ;
 
-		//Création qu'une seule fois des images
+		//Crï¿½ation qu'une seule fois des images
 		tableauImageCoeur();
 	}
 
 
-	//Création d'un tableua pour stocker les images pour éviter leur création à chaque fois
+	//Crï¿½ation d'un tableua pour stocker les images pour ï¿½viter leur crï¿½ation ï¿½ chaque fois
 	private void tableauImageCoeur() {
 		tableauImage[0] = new Image("jeu/image/coeur/coeur10.png");
 		tableauImage[1] = new Image("jeu/image/coeur/coeur9.png");

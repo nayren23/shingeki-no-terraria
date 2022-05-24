@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.TilePane?>
 
-<BorderPane fx:id="BorderPaneId" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jeu.controleur.Controleur">
+<BorderPane fx:id="BorderPaneId" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jeu.controleur.Controleur">
    <center>
       <Pane fx:id="PanePrincipale" BorderPane.alignment="CENTER">
          <children>
             <TilePane fx:id="tuilesFond" prefColumns="40" prefRows="23" />
+            <TilePane fx:id="afficherInventaire" prefColumns="10" />
          </children>
       </Pane>
    </center>

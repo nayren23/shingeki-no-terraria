@@ -46,6 +46,9 @@ public abstract class Personnage {
 	
 	public final IntegerProperty CoordonneeYProperty() {
 		return CoordonneeYProperty;
+    }
+	public IntegerProperty getY() {
+		return CoordonneeYProperty();
 	}
 	
 	public IntegerProperty getX() {  // changer mettre bonne syntaxe
@@ -76,5 +79,3 @@ public abstract class Personnage {
 		this.PvProperty = pv;
 	}
 }
-
-

@@ -7,13 +7,12 @@ import jeu.model.Terrain;
 
 public class TerrainVue {
 	
-	//accÃ¨s au terrain
 	private TilePane tuilesFond;
 	private Terrain terrain;
 	private Image imageTerrain [] ;
 
 	
-	// On créer les images une seul fois 
+	// On crï¿½er les images une seul fois 
 	private void tableauImageTerrain() {
 		this.imageTerrain = new Image[7] ;  // a changer en fonction du nombre de tuiles
 		imageTerrain[0] = new Image("jeu/image/ciel.png");
@@ -30,8 +29,6 @@ public class TerrainVue {
 		this.terrain=terrain;
 		tableauImageTerrain();
 	}
-	
-
 	
 	public void dessinerTerrain () {
 		//tuilesFond.setMaxSize(40*32, 23*32); // largeur * taille tuile hauteur * nb tuiles pour pas que la fenetre quand on l'agrandit change
@@ -72,13 +69,13 @@ public class TerrainVue {
 		}
 	}
 	
-//	public void changementTuileMinage(int numéroTuile , Terrain terrain) {
+//	public void changementTuileMinage(int numï¿½roTuile , Terrain terrain) {
 //
-//		System.out.println("\nhello"+numéroTuile);
+//		System.out.println("\nhello"+numï¿½roTuile);
 //		
 //		ImageView img = new ImageView();
-//		System.out.println("\nbonjour"+ terrain.getTerrain()[numéroTuile]);
-//			if(Terrain.listeBlocMinable().contains (terrain.getTerrain()[numéroTuile] )) {
+//		System.out.println("\nbonjour"+ terrain.getTerrain()[numï¿½roTuile]);
+//			if(Terrain.listeBlocMinable().contains (terrain.getTerrain()[numï¿½roTuile] )) {
 //				Image nvImage = new  Image("jeu/image/trou.png");
 //                img .setImage(nvImage); 
 //			}

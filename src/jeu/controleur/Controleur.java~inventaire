@@ -1,0 +1,68 @@
+package jeu.controleur;
+
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.TilePane;
+import jeu.model.Heros;
+import jeu.model.Personnage;
+import jeu.model.Terrain;
+import jeu.model.inventaire.Inventaire;
+import jeu.vue.HerosVieVue;
+import jeu.vue.PersonnageVue;
+import jeu.vue.TerrainVue;
+import jeu.vue.inventaire.InventaireVue;
+
+public class Controleur implements Initializable{
+
+	@FXML
+    private BorderPane BorderPaneId;	
+
+    @FXML
+    private Pane PanePrincipale;
+    
+    @FXML
+    private TilePane tuilesFond;
+    
+    @FXML
+    private TilePane afficherInventaire;
+	
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+	
+		Terrain terrain = new Terrain();								//crée le terrain modèle
+		TerrainVue terrainVue = new TerrainVue(tuilesFond, terrain);	//crée le terrain vue
+		//Personnage hero = new Hero ();
+		
+		terrainVue.dessinerTerrain();
+		
+		Personnage hero = new Heros(0, 0, terrain);
+		PersonnageVue pers1= new PersonnageVue(hero);
+		Inventaire inv =new Inventaire();
+		InventaireVue invVue= new InventaireVue(inv, afficherInventaire);		
+		this.PanePrincipale.getChildren().add(pers1);
+		this.PanePrincipale.getChildren().add(invVue);
+
+		HerosVieVue viehero = new HerosVieVue(hero, tuilesFond);
+		
+		BorderPaneId.addEventHandler(KeyEvent.KEY_PRESSED,new KeyPressed(hero,pers1, invVue));	//pour savoir les touches qui sont appuyés
+		//BorderPaneId.addEventHandler(KeyEvent.KEY_RELEASED,new KeyPressed(hero,pers1, invVue));	//pour savoir les touches qui sont relachés
+	}
+	
+
+	
+
+}
+
+
+
+
+
+
+
+
+

@@ -42,13 +42,13 @@ public class Terrain {
 			4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 4
 	};
 
-	public void changerTuiles (int numéroTuile) {
+	public void changerTuiles (int numï¿½roTuile) {
 
 
 		int blocCiel = 0;
 
 		for (int i = 0 ; i< terrain.length;i++) {
-			if(listeBlocMinable().contains(terrain[i]) && i == numéroTuile )  {
+			if(listeBlocMinable().contains(terrain[i]) && i == numï¿½roTuile )  {
 				terrain[i] = blocCiel;
 			}
 		}

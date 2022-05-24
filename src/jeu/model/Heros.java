@@ -9,7 +9,7 @@ import jeu.controleur.MouseMoved;
 
 public class Heros extends Personnage{
 
-	private MouseMoved sourisCoordonnées;
+	private MouseMoved sourisCoordonnï¿½es;
 	private Terrain terrain;
 	//changer le type terrain en type environnement
 	public Heros(int x, int y, Terrain terrain) {
@@ -46,27 +46,27 @@ public class Heros extends Personnage{
 	}
 	
 	@Override
-	public void perdrePv() { // en option mettre le nb de pv perdu en paramètre
+	public void perdrePv() { // en option mettre le nb de pv perdu en paramï¿½tre
 			
 			int pv = clamp(this.PvProperty().getValue()-1, 0, 9);
-			this.PvProperty().setValue(pv);  // -1 pour le héros 
+			this.PvProperty().setValue(pv);  // -1 pour le hï¿½ros 
 		}
 	
 
 	@Override
-	public void augmenterPv() { // en option mettre le nb de pv augmenter en paramètre
+	public void augmenterPv() { // en option mettre le nb de pv augmenter en paramï¿½tre
 
 			int pv = clamp(this.PvProperty().getValue()+1, 0, 9);	
-			this.PvProperty().setValue(pv);  // -1 pour le héros 
+			this.PvProperty().setValue(pv);  // -1 pour le hï¿½ros 
 	}
 
-	public void miner (int numéroTuilesCasser, Terrain terrain) {  // ensuite rajouter l'objet miner dans l'inventaire 
-		System.out.println("minage" + numéroTuilesCasser);
+	public void miner (int numï¿½roTuilesCasser, Terrain terrain) {  // ensuite rajouter l'objet miner dans l'inventaire 
+		System.out.println("minage" + numï¿½roTuilesCasser);
 		System.out.println("Affichage du terrain"+terrain.getTerrain());
 		terrain.affichertableau(terrain);
 		
-				terrain.changerTuiles(numéroTuilesCasser);
-				System.out.println("C'est cassé Yes");			
+				terrain.changerTuiles(numï¿½roTuilesCasser);
+				System.out.println("C'est cassï¿½ Yes");			
 				terrain.affichertableau(terrain);
 			}
 
