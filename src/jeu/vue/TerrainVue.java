@@ -30,6 +30,8 @@ public class TerrainVue {
 		tableauImageTerrain();
 	}
 	
+	
+	
 	public void dessinerTerrain () {
 		//tuilesFond.setMaxSize(40*32, 23*32); // largeur * taille tuile hauteur * nb tuiles pour pas que la fenetre quand on l'agrandit change
 		tuilesFond.getChildren().clear();
@@ -60,12 +62,11 @@ public class TerrainVue {
 	            	images = new ImageView(imageTerrain[6]);
 	                break;
 
-	            default : 
-	            	images = null;
-	                break;
-	            }
-			tuilesFond.getChildren().add(images); //afficher les coeurs
-
+			default : 
+				img = null;
+				break;
+			}
+			tuilesFond.getChildren().add(img);
 		}
 	}
 	
