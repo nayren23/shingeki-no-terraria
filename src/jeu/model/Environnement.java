@@ -31,7 +31,4 @@ public class Environnement {
 			return personnages;
 		}
 		
-
-		
-		
 }

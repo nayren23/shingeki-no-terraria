@@ -6,13 +6,10 @@ import jeu.Parametre;
 
 public abstract class Personnage {
 
-
 	private IntegerProperty CoordonneeXProperty,CoordonneeYProperty;
 	private int vitesse;
 	private IntegerProperty PvProperty;
 	private Terrain terrain;
-	
-	
 	
 	public Personnage(int x, int y, int vitesse, int pv, Terrain terrain) {
 		this.setxProp(new SimpleIntegerProperty(x));
@@ -31,9 +28,7 @@ public abstract class Personnage {
 
 	public abstract void seDeplace(Parametre.DIRECTION d);
 	
-	
 	//-------------------------------------------------------------------//
-
 	
 	//Getters
 	public final IntegerProperty PvProperty() {
@@ -63,7 +58,6 @@ public abstract class Personnage {
 		return terrain;
 	}
 
-	
 	//-------------------------------------------------------------------//
 	//Setters
 	

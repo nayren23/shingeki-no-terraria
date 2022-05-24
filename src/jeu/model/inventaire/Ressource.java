@@ -23,5 +23,4 @@ public class Ressource extends Objet{
 			ajouterDansInventaire(o);
 	}
 
-
 }

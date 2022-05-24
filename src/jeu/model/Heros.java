@@ -1,4 +1,3 @@
-
 package jeu.model;
 
 import java.util.ArrayList;
@@ -9,7 +8,7 @@ import jeu.controleur.MouseMoved;
 
 public class Heros extends Personnage{
 
-	private MouseMoved sourisCoordonn�es;
+	private MouseMoved sourisCoordonnee;
 	private Terrain terrain;
 	//changer le type terrain en type environnement
 	public Heros(int x, int y, Terrain terrain) {
@@ -28,14 +27,14 @@ public class Heros extends Personnage{
 			break;
 
 		default:
-			System.out.println("Entrée incorrecte");
+			System.out.println("Entree incorrecte");
 			break;
 		}
 	}
 
-	private int clamp (int val1 , int min, int max) {  // Pour borner un chiffre entre 2valeur pour pas que l'image s'enleve
+	private int clamp (int val1 , int min, int max) {  // Pour borner un chiffre entre 2 valeurs pour pas que l'image s'enleve
 		int valeurClamp = val1;
-		
+
 		if(valeurClamp<min) {
 			valeurClamp = min;
 		}
@@ -44,38 +43,32 @@ public class Heros extends Personnage{
 		}
 		return valeurClamp;
 	}
-	
+
 	@Override
 	public void perdrePv() { // en option mettre le nb de pv perdu en param�tre
-			
-			int pv = clamp(this.PvProperty().getValue()-1, 0, 9);
-			this.PvProperty().setValue(pv);  // -1 pour le h�ros 
-		}
-	
-
-	@Override
-	public void augmenterPv() { // en option mettre le nb de pv augmenter en param�tre
-
-			int pv = clamp(this.PvProperty().getValue()+1, 0, 9);	
-			this.PvProperty().setValue(pv);  // -1 pour le h�ros 
+		int pv = clamp(this.PvProperty().getValue()-1, 0, 9);
+		this.PvProperty().setValue(pv);  // -1 pour le heros 
 	}
 
-	public void miner (int num�roTuilesCasser, Terrain terrain) {  // ensuite rajouter l'objet miner dans l'inventaire 
-		System.out.println("minage" + num�roTuilesCasser);
+	@Override
+	public void augmenterPv() { // en option mettre le nb de pv augmenter en parametre
+		int pv = clamp(this.PvProperty().getValue()+1, 0, 9);	
+		this.PvProperty().setValue(pv);  // -1 pour le heros 
+	}
+
+	public void miner (int numeroTuilesCasser, Terrain terrain) {  // ensuite rajouter l'objet miner dans l'inventaire 
+		System.out.println("minage" + numeroTuilesCasser);
 		System.out.println("Affichage du terrain"+terrain.getTerrain());
 		terrain.affichertableau(terrain);
-		
-				terrain.changerTuiles(num�roTuilesCasser);
-				System.out.println("C'est cass� Yes");			
-				terrain.affichertableau(terrain);
-			}
+		terrain.changerTuiles(numeroTuilesCasser);
+		System.out.println("C'est cassee Yes");			
+		terrain.affichertableau(terrain);
+	}
 
-//		public void construire(Terrain terrain) {
-//			
-//		}
-		}
-//}
-	//}
+	//	public void construire(Terrain terrain) {
+	//		
+	//	}
+}
 //	public boolean estMort(int pv) { // a finir
 //			boolean estMort = false;
 //			
@@ -84,10 +77,4 @@ public class Heros extends Personnage{
 //			}
 //			return estMort;
 //			
-//	}
-	
-	
-	
-	
-
-
+//}

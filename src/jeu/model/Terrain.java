@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class Terrain {
 
 	public static ArrayList<Integer> listeBlocMinable()  {
-
 		ArrayList<Integer> blocminable = new ArrayList<Integer>();
 		blocminable.add(1);
 		blocminable.add(2);
@@ -42,20 +41,17 @@ public class Terrain {
 			4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 4
 	};
 
-	public void changerTuiles (int num�roTuile) {
-
-
+	public void changerTuiles (int numeroTuile) {
 		int blocCiel = 0;
 
 		for (int i = 0 ; i< terrain.length;i++) {
-			if(listeBlocMinable().contains(terrain[i]) && i == num�roTuile )  {
+			if(listeBlocMinable().contains(terrain[i]) && i == numeroTuile)  {
 				terrain[i] = blocCiel;
 			}
 		}
 	}
 
 	public void affichertableau(Terrain terrain) {
-
 		for (int i = 0 ; i<terrain.longueurterrain(); i++) {
 			System.out.print(terrain.getTerrain()[i]);
 		}

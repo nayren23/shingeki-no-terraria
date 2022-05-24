@@ -4,35 +4,35 @@ import java.util.ArrayList;
 
 public class Arme extends Objet{
 	
-	private int durabilité;
-	private int dégat;
-	private int qualité;
+	private int durabilite;
+	private int degats;
+	private int qualite;
 	private String nomArme;
 	
 	public Arme(int id, ArrayList<Objet> o, int x, int y, String nom) {
 		super(id, o, x, y);
-		this.durabilité=100;
-		this.dégat=2;
+		this.durabilite=100;
+		this.degats=2;
 		this.nomArme=nom;
 	}
 	
 	public void faireDegats() {
-		this.durabilité-=1;
-		if (this.durabilité==0)
+		this.durabilite-=1;
+		if (this.durabilite==0)
 			super.inventaire.remove(getIdObjet());
 	}
 	
 	public void nbDegats (int qualite) {
 		if (qualite==1)
-			setDégat(1);
+			setD�gat(1);
 		else if (qualite==2)
-			setDégat(2);
+			setD�gat(2);
 		else 
-			setDégat(3);
+			setD�gat(3);
 	}
 
-	public void setDégat(int dégat) {
-		this.dégat = dégat;
+	public void setD�gat(int d�gat) {
+		this.degats = d�gat;
 	}
 
 }

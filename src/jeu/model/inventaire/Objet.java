@@ -11,7 +11,6 @@ public abstract class Objet extends Inventaire{
 	private int idObjet;
 	IntegerProperty xProp,yProp;
 
-
 	public Objet(int idObjet, ArrayList<Objet> o, int x, int y) {
 		this.xProp = new SimpleIntegerProperty(x);
 		this.yProp = new SimpleIntegerProperty(y);
