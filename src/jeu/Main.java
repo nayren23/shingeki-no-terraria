@@ -20,7 +20,7 @@ public class Main extends Application {
 			primaryStage.setTitle("SNT");
 			primaryStage.setScene(scene);
 			primaryStage.show();
-			primaryStage.setResizable(false);
+//			primaryStage.setResizable(false);
 			//Savoir les touches
 			scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 

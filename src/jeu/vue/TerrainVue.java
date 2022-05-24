@@ -7,13 +7,13 @@ import jeu.model.Terrain;
 
 public class TerrainVue {
 	
-	//accÃ¨s au terrain
+	//acces au terrain
 	private TilePane tuilesFond;
 	private Terrain terrain;
-	private Image imageTerrain [] ;
+	private Image imageTerrain[];
 
 	
-	// On créer les images une seul fois 
+	// On creer les images une seule fois 
 	private void tableauImageTerrain() {
 		this.imageTerrain = new Image[7] ;  // a changer en fonction du nombre de tuiles
 		imageTerrain[0] = new Image("jeu/image/ciel.png");
@@ -39,7 +39,6 @@ public class TerrainVue {
 		ImageView images ;
 		for(int cases = 0; cases < terrain.getTerrain().length ; cases++) {
 			switch(terrain.getTerrain()[cases]) {
-
 	            case 0 :
 	            	images = new ImageView(imageTerrain[0]);
 	                break;
@@ -47,18 +46,23 @@ public class TerrainVue {
 	            case 1 :
 	            	images = new ImageView(imageTerrain[1]);
 	                break;
+	                
 	            case 2 :
 	            	images = new ImageView(imageTerrain[2]);
 	                break;
+	                
 	            case 3 :
 	            	images = new ImageView(imageTerrain[3]);
 	                break;
+	                
 	            case 4 :
 	            	images = new ImageView(imageTerrain[4]);
 	                break;
+	                
 	            case 5 :
 	            	images = new ImageView(imageTerrain[5]);
 	                break;
+	                
 	            case 6 :
 	            	images = new ImageView(imageTerrain[6]);
 	                break;
@@ -68,7 +72,6 @@ public class TerrainVue {
 	                break;
 	            }
 			tuilesFond.getChildren().add(images); //afficher les coeurs
-
 		}
 	}
 	

@@ -16,7 +16,7 @@ public class HerosVieVue extends Pane  {
 	public HerosVieVue(Heros hero, Pane PanePrincipale) {
 		this.hero = hero;
 		this.PanePrincipale = PanePrincipale;
-		this.imageCoeur = new ImageView(); //faire aussi ça dans la map
+		this.imageCoeur = new ImageView(); //faire aussi ï¿½a dans la map
 
 		//Redimensionne et place l'image au bon endroit
 		imageCoeur.setFitHeight(75); //taille image
@@ -28,12 +28,12 @@ public class HerosVieVue extends Pane  {
 		PanePrincipale.getChildren().add(imageCoeur); //afficher les coeurs
 		this. tableauImage = new Image[10] ;
 
-		//Création qu'une seule fois des images
+		//Creation qu'une seule fois des images
 		tableauImageCoeur();
 	}
 
 
-	//Création d'un tableua pour stocker les images pour éviter leur création à chaque fois
+	//Creation d'un tableau pour stocker les images pour eviter leur creation a chaque fois
 	private void tableauImageCoeur() {
 		tableauImage[0] = new Image("jeu/image/coeur/coeur10.png");
 		tableauImage[1] = new Image("jeu/image/coeur/coeur9.png");
@@ -47,12 +47,8 @@ public class HerosVieVue extends Pane  {
 		tableauImage[9] = new Image("jeu/image/coeur/coeur1.png");
 	}
 
-
-
 	public void affichageVie(int pv) {
-
 		switch(hero.PvProperty().getValue()) { // changer avec un listener
-
 		case 0 :
 			imageCoeur.setImage(tableauImage[0]);
 			break;
@@ -68,6 +64,7 @@ public class HerosVieVue extends Pane  {
 		case 3 :
 			imageCoeur.setImage(tableauImage[3]);
 			break;
+			
 		case 4 :
 			imageCoeur.setImage(tableauImage[4]);
 			break;
@@ -83,9 +80,11 @@ public class HerosVieVue extends Pane  {
 		case 7 :
 			imageCoeur.setImage(tableauImage[7]);
 			break;
+			
 		case 8 :
 			imageCoeur.setImage(tableauImage[8]);
 			break;
+			
 		case 9 :
 			System.out.println(imageCoeur);
 			imageCoeur.setImage(tableauImage[9]);
@@ -95,7 +94,5 @@ public class HerosVieVue extends Pane  {
 			imageCoeur = null;
 			break;
 		}
-
 	}
-
 }

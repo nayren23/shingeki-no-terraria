@@ -12,9 +12,11 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import jeu.model.Environnement;
 import jeu.model.Heros;
+import jeu.model.inventaire.Inventaire;
 import jeu.vue.HerosVieVue;
 import jeu.vue.PersonnageVue;
 import jeu.vue.TerrainVue;
+import jeu.vue.inventaire.InventaireVue;
 
 public class Controleur implements Initializable{
 
@@ -27,15 +29,18 @@ public class Controleur implements Initializable{
 
 	@FXML
 	private Pane PanePrincipale;
-
+	
+	@FXML
+	private TilePane afficherInventaire;
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
 
 
-		//Création de l'environnement qui lui récupére le Terrain
+		//Creation de l'environnement qui lui recupere le Terrain
 		Environnement env = new Environnement();
-		TerrainVue terrainVue = new TerrainVue(tuilesFond, env.getTerrain());	//crée le terrain vue
+		TerrainVue terrainVue = new TerrainVue(tuilesFond, env.getTerrain());	//crï¿½e le terrain vue
 		terrainVue.dessinerTerrain();
 
 		hero = new Heros(0, 0, env.getTerrain());
@@ -43,10 +48,13 @@ public class Controleur implements Initializable{
 		this.BorderPaneId.getChildren().add(pers1);
 
 		HerosVieVue viehero = new HerosVieVue(hero, PanePrincipale);
-
-		BorderPaneId.addEventHandler(KeyEvent.KEY_PRESSED,new KeyPressed(hero, viehero));	//pour savoir les touches qui sont appuyés
+		Inventaire inv = new Inventaire();
+		InventaireVue invVue = new InventaireVue(inv, afficherInventaire);
+		this.PanePrincipale.getChildren().add(invVue);
+		
+		BorderPaneId.addEventHandler(KeyEvent.KEY_PRESSED,new KeyPressed(hero, viehero, invVue));	//pour savoir les touches qui sont appuyï¿½s
 		BorderPaneId.addEventHandler(MouseEvent.MOUSE_CLICKED, new MouseClick(hero,env.getTerrain(),terrainVue)); 
-
+		
 		viehero.affichageVie(hero.PvProperty().getValue()); //affichage vie hero en haut droite
 
 	}
