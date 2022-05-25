@@ -1,47 +1,42 @@
 package jeu.vue;
 
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.fxml.FXML;
+
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.shape.Circle;
-import jeu.controleur.KeyPressed;
+import javafx.scene.input.KeyCode;
 import jeu.model.Heros;
-import jeu.model.Personnage;
+
 
 public class HeroVue extends ImageView{
 	
 	private Heros h;
-	private static String image = "jeu/image/Eren1.png";
+	private Image image = new Image("jeu/image/Eren1.png"), image2 = new Image ("jeu/image/Eren1.png") ;
 	
-	//@FXML
-	//private ImageView eren;
-
-
-	//mettre le bind et l'image du personnage
-
-	public HeroVue(Heros h) {
-		super(new Image(image));
+	
+	
+	public HeroVue(Heros h) {			// initialisation de l'image et de ses coordoonées de base 
+		super();
 		this.h = h;
 		this.h.setX(200);
 		this.h.setY(185);
+		this.setImage(image);
 	}
 	
 	public void affichageEren(Heros h) {
-		this.translateXProperty().bind(h.xProperty());	//la position du cercle va être mise à jour en mm temps que la position du personnage
+		this.translateXProperty().bind(h.xProperty());	//la position du hero va être mise à jour en mm temps que la position du hero dans la vue
 		this.translateYProperty().bind(h.yProperty());
+//		changerImage();
 	
 	}
-
-	public static void setImage(String image) {
-		HeroVue.image = image;
-	}
 	
 	
+//	
+//	public void changerImage() {
+//		if(KeyCode.Q) {
+//			this.setImage(image2);
+//		}
+//	}
+//	
 	
 	
 }
