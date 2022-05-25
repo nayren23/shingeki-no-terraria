@@ -15,12 +15,12 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("/jeu/vue/fenetre_principale.fxml"));
-			final Scene scene = new Scene(root,1280,720);
+			final Scene scene = new Scene(root,500,400);
 			root.requestFocus();
 			primaryStage.setTitle("SNT");
 			primaryStage.setScene(scene);
 			primaryStage.show();
-			primaryStage.setResizable(false);
+//			primaryStage.setResizable(false);
 			//Savoir les touches      !!! à enlever !!!
 			scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 
