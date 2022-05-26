@@ -2,19 +2,40 @@ package jeu.model;
 
 import java.util.ArrayList;
 
+import jeu.Parametre;
+
 public class Terrain {
 
-	public static ArrayList<Integer> listeBlocMinable()  {
-		ArrayList<Integer> blocminable = new ArrayList<Integer>();
-		blocminable.add(1);
-		blocminable.add(2);
-		blocminable.add(3);
-		blocminable.add(4);
-		//blocminable.add(5);
-		// mettre les block minables ici 
-		return blocminable;
+	/**
+	 * On ne déclare qu'une seule fois les bloc qu'on peut miner que l on stocke dans une ArrayList 
+	 */
+	private ArrayList<Integer>listeBlocMinable;
+
+	public Terrain() {
+		this.listeBlocMinable = new ArrayList<Integer>();
+		listeBlocMinable(); // on initialise qu'une seule fois
 	}
 
+	//-----------------------------------------------------------------------//
+	/**
+	 * Methode servant a choisir les blocs que l on peut casser sur la map 
+	 */
+	private void listeBlocMinable()  {
+		this.listeBlocMinable.add(0);
+		this.listeBlocMinable.add(1);
+		this.listeBlocMinable.add(2);
+		this.listeBlocMinable.add(3);
+		//this.listeBlocMinable.add(4);
+		//this.listeBlocMinable.add(5);
+		//this.listeBlocMinable.add(6);
+	}
+	
+	//Creer un nouvelle liste pour les bloc ou on peut poser des blocs par dessus les anciens
+	//-----------------------------------------------------------------------//
+
+	/**
+	 * Tableau qui stocke la map  en int
+	 */
 	private final int [] terrain ={
 			0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 			0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -41,26 +62,52 @@ public class Terrain {
 			4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 4
 	};
 
-	public void changerTuiles (int numeroTuile) {
-		int blocCiel = 0;
+	/**
+	 * change les tuiles en bloc choisit,
+	 * si jamais on veut changer le bloc par lequel on shouaite remplacer les blocs casser allez dans la classe Parametre 
+	 * @param numeroTuile que l'on veut changer dans le model
+	 */
+	public void changerTuiles (int numeroTuile, int blocAChanger) {
 
-		for (int i = 0 ; i< terrain.length;i++) {
-			if(listeBlocMinable().contains(terrain[i]) && i == numeroTuile)  {
-				terrain[i] = blocCiel;
-			}
+		if(listeBlocMinable.contains(terrain[numeroTuile]) && terrain[numeroTuile]!= blocAChanger )  {
+			terrain[numeroTuile] = blocAChanger;
+			System.out.println("\n ça fonctionne bloc changer");
+		}
+		
+		//Juste pour des test 
+		else if ( terrain[numeroTuile]== blocAChanger ){
+			System.out.println("C'est le meme bloc on peut pas changer");
 		}
 	}
 
+	//---------------------------------------------------------------------------------------//
+
+	/**
+	 * Methodes Basiques pour l affichage du terrain pour des test en console
+	 * @param terrain que l on shouaite afficher
+	 */
 	public void affichertableau(Terrain terrain) {
 		for (int i = 0 ; i<terrain.longueurterrain(); i++) {
 			System.out.print(terrain.getTerrain()[i]);
 		}
 	}
+	
+	//---------------------------------------------------------------------------------------//
 
+	/**
+	 * 
+	 * @return un Terrain dans un tableau de int
+	 */
 	public  int[] getTerrain() {
 		return terrain;
 	}
+	
+	//---------------------------------------------------------------------------------------//
 
+	/**
+	 *  Methodes Basiques pour connaitre la longueur du terrain
+	 * @return
+	 */
 	public int longueurterrain() {
 		return terrain.length;
 	}

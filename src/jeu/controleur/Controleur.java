@@ -41,38 +41,54 @@ public class Controleur implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
-
+		//------------------------------------------------------------//
 
 		//Creation de l'environnement qui lui recupere le Terrain
 		Environnement env = new Environnement();
 		
-		TerrainVue terrainVue = new TerrainVue(tuilesFond, env.getTerrain());	//cr�e le terrain vue
+		TerrainVue terrainVue = new TerrainVue(tuilesFond, env.getTerrain());	//cree le terrain vue
 		terrainVue.dessinerTerrain();
-
 		
+		//------------------------------------------------------------//
+
+		//Creation du hero eren
 		hero = new Heros(0, 0, env.getTerrain());
 		
+		//------------------------------------------------------------//
+
+		//Creation de la Vue du hero eren puis ajout de celui ci dans le pane
 		HeroVue hero1 = new HeroVue(hero);
 		this.PanePrincipale.getChildren().add(hero1);
 		hero1.affichageEren(hero);
 
+		//------------------------------------------------------------//
+
+		//Creation de la Vie du Hero Eren donc des coeurs en haut a droite
 		HerosVieVue viehero = new HerosVieVue(hero, PanePrincipale);
+		viehero.affichageVie(hero.PvProperty().getValue()); //affichage vie hero en haut droite
+
+		//------------------------------------------------------------//
+		
+		//Creation Inventaire
 		Inventaire inv = new Inventaire();
 		InventaireVue invVue = new InventaireVue(inv, afficherInventaire);
 		this.PanePrincipale.getChildren().add(invVue);
 		
-		BorderPaneId.addEventHandler(KeyEvent.KEY_PRESSED,new KeyPressed(hero, viehero, invVue));	//pour savoir les touches qui sont appuy�s
-		BorderPaneId.addEventHandler(KeyEvent.KEY_RELEASED,new KeyReleased(hero));	//pour savoir les touches qui sont relachés
+		//------------------------------------------------------------//
 
-		BorderPaneId.addEventHandler(MouseEvent.MOUSE_CLICKED, new MouseClick(hero,env.getTerrain(),terrainVue)); 
+		//Creation de l usage du clavier
+		BorderPaneId.addEventHandler(KeyEvent.KEY_PRESSED,new KeyPressed(hero, viehero, invVue)); //pour savoir les touches qui sont appuee
+		BorderPaneId.addEventHandler(KeyEvent.KEY_RELEASED,new KeyReleased(hero));//pour savoir les touches qui sont relachee
+	
+		//------------------------------------------------------------//
+
+		//Creation de l usage de la souris 
+		BorderPaneId.addEventHandler(MouseEvent.MOUSE_CLICKED, new MouseClick(hero,env.getTerrain(),terrainVue)); //fait la distinction entre les differant click de la souris
 		
-		viehero.affichageVie(hero.PvProperty().getValue()); //affichage vie hero en haut droite
-
-
-
+		//------------------------------------------------------------//
 
 		initAnimation();
-		//		// demarre l'animation
+		// demarre l'animation
 		gameLoop.play();
 	}
 
@@ -97,24 +113,9 @@ public class Controleur implements Initializable{
 
 					hero.gravite();
 					hero.move();
-
 				}
 						));
-
-
 		gameLoop.getKeyFrames().add(kf);
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-

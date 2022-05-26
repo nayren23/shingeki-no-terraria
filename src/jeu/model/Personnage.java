@@ -49,9 +49,7 @@ public abstract class Personnage {
 	public final IntegerProperty yProperty() {
 		return this.yProp;
 	}
-	
-
-	
+		
 	public int getVitesse() {
 		return vitesse;
 	}
