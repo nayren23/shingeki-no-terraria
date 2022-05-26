@@ -74,16 +74,16 @@ public class Terrain {
 			System.out.println("\n ça fonctionne bloc changer");
 		}
 		
-		//Juste pour des test ²
+		//Juste pour des test 
 		else if ( terrain[numeroTuile]== blocAChanger ){
-			System.out.println("C'est le meme bloc");
+			System.out.println("C'est le meme bloc on peut pas changer");
 		}
 	}
 
 	//---------------------------------------------------------------------------------------//
 
 	/**
-	 * Methodes Basiques pour l affichage du terrain
+	 * Methodes Basiques pour l affichage du terrain pour des test en console
 	 * @param terrain que l on shouaite afficher
 	 */
 	public void affichertableau(Terrain terrain) {
@@ -92,6 +92,8 @@ public class Terrain {
 		}
 	}
 	
+	//---------------------------------------------------------------------------------------//
+
 	/**
 	 * 
 	 * @return un Terrain dans un tableau de int
@@ -100,6 +102,7 @@ public class Terrain {
 		return terrain;
 	}
 	
+	//---------------------------------------------------------------------------------------//
 
 	/**
 	 *  Methodes Basiques pour connaitre la longueur du terrain

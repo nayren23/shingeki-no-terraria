@@ -1,21 +1,19 @@
 package jeu.model;
 
-import java.util.ArrayList;
-
 import jeu.Parametre;
-import jeu.controleur.MouseClick;
-import jeu.controleur.MouseMoved;
 
 public class Heros extends Personnage{
 
 	int direction, dirY = -7;
 	boolean space = false;
-	private MouseMoved sourisCoordonnee;
 	private Terrain terrain;
-	//changer le type terrain en type environnement
+	
+	//changer le type terrain en type environnement maybe
 	public Heros(int x, int y, Terrain terrain) {
 		super(x, y, 5, 9, terrain);
 	}
+
+	//------------------------------------------------------------//
 
 	@Override
 	public void seDeplace(Parametre.DIRECTION d) {
@@ -33,10 +31,12 @@ public class Heros extends Personnage{
 			break;
 
 		default:
-			System.out.println("EntrÃ©e incorrecte");
+			System.out.println("Entree incorrecte");
 			break;
 		}
 	}
+
+	//------------------------------------------------------------//
 
 	public void move () {
 		if(yProp.get() >= 149) {
@@ -44,14 +44,11 @@ public class Heros extends Personnage{
 			this.xProp.set(xProp.get() + direction);
 			if(space == true) {
 				this.yProp.set(yProp.get() + dirY);
-
 			}
-
-
-
 		}
-
 	}
+	
+	//------------------------------------------------------------//
 
 	public void gravite() {
 		if(getY() <= 185)  {
@@ -59,25 +56,28 @@ public class Heros extends Personnage{
 			if(getDirection() == -3) {
 				setX(getX() - 2);
 				setY(getY() + 2);
-
-
 			}
 			else if (getDirection() == 3){
 				setY(getY() + 2);
 				setX(getX() + 2);
-
-
 			}
+
 			else {
 				setY(getY() + 2);
-
-
 			}
-
 		}
 	}
 
+	//------------------------------------------------------------//
 
+	/**
+	 * // Pour borner un chiffre entre 2 valeurs pour pas que l'image du coeur s'enleve aisni ne pas 
+	 * ainsi ne pas avoir + de 9 pv et - de 0 pv
+	 * @param val1  notre pv actuelle
+	 * @param min valeur la plus basse a ne jamais dépasser
+	 * @param max valeur la plus haute a ne jamais dépasser
+	 * @return  notre valeur comprise entre 0 et 9
+	 */
 	private int clamp (int val1 , int min, int max) {  // Pour borner un chiffre entre 2 valeurs pour pas que l'image s'enleve
 		int valeurClamp = val1;
 
@@ -90,40 +90,51 @@ public class Heros extends Personnage{
 		return valeurClamp;
 	}
 
+	//------------------------------------------------------------//
+
 	@Override
+	/**
+	 * on ne peut pas etre en dessous de 0 pv gérer grace au clamp
+	 */
 	public void perdrePv() { // en option mettre le nb de pv perdu en paramï¿½tre
-		int pv = clamp(this.PvProperty().getValue()-1, 0, 9);
+		int pv = clamp(this.PvProperty().getValue()-1, 0, 9); // on prend notre valeur et on fait -1 et doit etre comprise entre 0 et 9
 		this.PvProperty().setValue(pv);  // -1 pour le heros 
 	}
 
+	//------------------------------------------------------------//
+
 	@Override
-	public void augmenterPv() { // en option mettre le nb de pv augmenter en parametre
+	/**
+	 * on ne peut pas etre en dessus de 9 pv gérer grace au clamp
+	 */
+	public void augmenterPv() { // on prend notre valeur et on fait +1 et doit etre comprise entre 0 et 9
 		int pv = clamp(this.PvProperty().getValue()+1, 0, 9);	
 		this.PvProperty().setValue(pv);  // -1 pour le heros 
 	}
+	
+	//------------------------------------------------------------//
 
-	public void miner (int numeroTuilesCasser, Terrain terrain) {  // ensuite rajouter l'objet miner dans l'inventaire 
-		System.out.println("minage" + numeroTuilesCasser);
-		
-		//terrain.affichertableau(terrain);  //affichage du tableau pour les test
+	/**
+	 * 
+	 * @param numeroTuilesCasser que l on veut casser
+	 * @param terrain sur quel terrain l'action doit se faire
+	 */
+	public void casserBloc (int numeroTuilesCasser, Terrain terrain) {  // ensuite rajouter l'objet miner dans l'inventaire 
+		System.out.println("casser tuile : " + numeroTuilesCasser);
 		terrain.changerTuiles(numeroTuilesCasser,Parametre.changementDuBlocCasser); //changer le 1 en bloc choisit
-		//System.out.println("C'est cassee Yes");			
-		//terrain.affichertableau(terrain);  //affichage du tableau pour les test
+		System.out.println("C'est cassee Yes");			
 	}
+	
+	//------------------------------------------------------------//
 
-		public void construire(int numeroTuilesCasser, Terrain terrain) {
-			System.out.println("minage" + numeroTuilesCasser);
-			//terrain.affichertableau(terrain);  //affichage du tableau pour les test
 
-			terrain.changerTuiles(numeroTuilesCasser, Parametre.changementDuBlocConstruit); //changer le 1 en bloc choisit
-		//	System.out.println("C'est construit Yes");			
-
-			terrain.affichertableau(terrain);
-
-		}
-	//	public void construire(Terrain terrain) {
-	//		
-	//	}
+	public void construireTuile(int numeroTuilesCasser, Terrain terrain) {
+		System.out.println("Changement de la tuile : " + numeroTuilesCasser);
+		terrain.changerTuiles(numeroTuilesCasser, Parametre.changementDuBlocConstruit); //changer le 1 en bloc choisit
+		System.out.println("C'est construit Yes :)");			
+	}
+	
+	//------------------------------------------------------------//
 
 	//	public boolean estMort(int pv) { // a finir
 	//			boolean estMort = false;
@@ -135,7 +146,13 @@ public class Heros extends Personnage{
 	//			
 	//}
 
-
+	public boolean isSpace() {
+		return space;
+	}
+	
+	//------------------------------------------------------------//
+	
+	//Getters et Setter
 
 	public int getDirection() {
 		return this.direction;
@@ -153,16 +170,7 @@ public class Heros extends Personnage{
 		this.dirY = dirY;
 	}
 
-	public boolean isSpace() {
-		return space;
-	}
-
 	public void setSpace(boolean space) {
 		this.space = space;
 	}
 }
-
-
-
-
-

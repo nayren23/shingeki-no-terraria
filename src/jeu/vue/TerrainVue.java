@@ -42,12 +42,13 @@ public class TerrainVue {
 
 
 	/**
-	 * On dessine le Terrain qu'une seul fois 
+	 * On dessine le Terrain qu'une seul fois
 	 */
 	public void dessinerTerrain () {
 		//tuilesFond.setMaxSize(40*32, 23*32); // largeur * taille tuile hauteur * nb tuiles pour pas que la fenetre quand on l'agrandit change
-		tuilesFond.getChildren().clear();
+		tuilesFond.getChildren().clear(); // on clean le tilePane si jamais
 		ImageView images ;
+		
 		for(int cases = 0; cases < terrain.getTerrain().length ; cases++) {
 			switch(terrain.getTerrain()[cases]) {
 			case 0 :
@@ -82,7 +83,7 @@ public class TerrainVue {
 				images = null;
 				break;
 			}
-			tuilesFond.getChildren().add(images); //afficher les coeurs
+			tuilesFond.getChildren().add(images); //ajoute les images dans le tilePane
 		}
 	}
 
@@ -97,12 +98,9 @@ public class TerrainVue {
 
 		if(terrain.getTerrain()[numéroTuile] == blocChanger) {
 			ImageView img = new ImageView();
-			img.setImage(imageTerrain[blocChanger]);
-			tuilesFond.getChildren().set(numéroTuile, img);
+			img.setImage(imageTerrain[blocChanger]); // utilisation des images qui sont dans le tableua créer une seul fois plus haut
+			tuilesFond.getChildren().set(numéroTuile, img); // on change l'image a la position souhaiter par la nouvelle
 		}
-
-
-
 	}
 
 }

@@ -4,7 +4,7 @@ import javafx.scene.image.Image;
 
 public class Parametre {
 
-	
+		
 		public static enum DIRECTION {
 			RIGHT, LEFT, BOTTOM, TOP, SPACE;
 		} 
@@ -14,6 +14,9 @@ public class Parametre {
 		public static int changementDuBlocCasser = 0;
 		
 		public static int changementDuBlocConstruit = 1;
+		
+		//---------------------------------------------------------------------------------------//
+
 		//Spécification de chaque image
 		/*
 		 * 		this.imageTerrain = new Image[7] ;  // a changer en fonction du nombre de tuiles
@@ -26,5 +29,6 @@ public class Parametre {
 		6 = new Image("jeu/image/trou.png");
 		 */
 		
-		
+		//---------------------------------------------------------------------------------------//
+
 }
