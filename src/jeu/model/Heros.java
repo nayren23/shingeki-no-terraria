@@ -31,7 +31,7 @@ public class Heros extends Personnage{
 			break;
 
 		default:
-			System.out.println("Entree incorrecte");
+			System.out.println("EntrÃ©e incorrecte");
 			break;
 		}
 	}
@@ -74,8 +74,8 @@ public class Heros extends Personnage{
 	 * // Pour borner un chiffre entre 2 valeurs pour pas que l'image du coeur s'enleve aisni ne pas 
 	 * ainsi ne pas avoir + de 9 pv et - de 0 pv
 	 * @param val1  notre pv actuelle
-	 * @param min valeur la plus basse a ne jamais dépasser
-	 * @param max valeur la plus haute a ne jamais dépasser
+	 * @param min valeur la plus basse a ne jamais dï¿½passer
+	 * @param max valeur la plus haute a ne jamais dï¿½passer
 	 * @return  notre valeur comprise entre 0 et 9
 	 */
 	private int clamp (int val1 , int min, int max) {  // Pour borner un chiffre entre 2 valeurs pour pas que l'image s'enleve
@@ -94,7 +94,7 @@ public class Heros extends Personnage{
 
 	@Override
 	/**
-	 * on ne peut pas etre en dessous de 0 pv gérer grace au clamp
+	 * on ne peut pas etre en dessous de 0 pv gï¿½rer grace au clamp
 	 */
 	public void perdrePv() { // en option mettre le nb de pv perdu en paramï¿½tre
 		int pv = clamp(this.PvProperty().getValue()-1, 0, 9); // on prend notre valeur et on fait -1 et doit etre comprise entre 0 et 9
@@ -105,7 +105,7 @@ public class Heros extends Personnage{
 
 	@Override
 	/**
-	 * on ne peut pas etre en dessus de 9 pv gérer grace au clamp
+	 * on ne peut pas etre en dessus de 9 pv gï¿½rer grace au clamp
 	 */
 	public void augmenterPv() { // on prend notre valeur et on fait +1 et doit etre comprise entre 0 et 9
 		int pv = clamp(this.PvProperty().getValue()+1, 0, 9);	
