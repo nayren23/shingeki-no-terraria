@@ -69,9 +69,14 @@ public class Terrain {
 	 */
 	public void changerTuiles (int numeroTuile, int blocAChanger) {
 
-		if(listeBlocMinable.contains(terrain[numeroTuile]))  {
+		if(listeBlocMinable.contains(terrain[numeroTuile]) && terrain[numeroTuile]!= blocAChanger )  {
 			terrain[numeroTuile] = blocAChanger;
 			System.out.println("\n ça fonctionne bloc changer");
+		}
+		
+		//Juste pour des test ²
+		else if ( terrain[numeroTuile]== blocAChanger ){
+			System.out.println("C'est le meme bloc");
 		}
 	}
 

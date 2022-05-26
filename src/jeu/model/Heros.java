@@ -59,18 +59,18 @@ public class Heros extends Personnage{
 	public void miner (int numeroTuilesCasser, Terrain terrain) {  // ensuite rajouter l'objet miner dans l'inventaire 
 		System.out.println("minage" + numeroTuilesCasser);
 		
-		terrain.affichertableau(terrain);
+		//terrain.affichertableau(terrain);  //affichage du tableau pour les test
 		terrain.changerTuiles(numeroTuilesCasser,Parametre.changementDuBlocCasser); //changer le 1 en bloc choisit
-		System.out.println("C'est cassee Yes");			
-		terrain.affichertableau(terrain);
+		//System.out.println("C'est cassee Yes");			
+		//terrain.affichertableau(terrain);  //affichage du tableau pour les test
 	}
 
 		public void construire(int numeroTuilesCasser, Terrain terrain) {
 			System.out.println("minage" + numeroTuilesCasser);
-			terrain.affichertableau(terrain);
+			//terrain.affichertableau(terrain);  //affichage du tableau pour les test
 
 			terrain.changerTuiles(numeroTuilesCasser, Parametre.changementDuBlocConstruit); //changer le 1 en bloc choisit
-			System.out.println("C'est construit Yes");			
+		//	System.out.println("C'est construit Yes");			
 
 			terrain.affichertableau(terrain);
 
