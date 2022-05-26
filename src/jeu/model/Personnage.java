@@ -6,14 +6,14 @@ import jeu.Parametre;
 
 public abstract class Personnage {
 
-	private IntegerProperty CoordonneeXProperty,CoordonneeYProperty;
+	final IntegerProperty xProp,yProp;
 	private int vitesse;
 	private IntegerProperty PvProperty;
 	private Terrain terrain;
 	
 	public Personnage(int x, int y, int vitesse, int pv, Terrain terrain) {
-		this.setxProp(new SimpleIntegerProperty(x));
-		this.CoordonneeYProperty = new SimpleIntegerProperty(y);
+		this.xProp = (new SimpleIntegerProperty(x));
+		this.yProp = new SimpleIntegerProperty(y);
 		this.vitesse = vitesse;
 		this.PvProperty = new SimpleIntegerProperty(pv) ;
 		this.terrain = terrain;
@@ -35,20 +35,22 @@ public abstract class Personnage {
 		return PvProperty;
 	}
 
-	public final IntegerProperty CoordonneeXProperty() {
-		return CoordonneeXProperty;
+	public final int getX() {
+		return this.xProp.getValue();
 	}
 	
-	public final IntegerProperty CoordonneeYProperty() {
-		return CoordonneeYProperty;
-    }
-	public IntegerProperty getY() {
-		return CoordonneeYProperty();
+	public final int getY() {
+		return this.yProp.getValue();
+	}
+
+	public final IntegerProperty xProperty() {
+		return this.xProp;
+	}
+	public final IntegerProperty yProperty() {
+		return this.yProp;
 	}
 	
-	public IntegerProperty getX() {  // changer mettre bonne syntaxe
-		return CoordonneeXProperty();
-	}
+
 	
 	public int getVitesse() {
 		return vitesse;
@@ -61,8 +63,12 @@ public abstract class Personnage {
 	//-------------------------------------------------------------------//
 	//Setters
 	
-	public void setxProp(IntegerProperty xProp) {
-		this.CoordonneeXProperty = xProp;
+	public final void setX(double d) {
+		this.xProp.setValue(d);
+	}
+	
+	public final void setY(int val) {
+		this.yProp.setValue(val);
 	}
 	
 	public void setTerrain(Terrain terrain) {

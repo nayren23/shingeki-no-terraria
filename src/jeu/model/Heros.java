@@ -8,6 +8,8 @@ import jeu.controleur.MouseMoved;
 
 public class Heros extends Personnage{
 
+	int direction, dirY = -7;
+	boolean space = false;
 	private MouseMoved sourisCoordonnee;
 	private Terrain terrain;
 	//changer le type terrain en type environnement
@@ -19,18 +21,62 @@ public class Heros extends Personnage{
 	public void seDeplace(Parametre.DIRECTION d) {
 		switch(d) {
 		case LEFT:
-			this.CoordonneeXProperty().setValue(CoordonneeXProperty().getValue() - 6);
+			setDirection(-3);
 			break;
 
 		case RIGHT:
-			this.CoordonneeXProperty().setValue(CoordonneeXProperty().getValue() + 6);
+			setDirection(3);
+			break;
+
+		case SPACE:
+			dirY = -5;
 			break;
 
 		default:
-			System.out.println("Entree incorrecte");
+			System.out.println("Entrée incorrecte");
 			break;
 		}
 	}
+
+	public void move () {
+		if(yProp.get() >= 149) {
+			System.out.println(yProp);
+			this.xProp.set(xProp.get() + direction);
+			if(space == true) {
+				this.yProp.set(yProp.get() + dirY);
+
+			}
+
+
+
+		}
+
+	}
+
+	public void gravite() {
+		if(getY() <= 185)  {
+
+			if(getDirection() == -3) {
+				setX(getX() - 2);
+				setY(getY() + 2);
+
+
+			}
+			else if (getDirection() == 3){
+				setY(getY() + 2);
+				setX(getX() + 2);
+
+
+			}
+			else {
+				setY(getY() + 2);
+
+
+			}
+
+		}
+	}
+
 
 	private int clamp (int val1 , int min, int max) {  // Pour borner un chiffre entre 2 valeurs pour pas que l'image s'enleve
 		int valeurClamp = val1;
@@ -75,13 +121,48 @@ public class Heros extends Personnage{
 			terrain.affichertableau(terrain);
 
 		}
+	//	public void construire(Terrain terrain) {
+	//		
+	//	}
+
+	//	public boolean estMort(int pv) { // a finir
+	//			boolean estMort = false;
+	//			
+	//			if(pv==0) {
+	//				estMort =true;
+	//			}
+	//			return estMort;
+	//			
+	//}
+
+
+
+	public int getDirection() {
+		return this.direction;
+	}
+
+	public int setDirection(int i) {
+		return this.direction = i;
+	}
+
+	public int getDirY() {
+		return dirY;
+	}
+
+	public void setDirY(int dirY) {
+		this.dirY = dirY;
+	}
+
+	public boolean isSpace() {
+		return space;
+	}
+
+	public void setSpace(boolean space) {
+		this.space = space;
+	}
 }
-//	public boolean estMort(int pv) { // a finir
-//			boolean estMort = false;
-//			
-//			if(pv==0) {
-//				estMort =true;
-//			}
-//			return estMort;
-//			
-//}
+
+
+
+
+
