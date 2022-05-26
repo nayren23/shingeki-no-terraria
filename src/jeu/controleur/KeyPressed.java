@@ -6,7 +6,6 @@ import jeu.Parametre;
 import jeu.model.Heros;
 import jeu.model.Personnage;
 import jeu.vue.HerosVieVue;
-import jeu.vue.PersonnageVue;
 import jeu.vue.inventaire.InventaireVue;
 
 public class KeyPressed implements EventHandler<KeyEvent>{
@@ -38,7 +37,10 @@ public class KeyPressed implements EventHandler<KeyEvent>{
 		case RIGHT:
 			hero.seDeplace(Parametre.DIRECTION.RIGHT);
 			break;
-		
+		case SPACE:
+			hero.seDeplace(Parametre.DIRECTION.SPACE);
+			hero.setSpace(true);
+			break;
 			// option pour enlever rajouter des pv 
 		case F1:
 			System.out.println("enlever vie");
