@@ -174,3 +174,8 @@ public class Heros extends Personnage{
 		this.space = space;
 	}
 }
+
+
+
+
+
