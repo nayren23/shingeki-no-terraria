@@ -7,14 +7,12 @@ public class Environnement {
 		private Terrain terrain;
 		private int width, height;
 		private ArrayList<Personnage> personnages;
-		private int nbTours;
 		
-		public Environnement(Terrain terrain, int width, int height, int nbTours) {
-			this.terrain = terrain;
-			this.width = width;
-			this.height = height;
+		public Environnement() {
+			this.terrain = new Terrain();
+			this.width = 1280;
+			this.height = 720;
 			this.personnages = new ArrayList<>();
-			this.nbTours = nbTours;
 		}
 
 		public int getWidth() {
@@ -24,10 +22,13 @@ public class Environnement {
 		public int getHeight() {
 			return height;
 		}
+		
+		public Terrain getTerrain() {
+			return this.terrain;
+		}
 
 		public ArrayList<Personnage> getPersonnages() {
 			return personnages;
 		}
-		
 		
 }
