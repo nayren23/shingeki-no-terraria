@@ -12,8 +12,8 @@ public abstract class Personnage {
 	private Terrain terrain;
 	
 	public Personnage(int x, int y, int vitesse, int pv, Terrain terrain) {
-		this.setxProp(new SimpleIntegerProperty(x));
-		this.CoordonneeYProperty = new SimpleIntegerProperty(y);
+		this.xProp = (new SimpleIntegerProperty(x));
+		this.yProp = new SimpleIntegerProperty(y);
 		this.vitesse = vitesse;
 		this.PvProperty = new SimpleIntegerProperty(pv) ;
 		this.terrain = terrain;
@@ -50,9 +50,7 @@ public abstract class Personnage {
 		return this.yProp;
 	}
 	
-	public IntegerProperty getX() {  // changer mettre bonne syntaxe
-		return CoordonneeXProperty();
-	}
+
 	
 	public int getVitesse() {
 		return vitesse;
