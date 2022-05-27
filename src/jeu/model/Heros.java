@@ -10,7 +10,7 @@ public class Heros extends Personnage{
 	
 	//changer le type terrain en type environnement maybe
 	public Heros(int x, int y, Terrain terrain) {
-		super(x, y, 5, 9, terrain);
+		super(x, y, 5, Parametre.nbVieDepart, terrain);
 	}
 
 	//------------------------------------------------------------//

@@ -8,14 +8,14 @@ public abstract class Personnage {
 
 	final IntegerProperty xProp,yProp;
 	private int vitesse;
-	private IntegerProperty PvProperty;
+	private IntegerProperty pvProperty;
 	private Terrain terrain;
 	
 	public Personnage(int x, int y, int vitesse, int pv, Terrain terrain) {
 		this.xProp = (new SimpleIntegerProperty(x));
 		this.yProp = new SimpleIntegerProperty(y);
 		this.vitesse = vitesse;
-		this.PvProperty = new SimpleIntegerProperty(pv) ;
+		this.pvProperty = new SimpleIntegerProperty(pv) ;
 		this.terrain = terrain;
 	}
 	
@@ -32,8 +32,10 @@ public abstract class Personnage {
 	
 	//Getters
 	public final IntegerProperty PvProperty() {
-		return PvProperty;
+		return pvProperty;
 	}
+
+
 
 	public final int getX() {
 		return this.xProp.getValue();
@@ -74,6 +76,6 @@ public abstract class Personnage {
 	}
 
 	public void setPv(IntegerProperty pv) {
-		this.PvProperty = pv;
+		this.pvProperty = pv;
 	}
 }

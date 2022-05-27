@@ -8,13 +8,14 @@ public class Parametre {
 		public static enum DIRECTION {
 			RIGHT, LEFT, BOTTOM, TOP, SPACE;
 		} 
-		
-		
+				
 		//Ici c'est quand on casse le bloc il sera remplacer par le loc choisit en bas
 		public static int changementDuBlocCasser = 0;
 		
-		public static int changementDuBlocConstruit = 1;
+		public static final int changementDuBlocConstruit = 1; // final car pas senser chanegr
 		
+		//On peut choisir le nombre de vie au départ qui est set
+		public static final int nbVieDepart = 9;
 		//---------------------------------------------------------------------------------------//
 
 		//Spécification de chaque image

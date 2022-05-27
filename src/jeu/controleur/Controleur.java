@@ -14,6 +14,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.util.Duration;
+import jeu.Parametre;
 import jeu.model.Environnement;
 import jeu.model.Heros;
 import jeu.model.inventaire.Inventaire;
@@ -65,7 +66,11 @@ public class Controleur implements Initializable{
 
 		//Creation de la Vie du Hero Eren donc des coeurs en haut a droite
 		HerosVieVue viehero = new HerosVieVue(hero, PanePrincipale);
-		viehero.affichageVie(hero.PvProperty().getValue()); //affichage vie hero en haut droite
+				
+		//------------------------------------------------------------//
+		
+		//Juste pour l'affichage au debut pour set le listener
+		viehero.affichageVie(Parametre.nbVieDepart); //affichage vie hero en haut droite
 
 		//------------------------------------------------------------//
 		
