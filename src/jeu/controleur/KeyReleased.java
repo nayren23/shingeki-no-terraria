@@ -19,12 +19,14 @@ public class KeyReleased implements EventHandler<KeyEvent>{
 	public void handle(KeyEvent event) {
 		
 
-		if(event.getCode() == KeyCode.Q || event.getCode() == KeyCode.D) {
+		if(event.getCode() == KeyCode.Q || event.getCode() == KeyCode.D ) {
 			this.hero.setDirection(0);
 
-			
-		}	
-		this.hero.setSpace(false);
+		}
+		
+		
+		hero.setSpace(true);
+		
 		this.hero.setDirY(0);
 		
 	}

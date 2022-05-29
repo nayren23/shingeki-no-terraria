@@ -39,7 +39,9 @@ public class KeyPressed implements EventHandler<KeyEvent>{
 			break;
 		case SPACE:
 			hero.seDeplace(Parametre.DIRECTION.SPACE);
-			hero.setSpace(true);
+			if(this.hero.getY() < 330) {
+				this.hero.setSpace(false);
+			}
 			break;
 			// option pour enlever rajouter des pv 
 		case F1:

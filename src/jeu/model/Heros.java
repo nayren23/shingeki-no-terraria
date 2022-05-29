@@ -8,8 +8,8 @@ import jeu.controleur.MouseMoved;
 
 public class Heros extends Personnage{
 
-	int direction, dirY = -7;
-	boolean space = false;
+	int direction, dirY;
+	boolean space;
 	private MouseMoved sourisCoordonnee;
 	private Terrain terrain;
 	//changer le type terrain en type environnement
@@ -21,15 +21,16 @@ public class Heros extends Personnage{
 	public void seDeplace(Parametre.DIRECTION d) {
 		switch(d) {
 		case LEFT:
-			setDirection(-3);
+			setDirection(-5);
 			break;
 
 		case RIGHT:
-			setDirection(3);
+			setDirection(5);
 			break;
 
 		case SPACE:
 			dirY = -5;
+			System.out.println(this.space);
 			break;
 
 		default:
@@ -39,13 +40,17 @@ public class Heros extends Personnage{
 	}
 
 	public void move () {
-		if(yProp.get() >= 149) {
+		if(yProp.get() > 320) {
 			System.out.println(yProp);
 			this.xProp.set(xProp.get() + direction);
 			if(space == true) {
 				this.yProp.set(yProp.get() + dirY);
 
 			}
+			else {
+				dirY = 0;
+			}
+			
 
 
 
@@ -54,7 +59,7 @@ public class Heros extends Personnage{
 	}
 
 	public void gravite() {
-		if(getY() <= 185)  {
+		if(getY() <= 360)  {
 
 			if(getDirection() == -3) {
 				setX(getX() - 2);
