@@ -31,6 +31,11 @@ public class HerosVieVue extends Pane  {
 
 		//Creation qu'une seule fois des images pour optimisation du programme
 		tableauImageCoeur();
+		
+		//listener pour la vie du hero
+		hero.PvProperty().addListener((obs,old,newP) -> { 
+			affichageVie(newP);
+		});
 	}
 
 
@@ -52,7 +57,7 @@ public class HerosVieVue extends Pane  {
 	 * Cette methode affiche les coeuar en fonction des pv restant au hero
 	 * @param pv mais le changer par un listener
 	 */
-	public void affichageVie(int pv) {
+	public void affichageVie(Number newPv) {
 		switch(hero.PvProperty().getValue()) { // changer avec un listener
 		case 0 :
 			imageCoeur.setImage(tableauImage[0]);

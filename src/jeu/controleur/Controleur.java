@@ -101,8 +101,6 @@ public class Controleur implements Initializable{
 		System.out.println(inv.getInventaire().get(1).getIdObjet());
 		System.out.println(inv.getInventaire());
 
-		//viehero.affichageVie(hero.PvProperty().getValue()); //affichage vie hero en haut droite
-
 		initAnimation();
 		// demarre l'animation
 		gameLoop.play();
