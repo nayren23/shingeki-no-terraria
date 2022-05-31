@@ -4,7 +4,6 @@ import javafx.event.EventHandler;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import jeu.Parametre;
-import jeu.model.Environnement;
 import jeu.model.Heros;
 import jeu.model.Terrain;
 import jeu.model.inventaire.arme.Pelle;

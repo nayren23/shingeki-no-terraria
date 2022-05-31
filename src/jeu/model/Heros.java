@@ -1,7 +1,6 @@
 package jeu.model;
 
 import jeu.Parametre;
-import jeu.controleur.MouseMoved;
 import jeu.model.inventaire.Inventaire;
 import jeu.model.inventaire.Objet;
 import jeu.model.inventaire.arme.Hand;

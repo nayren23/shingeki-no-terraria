@@ -20,7 +20,6 @@ import jeu.model.inventaire.Inventaire;
 import jeu.vue.HeroVue;
 import jeu.model.inventaire.arme.Epee;
 import jeu.model.inventaire.arme.Pelle;
-import jeu.model.inventaire.arme.Pioche;
 import jeu.model.inventaire.ressource.Terre;
 import jeu.vue.HerosVieVue;
 import jeu.vue.TerrainVue;

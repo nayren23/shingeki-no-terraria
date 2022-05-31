@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import jeu.Parametre;
 import jeu.model.Environnement;
 import jeu.model.Terrain;
-import jeu.model.inventaire.Objet;
-import jeu.model.inventaire.ressource.Ressource;
 import jeu.model.inventaire.ressource.Terre;
 
 public class Pelle extends Arme{

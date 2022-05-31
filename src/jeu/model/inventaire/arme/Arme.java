@@ -1,7 +1,5 @@
 package jeu.model.inventaire.arme;
 
-import java.util.ArrayList;
-import jeu.model.Terrain;
 import jeu.model.inventaire.Objet;
 import jeu.model.inventaire.ressource.Ressource;
 

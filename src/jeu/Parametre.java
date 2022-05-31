@@ -1,7 +1,5 @@
 package jeu;
 
-import javafx.scene.image.Image;
-
 public class Parametre {
 	
 		public static enum DIRECTION {

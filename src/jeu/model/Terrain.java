@@ -2,8 +2,6 @@ package jeu.model;
 
 import java.util.ArrayList;
 
-import jeu.Parametre;
-
 public class Terrain {
 
 	/**
