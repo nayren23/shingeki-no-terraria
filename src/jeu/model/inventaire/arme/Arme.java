@@ -3,6 +3,7 @@ package jeu.model.inventaire.arme;
 import java.util.ArrayList;
 import jeu.model.Terrain;
 import jeu.model.inventaire.Objet;
+import jeu.model.inventaire.ressource.Ressource;
 
 public abstract class Arme extends Objet{
 	
@@ -16,14 +17,15 @@ public abstract class Arme extends Objet{
 		this.degats = 2;
 	}
 
-	public void faireDegats(Arme a) {
+	public void faireDegats(Arme a, Ressource r) {
+		r.enleverResistance();
 		this.durabilite-=1;
 		if (this.durabilite==0)
 			detruireArme(a);
 	}
 	
 	public void detruireArme (Objet o) {
-		super.inventaire.remove(o);
+		super.getInventaire().remove(o);
 	}
 	
 	public void nbDegats (int qualite) {

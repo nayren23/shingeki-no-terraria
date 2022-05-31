@@ -16,11 +16,12 @@ public class MouseClick implements EventHandler<MouseEvent> {
 	public Pelle pelle;
 	public static int tailleTuile = 32;
 	public static int tailleMapLongueur = 40;  // nombre de tuiles dans une ligne
-	public MouseClick(Heros eren, Terrain terrain, TerrainVue terrainVue, Pelle pelle) {
+
+	public MouseClick(Heros eren, Terrain terrain, TerrainVue terrainVue) {
 		this.eren = eren;
 		this.terrain = terrain;
 		this.terrainVue = terrainVue;
-		this.pelle = pelle;
+		this.pelle = new Pelle();
 	}
 
 	@Override
@@ -28,17 +29,29 @@ public class MouseClick implements EventHandler<MouseEvent> {
 		int x = (int)arg0.getX()/tailleTuile;
 		int y = (int)arg0.getY()/tailleTuile;
 
-		int positionTuileDansTableau;
 
+		int positionTuileDansTableau;
 		System.out.println("\nAffichage X " + x+ " Affichage Y "+ y);
 		positionTuileDansTableau = (y * tailleMapLongueur  ) + x;
 
-		pelle.creuser(positionTuileDansTableau,terrain);
-		terrainVue.changementTuileMinage(positionTuileDansTableau,terrain,Parametre.changementDuBlocCasserPelle); // changer et faire une fonction qui actualise juste l'image chang�
+		int obj = this.eren.getObjetHeros().getIdObjet();
+		
+		switch (obj) {
 
-		System.out.println("\n positionTuileDansTableau " + positionTuileDansTableau);
+		case 0: 
+
+			break;
+		case 3:
+			pelle.creuser(positionTuileDansTableau,terrain);
+			terrainVue.changementTuileMinage(positionTuileDansTableau,terrain,Parametre.changementDuBlocCasserPelle); // changer et faire une fonction qui actualise juste l'image chang�
+			System.out.println("\n positionTuileDansTableau " + positionTuileDansTableau);
+
+		}
+
+		}
+
 	}
 
-}
+
 
 

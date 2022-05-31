@@ -3,16 +3,22 @@ package jeu.model;
 import jeu.Parametre;
 import jeu.controleur.MouseMoved;
 import jeu.model.inventaire.Inventaire;
+import jeu.model.inventaire.Objet;
+import jeu.model.inventaire.arme.Hand;
 
 public class Heros extends Personnage{
 
 	private MouseMoved sourisCoordonnee;
 	private Terrain terrain;
 	private Inventaire inventaireHeros;
+	private Objet objetHeros;
+	private Hand mainHeros;
 	//changer le type terrain en type environnement
 	public Heros(int x, int y, Terrain terrain, Inventaire inventaire) {
 		super(x, y, 5, 9, terrain);
 		this.inventaireHeros=inventaire;
+		this.mainHeros = new Hand();
+		this.objetHeros= mainHeros;
 	}
 
 	@Override
@@ -64,10 +70,23 @@ public class Heros extends Personnage{
 		System.out.println("C'est cassee Yes");			
 		terrain.affichertableau(terrain);
 	}
+	
+	public void equiper (Objet o) {
+		setObjetHeros(o);
+		System.out.println("ok " +o.getIdObjet());
+	}
+	
+	
+	public Objet getObjetHeros() {
+		return this.objetHeros;
+	}
+	
 
-	//	public void construire(Terrain terrain) {
-	//		
-	//	}
+	public void setObjetHeros(Objet objetHeros) {
+		this.objetHeros = objetHeros;
+	}
+
+
 }
 //	public boolean estMort(int pv) { // a finir
 //			boolean estMort = false;

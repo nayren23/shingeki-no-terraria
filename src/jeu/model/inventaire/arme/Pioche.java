@@ -11,7 +11,7 @@ public class Pioche extends Arme{
 	private ArrayList<Integer> blocMinables;
 	
 	public Pioche () {
-		super(4);
+		super(1);
 		this.blocMinables = new ArrayList<>();
 		listeBlocMinables();
 	}
