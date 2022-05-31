@@ -21,6 +21,7 @@ import jeu.vue.HeroVue;
 import jeu.model.inventaire.arme.Epee;
 import jeu.model.inventaire.arme.Pelle;
 import jeu.model.inventaire.arme.Pioche;
+import jeu.model.inventaire.ressource.Terre;
 import jeu.vue.HerosVieVue;
 import jeu.vue.TerrainVue;
 import jeu.vue.inventaire.InventaireVue;
@@ -57,13 +58,23 @@ public class Controleur implements Initializable{
 		terrainVue.dessinerTerrain();
 		
 		//------------------------------------------------------------//
+	
+		//Creation de l'inventaire 
 		Inventaire inv = new Inventaire();
-		
-		hero = new Heros(0, 0, env.getTerrain(), inv);
-		HerosVieVue viehero = new HerosVieVue(hero, PanePrincipale);
 
+		//Creation de la Vue du hero eren puis ajout de celui ci dans le pane
+		hero = new Heros(0, 0, env.getTerrain(), inv);
+		HeroVue hero1 = new HeroVue(hero);
+		this.PanePrincipale.getChildren().add(hero1);
+		hero1.affichageEren(hero);
+		
+		HerosVieVue viehero = new HerosVieVue(hero, PanePrincipale);
 		viehero.affichageVie(hero.PvProperty().getValue()); //affichage vie hero en haut droite
 		
+		
+		//------------------------------------------------------------//
+		
+		//Creation  de la VUE de l inventaire
 		InventaireVue invVue = new InventaireVue(inv, afficherInventaire, afficherObjet,hero);
 		this.PanePrincipale.getChildren().add(invVue);
 		
@@ -82,17 +93,20 @@ public class Controleur implements Initializable{
 		inv.ajouterDansInventaire(pelle);
 		Epee epee = new Epee();
 		inv.ajouterDansInventaire(epee);
+		Terre terre = new Terre();
+		inv.ajouterDansInventaire(terre);
 		//------------------------------------------------------------//
 
 		
 		System.out.println(inv.getInventaire().get(0).getIdObjet());
 		System.out.println(inv.getInventaire().get(1).getIdObjet());
+		System.out.println(inv.getInventaire());
 
 		//viehero.affichageVie(hero.PvProperty().getValue()); //affichage vie hero en haut droite
 
 		initAnimation();
 		// demarre l'animation
-		//gameLoop.play();
+		gameLoop.play();
 	}
 
 	private void initAnimation() {

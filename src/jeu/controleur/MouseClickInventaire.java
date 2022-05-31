@@ -18,7 +18,6 @@ public class MouseClickInventaire implements EventHandler<MouseEvent>{
 	@Override
 	public void handle(MouseEvent event) {
 		eren.equiper(objet);
-		
 	}
 
 }

@@ -1,7 +1,5 @@
 package jeu.model.inventaire.ressource;
 
-import java.util.Map;
-
 import jeu.model.inventaire.Objet;
 
 public class Ressource extends Objet{
@@ -17,7 +15,8 @@ public class Ressource extends Objet{
 		this.resistance=res;
 	}
 
-	//une ressource peut avoir jusqu'Ã  50 d'elle mÃªme dans le meme emplacement de l'inventaire
+
+	//une ressource peut avoir jusqu'à 50 d'elle même dans le meme emplacement de l'inventaire
 	public void stackRessource (Objet o){
 		for (int i=0; i<super.getInventaire().size(); i++) 
 			if (super.getInventaire().get(i)==o) {
@@ -30,11 +29,11 @@ public class Ressource extends Objet{
 
 	public void enleverResistance (Objet o) {
 		this.resistance-=2;
-//		if (this.resistance<=0) {
-//			System.out.println("vide");
-//			stackRessource(o);
-//			System.out.println(getInventaire());
-//		}
+		if (this.resistance<=0) {
+			System.out.println("vide");
+			stackRessource(o);
+			System.out.println(getInventaire());
+		}
 
 	}
 

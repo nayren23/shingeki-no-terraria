@@ -136,7 +136,7 @@ public class Heros extends Personnage{
 	
 	public void equiper (Objet o) {
 		setObjetHeros(o);
-		System.out.println("ok " +o.getIdObjet());
+		System.out.println("Objet  " +o.getIdObjet());
 	}
 	
 	

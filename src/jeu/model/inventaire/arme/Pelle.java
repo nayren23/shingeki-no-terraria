@@ -25,6 +25,7 @@ public class Pelle extends Arme{
 	}
 
 	public void creuser (int numeroTuilesCasser, Terrain terrain) {  // ensuite rajouter l'objet miner dans l'inventaire 
+		//souci au niveau de la condition car supprime le bloc visuellement 1 tour de trop apres
 		if(this.blocMinables.contains(terrain.getTerrain()[numeroTuilesCasser] ) && env.getRessources().get(numeroTuilesCasser).getResistance()<=0/*getResistance()<=0*/) {
 			terrain.getTerrain()[numeroTuilesCasser]=Parametre.changementDuBlocCasserPelle; // 0 = le ciel
 		}
