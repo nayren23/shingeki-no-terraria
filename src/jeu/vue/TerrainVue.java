@@ -94,12 +94,12 @@ public class TerrainVue {
      * @param terrain  dans quel terrain ce fait ce changement
      * 
      */
-    public void changementTuileMinage(int numéroTuile , Terrain terrain, int blocChanger) {
+    public void changementTuileMinage(int numeroTuile , Terrain terrain, int blocChanger) {
 
-        if(terrain.getTerrain()[numéroTuile] == blocChanger) {
+        if(terrain.getTerrain()[numeroTuile] == blocChanger) {
             ImageView img = new ImageView();
             img.setImage(imageTerrain[blocChanger]); // utilisation des images qui sont dans le tableua créer une seul fois plus haut
-            tuilesFond.getChildren().set(numéroTuile, img); // on change l'image a la position souhaiter par la nouvelle
+            tuilesFond.getChildren().set(numeroTuile, img); // on change l'image a la position souhaiter par la nouvelle
         }
     }
 

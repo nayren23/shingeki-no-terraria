@@ -30,11 +30,11 @@ public class Ressource extends Objet{
 
 	public void enleverResistance (Objet o) {
 		this.resistance-=2;
-		if (this.resistance<=0) {
-			System.out.println("vide");
-			stackRessource(o);
-			System.out.println(getInventaire());
-		}
+//		if (this.resistance<=0) {
+//			System.out.println("vide");
+//			stackRessource(o);
+//			System.out.println(getInventaire());
+//		}
 
 	}
 

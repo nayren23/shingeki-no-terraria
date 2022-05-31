@@ -57,13 +57,14 @@ public class Controleur implements Initializable{
 		terrainVue.dessinerTerrain();
 		
 		//------------------------------------------------------------//
-
+		Inventaire inv = new Inventaire();
+		
 		hero = new Heros(0, 0, env.getTerrain(), inv);
 		HerosVieVue viehero = new HerosVieVue(hero, PanePrincipale);
 
 		viehero.affichageVie(hero.PvProperty().getValue()); //affichage vie hero en haut droite
-		InventaireVue invVue = new InventaireVue(inv, afficherInventaire, afficherObjet,hero);
 		
+		InventaireVue invVue = new InventaireVue(inv, afficherInventaire, afficherObjet,hero);
 		this.PanePrincipale.getChildren().add(invVue);
 		
 		//------------------------------------------------------------//
@@ -81,7 +82,6 @@ public class Controleur implements Initializable{
 		inv.ajouterDansInventaire(pelle);
 		Epee epee = new Epee();
 		inv.ajouterDansInventaire(epee);
-		
 		//------------------------------------------------------------//
 
 		
@@ -92,7 +92,7 @@ public class Controleur implements Initializable{
 
 		initAnimation();
 		// demarre l'animation
-		gameLoop.play();
+		//gameLoop.play();
 	}
 
 	private void initAnimation() {

@@ -18,7 +18,7 @@ public abstract class Arme extends Objet{
 	}
 
 	public void faireDegats(Arme a, Ressource r) {
-		r.enleverResistance();
+		r.enleverResistance(a);
 		this.durabilite-=1;
 		if (this.durabilite==0)
 			detruireArme(a);

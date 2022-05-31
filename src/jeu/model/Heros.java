@@ -128,11 +128,11 @@ public class Heros extends Personnage{
 	 * @param numeroTuilesCasser que l on veut casser
 	 * @param terrain sur quel terrain l'action doit se faire
 	 */
-	public void casserBloc (int numeroTuilesCasser, Terrain terrain) {  // ensuite rajouter l'objet miner dans l'inventaire 
-		System.out.println("casser tuile : " + numeroTuilesCasser);
-		terrain.changerTuiles(numeroTuilesCasser,Parametre.changementDuBlocCasser); //changer le 1 en bloc choisit
-		System.out.println("C'est cassee Yes");			
-	}
+//	public void casserBloc (int numeroTuilesCasser, Terrain terrain) {  // ensuite rajouter l'objet miner dans l'inventaire 
+//		System.out.println("casser tuile : " + numeroTuilesCasser);
+//		terrain.changerTuiles(numeroTuilesCasser,Parametre.changementDuBlocCasser); //changer le 1 en bloc choisit
+//		System.out.println("C'est cassee Yes");			
+//	}
 	
 	public void equiper (Objet o) {
 		setObjetHeros(o);
