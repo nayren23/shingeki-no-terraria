@@ -2,7 +2,6 @@ package jeu.controleur;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.input.KeyEvent;
@@ -13,6 +12,7 @@ import javafx.scene.layout.TilePane;
 import jeu.model.Environnement;
 import jeu.model.Heros;
 import jeu.model.inventaire.Inventaire;
+import jeu.model.inventaire.arme.Pelle;
 import jeu.vue.HerosVieVue;
 import jeu.vue.PersonnageVue;
 import jeu.vue.TerrainVue;
@@ -33,6 +33,9 @@ public class Controleur implements Initializable{
 	@FXML
 	private TilePane afficherInventaire;
 	
+	@FXML
+	private TilePane afficherObjet;
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
@@ -43,19 +46,22 @@ public class Controleur implements Initializable{
 		TerrainVue terrainVue = new TerrainVue(tuilesFond, env.getTerrain());	//cr�e le terrain vue
 		terrainVue.dessinerTerrain();
 
-		hero = new Heros(0, 0, env.getTerrain());
+		HerosVieVue viehero = new HerosVieVue(hero, PanePrincipale);
+		Inventaire inv = new Inventaire();
+		hero = new Heros(0, 0, env.getTerrain(), inv);
 		PersonnageVue pers1= new PersonnageVue(hero);
 		this.BorderPaneId.getChildren().add(pers1);
 
-		HerosVieVue viehero = new HerosVieVue(hero, PanePrincipale);
-		Inventaire inv = new Inventaire();
-		InventaireVue invVue = new InventaireVue(inv, afficherInventaire);
+
+		InventaireVue invVue = new InventaireVue(inv, afficherInventaire, afficherObjet);
+		
 		this.PanePrincipale.getChildren().add(invVue);
 		
 		BorderPaneId.addEventHandler(KeyEvent.KEY_PRESSED,new KeyPressed(hero, viehero, invVue));	//pour savoir les touches qui sont appuy�s
-		BorderPaneId.addEventHandler(MouseEvent.MOUSE_CLICKED, new MouseClick(hero,env.getTerrain(),terrainVue)); 
+		Pelle pelle = new Pelle();
+		BorderPaneId.addEventHandler(MouseEvent.MOUSE_CLICKED, new MouseClick(hero,env.getTerrain(),terrainVue,pelle)); 
 		
-		viehero.affichageVie(hero.PvProperty().getValue()); //affichage vie hero en haut droite
+		//viehero.affichageVie(hero.PvProperty().getValue()); //affichage vie hero en haut droite
 
 	}
 

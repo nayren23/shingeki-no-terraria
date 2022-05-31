@@ -12,6 +12,7 @@
          <children>
             <TilePane fx:id="tuilesFond" prefColumns="40" prefRows="23" />
             <TilePane fx:id="afficherInventaire" prefColumns="10" />
+            <TilePane fx:id="afficherObjet" prefColumns="10" />
          </children>
       </Pane>
    </center>

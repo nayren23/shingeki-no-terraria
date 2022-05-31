@@ -15,6 +15,8 @@ public class Inventaire {
 	public void ajouterDansInventaire (Objet o) {
 		if (verifierPlace()==true)
 			this.inventaire.add(o);
+		else
+			this.inventaire.remove(o);
 	}
 	
 	public boolean verifierPlace () {

@@ -6,7 +6,6 @@ import jeu.Parametre;
 import jeu.model.Heros;
 import jeu.model.Personnage;
 import jeu.vue.HerosVieVue;
-import jeu.vue.PersonnageVue;
 import jeu.vue.inventaire.InventaireVue;
 
 public class KeyPressed implements EventHandler<KeyEvent>{

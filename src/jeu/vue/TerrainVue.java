@@ -75,18 +75,20 @@ public class TerrainVue {
 		}
 	}
 	
-//	public void changementTuileMinage(int numéroTuile , Terrain terrain) {
-//
-//		System.out.println("\nhello"+numéroTuile);
-//		
-//		ImageView img = new ImageView();
-//		System.out.println("\nbonjour"+ terrain.getTerrain()[numéroTuile]);
-//			if(Terrain.listeBlocMinable().contains (terrain.getTerrain()[numéroTuile] )) {
-//				Image nvImage = new  Image("jeu/image/trou.png");
-//                img .setImage(nvImage); 
-//			}
-//			tuilesFond.getChildren().add(img);
-//
-//	}
+	/**
+     * Cette mÃ©thode actualise seulement la case qui vient d etre modifier dans le modele
+     * 
+     * @param numÃ©roTuile  qu'on soit modifier dans la Vue
+     * @param terrain  dans quel terrain ce fait ce changement
+     * 
+     */
+    public void changementTuileMinage(int numÃ©roTuile , Terrain terrain, int blocChanger) {
+
+        if(terrain.getTerrain()[numÃ©roTuile] == blocChanger) {
+            ImageView img = new ImageView();
+            img.setImage(imageTerrain[blocChanger]); // utilisation des images qui sont dans le tableua crÃ©er une seul fois plus haut
+            tuilesFond.getChildren().set(numÃ©roTuile, img); // on change l'image a la position souhaiter par la nouvelle
+        }
+    }
 
 }

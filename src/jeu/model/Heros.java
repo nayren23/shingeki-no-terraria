@@ -1,18 +1,18 @@
 package jeu.model;
 
-import java.util.ArrayList;
-
 import jeu.Parametre;
-import jeu.controleur.MouseClick;
 import jeu.controleur.MouseMoved;
+import jeu.model.inventaire.Inventaire;
 
 public class Heros extends Personnage{
 
 	private MouseMoved sourisCoordonnee;
 	private Terrain terrain;
+	private Inventaire inventaireHeros;
 	//changer le type terrain en type environnement
-	public Heros(int x, int y, Terrain terrain) {
+	public Heros(int x, int y, Terrain terrain, Inventaire inventaire) {
 		super(x, y, 5, 9, terrain);
+		this.inventaireHeros=inventaire;
 	}
 
 	@Override
