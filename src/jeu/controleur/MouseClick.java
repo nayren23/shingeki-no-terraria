@@ -7,6 +7,7 @@ import jeu.Parametre;
 import jeu.model.Environnement;
 import jeu.model.Heros;
 import jeu.model.Terrain;
+import jeu.model.inventaire.arme.Pelle;
 import jeu.vue.TerrainVue;
 
 public class MouseClick implements EventHandler<MouseEvent> {
@@ -14,12 +15,15 @@ public class MouseClick implements EventHandler<MouseEvent> {
 	private Heros eren;
 	public Terrain terrain;
 	public TerrainVue terrainVue;
+	public Pelle pelle;
 	public static int tailleTuile = 32;
 	public static int tailleMapLongueur = 40;  // nombre de tuiles dans une ligne
+
 	public MouseClick(Heros eren, Terrain terrain, TerrainVue terrainVue) {
 		this.eren = eren;
 		this.terrain = terrain;
 		this.terrainVue = terrainVue;
+		this.pelle = new Pelle();
 	}
 
 	@Override
@@ -33,24 +37,34 @@ public class MouseClick implements EventHandler<MouseEvent> {
 		int x = (int)arg0.getX()/tailleTuile;
 		int y = (int)arg0.getY()/tailleTuile;
 		int positionTuileDansTableau;
+		System.out.println("\nAffichage X " + x+ " Affichage Y "+ y);
+		positionTuileDansTableau = (y * tailleMapLongueur  ) + x;
+
+		int obj = this.eren.getObjetHeros().getIdObjet();
 		
 		//System.out.println("\nAffichage X" + x+ "Affichage Y"+ y);
 		positionTuileDansTableau = (y * tailleMapLongueur  ) + x;
 		
-		//Gestion du click droit
 		if (arg0.getButton() == MouseButton.SECONDARY) {
-				eren.casserBloc(positionTuileDansTableau,terrain);
-				terrainVue.changementTuileMinage(positionTuileDansTableau,terrain,Parametre.changementDuBlocCasser);// changer et faire une fonction qui actualise juste l'image changé
-				//System.out.println("\n positionTuileDansTableau" + positionTuileDansTableau);
 		}
-		
-		//Gestion du click gauche
 		else if(arg0.getButton() == MouseButton.PRIMARY) {
-			eren.construireTuile(positionTuileDansTableau, terrain);
-			terrainVue.changementTuileMinage(positionTuileDansTableau,terrain,Parametre.changementDuBlocConstruit);// changer et faire une fonction qui actualise juste l'image changé
 		}
+		switch (obj) {
+
+		case 0: 
+
+			break;
+		case 3:
+			pelle.creuser(positionTuileDansTableau,terrain);
+			terrainVue.changementTuileMinage(positionTuileDansTableau,terrain,Parametre.changementDuBlocCasserPelle); // changer et faire une fonction qui actualise juste l'image changï¿½
+			System.out.println("\n positionTuileDansTableau " + positionTuileDansTableau);
+
+		}
+
+		}
+
 	}
 
-}
+
 
 

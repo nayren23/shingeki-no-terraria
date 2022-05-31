@@ -86,21 +86,21 @@ public class TerrainVue {
 			tuilesFond.getChildren().add(images); //ajoute les images dans le tilePane
 		}
 	}
-
+	
 	/**
-	 * Cette méthode actualise seulement la case qui vient d etre modifier dans le modele
-	 * 
-	 * @param numéroTuile  qu'on soit modifier dans la Vue
-	 * @param terrain  dans quel terrain ce fait ce changement
-	 * 
-	 */
-	public void changementTuileMinage(int numéroTuile , Terrain terrain, int blocChanger) {
+     * Cette mÃ©thode actualise seulement la case qui vient d etre modifier dans le modele
+     * 
+     * @param numÃ©roTuile  qu'on soit modifier dans la Vue
+     * @param terrain  dans quel terrain ce fait ce changement
+     * 
+     */
+    public void changementTuileMinage(int numÃ©roTuile , Terrain terrain, int blocChanger) {
 
-		if(terrain.getTerrain()[numéroTuile] == blocChanger) {
-			ImageView img = new ImageView();
-			img.setImage(imageTerrain[blocChanger]); // utilisation des images qui sont dans le tableua créer une seul fois plus haut
-			tuilesFond.getChildren().set(numéroTuile, img); // on change l'image a la position souhaiter par la nouvelle
-		}
-	}
+        if(terrain.getTerrain()[numÃ©roTuile] == blocChanger) {
+            ImageView img = new ImageView();
+            img.setImage(imageTerrain[blocChanger]); // utilisation des images qui sont dans le tableua crÃ©er une seul fois plus haut
+            tuilesFond.getChildren().set(numÃ©roTuile, img); // on change l'image a la position souhaiter par la nouvelle
+        }
+    }
 
 }

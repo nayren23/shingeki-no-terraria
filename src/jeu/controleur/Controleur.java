@@ -18,6 +18,9 @@ import jeu.model.Environnement;
 import jeu.model.Heros;
 import jeu.model.inventaire.Inventaire;
 import jeu.vue.HeroVue;
+import jeu.model.inventaire.arme.Epee;
+import jeu.model.inventaire.arme.Pelle;
+import jeu.model.inventaire.arme.Pioche;
 import jeu.vue.HerosVieVue;
 import jeu.vue.TerrainVue;
 import jeu.vue.inventaire.InventaireVue;
@@ -29,6 +32,7 @@ public class Controleur implements Initializable{
 
 	@FXML
 	private TilePane tuilesFond;
+	
 	@FXML
 	private BorderPane BorderPaneId;
 	@FXML
@@ -37,6 +41,9 @@ public class Controleur implements Initializable{
 	private TilePane afficherInventaire;
 	@FXML
 	private ImageView eren;
+	
+	@FXML
+	private TilePane afficherObjet;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -51,27 +58,12 @@ public class Controleur implements Initializable{
 		
 		//------------------------------------------------------------//
 
-		//Creation du hero eren
-		hero = new Heros(0, 0, env.getTerrain());
-		
-		//------------------------------------------------------------//
-
-		//Creation de la Vue du hero eren puis ajout de celui ci dans le pane
-		HeroVue hero1 = new HeroVue(hero);
-		this.PanePrincipale.getChildren().add(hero1);
-		hero1.affichageEren(hero);
-
-		//------------------------------------------------------------//
-
-		//Creation de la Vie du Hero Eren donc des coeurs en haut a droite
+		hero = new Heros(0, 0, env.getTerrain(), inv);
 		HerosVieVue viehero = new HerosVieVue(hero, PanePrincipale);
-		viehero.affichageVie(hero.PvProperty().getValue()); //affichage vie hero en haut droite
 
-		//------------------------------------------------------------//
+		viehero.affichageVie(hero.PvProperty().getValue()); //affichage vie hero en haut droite
+		InventaireVue invVue = new InventaireVue(inv, afficherInventaire, afficherObjet,hero);
 		
-		//Creation Inventaire
-		Inventaire inv = new Inventaire();
-		InventaireVue invVue = new InventaireVue(inv, afficherInventaire);
 		this.PanePrincipale.getChildren().add(invVue);
 		
 		//------------------------------------------------------------//
@@ -85,7 +77,18 @@ public class Controleur implements Initializable{
 		//Creation de l usage de la souris 
 		BorderPaneId.addEventHandler(MouseEvent.MOUSE_CLICKED, new MouseClick(hero,env.getTerrain(),terrainVue)); //fait la distinction entre les differant click de la souris
 		
+		Pelle pelle = new Pelle();
+		inv.ajouterDansInventaire(pelle);
+		Epee epee = new Epee();
+		inv.ajouterDansInventaire(epee);
+		
 		//------------------------------------------------------------//
+
+		
+		System.out.println(inv.getInventaire().get(0).getIdObjet());
+		System.out.println(inv.getInventaire().get(1).getIdObjet());
+
+		//viehero.affichageVie(hero.PvProperty().getValue()); //affichage vie hero en haut droite
 
 		initAnimation();
 		// demarre l'animation
