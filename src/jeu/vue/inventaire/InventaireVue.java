@@ -35,10 +35,10 @@ public class InventaireVue extends Pane{
 		this.tableauImage[1]= new Image("jeu/image/inventaire/piocheInventaire.png");
 		this.tableauImage[2]= new Image("jeu/image/inventaire/hacheInventaire.png");
 		this.tableauImage[3]= new Image("jeu/image/inventaire/pelleInventaire.png");
-//		this.tableauImage[4]= new ImageView (new Image("jeu/image/inventaire/lanceFoudroyanteInventaire.png"));
+		this.tableauImage[4]= new Image("jeu/image/inventaire/piocheInventaire.png");
 //		this.tableauImage[5]= new ImageView (new Image("jeu/image/inventaire/boisInventaire.png"));
 //		this.tableauImage[6]= new ImageView (new Image("jeu/image/inventaire/charbonInventaire.png"));
-//		this.tableauImage[7]= new ImageView (new Image("jeu/image/inventaire/ferInventaire.png"));
+		this.tableauImage[7]= new Image("jeu/image/BlocFer.png");
 //		this.tableauImage[8]= new ImageView (new Image("jeu/image/inventaire/gazInventaire.png"));	
 //		this.tableauImage[9]= new ImageView (new Image("jeu/image/inventaire/liquideTitanInventaire.png"));
 //		this.tableauImage[10]= new ImageView (new Image("jeu/image/inventaire/painInventaire.png"));

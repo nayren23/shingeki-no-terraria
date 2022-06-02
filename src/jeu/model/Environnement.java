@@ -8,6 +8,12 @@ import jeu.model.inventaire.ressource.Gaz;
 import jeu.model.inventaire.ressource.Ressource;
 import jeu.model.inventaire.ressource.Terre;
 
+import jeu.model.inventaire.ressource.Charbon;
+import jeu.model.inventaire.ressource.Fer;
+import jeu.model.inventaire.ressource.Gaz;
+import jeu.model.inventaire.ressource.Ressource;
+import jeu.model.inventaire.ressource.Terre;
+
 public class Environnement {
 	//30*20
 	private Terrain terrain;

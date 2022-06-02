@@ -9,7 +9,7 @@ public class Hache extends Arme{
 	private ArrayList<Integer> blocMinables;
 	
 	public Hache () {
-		super(2, "hache");
+		super(1, "hache");
 		this.blocMinables = new ArrayList<>();
 	}
 	

@@ -7,9 +7,15 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
@@ -20,6 +26,8 @@ import jeu.model.inventaire.Inventaire;
 import jeu.vue.HeroVue;
 import jeu.model.inventaire.arme.Epee;
 import jeu.model.inventaire.arme.Pelle;
+import jeu.model.inventaire.arme.Pioche;
+import jeu.model.inventaire.ressource.Fer;
 import jeu.model.inventaire.ressource.Terre;
 import jeu.vue.HerosVieVue;
 import jeu.vue.TerrainVue;
@@ -49,10 +57,26 @@ public class Controleur implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 
 		//------------------------------------------------------------//
+		
+		//on creer l image
+		Image img = new Image("jeu/image/arriereplanSNK.jpg");
+		
+		//on creer un backgroundImage qui contient notre image
+		BackgroundImage backImage = new BackgroundImage(img,BackgroundRepeat.NO_REPEAT,
+				BackgroundRepeat.NO_REPEAT,
+				BackgroundPosition.DEFAULT,
+				BackgroundSize.DEFAULT);
+		
+		//Puis on creer un background qui contient notre Backgroundimage
+		Background backGround = new Background(backImage);
+		
+		//Ensuite on ajoute notre background a notre borderpane principale
+		BorderPaneId.setBackground(backGround);
+
 
 		//Creation de l'environnement qui lui recupere le Terrain
 		Environnement env = new Environnement();
-		
+
 		TerrainVue terrainVue = new TerrainVue(tuilesFond, env.getTerrain());	//cree le terrain vue
 		terrainVue.dessinerTerrain();
 		
@@ -72,7 +96,7 @@ public class Controleur implements Initializable{
 		//Creation  de la VUE de l inventaire
 		InventaireVue invVue = new InventaireVue(env.getEren().getInventaireHeros(), afficherInventaire, afficherObjet,env.getEren());
 		this.PanePrincipale.getChildren().add(invVue);
-		
+
 		//------------------------------------------------------------//
 
 		//Creation de l usage du clavier
@@ -86,6 +110,13 @@ public class Controleur implements Initializable{
 		
 		Pelle pelle = new Pelle(env);
 		env.getEren().getInventaireHeros().ajouterDansInventaire(pelle);
+
+		Pioche pioche = new Pioche(env);
+		env.getEren().getInventaireHeros().ajouterDansInventaire(pioche);
+
+//		System.out.println(inv.getInventaire().get(0).getIdObjet());
+//		System.out.println(inv.getInventaire().get(1).getIdObjet());
+//		System.out.println(inv.getInventaire());
 
 		initAnimation();
 		// demarre l'animation
