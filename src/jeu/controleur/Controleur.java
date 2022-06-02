@@ -20,6 +20,7 @@ import jeu.model.inventaire.Inventaire;
 import jeu.vue.HeroVue;
 import jeu.model.inventaire.arme.Epee;
 import jeu.model.inventaire.arme.Pelle;
+import jeu.model.inventaire.arme.Pioche;
 import jeu.model.inventaire.ressource.Fer;
 import jeu.model.inventaire.ressource.Terre;
 import jeu.vue.HerosVieVue;
@@ -98,6 +99,9 @@ public class Controleur implements Initializable{
 		
 		Fer fer = new Fer();
 		inv.ajouterDansInventaire(fer);
+		
+		Pioche pioche = new Pioche();
+		inv.ajouterDansInventaire(pioche);
 		//------------------------------------------------------------//
 
 		
@@ -107,7 +111,7 @@ public class Controleur implements Initializable{
 
 		initAnimation();
 		// demarre l'animation
-		gameLoop.play();
+		//gameLoop.play();
 	}
 
 	private void initAnimation() {
