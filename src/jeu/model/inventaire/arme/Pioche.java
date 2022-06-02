@@ -7,11 +7,10 @@ import jeu.model.Terrain;
 
 public class Pioche extends Arme{
 	
-	private int id;
 	private ArrayList<Integer> blocMinables;
 	
 	public Pioche () {
-		super(1);
+		super(1, "pioche");
 		this.blocMinables = new ArrayList<>();
 		listeBlocMinables();
 	}

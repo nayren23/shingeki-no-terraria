@@ -20,7 +20,6 @@ import jeu.model.inventaire.Inventaire;
 import jeu.vue.HeroVue;
 import jeu.model.inventaire.arme.Epee;
 import jeu.model.inventaire.arme.Pelle;
-import jeu.model.inventaire.ressource.Fer;
 import jeu.model.inventaire.ressource.Terre;
 import jeu.vue.HerosVieVue;
 import jeu.vue.TerrainVue;
@@ -59,55 +58,38 @@ public class Controleur implements Initializable{
 		
 		//------------------------------------------------------------//
 	
-		//Creation de l'inventaire 
-		Inventaire inv = new Inventaire();
-
 		//Creation de la Vue du hero eren puis ajout de celui ci dans le pane
-		hero = new Heros(0, 0, env.getTerrain(), inv);
-		HeroVue hero1 = new HeroVue(hero);
+		HeroVue hero1 = new HeroVue(env.getEren());
 		this.PanePrincipale.getChildren().add(hero1);
-		hero1.affichageEren(hero);
+		hero1.affichageEren(env.getEren());
 		
-		HerosVieVue viehero = new HerosVieVue(hero, PanePrincipale);
-		viehero.affichageVie(hero.PvProperty().getValue()); //affichage vie hero en haut droite
+		HerosVieVue viehero = new HerosVieVue(env.getEren(), PanePrincipale);
+		viehero.affichageVie(env.getEren().PvProperty().getValue()); //affichage vie hero en haut droite
 		
 		
 		//------------------------------------------------------------//
 		
 		//Creation  de la VUE de l inventaire
-		InventaireVue invVue = new InventaireVue(inv, afficherInventaire, afficherObjet,hero);
+		InventaireVue invVue = new InventaireVue(env.getEren().getInventaireHeros(), afficherInventaire, afficherObjet,env.getEren());
 		this.PanePrincipale.getChildren().add(invVue);
 		
 		//------------------------------------------------------------//
 
 		//Creation de l usage du clavier
-		BorderPaneId.addEventHandler(KeyEvent.KEY_PRESSED,new KeyPressed(hero, viehero, invVue)); //pour savoir les touches qui sont appuee
-		BorderPaneId.addEventHandler(KeyEvent.KEY_RELEASED,new KeyReleased(hero));//pour savoir les touches qui sont relachee
+		BorderPaneId.addEventHandler(KeyEvent.KEY_PRESSED,new KeyPressed(env.getEren(), viehero, invVue)); //pour savoir les touches qui sont appuee
+		BorderPaneId.addEventHandler(KeyEvent.KEY_RELEASED,new KeyReleased(env.getEren()));//pour savoir les touches qui sont relachee
 	
 		//------------------------------------------------------------//
 
 		//Creation de l usage de la souris 
-		BorderPaneId.addEventHandler(MouseEvent.MOUSE_CLICKED, new MouseClick(hero,env.getTerrain(),terrainVue)); //fait la distinction entre les differant click de la souris
+		BorderPaneId.addEventHandler(MouseEvent.MOUSE_CLICKED, new MouseClick(env.getEren(),env.getTerrain(),terrainVue)); //fait la distinction entre les differant click de la souris
 		
-		Pelle pelle = new Pelle();
-		inv.ajouterDansInventaire(pelle);
-		Epee epee = new Epee();
-		inv.ajouterDansInventaire(epee);
-		Terre terre = new Terre();
-		inv.ajouterDansInventaire(terre);
-		
-		Fer fer = new Fer();
-		inv.ajouterDansInventaire(fer);
-		//------------------------------------------------------------//
-
-		
-		System.out.println(inv.getInventaire().get(0).getIdObjet());
-		System.out.println(inv.getInventaire().get(1).getIdObjet());
-		System.out.println(inv.getInventaire());
+		Pelle pelle = new Pelle(env);
+		env.getEren().getInventaireHeros().ajouterDansInventaire(pelle);
 
 		initAnimation();
 		// demarre l'animation
-		gameLoop.play();
+		//gameLoop.play();
 	}
 
 	private void initAnimation() {
@@ -121,13 +103,11 @@ public class Controleur implements Initializable{
 				// on définit ce qui se passe à chaque frame 
 				// c'est un eventHandler d'ou le lambda
 				(ev -> {
-					System.out.println("loop");
 
-					System.out.println(hero.getY());
+					//System.out.println(hero.getY());
 					//gravité
 
-
-					System.out.println(hero.getDirection());
+				//	System.out.println(hero.getDirection());
 
 					hero.gravite();
 					hero.move();

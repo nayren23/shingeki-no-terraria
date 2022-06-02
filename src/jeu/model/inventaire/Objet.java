@@ -1,9 +1,8 @@
 package jeu.model.inventaire;
 
-public abstract class Objet extends Inventaire{
+public abstract class Objet{
 	
 	private int idObjet;
-	private String nomObjet;
 
 	public Objet(int id) {
 		this.idObjet=id;
@@ -13,8 +12,9 @@ public abstract class Objet extends Inventaire{
 		return idObjet;
 	}
 
-	public String getNomObjet() {
-		return nomObjet;
+	@Override
+	public String toString() {
+		return "idObjet=" + idObjet + "";
 	}
 
 }

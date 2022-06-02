@@ -6,11 +6,10 @@ import jeu.model.Terrain;
 
 public class Hache extends Arme{
 	
-	private int id;
 	private ArrayList<Integer> blocMinables;
 	
 	public Hache () {
-		super(2);
+		super(2, "hache");
 		this.blocMinables = new ArrayList<>();
 	}
 	

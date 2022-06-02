@@ -6,7 +6,9 @@ import javafx.scene.input.MouseEvent;
 import jeu.Parametre;
 import jeu.model.Heros;
 import jeu.model.Terrain;
+import jeu.model.inventaire.Objet;
 import jeu.model.inventaire.arme.Pelle;
+import jeu.model.inventaire.arme.Pioche;
 import jeu.model.inventaire.ressource.Fer;
 import jeu.model.inventaire.ressource.Terre;
 import jeu.vue.TerrainVue;
@@ -16,9 +18,8 @@ public class MouseClick implements EventHandler<MouseEvent> {
 	private Heros eren;
 	public Terrain terrain;
 	public TerrainVue terrainVue;
-	public Pelle pelle;
-	public Terre terre;
-	public Fer fer;
+
+
 	public static int tailleTuile = 32;
 	public static int tailleMapLongueur = 40;  // nombre de tuiles dans une ligne
 
@@ -26,10 +27,6 @@ public class MouseClick implements EventHandler<MouseEvent> {
 		this.eren = eren;
 		this.terrain = terrain;
 		this.terrainVue = terrainVue;
-		this.pelle = new Pelle();
-		this.terre = new Terre();
-		this.fer = new Fer();
-
 	}
 
 	@Override
@@ -45,33 +42,32 @@ public class MouseClick implements EventHandler<MouseEvent> {
 		int positionTuileDansTableau = (y * tailleMapLongueur  ) + x;
 		//System.out.println("\nAffichage X " + x+ " Affichage Y "+ y);
 
-		int objet = this.eren.getObjetHeros().getIdObjet();
+		Objet objet = this.eren.getObjetHeros();
 		//en fonction de l objet equipe ont fait differentes action creuser ou poser un bloc
-		switch (objet) {
 
-		case 12: 
-			if(arg0.getButton() == MouseButton.SECONDARY) {
-				terre.poserBloc(positionTuileDansTableau, terrain);
-				terrainVue.changementTuileMinage(positionTuileDansTableau,terrain,Parametre.blocHerbe);// changer et faire une fonction qui actualise juste l'image chang�			}
-			}
-			break;
-			
-		case 7: 
-			if(arg0.getButton() == MouseButton.SECONDARY) {
-				fer.poserBloc(positionTuileDansTableau, terrain);
-				terrainVue.changementTuileMinage(positionTuileDansTableau,terrain,Parametre.blocFer);// changer et faire une fonction qui actualise juste l'image chang�			}
-			}
-		case 3:
-			if (arg0.getButton() == MouseButton.PRIMARY) {
-				pelle.creuser(positionTuileDansTableau,terrain);
-				terrainVue.changementTuileMinage(positionTuileDansTableau,terrain,Parametre.changementDuBlocCasserPelle); // changer et faire une fonction qui actualise juste l'image chang�
-				//System.out.println("\n positionTuileDansTableau " + positionTuileDansTableau);
-			}
+		if (objet instanceof Pioche && arg0.getButton() == MouseButton.PRIMARY  ) {
+			((Pioche) objet).creuser(positionTuileDansTableau, terrain);
+			terrainVue.changementTuileMinage(positionTuileDansTableau,terrain,Parametre.changementDuBlocCasserPelle); // changer et faire une fonction qui actualise juste l'image changer
+		}
+
+		else if(objet instanceof Terre && arg0.getButton() == MouseButton.SECONDARY) {
+			((Terre) objet).poserBloc(positionTuileDansTableau, terrain);
+			terrainVue.changementTuileMinage(positionTuileDansTableau,terrain,Parametre.blocHerbe);// changer et faire une fonction qui actualise juste l'image changé			}
+		}
+
+		else if(objet instanceof Terre && arg0.getButton() == MouseButton.SECONDARY) {
+			((Terre) objet).poserBloc(positionTuileDansTableau, terrain);
+			terrainVue.changementTuileMinage(positionTuileDansTableau,terrain,Parametre.blocHerbe);// changer et faire une fonction qui actualise juste l'image changé			}
+		}
+
+		else if(objet instanceof Fer && arg0.getButton() == MouseButton.SECONDARY) {
+			//((Fer) objet).poserBloc(positionTuileDansTableau, terrain);
+			terrainVue.changementTuileMinage(positionTuileDansTableau,terrain,Parametre.blocFer);// changer et faire une fonction qui actualise juste l'image changé			}
+		}
+
+		else if(objet instanceof Pelle && arg0.getButton() == MouseButton.PRIMARY) {
+			((Pelle) objet).creuser(positionTuileDansTableau,terrain);
+			terrainVue.changementTuileMinage(positionTuileDansTableau,terrain,Parametre.changementDuBlocCasserPelle); // changer et faire une fonction qui actualise juste l'image changï¿½
 		}
 	}
-
 }
-
-
-
-

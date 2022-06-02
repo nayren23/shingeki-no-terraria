@@ -11,13 +11,10 @@ public class InventaireListener {
 		inv.getInventaire().addListener(new ListChangeListener<Objet>() {
 			@Override
 			public void onChanged(Change<? extends Objet> c) {
-				while (c.next()) {
-					if (c.wasAdded() || c.wasRemoved() || c.wasUpdated()) {
+				while (c.next()) 
+					if (c.wasAdded() || c.wasRemoved() || c.wasUpdated()) 
 						invVue.mettreAJourInventaire();
-					}
-				}
 			}
-
 		});
 	}
 

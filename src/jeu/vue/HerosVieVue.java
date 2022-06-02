@@ -58,8 +58,7 @@ public class HerosVieVue extends Pane  {
 	 * @param pv mais le changer par un listener
 	 */
 	public void affichageVie(Number newPv) {
-		System.out.println("New pv" + newPv.intValue());
-		switch(newPv.intValue()) { // des que pv change 
+		switch(hero.PvProperty().getValue()) { // changer avec un listener
 		case 0 :
 			imageCoeur.setImage(tableauImage[0]);
 			break;

@@ -23,7 +23,7 @@ public class InventaireVue extends Pane{
 		this.inventaire = inventaire;
 		this.afficherInventaire=inv;
 		this.afficherObjet=obj;
-		this.tableauImage = new Image [14];
+		this.tableauImage = new Image [13];
 		new InventaireListener(this, this.inventaire);
 		initialiserInventaire();
 		tableauImageInventaire();
@@ -35,17 +35,16 @@ public class InventaireVue extends Pane{
 		this.tableauImage[1]= new Image("jeu/image/inventaire/piocheInventaire.png");
 		this.tableauImage[2]= new Image("jeu/image/inventaire/hacheInventaire.png");
 		this.tableauImage[3]= new Image("jeu/image/inventaire/pelleInventaire.png");
-		this.tableauImage[4]= (new Image("jeu/image/inventaire/epeeInventaire.png"));
-		this.tableauImage[5]= (new Image("jeu/image/inventaire/epeeInventaire.png"));
-		this.tableauImage[6]=  (new Image("jeu/image/inventaire/epeeInventaire.png"));
-		this.tableauImage[7]=  (new Image("jeu/image/BlocFer.png"));
-		this.tableauImage[8]= (new Image("jeu/image/inventaire/epeeInventaire.png"));	
-		this.tableauImage[9]=(new Image("jeu/image/inventaire/epeeInventaire.png"));
-		this.tableauImage[10]= (new Image("jeu/image/inventaire/epeeInventaire.png"));
-		this.tableauImage[11]= (new Image("jeu/image/inventaire/epeeInventaire.png"));
-		this.tableauImage[12]= new Image("jeu/image/1.png"); //terre inventaired de base
-		this.tableauImage[13]=  (new Image("jeu/image/inventaire/epeeInventaire.png"));
-
+//		this.tableauImage[4]= new ImageView (new Image("jeu/image/inventaire/lanceFoudroyanteInventaire.png"));
+//		this.tableauImage[5]= new ImageView (new Image("jeu/image/inventaire/boisInventaire.png"));
+//		this.tableauImage[6]= new ImageView (new Image("jeu/image/inventaire/charbonInventaire.png"));
+//		this.tableauImage[7]= new ImageView (new Image("jeu/image/inventaire/ferInventaire.png"));
+//		this.tableauImage[8]= new ImageView (new Image("jeu/image/inventaire/gazInventaire.png"));	
+//		this.tableauImage[9]= new ImageView (new Image("jeu/image/inventaire/liquideTitanInventaire.png"));
+//		this.tableauImage[10]= new ImageView (new Image("jeu/image/inventaire/painInventaire.png"));
+//		this.tableauImage[11]= new ImageView (new Image("jeu/image/inventaire/potionTitanInventaire.png"));
+		this.tableauImage[12]= new Image("jeu/image/4.png");
+//		this.tableauImage[13]= new Image("jeu/image/inventaire/terreInventaire.png");
 	}
 
 	public void initialiserInventaire () {

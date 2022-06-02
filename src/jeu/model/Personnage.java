@@ -10,13 +10,15 @@ public abstract class Personnage {
 	private int vitesse;
 	private IntegerProperty PvProperty;
 	private Terrain terrain;
+	private Environnement env;
 	
-	public Personnage(int x, int y, int vitesse, int pv, Terrain terrain) {
+	public Personnage(int x, int y, int vitesse, int pv, Terrain terrain, Environnement env) {
 		this.xProp = (new SimpleIntegerProperty(x));
 		this.yProp = new SimpleIntegerProperty(y);
 		this.vitesse = vitesse;
 		this.PvProperty = new SimpleIntegerProperty(pv) ;
 		this.terrain = terrain;
+		this.env=env;
 	}
 	
 	//-------------------------------------------------------------------//
@@ -57,10 +59,13 @@ public abstract class Personnage {
 	public Terrain getTerrain() {
 		return terrain;
 	}
-
+	
+	public Environnement getEnv() {
+		return env;
+	}
 	//-------------------------------------------------------------------//
 	//Setters
-	
+
 	public final void setX(double d) {
 		this.xProp.setValue(d);
 	}

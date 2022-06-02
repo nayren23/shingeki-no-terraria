@@ -1,7 +1,7 @@
 package jeu.model;
 
 import java.util.ArrayList;
-
+import jeu.model.inventaire.Objet;
 import jeu.model.inventaire.ressource.Charbon;
 import jeu.model.inventaire.ressource.Fer;
 import jeu.model.inventaire.ressource.Gaz;
@@ -14,23 +14,24 @@ public class Environnement {
 	private int width, height;
 	private ArrayList<Personnage> personnages;
 	private ArrayList<Ressource> ressources;
+	private Heros eren;
 
 	public Environnement() {
 		this.terrain = new Terrain();
 		this.width = 1280;
 		this.height = 720;
 		this.personnages = new ArrayList<>();
+		this.eren = new Heros(0, 0, terrain, this);
+		this.personnages.add(eren);
 		this.ressources = new ArrayList<Ressource>();
 		creationRessources();
 	}
 
 	public void creationRessources() {
-
 		for(int i=0 ;i<terrain.getTerrain().length;i++) {
 			switch (terrain.getTerrain()[i]) {
 			case 0:
 				ressources.add(new Gaz());
-
 				break;
 
 			case 1:
@@ -62,7 +63,14 @@ public class Environnement {
 			}
 		}
 	}
-
+	
+	public void enleverResistance (Objet o) {
+		Ressource r = (Ressource) o;
+		int resistance = r.getResistance()-2;
+		if (resistance<=0) {
+			eren.getInventaireHeros().stackRessource(r);
+		}
+	}
 	
 	public ArrayList<Ressource> getRessources() {
 		return ressources;
@@ -78,6 +86,10 @@ public class Environnement {
 
 	public Terrain getTerrain() {
 		return this.terrain;
+	}
+
+	public Heros getEren() {
+		return eren;
 	}
 
 	public ArrayList<Personnage> getPersonnages() {
