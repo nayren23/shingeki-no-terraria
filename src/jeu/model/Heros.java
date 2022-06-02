@@ -1,16 +1,24 @@
 package jeu.model;
 
 import jeu.Parametre;
+import jeu.model.inventaire.Inventaire;
+import jeu.model.inventaire.Objet;
+import jeu.model.inventaire.arme.Hand;
 
 public class Heros extends Personnage{
 
 	int direction, dirY = -7;
 	boolean space = false;
 	private Terrain terrain;
-	
-	//changer le type terrain en type environnement maybe
-	public Heros(int x, int y, Terrain terrain) {
+	private Inventaire inventaireHeros;
+	private Objet objetHeros;
+	private Hand mainHeros;
+	//changer le type terrain en type environnement
+	public Heros(int x, int y, Terrain terrain, Inventaire inventaire) {
 		super(x, y, 5, 9, terrain);
+		this.inventaireHeros=inventaire;
+		this.mainHeros = new Hand();
+		this.objetHeros= mainHeros;
 	}
 
 	//------------------------------------------------------------//
@@ -119,21 +127,23 @@ public class Heros extends Personnage{
 	 * @param numeroTuilesCasser que l on veut casser
 	 * @param terrain sur quel terrain l'action doit se faire
 	 */
-	public void casserBloc (int numeroTuilesCasser, Terrain terrain) {  // ensuite rajouter l'objet miner dans l'inventaire 
-		System.out.println("casser tuile : " + numeroTuilesCasser);
-		terrain.changerTuiles(numeroTuilesCasser,Parametre.changementDuBlocCasser); //changer le 1 en bloc choisit
-		System.out.println("C'est cassee Yes");			
+//	public void casserBloc (int numeroTuilesCasser, Terrain terrain) {  // ensuite rajouter l'objet miner dans l'inventaire 
+//		System.out.println("casser tuile : " + numeroTuilesCasser);
+//		terrain.changerTuiles(numeroTuilesCasser,Parametre.changementDuBlocCasser); //changer le 1 en bloc choisit
+//		System.out.println("C'est cassee Yes");			
+//	}
+	
+	public void equiper (Objet o) {
+		setObjetHeros(o);
+		System.out.println("Objet  " +o.getIdObjet());
 	}
 	
-	//------------------------------------------------------------//
-
-
-	public void construireTuile(int numeroTuilesCasser, Terrain terrain) {
-		System.out.println("Changement de la tuile : " + numeroTuilesCasser);
-		terrain.changerTuiles(numeroTuilesCasser, Parametre.changementDuBlocConstruit); //changer le 1 en bloc choisit
-		System.out.println("C'est construit Yes :)");			
+	
+	public Objet getObjetHeros() {
+		return this.objetHeros;
 	}
 	
+
 	//------------------------------------------------------------//
 
 	//	public boolean estMort(int pv) { // a finir
@@ -173,6 +183,11 @@ public class Heros extends Personnage{
 	public void setSpace(boolean space) {
 		this.space = space;
 	}
+	public void setObjetHeros(Objet objetHeros) {
+		this.objetHeros = objetHeros;
+	}
+
+
 }
 
 

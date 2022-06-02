@@ -1,23 +1,25 @@
 package jeu;
 
-import javafx.scene.image.Image;
-
 public class Parametre {
-
-		
+	
 		public static enum DIRECTION {
 			RIGHT, LEFT, BOTTOM, TOP, SPACE;
 		} 
 		
-		
 		//Ici c'est quand on casse le bloc il sera remplacer par le loc choisit en bas
-		public static int changementDuBlocCasser = 0;
-		
-		public static int changementDuBlocConstruit = 1;
-		
-		//---------------------------------------------------------------------------------------//
+        public static int changementDuBlocCasserPelle = 0; //a changer
+        
+        public static int changementDuBlocCasserPioche = 0; //a changer
 
-		//Spécification de chaque image
+        public static int changementDuBlocCasserHache = 0; //a changer
+
+        public static final int blocHerbe = 1; // Bloc de terre final car pas senser chanegr
+	
+        public static final int blocFer = 5; // Bloc de terre final car pas senser chanegr
+
+        //---------------------------------------------------------------------------------------//
+
+		//Spï¿½cification de chaque image
 		/*
 		 * 		this.imageTerrain = new Image[7] ;  // a changer en fonction du nombre de tuiles
 		0 = new Image("jeu/image/ciel.png");
