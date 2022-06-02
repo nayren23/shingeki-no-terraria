@@ -1,27 +1,31 @@
 package jeu.model.inventaire;
 
-import java.util.ArrayList;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class Inventaire {
 
-	protected ArrayList<Objet> inventaire;
+	private ObservableList<Objet> inventaire;
 	private int stockageMax;
 
 	public Inventaire() {
-		this.inventaire = new ArrayList<>();
+		this.inventaire = FXCollections.observableArrayList();
 		this.stockageMax = 20;
 	}
 
 	public void ajouterDansInventaire (Objet o) {
-		if (verifierPlace()==true)
+		if (verifierPlace()==true) {
 			this.inventaire.add(o);
+		}
+		else
+			this.inventaire.remove(o);
 	}
 	
 	public boolean verifierPlace () {
 		return this.inventaire.size()!=this.stockageMax;
 	}
 
-	public ArrayList<Objet> getInventaire() {
+	public ObservableList<Objet> getInventaire() {
 		return inventaire;
 	}
 

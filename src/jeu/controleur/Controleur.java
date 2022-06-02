@@ -18,6 +18,10 @@ import jeu.model.Environnement;
 import jeu.model.Heros;
 import jeu.model.inventaire.Inventaire;
 import jeu.vue.HeroVue;
+import jeu.model.inventaire.arme.Epee;
+import jeu.model.inventaire.arme.Pelle;
+import jeu.model.inventaire.ressource.Fer;
+import jeu.model.inventaire.ressource.Terre;
 import jeu.vue.HerosVieVue;
 import jeu.vue.TerrainVue;
 import jeu.vue.inventaire.InventaireVue;
@@ -29,6 +33,7 @@ public class Controleur implements Initializable{
 
 	@FXML
 	private TilePane tuilesFond;
+	
 	@FXML
 	private BorderPane BorderPaneId;
 	@FXML
@@ -37,6 +42,9 @@ public class Controleur implements Initializable{
 	private TilePane afficherInventaire;
 	@FXML
 	private ImageView eren;
+	
+	@FXML
+	private TilePane afficherObjet;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -50,28 +58,24 @@ public class Controleur implements Initializable{
 		terrainVue.dessinerTerrain();
 		
 		//------------------------------------------------------------//
-
-		//Creation du hero eren
-		hero = new Heros(0, 0, env.getTerrain());
-		
-		//------------------------------------------------------------//
+	
+		//Creation de l'inventaire 
+		Inventaire inv = new Inventaire();
 
 		//Creation de la Vue du hero eren puis ajout de celui ci dans le pane
+		hero = new Heros(0, 0, env.getTerrain(), inv);
 		HeroVue hero1 = new HeroVue(hero);
 		this.PanePrincipale.getChildren().add(hero1);
 		hero1.affichageEren(hero);
-
-		//------------------------------------------------------------//
-
-		//Creation de la Vie du Hero Eren donc des coeurs en haut a droite
+		
 		HerosVieVue viehero = new HerosVieVue(hero, PanePrincipale);
 		viehero.affichageVie(hero.PvProperty().getValue()); //affichage vie hero en haut droite
-
+		
+		
 		//------------------------------------------------------------//
 		
-		//Creation Inventaire
-		Inventaire inv = new Inventaire();
-		InventaireVue invVue = new InventaireVue(inv, afficherInventaire);
+		//Creation  de la VUE de l inventaire
+		InventaireVue invVue = new InventaireVue(inv, afficherInventaire, afficherObjet,hero);
 		this.PanePrincipale.getChildren().add(invVue);
 		
 		//------------------------------------------------------------//
@@ -85,7 +89,21 @@ public class Controleur implements Initializable{
 		//Creation de l usage de la souris 
 		BorderPaneId.addEventHandler(MouseEvent.MOUSE_CLICKED, new MouseClick(hero,env.getTerrain(),terrainVue)); //fait la distinction entre les differant click de la souris
 		
+		Pelle pelle = new Pelle();
+		inv.ajouterDansInventaire(pelle);
+		Epee epee = new Epee();
+		inv.ajouterDansInventaire(epee);
+		Terre terre = new Terre();
+		inv.ajouterDansInventaire(terre);
+		
+		Fer fer = new Fer();
+		inv.ajouterDansInventaire(fer);
 		//------------------------------------------------------------//
+
+		
+		System.out.println(inv.getInventaire().get(0).getIdObjet());
+		System.out.println(inv.getInventaire().get(1).getIdObjet());
+		System.out.println(inv.getInventaire());
 
 		initAnimation();
 		// demarre l'animation

@@ -18,15 +18,23 @@ public class TerrainVue {
 	 * Cette methodes crer une seul fois les images necessaire a l affichage du Terrain 
 	 * et stocke les images dans un tableau d Images
 	 */
+	
+	/* 
+Bloc de Ciel Vide : 0
+Bloc d’Herbes : 1
+Bloc de Terre : 2
+Bloc de Charbon : 3
+Bloc de Gaz :  4
+Bloc de Fer : 5
+*/
 	private void tableauImageTerrain() {
-		this.imageTerrain = new Image[7] ;  // a changer en fonction du nombre de tuiles
-		imageTerrain[0] = new Image("jeu/image/ciel.png");
-		imageTerrain[1] =new Image("jeu/image/1.png");
-		imageTerrain[2] = new Image("jeu/image/2.png");
-		imageTerrain[3] = new Image("jeu/image/3.png");
-		imageTerrain[4] = new Image("jeu/image/4.png");
-		imageTerrain[5] = new Image("jeu/image/5.png");
-		imageTerrain[6] = new Image("jeu/image/trou.png");
+		this.imageTerrain = new Image[6] ;  // a changer en fonction du nombre de tuiles
+		imageTerrain[0] = new Image("jeu/image/BlocTransparent.png");
+		imageTerrain[1] =new Image("jeu/image/BlocHerbe.png");
+		imageTerrain[2] = new Image("jeu/image/BlocTerre.png");
+		imageTerrain[3] = new Image("jeu/image/BlocCharbon.png");
+		imageTerrain[4] = new Image("jeu/image/BlocGaz.png");
+		imageTerrain[5] = new Image("jeu/image/BlocFer.png");
 	}
 
 	/**
@@ -86,21 +94,21 @@ public class TerrainVue {
 			tuilesFond.getChildren().add(images); //ajoute les images dans le tilePane
 		}
 	}
-
+	
 	/**
-	 * Cette méthode actualise seulement la case qui vient d etre modifier dans le modele
-	 * 
-	 * @param numéroTuile  qu'on soit modifier dans la Vue
-	 * @param terrain  dans quel terrain ce fait ce changement
-	 * 
-	 */
-	public void changementTuileMinage(int numéroTuile , Terrain terrain, int blocChanger) {
+     * Cette mÃ©thode actualise seulement la case qui vient d etre modifier dans le modele
+     * 
+     * @param numÃ©roTuile  qu'on soit modifier dans la Vue
+     * @param terrain  dans quel terrain ce fait ce changement
+     * 
+     */
+    public void changementTuileMinage(int numeroTuile , Terrain terrain, int blocChanger) {
 
-		if(terrain.getTerrain()[numéroTuile] == blocChanger) {
-			ImageView img = new ImageView();
-			img.setImage(imageTerrain[blocChanger]); // utilisation des images qui sont dans le tableua créer une seul fois plus haut
-			tuilesFond.getChildren().set(numéroTuile, img); // on change l'image a la position souhaiter par la nouvelle
-		}
-	}
+        if(terrain.getTerrain()[numeroTuile] == blocChanger) {
+            ImageView img = new ImageView();
+            img.setImage(imageTerrain[blocChanger]); // utilisation des images qui sont dans le tableua crÃ©er une seul fois plus haut
+            tuilesFond.getChildren().set(numeroTuile, img); // on change l'image a la position souhaiter par la nouvelle
+        }
+    }
 
 }
