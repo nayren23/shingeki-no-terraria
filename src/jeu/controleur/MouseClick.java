@@ -7,6 +7,7 @@ import jeu.Parametre;
 import jeu.model.Heros;
 import jeu.model.Terrain;
 import jeu.model.inventaire.arme.Pelle;
+import jeu.model.inventaire.ressource.Fer;
 import jeu.model.inventaire.ressource.Terre;
 import jeu.vue.TerrainVue;
 
@@ -17,6 +18,7 @@ public class MouseClick implements EventHandler<MouseEvent> {
 	public TerrainVue terrainVue;
 	public Pelle pelle;
 	public Terre terre;
+	public Fer fer;
 	public static int tailleTuile = 32;
 	public static int tailleMapLongueur = 40;  // nombre de tuiles dans une ligne
 
@@ -26,6 +28,8 @@ public class MouseClick implements EventHandler<MouseEvent> {
 		this.terrainVue = terrainVue;
 		this.pelle = new Pelle();
 		this.terre = new Terre();
+		this.fer = new Fer();
+
 	}
 
 	@Override
@@ -48,9 +52,15 @@ public class MouseClick implements EventHandler<MouseEvent> {
 		case 12: 
 			if(arg0.getButton() == MouseButton.SECONDARY) {
 				terre.poserBloc(positionTuileDansTableau, terrain);
-				terrainVue.changementTuileMinage(positionTuileDansTableau,terrain,Parametre.changementDuBlocConstruit);// changer et faire une fonction qui actualise juste l'image changé			}
+				terrainVue.changementTuileMinage(positionTuileDansTableau,terrain,Parametre.blocHerbe);// changer et faire une fonction qui actualise juste l'image changé			}
 			}
 			break;
+			
+		case 7: 
+			if(arg0.getButton() == MouseButton.SECONDARY) {
+				fer.poserBloc(positionTuileDansTableau, terrain);
+				terrainVue.changementTuileMinage(positionTuileDansTableau,terrain,Parametre.blocFer);// changer et faire une fonction qui actualise juste l'image changé			}
+			}
 		case 3:
 			if (arg0.getButton() == MouseButton.PRIMARY) {
 				pelle.creuser(positionTuileDansTableau,terrain);

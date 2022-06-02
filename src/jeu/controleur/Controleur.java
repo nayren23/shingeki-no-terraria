@@ -20,6 +20,7 @@ import jeu.model.inventaire.Inventaire;
 import jeu.vue.HeroVue;
 import jeu.model.inventaire.arme.Epee;
 import jeu.model.inventaire.arme.Pelle;
+import jeu.model.inventaire.ressource.Fer;
 import jeu.model.inventaire.ressource.Terre;
 import jeu.vue.HerosVieVue;
 import jeu.vue.TerrainVue;
@@ -94,6 +95,9 @@ public class Controleur implements Initializable{
 		inv.ajouterDansInventaire(epee);
 		Terre terre = new Terre();
 		inv.ajouterDansInventaire(terre);
+		
+		Fer fer = new Fer();
+		inv.ajouterDansInventaire(fer);
 		//------------------------------------------------------------//
 
 		

@@ -33,10 +33,8 @@ public class Pelle extends Arme{
 	}
 	
 	private void listeBlocMinables () {
-		this.blocMinables.add(1);	
-		this.blocMinables.add(2);
-		this.blocMinables.add(3);
-		this.blocMinables.add(4);
+		this.blocMinables.add(1);	//Bloc d herbe
+		this.blocMinables.add(2);	//Bloc de Terre
 	}
 
 }

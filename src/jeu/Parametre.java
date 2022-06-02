@@ -13,8 +13,11 @@ public class Parametre {
 
         public static int changementDuBlocCasserHache = 0; //a changer
 
-        public static final int changementDuBlocConstruit = 1; // final car pas senser chanegr
-		//---------------------------------------------------------------------------------------//
+        public static final int blocHerbe = 1; // Bloc de terre final car pas senser chanegr
+	
+        public static final int blocFer = 5; // Bloc de terre final car pas senser chanegr
+
+        //---------------------------------------------------------------------------------------//
 
 		//Sp�cification de chaque image
 		/*

@@ -18,15 +18,23 @@ public class TerrainVue {
 	 * Cette methodes crer une seul fois les images necessaire a l affichage du Terrain 
 	 * et stocke les images dans un tableau d Images
 	 */
+	
+	/* 
+Bloc de Ciel Vide : 0
+Bloc d’Herbes : 1
+Bloc de Terre : 2
+Bloc de Charbon : 3
+Bloc de Gaz :  4
+Bloc de Fer : 5
+*/
 	private void tableauImageTerrain() {
-		this.imageTerrain = new Image[7] ;  // a changer en fonction du nombre de tuiles
-		imageTerrain[0] = new Image("jeu/image/ciel.png");
-		imageTerrain[1] =new Image("jeu/image/1.png");
-		imageTerrain[2] = new Image("jeu/image/2.png");
-		imageTerrain[3] = new Image("jeu/image/3.png");
-		imageTerrain[4] = new Image("jeu/image/4.png");
-		imageTerrain[5] = new Image("jeu/image/5.png");
-		imageTerrain[6] = new Image("jeu/image/trou.png");
+		this.imageTerrain = new Image[6] ;  // a changer en fonction du nombre de tuiles
+		imageTerrain[0] = new Image("jeu/image/BlocTransparent.png");
+		imageTerrain[1] =new Image("jeu/image/BlocHerbe.png");
+		imageTerrain[2] = new Image("jeu/image/BlocTerre.png");
+		imageTerrain[3] = new Image("jeu/image/BlocCharbon.png");
+		imageTerrain[4] = new Image("jeu/image/BlocGaz.png");
+		imageTerrain[5] = new Image("jeu/image/BlocFer.png");
 	}
 
 	/**
