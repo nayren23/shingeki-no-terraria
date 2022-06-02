@@ -187,6 +187,10 @@ public class Heros extends Personnage{
 		this.objetHeros = objetHeros;
 	}
 
+	public Hand getMainHeros() {
+		return mainHeros;
+	}
+
 
 }
 

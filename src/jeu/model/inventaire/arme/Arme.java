@@ -11,7 +11,7 @@ public abstract class Arme extends Objet{
 	
 	public Arme (int id) {
 		super(id);
-		this.durabilite = 100;
+		this.durabilite = 2;
 		this.degats = 2;
 	}
 

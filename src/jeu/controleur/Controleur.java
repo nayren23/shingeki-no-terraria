@@ -7,9 +7,15 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
@@ -34,7 +40,7 @@ public class Controleur implements Initializable{
 
 	@FXML
 	private TilePane tuilesFond;
-	
+
 	@FXML
 	private BorderPane BorderPaneId;
 	@FXML
@@ -43,23 +49,39 @@ public class Controleur implements Initializable{
 	private TilePane afficherInventaire;
 	@FXML
 	private ImageView eren;
-	
+
 	@FXML
 	private TilePane afficherObjet;
-	
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
 		//------------------------------------------------------------//
+		
+		//on creer l image
+		Image img = new Image("jeu/image/arrièreplanSNK.jpg");
+		
+		//on creer un backgroundImage qui contient notre image
+		BackgroundImage backImage = new BackgroundImage(img,BackgroundRepeat.NO_REPEAT,
+				BackgroundRepeat.NO_REPEAT,
+				BackgroundPosition.DEFAULT,
+				BackgroundSize.DEFAULT);
+		
+		//Puis on creer un background qui contient notre Backgroundimage
+		Background backGround = new Background(backImage);
+		
+		//Ensuite on ajoute notre background a notre borderpane principale
+		BorderPaneId.setBackground(backGround);
+
 
 		//Creation de l'environnement qui lui recupere le Terrain
 		Environnement env = new Environnement();
-		
+
 		TerrainVue terrainVue = new TerrainVue(tuilesFond, env.getTerrain());	//cree le terrain vue
 		terrainVue.dessinerTerrain();
-		
+
 		//------------------------------------------------------------//
-	
+
 		//Creation de l'inventaire 
 		Inventaire inv = new Inventaire();
 
@@ -68,46 +90,52 @@ public class Controleur implements Initializable{
 		HeroVue hero1 = new HeroVue(hero);
 		this.PanePrincipale.getChildren().add(hero1);
 		hero1.affichageEren(hero);
-		
+
 		HerosVieVue viehero = new HerosVieVue(hero, PanePrincipale);
 		viehero.affichageVie(hero.PvProperty().getValue()); //affichage vie hero en haut droite
-		
-		
+
+
 		//------------------------------------------------------------//
-		
+
 		//Creation  de la VUE de l inventaire
 		InventaireVue invVue = new InventaireVue(inv, afficherInventaire, afficherObjet,hero);
 		this.PanePrincipale.getChildren().add(invVue);
-		
+
 		//------------------------------------------------------------//
 
 		//Creation de l usage du clavier
 		BorderPaneId.addEventHandler(KeyEvent.KEY_PRESSED,new KeyPressed(hero, viehero, invVue)); //pour savoir les touches qui sont appuee
 		BorderPaneId.addEventHandler(KeyEvent.KEY_RELEASED,new KeyReleased(hero));//pour savoir les touches qui sont relachee
-	
+
 		//------------------------------------------------------------//
 
 		//Creation de l usage de la souris 
 		BorderPaneId.addEventHandler(MouseEvent.MOUSE_CLICKED, new MouseClick(hero,env.getTerrain(),terrainVue)); //fait la distinction entre les differant click de la souris
-		
+
 		Pelle pelle = new Pelle();
 		inv.ajouterDansInventaire(pelle);
-		Epee epee = new Epee();
-		inv.ajouterDansInventaire(epee);
-		Terre terre = new Terre();
-		inv.ajouterDansInventaire(terre);
-		
-		Fer fer = new Fer();
-		inv.ajouterDansInventaire(fer);
 		
 		Pioche pioche = new Pioche();
 		inv.ajouterDansInventaire(pioche);
+		
+
+//		Epee epee = new Epee();
+//		inv.ajouterDansInventaire(epee);
+//		
+//		Terre terre = new Terre();
+//		inv.ajouterDansInventaire(terre);
+//
+//		Fer fer = new Fer();
+//		inv.ajouterDansInventaire(fer);
+//
+//		Pioche pioche = new Pioche();
+//		inv.ajouterDansInventaire(pioche);
 		//------------------------------------------------------------//
 
-		
-		System.out.println(inv.getInventaire().get(0).getIdObjet());
-		System.out.println(inv.getInventaire().get(1).getIdObjet());
-		System.out.println(inv.getInventaire());
+
+//		System.out.println(inv.getInventaire().get(0).getIdObjet());
+//		System.out.println(inv.getInventaire().get(1).getIdObjet());
+//		System.out.println(inv.getInventaire());
 
 		initAnimation();
 		// demarre l'animation
