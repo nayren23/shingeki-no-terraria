@@ -36,7 +36,7 @@ import jeu.vue.inventaire.InventaireVue;
 public class Controleur implements Initializable{
 
 	private Timeline gameLoop;
-	private Heros hero;
+	private Environnement env;
 
 	@FXML
 	private TilePane tuilesFond;
@@ -75,7 +75,7 @@ public class Controleur implements Initializable{
 
 
 		//Creation de l'environnement qui lui recupere le Terrain
-		Environnement env = new Environnement();
+		env = new Environnement();
 
 		TerrainVue terrainVue = new TerrainVue(tuilesFond, env.getTerrain());	//cree le terrain vue
 		terrainVue.dessinerTerrain();
@@ -120,7 +120,7 @@ public class Controleur implements Initializable{
 
 		initAnimation();
 		// demarre l'animation
-		//gameLoop.play();
+		gameLoop.play();
 	}
 
 	private void initAnimation() {
@@ -140,8 +140,8 @@ public class Controleur implements Initializable{
 
 				//	System.out.println(hero.getDirection());
 
-					hero.gravite();
-					hero.move();
+					env.getEren().gravite();
+					env.getEren().move();
 				}
 						));
 		gameLoop.getKeyFrames().add(kf);
