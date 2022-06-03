@@ -25,8 +25,8 @@ import jeu.model.Heros;
 import jeu.model.inventaire.Inventaire;
 import jeu.vue.HeroVue;
 import jeu.model.inventaire.arme.Epee;
-import jeu.model.inventaire.arme.Pelle;
-import jeu.model.inventaire.arme.Pioche;
+import jeu.model.inventaire.outil.Pelle;
+import jeu.model.inventaire.outil.Pioche;
 import jeu.model.inventaire.ressource.Fer;
 import jeu.model.inventaire.ressource.Terre;
 import jeu.vue.HerosVieVue;
@@ -37,7 +37,6 @@ public class Controleur implements Initializable{
 
 	private Timeline gameLoop;
 	private Environnement env;
-
 	@FXML
 	private TilePane tuilesFond;
 	
@@ -106,13 +105,15 @@ public class Controleur implements Initializable{
 		//------------------------------------------------------------//
 
 		//Creation de l usage de la souris 
-		BorderPaneId.addEventHandler(MouseEvent.MOUSE_CLICKED, new MouseClick(env.getEren(),env.getTerrain(),terrainVue)); //fait la distinction entre les differant click de la souris
+		BorderPaneId.addEventHandler(MouseEvent.MOUSE_CLICKED, new MouseClick(env,terrainVue)); //fait la distinction entre les differant click de la souris
 		
 		Pelle pelle = new Pelle(env);
 		env.getEren().getInventaireHeros().ajouterDansInventaire(pelle);
 
 		Pioche pioche = new Pioche(env);
 		env.getEren().getInventaireHeros().ajouterDansInventaire(pioche);
+		
+		
 
 //		System.out.println(inv.getInventaire().get(0).getIdObjet());
 //		System.out.println(inv.getInventaire().get(1).getIdObjet());

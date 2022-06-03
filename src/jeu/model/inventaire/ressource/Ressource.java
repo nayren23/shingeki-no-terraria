@@ -6,13 +6,23 @@ public class Ressource extends Objet{
 
 	private int nbMax;
 	private int nbRessource;
+	private String nomRessource;
 	private int resistance;//vie de la ressource
 
-	public Ressource (int res, int id) {
+	public Ressource (int res, int id, String nom) {
 		super(id);
 		this.nbMax=200;
 		this.nbRessource=1;
 		this.resistance=res;
+		this.nomRessource=nom;
+	}
+	
+	public void incrementerRessource() {
+		this.nbRessource ++;
+	}
+	
+	public void enleverResistance(Ressource r) {
+		this.resistance=r.getResistance()-1;
 	}
 
 	public int getResistance() {
@@ -31,13 +41,9 @@ public class Ressource extends Objet{
 		this.nbRessource = nbRessource;
 	}
 
-	public void incrementerRessource() {
-		this.nbRessource ++;
-	}
-
 	@Override
 	public String toString() {
-		return "nbRessource=" + nbRessource ;
+		return "Nom de la ressource = " + this.nomRessource + " nbRessource=" + nbRessource;
 	}
 	
 	

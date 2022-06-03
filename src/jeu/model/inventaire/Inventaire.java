@@ -4,7 +4,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import jeu.model.Environnement;
 import jeu.model.inventaire.arme.Arme;
+import jeu.model.inventaire.outil.Outil;
+import jeu.model.inventaire.ressource.Charbon;
+import jeu.model.inventaire.ressource.Fer;
+import jeu.model.inventaire.ressource.Gaz;
 import jeu.model.inventaire.ressource.Ressource;
+import jeu.model.inventaire.ressource.Terre;
 
 public class Inventaire {
 
@@ -22,46 +27,87 @@ public class Inventaire {
 		this.inventaire.add(o);
 		System.out.println(this.inventaire);
 	}
-	
-	public void detruireArme (Objet o) {
+
+	public void detruireObjet (Objet o) {
 		this.inventaire.remove(o);
 	}
-	
+
 	public void detruireBloc(Ressource r) {
 		int id = r.getIdObjet();
 		this.inventaire.remove(id);
 	}
-	
-	public void faireDegats(Arme a, Ressource r) {
-		this.env.enleverResistance(r);
-		int durabilite = a.getDurabilite()-1;
-		if (durabilite==0)
-			detruireArme(a);
+
+	//enleve resistance du bloc et durabilite de l'arme
+	public void faireDegatsBloc(Outil o,  int numeroTuile) {
+		o.decrementerDurabiliteOutil(o);
+		this.env.detruireBloc(env.getRessources().get(numeroTuile));
+		if (o.getDurabilite()==0)
+			detruireObjet(o);
 	}
-	
+
+	public void faireDegatsEnnemis(Arme a, Ressource r) {
+
+	}
+
 	//une ressource peut avoir jusqu'a 50 d'elle meme dans le meme emplacement de l'inventaire
 	public void stackRessource (Ressource r){
-		if (this.inventaire.contains(r)) {
-			boolean test=false;
+		System.out.println("TEST 555");
+		if (existeDansInventaire(r.getIdObjet())){
 			Ressource ressource;
-			for (int i=0; i<this.inventaire.size() && !test; i++) 
-				if (this.inventaire.get(i)==r ) {
+			for (int i=0; i<this.inventaire.size(); i++) {
+				if (r.getIdObjet()==this.inventaire.get(i).getIdObjet()) {
 					ressource=(Ressource) this.inventaire.get(i);
 					if(ressource.getNbRessource() < ressource.getNbMax()) {
 						ressource.incrementerRessource();
 						System.out.println(this.inventaire);
-					}
-					else {
-						ajouterDansInventaire(r);
-						test=true;
-					}
-					
+					}				
 				}
+			}	
 		}
+		
 		else
 			ajouterDansInventaire(r);
 	}
 	
+	public boolean existeDansInventaire (int id) {
+		for(int i=0; i<this.inventaire.size(); i++) 
+			if (this.inventaire.get(i).getIdObjet()==id)
+				return true;
+		
+		return false;
+	}
+
+	public void creationBlocCasser (Outil o, int numeroTuile) {
+		int cases=o.enleverResistanceBloc(numeroTuile);
+		Terre terre = new Terre();
+
+
+		switch (cases) {
+		case 1:
+			stackRessource(terre);
+			break;
+
+		case 2:
+			stackRessource(terre);
+			break;
+		case 3:
+			Charbon charbon = new Charbon();
+			stackRessource(charbon);
+			break;
+		case 4:
+			Gaz gaz = new Gaz();
+			stackRessource(gaz);
+			break;
+		case 5:
+			Fer fer = new Fer();
+			stackRessource(fer);
+			break;
+
+		default:
+			break;
+		}
+	}
+
 	public boolean verifierPlace () {
 		return this.inventaire.size()!=this.stockageMax;
 	}

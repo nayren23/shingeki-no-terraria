@@ -3,6 +3,7 @@ package jeu.model;
 import java.util.ArrayList;
 import jeu.model.inventaire.Objet;
 import jeu.model.inventaire.ressource.Charbon;
+import jeu.model.inventaire.ressource.Ciel;
 import jeu.model.inventaire.ressource.Fer;
 import jeu.model.inventaire.ressource.Gaz;
 import jeu.model.inventaire.ressource.Ressource;
@@ -34,10 +35,10 @@ public class Environnement {
 	}
 
 	public void creationRessources() {
-		for(int i=0 ;i<terrain.getTerrain().length;i++) {
-			switch (terrain.getTerrain()[i]) {
+		for(int i=0 ;i<terrain.getTabTerrain().length;i++) {
+			switch (terrain.getTabTerrain()[i]) {
 			case 0:
-				ressources.add(new Gaz());
+				ressources.add(new Ciel());
 				break;
 
 			case 1:
@@ -49,11 +50,11 @@ public class Environnement {
 				break;
 				
 			case 3:
-				ressources.add(new Terre());
+				ressources.add(new Charbon());
 				break;
 				
 			case 4:
-				ressources.add(new Terre());
+				ressources.add(new Gaz());
 				break;
 				
 			case 5:
@@ -70,16 +71,21 @@ public class Environnement {
 		}
 	}
 	
-	public void enleverResistance (Objet o) {
+	public void detruireBloc (Objet o) {
 		Ressource r = (Ressource) o;
-		int resistance = r.getResistance()-2;
-		if (resistance<=0) {
+		r.enleverResistance(r);
+		if (r.getResistance()<=0) 
 			eren.getInventaireHeros().stackRessource(r);
-		}
 	}
 	
 	public ArrayList<Ressource> getRessources() {
 		return ressources;
+	}
+	
+	public Ressource getObjet (int numeroTuile) {
+		Ressource r = getRessources().get(numeroTuile);
+		System.out.println("\n c'est moi wsh" + r);
+		return getRessources().get(numeroTuile);
 	}
 
 	public int getWidth() {

@@ -35,7 +35,7 @@ public class Terrain {
 	 * Tableau qui stocke la map  en int
 	 */
 	private final int [] terrain ={
-			0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -84,7 +84,7 @@ public class Terrain {
 	 */
 	public void affichertableau(Terrain terrain) {
 		for (int i = 0 ; i<terrain.longueurterrain(); i++) {
-			System.out.print(terrain.getTerrain()[i]);
+			System.out.print(terrain.getTabTerrain()[i]);
 		}
 	}
 	
@@ -94,7 +94,7 @@ public class Terrain {
 	 * 
 	 * @return un Terrain dans un tableau de int
 	 */
-	public  int[] getTerrain() {
+	public  int[] getTabTerrain() {
 		return terrain;
 	}
 	

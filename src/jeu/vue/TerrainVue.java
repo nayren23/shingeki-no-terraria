@@ -56,8 +56,8 @@ Bloc de Fer : 5
 		tuilesFond.getChildren().clear(); // on clean le tilePane si jamais
 		ImageView images ;
 		
-		for(int cases = 0; cases < terrain.getTerrain().length ; cases++) {
-			switch(terrain.getTerrain()[cases]) {
+		for(int cases = 0; cases < terrain.getTabTerrain().length ; cases++) {
+			switch(terrain.getTabTerrain()[cases]) {
 			case 0 :
 				images = new ImageView(imageTerrain[0]);
 				break;
@@ -102,7 +102,7 @@ Bloc de Fer : 5
      * 
      */
     public void changementTuileMinage(int numeroTuile , Terrain terrain, int blocChanger) {
-        if(terrain.getTerrain()[numeroTuile] == blocChanger) {
+        if(terrain.getTabTerrain()[numeroTuile] == blocChanger) {
             ImageView img = new ImageView();
             img.setImage(imageTerrain[blocChanger]); // utilisation des images qui sont dans le tableua créer une seul fois plus haut
             tuilesFond.getChildren().set(numeroTuile, img); // on change l'image a la position souhaiter par la nouvelle

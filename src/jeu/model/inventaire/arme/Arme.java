@@ -24,6 +24,10 @@ public abstract class Arme extends Objet{
 		else 
 			setDegat(8);
 	}
+	
+	public void decrementerDurabiliteArme (Arme a) {
+		this.durabilite-=1;
+	}
 
 	public void setDegat(int degat) {
 		this.degats = degat;
@@ -37,7 +41,5 @@ public abstract class Arme extends Objet{
 	public String toString() {
 		return "Nom de l'arme= " + nom;
 	}
-	
-	
 
 }

@@ -7,11 +7,9 @@ public class Parametre {
 		} 
 		
 		//Ici c'est quand on casse le bloc il sera remplacer par le loc choisit en bas
-        public static int changementDuBlocCasserPelle = 0; //a changer
-        
-        public static int changementDuBlocCasserPioche = 0; //a changer
 
-        public static int changementDuBlocCasserHache = 0; //a changer
+
+        public static int changementDuBlocCasser = 0; //a changer
 
         public static final int blocHerbe = 1; // Bloc de terre final car pas senser chanegr
 	
