@@ -93,7 +93,7 @@ public class Controleur implements Initializable{
 		//------------------------------------------------------------//
 		
 		//Creation  de la VUE de l inventaire
-		InventaireVue invVue = new InventaireVue(env.getEren().getInventaireHeros(), afficherInventaire, afficherObjet,env.getEren());
+		InventaireVue invVue = new InventaireVue(env,afficherInventaire, afficherObjet);
 		this.PanePrincipale.getChildren().add(invVue);
 
 		//------------------------------------------------------------//

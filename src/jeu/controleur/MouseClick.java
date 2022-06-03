@@ -57,9 +57,12 @@ public class MouseClick implements EventHandler<MouseEvent> {
 		}
 		
 		else if(objet instanceof Pelle && arg0.getButton() == MouseButton.PRIMARY) {
+			//env.getTerrain().affichertableau(env.getTerrain());
 			env.getEren().getInventaireHeros().faireDegatsBloc((Outil) objet, positionTuileDansTableau);
+			
 			env.getEren().getInventaireHeros().creationBlocCasser((Outil) objet , positionTuileDansTableau);// changer et faire une fonction qui actualise juste l'image chang�
 			terrainVue.changementTuileMinage(positionTuileDansTableau,env.getTerrain(),Parametre.changementDuBlocCasser);// changer et faire une fonction qui actualise juste l'image chang�			}
+		//	env.getTerrain().affichertableau(env.getTerrain());
 
 		}
 

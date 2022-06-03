@@ -13,22 +13,26 @@ public class Pioche extends Outil{
 	@Override
 	public int enleverResistanceBloc(int numeroTuilesCasser) {
 		int indiceBloc = -1;
+		if (getEnv().getObjet(numeroTuilesCasser).getIdObjet() !=0 || getEnv().getObjet(numeroTuilesCasser).getIdObjet() !=1 || getEnv().getObjet(numeroTuilesCasser).getIdObjet() !=2){ {
 
-		if(getEnv().getTerrain().getTabTerrain()[numeroTuilesCasser]==3 ) {
-			indiceBloc = 3;
-			getEnv().getTerrain().getTabTerrain()[numeroTuilesCasser] = Parametre.changementDuBlocCasser;
-		}
-			
-		else if(getEnv().getTerrain().getTabTerrain()[numeroTuilesCasser]==4 ) {
-			indiceBloc = 4;
-			getEnv().getTerrain().getTabTerrain()[numeroTuilesCasser] = Parametre.changementDuBlocCasser;
+			if(getEnv().getTerrain().getTabTerrain()[numeroTuilesCasser]==3 ) {
+				indiceBloc = 3;
+				getEnv().getTerrain().getTabTerrain()[numeroTuilesCasser] = Parametre.changementDuBlocCasser;
+			}
+
+			else if(getEnv().getTerrain().getTabTerrain()[numeroTuilesCasser]==4 ) {
+				indiceBloc = 4;
+				getEnv().getTerrain().getTabTerrain()[numeroTuilesCasser] = Parametre.changementDuBlocCasser;
+
+			}
+			else if (getEnv().getTerrain().getTabTerrain()[numeroTuilesCasser]==5) {
+				indiceBloc = 5;
+				getEnv().getTerrain().getTabTerrain()[numeroTuilesCasser] = Parametre.changementDuBlocCasser;
+			}
 
 		}
-		else if (getEnv().getTerrain().getTabTerrain()[numeroTuilesCasser]==5) {
-			indiceBloc = 5;
-			getEnv().getTerrain().getTabTerrain()[numeroTuilesCasser] = Parametre.changementDuBlocCasser;
+
 		}
-		
 		return indiceBloc;
 	}
 }

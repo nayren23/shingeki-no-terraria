@@ -7,24 +7,23 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import jeu.controleur.MouseClickInventaire;
 import jeu.controleur.listener.InventaireListener;
+import jeu.model.Environnement;
 import jeu.model.Heros;
 import jeu.model.inventaire.Inventaire;
 
 public class InventaireVue extends Pane{
-
-	private Heros eren;
-	private Inventaire inventaire;
+	
+	private Environnement env;
 	private TilePane afficherInventaire;
 	private TilePane afficherObjet;
 	private Image tableauImage[];
 
-	public InventaireVue(Inventaire inventaire, TilePane inv, TilePane obj,Heros eren) {
-		this.eren = eren;
-		this.inventaire = inventaire;
+	public InventaireVue(Environnement env, TilePane inv, TilePane obj) {
+		this.env = env;
 		this.afficherInventaire=inv;
 		this.afficherObjet=obj;
 		this.tableauImage = new Image [13];
-		new InventaireListener(this, this.inventaire);
+		new InventaireListener(this, env.getEren().getInventaireHeros());
 		initialiserInventaire();
 		tableauImageInventaire();
 		this.afficherInventaire.setVisible(false);
@@ -68,8 +67,8 @@ public class InventaireVue extends Pane{
 	//affiche l'inventaire avec les objets qui sont dedans
 	public void mettreAJourInventaire () {
 		ImageView image;
-		int iteration = this.inventaire.getInventaire().size()-1;
-		int cas = this.inventaire.getInventaire().get(iteration).getIdObjet();
+		int iteration = env.getEren().getInventaireHeros().getInventaire().size()-1;
+		int cas = env.getEren().getInventaireHeros().getInventaire().get(iteration).getIdObjet();
 		System.out.println("CAS = "+cas);
 		switch (cas) {
 
@@ -132,7 +131,7 @@ public class InventaireVue extends Pane{
 			
 		}
 		this.afficherObjet.getChildren().add(image);
-		image.addEventHandler(MouseEvent.MOUSE_CLICKED, new MouseClickInventaire(this.inventaire.getInventaire().get(iteration),this.eren));
+		image.addEventHandler(MouseEvent.MOUSE_CLICKED, new MouseClickInventaire(env.getEren().getInventaireHeros().getInventaire().get(iteration),env.getEren()));
 		this.afficherObjet.setVisible(false);
 	}
 

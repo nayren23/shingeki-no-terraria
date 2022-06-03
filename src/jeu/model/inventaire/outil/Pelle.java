@@ -18,16 +18,19 @@ public class Pelle extends Outil{
 	@Override
 	public int enleverResistanceBloc(int numeroTuilesCasser) {
 		int indiceBloc = -1;
-
-		if(getEnv().getTerrain().getTabTerrain()[numeroTuilesCasser]==1) {
-			getEnv().getTerrain().getTabTerrain()[numeroTuilesCasser] = Parametre.changementDuBlocCasser;
-			indiceBloc = 1;
+		
+		if (getEnv().getObjet(numeroTuilesCasser).getIdObjet() !=3 || getEnv().getObjet(numeroTuilesCasser).getIdObjet() !=4 || getEnv().getObjet(numeroTuilesCasser).getIdObjet() !=5) {
+			if(getEnv().getTerrain().getTabTerrain()[numeroTuilesCasser]==1) {
+				getEnv().getTerrain().getTabTerrain()[numeroTuilesCasser] = Parametre.changementDuBlocCasser;
+				indiceBloc = 1;
+			}
+			
+			else if(getEnv().getTerrain().getTabTerrain()[numeroTuilesCasser]==2) {
+				indiceBloc = 2;
+				getEnv().getTerrain().getTabTerrain()[numeroTuilesCasser] = Parametre.changementDuBlocCasser;
+			}
 		}
 		
-		else if(getEnv().getTerrain().getTabTerrain()[numeroTuilesCasser]==2) {
-			indiceBloc = 2;
-			getEnv().getTerrain().getTabTerrain()[numeroTuilesCasser] = Parametre.changementDuBlocCasser;
-		}
 		return indiceBloc;
 	}
 
