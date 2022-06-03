@@ -121,7 +121,7 @@ public class Controleur implements Initializable{
 
 		initAnimation();
 		// demarre l'animation
-		gameLoop.play();
+	//	gameLoop.play();
 	}
 
 	private void initAnimation() {

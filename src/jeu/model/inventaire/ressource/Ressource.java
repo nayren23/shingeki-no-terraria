@@ -1,5 +1,7 @@
 package jeu.model.inventaire.ressource;
 
+import jeu.Parametre;
+import jeu.model.Terrain;
 import jeu.model.inventaire.Objet;
 
 public class Ressource extends Objet{
@@ -19,6 +21,13 @@ public class Ressource extends Objet{
 	
 	public void incrementerRessource() {
 		this.nbRessource ++;
+	}
+	
+	public void poserBloc (int numeroTuilesCasser, Terrain terrain , int blocAPoser) {  // ensuite rajouter l'objet miner dans l'inventaire 
+		//rajouter condition pour pas build au meme endroit
+		if(terrain.getTabTerrain()[numeroTuilesCasser] ==0)     {
+			terrain.getTabTerrain()[numeroTuilesCasser]=blocAPoser; // 0 = le ciel
+		}
 	}
 	
 	public void enleverResistance(Ressource r) {

@@ -12,11 +12,11 @@ import jeu.model.inventaire.Inventaire;
 
 public class InventaireVue extends Pane{
 
+	private Heros eren;
 	private Inventaire inventaire;
 	private TilePane afficherInventaire;
 	private TilePane afficherObjet;
 	private Image tableauImage[];
-	private Heros eren;
 
 	public InventaireVue(Inventaire inventaire, TilePane inv, TilePane obj,Heros eren) {
 		this.eren = eren;
