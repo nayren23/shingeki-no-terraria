@@ -3,81 +3,124 @@ package jeu.controleur;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
-import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 import jeu.model.Environnement;
 import jeu.model.Heros;
-import jeu.model.Personnage;
-import jeu.model.Terrain;
+import jeu.model.inventaire.Inventaire;
 import jeu.vue.HeroVue;
-import jeu.vue.PersonnageVue;
+import jeu.model.inventaire.arme.Epee;
+import jeu.model.inventaire.outil.Pelle;
+import jeu.model.inventaire.outil.Pioche;
+import jeu.model.inventaire.ressource.Fer;
+import jeu.model.inventaire.ressource.Terre;
+import jeu.vue.HerosVieVue;
 import jeu.vue.TerrainVue;
+import jeu.vue.inventaire.InventaireVue;
 
 public class Controleur implements Initializable{
 
 	private Timeline gameLoop;
-	private Heros hero;
-	
-	@FXML
-	private Pane idPane;
+	private Environnement env;
 	@FXML
 	private TilePane tuilesFond;
+	
 	@FXML
 	private BorderPane BorderPaneId;
 	@FXML
+	private Pane PanePrincipale;
+	@FXML
+	private TilePane afficherInventaire;
+	@FXML
 	private ImageView eren;
-
-
+	
+	@FXML
+	private TilePane afficherObjet;
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
+		//------------------------------------------------------------//
+		
+		//on creer l image
+		Image img = new Image("jeu/image/arriereplanSNK.jpg");
+		
+		//on creer un backgroundImage qui contient notre image
+		BackgroundImage backImage = new BackgroundImage(img,BackgroundRepeat.NO_REPEAT,
+				BackgroundRepeat.NO_REPEAT,
+				BackgroundPosition.DEFAULT,
+				BackgroundSize.DEFAULT);
+		
+		//Puis on creer un background qui contient notre Backgroundimage
+		Background backGround = new Background(backImage);
+		
+		//Ensuite on ajoute notre background a notre borderpane principale
+		BorderPaneId.setBackground(backGround);
 
 
-		Environnement env = new Environnement();
-		// juste new environnement
-		TerrainVue terrainVue = new TerrainVue(tuilesFond, env.getTerrain());	//crée le terrain vue
-		//Personnage hero = new Hero ();
+		//Creation de l'environnement qui lui recupere le Terrain
+		env = new Environnement();
 
+		TerrainVue terrainVue = new TerrainVue(tuilesFond, env.getTerrain());	//cree le terrain vue
 		terrainVue.dessinerTerrain();
-				
-		hero = new Heros(0, 0, env.getTerrain());
+		
+		//------------------------------------------------------------//
+	
+		//Creation de la Vue du hero eren puis ajout de celui ci dans le pane
+		HeroVue hero1 = new HeroVue(env.getEren());
+		this.PanePrincipale.getChildren().add(hero1);
+		hero1.affichageEren(env.getEren());
+		
+		HerosVieVue viehero = new HerosVieVue(env.getEren(), PanePrincipale);
+		viehero.affichageVie(env.getEren().PvProperty().getValue()); //affichage vie hero en haut droite
+		
+		
+		//------------------------------------------------------------//
+		
+		//Creation  de la VUE de l inventaire
+		InventaireVue invVue = new InventaireVue(env,afficherInventaire, afficherObjet);
+		this.PanePrincipale.getChildren().add(invVue);
 
-		HeroVue hero1 = new HeroVue(hero);
-		this.idPane.getChildren().add(hero1);
-		hero1.affichageEren(hero);
-		
-		
-		
-//		PersonnageVue pers1= new PersonnageVue(hero);
-//		this.BorderPaneId.getChildren().add(pers1);
+		//------------------------------------------------------------//
 
+		//Creation de l usage du clavier
+		BorderPaneId.addEventHandler(KeyEvent.KEY_PRESSED,new KeyPressed(env.getEren(), viehero, invVue)); //pour savoir les touches qui sont appuee
+		BorderPaneId.addEventHandler(KeyEvent.KEY_RELEASED,new KeyReleased(env.getEren()));//pour savoir les touches qui sont relachee
+	
+		//------------------------------------------------------------//
+
+		//Creation de l usage de la souris 
+		BorderPaneId.addEventHandler(MouseEvent.MOUSE_CLICKED, new MouseClick(env,terrainVue)); //fait la distinction entre les differant click de la souris
+		
+		Pelle pelle = new Pelle(env);
+		env.getEren().getInventaireHeros().ajouterDansInventaire(pelle);
+
+		Pioche pioche = new Pioche(env);
+		env.getEren().getInventaireHeros().ajouterDansInventaire(pioche);
 		
 		
 
-		
-		BorderPaneId.addEventHandler(KeyEvent.KEY_PRESSED,new KeyPressed(hero));	//pour savoir les touches qui sont appuyés
-		BorderPaneId.addEventHandler(KeyEvent.KEY_RELEASED,new KeyReleased(hero));	//pour savoir les touches qui sont relachés
+//		System.out.println(inv.getInventaire().get(0).getIdObjet());
+//		System.out.println(inv.getInventaire().get(1).getIdObjet());
+//		System.out.println(inv.getInventaire());
 
-
-
-		
-		
 		initAnimation();
-		//		// demarre l'animation
+		// demarre l'animation
 		gameLoop.play();
 	}
 
@@ -92,47 +135,19 @@ public class Controleur implements Initializable{
 				// on définit ce qui se passe à chaque frame 
 				// c'est un eventHandler d'ou le lambda
 				(ev -> {
-					System.out.println("loop");
 
-					System.out.println(hero.getY());
+					System.out.println(env.getEren().getX()/30);
+					System.out.println(env.getEren().getY()/28);
+					//System.out.println(hero.getY());
 					//gravité
 
+				//	System.out.println(hero.getDirection());
 
-					System.out.println(hero.getDirection());
-
-					if(hero.getY() <= 185)  {
-					
-						this.hero.setY(hero.getY() + 1);
-
-						if(hero.getDirection() == -1) {
-							this.hero.setX(hero.getX() - 1);
-
-						}
-						else if (hero.getDirection() == 2){
-							this.hero.setX(hero.getX() + 1);
-
-						}
-						else {
-							
-						}
-
-					}
-
-
+					env.getEren().gravite();
+					env.getEren().move();
 				}
 						));
-
-
 		gameLoop.getKeyFrames().add(kf);
 	}
 
 }
-
-
-
-
-
-
-
-
-
