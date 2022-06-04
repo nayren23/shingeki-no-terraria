@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Terrain {
 
 	/**
-	 * On ne déclare qu'une seule fois les bloc qu'on peut miner que l on stocke dans une ArrayList 
+	 * On ne dï¿½clare qu'une seule fois les bloc qu'on peut miner que l on stocke dans une ArrayList 
 	 */
 	private ArrayList<Integer>listeBlocMinable;
 
@@ -35,7 +35,7 @@ public class Terrain {
 	 * Tableau qui stocke la map  en int
 	 */
 	private final int [] terrain ={
-			0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -66,12 +66,10 @@ public class Terrain {
 	 * @param numeroTuile que l'on veut changer dans le model
 	 */
 	public void changerTuiles (int numeroTuile, int blocAChanger) {
-
 		if(listeBlocMinable.contains(terrain[numeroTuile]) && terrain[numeroTuile]!= blocAChanger )  {
 			terrain[numeroTuile] = blocAChanger;
-			System.out.println("\n ça fonctionne bloc changer");
+			System.out.println("\n ï¿½a fonctionne bloc changer");
 		}
-		
 		//Juste pour des test 
 		else if ( terrain[numeroTuile]== blocAChanger ){
 			System.out.println("C'est le meme bloc on peut pas changer");
@@ -86,7 +84,7 @@ public class Terrain {
 	 */
 	public void affichertableau(Terrain terrain) {
 		for (int i = 0 ; i<terrain.longueurterrain(); i++) {
-			System.out.print(terrain.getTerrain()[i]);
+			System.out.print(terrain.getTabTerrain()[i]);
 		}
 	}
 	
@@ -96,7 +94,7 @@ public class Terrain {
 	 * 
 	 * @return un Terrain dans un tableau de int
 	 */
-	public  int[] getTerrain() {
+	public  int[] getTabTerrain() {
 		return terrain;
 	}
 	

@@ -9,16 +9,15 @@ public class Heros extends Personnage{
 
 	int direction, dirY = -7;
 	boolean space = false;
-	private Terrain terrain;
 	private Inventaire inventaireHeros;
 	private Objet objetHeros;
 	private Hand mainHeros;
 	//changer le type terrain en type environnement
-	public Heros(int x, int y, Terrain terrain, Inventaire inventaire) {
-		super(x, y, 5, 9, terrain);
-		this.inventaireHeros=inventaire;
+	public Heros(int x, int y, Terrain terrain, Environnement env) {
+		super(x, y, 5, 9, terrain, env);
 		this.mainHeros = new Hand();
 		this.objetHeros= mainHeros;
+		this.inventaireHeros = new Inventaire(super.getEnv());
 	}
 
 	//------------------------------------------------------------//
@@ -89,12 +88,10 @@ public class Heros extends Personnage{
 	private int clamp (int val1 , int min, int max) {  // Pour borner un chiffre entre 2 valeurs pour pas que l'image s'enleve
 		int valeurClamp = val1;
 
-		if(valeurClamp<min) {
+		if(valeurClamp<min) 
 			valeurClamp = min;
-		}
-		else if(valeurClamp>max) {
+		else if(valeurClamp>max) 
 			valeurClamp= max;
-		}
 		return valeurClamp;
 	}
 
@@ -138,11 +135,9 @@ public class Heros extends Personnage{
 		System.out.println("Objet  " +o.getIdObjet());
 	}
 	
-	
 	public Objet getObjetHeros() {
 		return this.objetHeros;
 	}
-	
 
 	//------------------------------------------------------------//
 
@@ -168,6 +163,10 @@ public class Heros extends Personnage{
 		return this.direction;
 	}
 
+	public Inventaire getInventaireHeros() {
+		return inventaireHeros;
+	}
+
 	public int setDirection(int i) {
 		return this.direction = i;
 	}
@@ -186,7 +185,6 @@ public class Heros extends Personnage{
 	public void setObjetHeros(Objet objetHeros) {
 		this.objetHeros = objetHeros;
 	}
-
 
 }
 

@@ -7,13 +7,14 @@ public class Parametre {
 		} 
 		
 		//Ici c'est quand on casse le bloc il sera remplacer par le loc choisit en bas
-        public static int changementDuBlocCasserPelle = 0; //a changer
+
+        public static int changementDuBlocCasser = 0; //a changer
+
+        public static final int blocTerre = 2; // Bloc de terre final car pas senser chanegr
         
-        public static int changementDuBlocCasserPioche = 0; //a changer
-
-        public static int changementDuBlocCasserHache = 0; //a changer
-
-        public static final int blocHerbe = 1; // Bloc de terre final car pas senser chanegr
+        public static final int blocCharbon = 3; // Bloc de terre final car pas senser chanegr
+        
+        public static final int blocGaz = 4; // Bloc de terre final car pas senser chanegr
 	
         public static final int blocFer = 5; // Bloc de terre final car pas senser chanegr
 
@@ -31,6 +32,6 @@ public class Parametre {
 		6 = new Image("jeu/image/trou.png");
 		 */
 		
-		//---------------------------------------------------------------------------------------//
+
 
 }

@@ -1,29 +1,19 @@
 package jeu.model.inventaire.arme;
 
 import jeu.model.inventaire.Objet;
-import jeu.model.inventaire.ressource.Ressource;
 
 public abstract class Arme extends Objet{
 	
 	private int durabilite;
 	private int degats;
 	private int qualite;
+	private String nom;
 	
-	public Arme (int id) {
+	public Arme (int id, String nom) {
 		super(id);
 		this.durabilite = 100;
 		this.degats = 2;
-	}
-
-	public void faireDegats(Arme a, Ressource r) {
-		r.enleverResistance(a);
-		this.durabilite-=1;
-		if (this.durabilite==0)
-			detruireArme(a);
-	}
-	
-	public void detruireArme (Objet o) {
-		super.getInventaire().remove(o);
+		this.nom=nom;
 	}
 	
 	public void nbDegats (int qualite) {
@@ -34,9 +24,22 @@ public abstract class Arme extends Objet{
 		else 
 			setDegat(8);
 	}
+	
+	public void decrementerDurabiliteArme (Arme a) {
+		this.durabilite-=1;
+	}
 
 	public void setDegat(int degat) {
 		this.degats = degat;
+	}
+
+	public int getDurabilite() {
+		return durabilite;
+	}
+
+	@Override
+	public String toString() {
+		return "Nom de l'arme= " + nom;
 	}
 
 }
