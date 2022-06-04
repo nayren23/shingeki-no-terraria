@@ -7,8 +7,8 @@ import jeu.model.inventaire.arme.Hand;
 
 public class Heros extends Personnage{
 
-	int direction, dirY = -7;
-	boolean space = false;
+	int direction, dirY;
+	boolean space;
 	private Inventaire inventaireHeros;
 	private Objet objetHeros;
 	private Hand mainHeros;
@@ -26,15 +26,17 @@ public class Heros extends Personnage{
 	public void seDeplace(Parametre.DIRECTION d) {
 		switch(d) {
 		case LEFT:
-			setDirection(-3);
+			setDirection(-5);
 			break;
 
 		case RIGHT:
-			setDirection(3);
+			setDirection(5);
 			break;
 
 		case SPACE:
 			dirY = -5;
+			System.out.println(this.space);
+
 			break;
 
 		default:
@@ -44,21 +46,28 @@ public class Heros extends Personnage{
 	}
 
 	//------------------------------------------------------------//
-
 	public void move () {
-		if(yProp.get() >= 149) {
+		if(yProp.get() > 320) {
 			System.out.println(yProp);
+			System.out.println(getX()/30);
+			System.out.println(getY()/28);
 			this.xProp.set(xProp.get() + direction);
 			if(space == true) {
 				this.yProp.set(yProp.get() + dirY);
+
 			}
+			else {
+				dirY = 0;
+			}
+
 		}
+
 	}
-	
+
 	//------------------------------------------------------------//
 
 	public void gravite() {
-		if(getY() <= 185)  {
+		if(getY() <= 360)  {
 
 			if(getDirection() == -3) {
 				setX(getX() - 2);
@@ -68,9 +77,9 @@ public class Heros extends Personnage{
 				setY(getY() + 2);
 				setX(getX() + 2);
 			}
-
 			else {
 				setY(getY() + 2);
+
 			}
 		}
 	}
@@ -116,7 +125,7 @@ public class Heros extends Personnage{
 		int pv = clamp(this.PvProperty().getValue()+1, 0, 9);	
 		this.PvProperty().setValue(pv);  // -1 pour le heros 
 	}
-	
+
 	//------------------------------------------------------------//
 
 	/**
@@ -124,17 +133,17 @@ public class Heros extends Personnage{
 	 * @param numeroTuilesCasser que l on veut casser
 	 * @param terrain sur quel terrain l'action doit se faire
 	 */
-//	public void casserBloc (int numeroTuilesCasser, Terrain terrain) {  // ensuite rajouter l'objet miner dans l'inventaire 
-//		System.out.println("casser tuile : " + numeroTuilesCasser);
-//		terrain.changerTuiles(numeroTuilesCasser,Parametre.changementDuBlocCasser); //changer le 1 en bloc choisit
-//		System.out.println("C'est cassee Yes");			
-//	}
-	
+	//	public void casserBloc (int numeroTuilesCasser, Terrain terrain) {  // ensuite rajouter l'objet miner dans l'inventaire 
+	//		System.out.println("casser tuile : " + numeroTuilesCasser);
+	//		terrain.changerTuiles(numeroTuilesCasser,Parametre.changementDuBlocCasser); //changer le 1 en bloc choisit
+	//		System.out.println("C'est cassee Yes");			
+	//	}
+
 	public void equiper (Objet o) {
 		setObjetHeros(o);
 		System.out.println("Objet  " +o.getIdObjet());
 	}
-	
+
 	public Objet getObjetHeros() {
 		return this.objetHeros;
 	}
@@ -151,12 +160,10 @@ public class Heros extends Personnage{
 	//			
 	//}
 
-	public boolean isSpace() {
-		return space;
-	}
-	
+
+
 	//------------------------------------------------------------//
-	
+
 	//Getters et Setter
 
 	public int getDirection() {
@@ -184,6 +191,9 @@ public class Heros extends Personnage{
 	}
 	public void setObjetHeros(Objet objetHeros) {
 		this.objetHeros = objetHeros;
+	}
+	public boolean isSpace() {
+		return space;
 	}
 
 }

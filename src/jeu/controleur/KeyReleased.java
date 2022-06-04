@@ -10,17 +10,25 @@ public class KeyReleased implements EventHandler<KeyEvent>{
 
 	private Heros hero;
 
+
 	public KeyReleased(Personnage hero2 ) {
 		this.hero = (Heros) hero2;
 	}
 	
 	@Override
 	public void handle(KeyEvent event) {
-		if(event.getCode() == KeyCode.Q || event.getCode() == KeyCode.D) {
+		
+
+		if(event.getCode() == KeyCode.Q || event.getCode() == KeyCode.D ) {
 			this.hero.setDirection(0);
-		}	
-		this.hero.setSpace(false);
+
+		}
+		
+		
+		hero.setSpace(true);
+		
 		this.hero.setDirY(0);
+		
 	}
 
 }
