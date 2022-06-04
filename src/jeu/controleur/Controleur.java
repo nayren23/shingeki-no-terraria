@@ -121,7 +121,7 @@ public class Controleur implements Initializable{
 
 		initAnimation();
 		// demarre l'animation
-	//	gameLoop.play();
+		gameLoop.play();
 	}
 
 	private void initAnimation() {
@@ -136,6 +136,8 @@ public class Controleur implements Initializable{
 				// c'est un eventHandler d'ou le lambda
 				(ev -> {
 
+					System.out.println(env.getEren().getX()/30);
+					System.out.println(env.getEren().getY()/28);
 					//System.out.println(hero.getY());
 					//gravité
 
