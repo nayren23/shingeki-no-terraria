@@ -7,11 +7,13 @@ import jeu.Parametre;
 import jeu.model.Environnement;
 import jeu.model.Heros;
 import jeu.model.Terrain;
+import jeu.model.inventaire.Inventaire;
 import jeu.model.inventaire.Objet;
 import jeu.model.inventaire.outil.Outil;
 import jeu.model.inventaire.outil.Pelle;
 import jeu.model.inventaire.outil.Pioche;
 import jeu.model.inventaire.ressource.Charbon;
+import jeu.model.inventaire.ressource.Ciel;
 import jeu.model.inventaire.ressource.Fer;
 import jeu.model.inventaire.ressource.Gaz;
 import jeu.model.inventaire.ressource.Terre;
@@ -46,24 +48,18 @@ public class MouseClick implements EventHandler<MouseEvent> {
 		
 		Objet objet = this.env.getEren().getObjetHeros();
 		//en fonction de l objet equipe ont fait differentes action creuser ou poser un bloc
-
+		
+		Inventaire inv = env.getEren().getInventaireHeros();
 		if (objet instanceof Pioche && arg0.getButton() == MouseButton.PRIMARY  ) {
 			env.getEren().getInventaireHeros().faireDegatsBloc((Outil) objet, positionTuileDansTableau);
 			env.getEren().getInventaireHeros().creationBlocCasser((Outil) objet , positionTuileDansTableau);
 			terrainVue.changementTuileMinage(positionTuileDansTableau,env.getTerrain(),Parametre.changementDuBlocCasser);// changer et faire une fonction qui actualise juste l'image chang�			}
-
-//			((Pioche) objet).faireDegatsBloc(positionTuileDansTableau, env.getTerrain());
-//			terrainVue.changementTuileMinage(positionTuileDansTableau,env.getTerrain(),Parametre.changementDuBlocCasserPelle); // changer et faire une fonction qui actualise juste l'image changer
 		}
 		
 		else if(objet instanceof Pelle && arg0.getButton() == MouseButton.PRIMARY) {
-			//env.getTerrain().affichertableau(env.getTerrain());
 			env.getEren().getInventaireHeros().faireDegatsBloc((Outil) objet, positionTuileDansTableau);
-			
 			env.getEren().getInventaireHeros().creationBlocCasser((Outil) objet , positionTuileDansTableau);// changer et faire une fonction qui actualise juste l'image chang�
 			terrainVue.changementTuileMinage(positionTuileDansTableau,env.getTerrain(),Parametre.changementDuBlocCasser);// changer et faire une fonction qui actualise juste l'image chang�			}
-		//	env.getTerrain().affichertableau(env.getTerrain());
-
 		}
 
 		else if(objet instanceof Terre && arg0.getButton() == MouseButton.SECONDARY) {
@@ -71,6 +67,8 @@ public class MouseClick implements EventHandler<MouseEvent> {
 			Terre terre = new Terre();
 			env.getRessources().set(positionTuileDansTableau, terre);
 			terrainVue.changementTuileMinage(positionTuileDansTableau,env.getTerrain(),Parametre.blocTerre);// changer et faire une fonction qui actualise juste l'image chang�			}
+			System.out.println(" \nAffichage liste changer " +env.getRessources().get(0));
+
 		}
 
 		else if(objet instanceof Fer && arg0.getButton() == MouseButton.SECONDARY) {

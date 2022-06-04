@@ -2,6 +2,7 @@ package jeu.model.inventaire.outil;
 
 import jeu.Parametre;
 import jeu.model.Environnement;
+import jeu.model.inventaire.ressource.Ciel;
 
 
 public class Pioche extends Outil{
@@ -13,7 +14,12 @@ public class Pioche extends Outil{
 	@Override
 	public int enleverResistanceBloc(int numeroTuilesCasser) {
 		int indiceBloc = -1;
-		if (getEnv().getObjet(numeroTuilesCasser).getIdObjet() !=0 || getEnv().getObjet(numeroTuilesCasser).getIdObjet() !=1 || getEnv().getObjet(numeroTuilesCasser).getIdObjet() !=2){ {
+		System.out.println("\n Affichage vie du bloc  !!!!" +getEnv().getRessources().get(numeroTuilesCasser).getResistance());
+
+		if ((getEnv().getObjet(numeroTuilesCasser).getIdObjet() ==3 || getEnv().getObjet(numeroTuilesCasser).getIdObjet() !=4 || getEnv().getObjet(numeroTuilesCasser).getIdObjet() ==5) 
+				/*&& getEnv().getObjet(numeroTuilesCasser).getResistance()<=0*/){
+ 
+			
 
 			if(getEnv().getTerrain().getTabTerrain()[numeroTuilesCasser]==3 ) {
 				indiceBloc = 3;
@@ -29,8 +35,7 @@ public class Pioche extends Outil{
 				indiceBloc = 5;
 				getEnv().getTerrain().getTabTerrain()[numeroTuilesCasser] = Parametre.changementDuBlocCasser;
 			}
-
-		}
+			getEnv().getRessources().set(numeroTuilesCasser, new Ciel());  // on change la terre par le ciel dans la liste des ressources
 
 		}
 		return indiceBloc;

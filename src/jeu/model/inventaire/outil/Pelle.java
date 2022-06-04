@@ -5,6 +5,7 @@ import jeu.Parametre;
 import jeu.model.Environnement;
 import jeu.model.Terrain;
 import jeu.model.inventaire.arme.Arme;
+import jeu.model.inventaire.ressource.Ciel;
 import jeu.model.inventaire.ressource.Ressource;
 import jeu.model.inventaire.ressource.Terre;
 
@@ -18,8 +19,13 @@ public class Pelle extends Outil{
 	@Override
 	public int enleverResistanceBloc(int numeroTuilesCasser) {
 		int indiceBloc = -1;
-		
-		if (getEnv().getObjet(numeroTuilesCasser).getIdObjet() !=3 || getEnv().getObjet(numeroTuilesCasser).getIdObjet() !=4 || getEnv().getObjet(numeroTuilesCasser).getIdObjet() !=5) {
+		System.out.println("\n Affichage vie du bloc  !!!!" +getEnv().getRessources().get(numeroTuilesCasser).getResistance());
+
+		if ((getEnv().getObjet(numeroTuilesCasser).getIdObjet() !=3 ||
+				getEnv().getObjet(numeroTuilesCasser).getIdObjet() !=4 ||
+				getEnv().getObjet(numeroTuilesCasser).getIdObjet() !=5) 
+			/*&& getEnv().getObjet(numeroTuilesCasser).getResistance()<=0*/){
+			
 			if(getEnv().getTerrain().getTabTerrain()[numeroTuilesCasser]==1) {
 				getEnv().getTerrain().getTabTerrain()[numeroTuilesCasser] = Parametre.changementDuBlocCasser;
 				indiceBloc = 1;
@@ -29,6 +35,8 @@ public class Pelle extends Outil{
 				indiceBloc = 2;
 				getEnv().getTerrain().getTabTerrain()[numeroTuilesCasser] = Parametre.changementDuBlocCasser;
 			}
+			getEnv().getRessources().set(numeroTuilesCasser, new Ciel());  // on change la terre par le ciel dans la liste des ressources
+
 		}
 		
 		return indiceBloc;

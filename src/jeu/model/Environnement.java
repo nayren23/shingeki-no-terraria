@@ -60,22 +60,17 @@ public class Environnement {
 			case 5:
 				ressources.add(new Fer());
 				break;
-			
-			case 6:
-				ressources.add(new Charbon());
-				break;
-				
+						
 			default:
 				break;
 			}
 		}
 	}
 	
-	public void detruireBloc (Objet o) {
-		Ressource r = (Ressource) o;
-		r.enleverResistance(r);
-		if (r.getResistance()<=0) 
-			eren.getInventaireHeros().stackRessource(r);
+	public void detruireBloc (Ressource o) {
+		o.enleverResistance(o);
+//		if (r.getResistance()<=0) 
+//			eren.getInventaireHeros().stackRessource(r); Pas utilile car stack ressources dej appeller 
 	}
 	
 	public ArrayList<Ressource> getRessources() {
