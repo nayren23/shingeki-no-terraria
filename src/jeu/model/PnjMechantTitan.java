@@ -28,34 +28,37 @@ public  class PnjMechantTitan extends Personnage {
 
 		int coordonneErenX =getEnv().getEren().getX();
 		int coordonneErenY =getEnv().getEren().getY();
+		
+		System.out.println("\n Coordonnee Eren X :" + coordonneErenX);
+		System.out.println("\n Coordonnee Eren Y :" + coordonneErenY);
 
-		int vitesse =2;
+		System.out.println("\n Coordonnee Titan :" + getX());
+		System.out.println("\n Coordonnee titan :" + getY());
 
-		if (getX()!= coordonneErenX && getY() !=coordonneErenY) {
+		int vitesse =1;
 
-			if(getX()> coordonneErenX) {
+		if (getX()!= coordonneErenX  ) {
+
+			if(getX()> coordonneErenX) 
 				setX(getX()-vitesse);
-			}
-
-			else if (getX() < coordonneErenX) {
-				setX(getX()+vitesse);
-			}
 			
-			else if (getY() >coordonneErenY){
+			else   
+				setX(getX()+vitesse);
+		}
+
+		else if(getY() !=coordonneErenY) {
+
+			 if (getY() >coordonneErenY)
 				setY(getY()-vitesse);
+			
+			else  
+				setY(getY()+vitesse);
 			}
 
-			else if (getY() < coordonneErenY) {
-				setX(getY()+vitesse);
-			}	
+	else 
+		attaquer(getEnv().getEren());
 
-		}
-		else {
-			attaquer(getEnv().getEren());
-
-		}
 	}
-
 
 	public boolean verificationMort () {
 		boolean mort = false;
@@ -63,20 +66,20 @@ public  class PnjMechantTitan extends Personnage {
 			seDeplace();
 		}
 		else {
-		//	System.out.println("\n Est mort");
+			//	System.out.println("\n Est mort");
 			mort = true;
 		}
 		return mort;
 	}
-	
+
 	@Override
 	public void attaquer(Personnage p) {
-			
-//			System.out.println("\n jsui dna sle if");
-			getEnv().getEren().perdrePv();
-		}
 
-	
+		//			System.out.println("\n jsui dna sle if");
+		getEnv().getEren().perdrePv();
+	}
+
+
 
 	public int setDirection(int i) {
 		return this.direction = i;

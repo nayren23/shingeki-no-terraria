@@ -16,8 +16,8 @@ public class PnjMechantTitanVue extends ImageView {
 	public PnjMechantTitanVue (PnjMechantTitan pnj) {			// initialisation de l'image et de ses coordoonées de base 
 		super();
 		this.pnj = pnj;
-		this.pnj.setX(200);
-		this.pnj.setY(360);
+//		this.pnj.setX(200);
+//		this.pnj.setY(360);
 		this.setImage(image);
 		this.addEventHandler(MouseEvent.MOUSE_CLICKED, new MouseClickPnj(pnj.getEnv(),this));
 
