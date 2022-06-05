@@ -37,14 +37,13 @@ public  class PnjMechantTitan extends Personnage {
 				setX(getX()-vitesse);
 			}
 
-			else if (getY() >coordonneErenY){
-				setY(getY()-vitesse);
-			}
-
 			else if (getX() < coordonneErenX) {
 				setX(getX()+vitesse);
 			}
-
+			
+			else if (getY() >coordonneErenY){
+				setY(getY()-vitesse);
+			}
 
 			else if (getY() < coordonneErenY) {
 				setX(getY()+vitesse);
@@ -58,11 +57,22 @@ public  class PnjMechantTitan extends Personnage {
 	}
 
 
-
+	public boolean verificationMort () {
+		boolean mort = false;
+		if(getPvProperty().getValue() >0) {
+			seDeplace();
+		}
+		else {
+		//	System.out.println("\n Est mort");
+			mort = true;
+		}
+		return mort;
+	}
+	
 	@Override
 	public void attaquer(Personnage p) {
 			
-			System.out.println("\n jsui dna sle if");
+//			System.out.println("\n jsui dna sle if");
 			getEnv().getEren().perdrePv();
 		}
 

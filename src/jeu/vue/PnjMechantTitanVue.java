@@ -32,7 +32,7 @@ public class PnjMechantTitanVue extends ImageView {
 	
 	public void mort () {
 		
-		if (pnj.getPvProperty().getValue() <=0) {
+		if (pnj.verificationMort() == true ) {
 			this.setVisible(false);
 		}
 	}
