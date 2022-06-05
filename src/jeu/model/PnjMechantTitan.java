@@ -26,14 +26,12 @@ public  class PnjMechantTitan extends Personnage {
 
 	public void seDeplace() {
 
-		System.out.println(" \nLancemen méthode");
 		int coordonneErenX =getEnv().getEren().getX();
 		int coordonneErenY =getEnv().getEren().getY();
 
 		int vitesse =2;
 
 		if (getX()!= coordonneErenX && getY() !=coordonneErenY) {
-			System.out.println(" \nJsuis dans le while");
 
 			if(getX()> coordonneErenX) {
 				setX(getX()-vitesse);
@@ -51,22 +49,24 @@ public  class PnjMechantTitan extends Personnage {
 			else if (getY() < coordonneErenY) {
 				setX(getY()+vitesse);
 			}	
+
 		}
-//		attaquer(getEnv().getEren());
+		else {
+			attaquer(getEnv().getEren());
+
+		}
 	}
 
 
 
 	@Override
 	public void attaquer(Personnage p) {
-		int coordonneErenX =getEnv().getEren().getX();
-		int coordonneErenY =getEnv().getEren().getY();
-		
-		if(getX()== coordonneErenX && getY() ==coordonneErenY) {
+			
+			System.out.println("\n jsui dna sle if");
 			getEnv().getEren().perdrePv();
 		}
 
-	}
+	
 
 	public int setDirection(int i) {
 		return this.direction = i;
