@@ -1,6 +1,7 @@
 package jeu.controleur;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javafx.animation.KeyFrame;
@@ -22,6 +23,7 @@ import javafx.scene.layout.TilePane;
 import javafx.util.Duration;
 import jeu.model.Environnement;
 import jeu.model.Heros;
+import jeu.model.PnjMechantTitan;
 import jeu.model.inventaire.Inventaire;
 import jeu.vue.HeroVue;
 import jeu.model.inventaire.arme.Epee;
@@ -30,6 +32,7 @@ import jeu.model.inventaire.outil.Pioche;
 import jeu.model.inventaire.ressource.Fer;
 import jeu.model.inventaire.ressource.Terre;
 import jeu.vue.HerosVieVue;
+import jeu.vue.PnjMechantTitanVue;
 import jeu.vue.TerrainVue;
 import jeu.vue.inventaire.InventaireVue;
 
@@ -37,6 +40,7 @@ public class Controleur implements Initializable{
 
 	private Timeline gameLoop;
 	private Environnement env;
+	
 	@FXML
 	private TilePane tuilesFond;
 	
@@ -72,9 +76,17 @@ public class Controleur implements Initializable{
 		//Ensuite on ajoute notre background a notre borderpane principale
 		BorderPaneId.setBackground(backGround);
 
-
+		
 		//Creation de l'environnement qui lui recupere le Terrain
 		env = new Environnement();
+		
+		//for(int i =0 ;i< env.getTitans().length ;i++) {
+		PnjMechantTitanVue  pnjTitanVue = new PnjMechantTitanVue(env.getTitans());
+		this.PanePrincipale.getChildren().add(pnjTitanVue);
+		pnjTitanVue.affichageTitan(env.getTitans());
+		
+
+	//	}
 
 		TerrainVue terrainVue = new TerrainVue(tuilesFond, env.getTerrain());	//cree le terrain vue
 		terrainVue.dessinerTerrain();
