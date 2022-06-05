@@ -53,9 +53,9 @@ public class Heros extends Personnage{
 	//------------------------------------------------------------//
 	public void move () {
 		if(yProp.get() > 320) {
-			System.out.println(yProp);
-			System.out.println(getX()/30);
-			System.out.println(getY()/28);
+//			System.out.println(yProp);
+//			System.out.println(getX()/30);
+//			System.out.println(getY()/28);
 			this.xProp.set(xProp.get() + direction);
 			if(space == true) {
 				this.yProp.set(yProp.get() + dirY);
@@ -111,7 +111,7 @@ public class Heros extends Personnage{
 
 	//------------------------------------------------------------//
 
-	@Override
+	//@Override
 	/**
 	 * on ne peut pas etre en dessous de 0 pv g�rer grace au clamp
 	 */

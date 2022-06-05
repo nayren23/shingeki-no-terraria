@@ -22,7 +22,7 @@ public abstract class Personnage {
 	//-------------------------------------------------------------------//
 
 	//Methodes Abstract//
-	public abstract void perdrePv();
+//	public abstract void perdrePv();
 	
 	//public abstract void seDeplace(Parametre.DIRECTION d);
 	
@@ -61,6 +61,11 @@ public abstract class Personnage {
 	}
 		
 	
+	
+	public IntegerProperty getPvProperty() {
+		return PvProperty;
+	}
+
 	public Terrain getTerrain() {
 		return terrain;
 	}

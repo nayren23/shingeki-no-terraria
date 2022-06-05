@@ -2,39 +2,69 @@ package jeu.model;
 
 import jeu.Parametre;
 import jeu.Parametre.DIRECTION;
+import jeu.model.inventaire.arme.Arme;
+import jeu.model.inventaire.arme.Epee;
 
 public  class PnjMechantTitan extends Personnage {
 
-
 	int direction, dirY;
 
-	public PnjMechantTitan(int x, int y,  Terrain terrain, Environnement env) {
-		super(x, y, 100, terrain, env);
+
+	public PnjMechantTitan(int x ,int y, Terrain terrain, Environnement env) {
+		super(x, y, 100, terrain, env); // 100 pv
 	}
 
-	@Override
-	public void perdrePv() {
-		int pv = clamp(this.PvProperty().getValue()-1, 0, 9); // on prend notre valeur et on fait -1 et doit etre comprise entre 0 et 9
-		this.PvProperty().setValue(pv);  // -1 pour le heros 		
+	/**
+	 * 
+	 * @param arme avec laquelle on afflige des degat au titans
+	 * en fonction de l'arme on inflige plus ou moins de degat
+	 */
+	public void perdrePv(Arme arme) {
+		int pv = clamp(this.PvProperty().getValue()-arme.getDegats(), 0, 100); // on prend notre valeur et on fait -1 et doit etre comprise entre 0 et 9
+		this.PvProperty().setValue(pv); 		
 	}
 
+	public void seDeplace() {
 
-	public void seDeplace( int xHero ,  int yHero) {
-			while (getX() != xHero ) {
-				setDirection(-5);
+		System.out.println(" \nLancemen méthode");
+		int coordonneErenX =getEnv().getEren().getX();
+		int coordonneErenY =getEnv().getEren().getY();
+
+		int vitesse =2;
+
+		if (getX()!= coordonneErenX && getY() !=coordonneErenY) {
+			System.out.println(" \nJsuis dans le while");
+
+			if(getX()> coordonneErenX) {
+				setX(getX()-vitesse);
 			}
 
-			while (getX() != xHero ) {
-				setDirection(5);
-			}		
+			else if (getY() >coordonneErenY){
+				setY(getY()-vitesse);
+			}
+
+			else if (getX() < coordonneErenX) {
+				setX(getX()+vitesse);
+			}
 
 
+			else if (getY() < coordonneErenY) {
+				setX(getY()+vitesse);
+			}	
+		}
+//		attaquer(getEnv().getEren());
 	}
+
 
 
 	@Override
 	public void attaquer(Personnage p) {
-		// TODO Auto-generated method stub
+		int coordonneErenX =getEnv().getEren().getX();
+		int coordonneErenY =getEnv().getEren().getY();
+		
+		if(getX()== coordonneErenX && getY() ==coordonneErenY) {
+			getEnv().getEren().perdrePv();
+		}
 
 	}
 
@@ -50,6 +80,10 @@ public  class PnjMechantTitan extends Personnage {
 		this.dirY = dirY;
 	}
 
+
+	public int getDirection() {
+		return direction;
+	}
 
 }
 

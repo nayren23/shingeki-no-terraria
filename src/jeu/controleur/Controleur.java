@@ -125,7 +125,8 @@ public class Controleur implements Initializable{
 		Pioche pioche = new Pioche(env);
 		env.getEren().getInventaireHeros().ajouterDansInventaire(pioche);
 		
-		
+		Epee epee = new Epee();
+		env.getEren().getInventaireHeros().ajouterDansInventaire(epee);
 
 //		System.out.println(inv.getInventaire().get(0).getIdObjet());
 //		System.out.println(inv.getInventaire().get(1).getIdObjet());
@@ -148,8 +149,8 @@ public class Controleur implements Initializable{
 				// c'est un eventHandler d'ou le lambda
 				(ev -> {
 
-					System.out.println(env.getEren().getX()/30);
-					System.out.println(env.getEren().getY()/28);
+//					System.out.println(env.getEren().getX()/30);
+//					System.out.println(env.getEren().getY()/28);
 					//System.out.println(hero.getY());
 					//gravité
 
@@ -157,6 +158,7 @@ public class Controleur implements Initializable{
 
 					env.getEren().gravite();
 					env.getEren().move();
+					env.getTitans().seDeplace();
 				}
 						));
 		gameLoop.getKeyFrames().add(kf);
