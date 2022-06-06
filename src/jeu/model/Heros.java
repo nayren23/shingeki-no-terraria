@@ -50,45 +50,60 @@ public class Heros extends Personnage{
 		
 	}
 
-	//------------------------------------------------------------//
-	public void move () {
-		if(yProp.get() > 320) {
-//			System.out.println(yProp);
-//			System.out.println(getX()/30);
-//			System.out.println(getY()/28);
-			this.xProp.set(xProp.get() + direction);
-			if(space == true) {
-				this.yProp.set(yProp.get() + dirY);
-
-			}
-			else {
-				dirY = 0;
-			}
-
-		}
-
-	}
 
 	//------------------------------------------------------------//
+    public void move () {
+        if(yProp.get() > 355) {
+            //            System.out.println(yProp);
+            this.xProp.set(xProp.get() + direction);
+            sauter();
 
-	public void gravite() {
-		if(getY() <= 360)  {
 
-			if(getDirection() == -3) {
-				setX(getX() - 2);
-				setY(getY() + 2);
-			}
-			else if (getDirection() == 3){
-				setY(getY() + 2);
-				setX(getX() + 2);
-			}
-			else {
-				setY(getY() + 2);
+        }
 
-			}
-		}
-	}
+    }
 
+    //------------------------------------------------------------//
+
+
+    public void sauter() {
+        if(space == true) {
+            this.yProp.set(yProp.get() + dirY);
+        }
+        else {
+            dirY = 0;
+        }
+
+    }
+
+    //------------------------------------------------------------//
+
+//    public void sautCourbe() {
+//        if(getY() <= 395)  {
+//
+//            if(getDirection() == -3) {
+//                gravite();
+//                setX(getX() - 2);
+//            }
+//            else if (getDirection() == 3){
+//                gravite();
+//                setX(getX() + 2);
+//            }
+//            else {
+//
+//            }
+//        }
+//    }
+
+    //------------------------------------------------------------//
+
+
+    public void gravite() {
+        if(getY() <= 394 ) {
+            setY(getY()  + 1);
+
+        }
+    }
 	//------------------------------------------------------------//
 
 	/**

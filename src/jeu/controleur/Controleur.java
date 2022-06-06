@@ -159,6 +159,8 @@ public class Controleur implements Initializable{
 					env.getEren().gravite();
 					env.getEren().move();
 					env.getTitans().verificationMort();
+			//		env.getTitans().gravite();
+
 				}
 						));
 		gameLoop.getKeyFrames().add(kf);

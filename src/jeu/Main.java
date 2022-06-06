@@ -20,7 +20,7 @@ public class Main extends Application {
 			primaryStage.setTitle("Shingeki No Terraria");
 			primaryStage.setScene(scene);
 			primaryStage.show();
-			primaryStage.setResizable(false);
+		//	primaryStage.setResizable(false);
 			//Savoir les touches
 			scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 

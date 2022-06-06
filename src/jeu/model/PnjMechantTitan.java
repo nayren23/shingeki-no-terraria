@@ -8,10 +8,11 @@ import jeu.model.inventaire.arme.Epee;
 public  class PnjMechantTitan extends Personnage {
 
 	int direction, dirY;
-
+	//private HitBox hitboxTitans;
 
 	public PnjMechantTitan(int x ,int y, Terrain terrain, Environnement env) {
 		super(x, y, 100, terrain, env); // 100 pv
+		//	this.hitboxTitans = new HitBox(x, y, 2, 3, 1, 4);
 	}
 
 	/**
@@ -24,39 +25,69 @@ public  class PnjMechantTitan extends Personnage {
 		this.PvProperty().setValue(pv); 		
 	}
 
+	public void sauter() {
+		this.yProp.set(yProp.get() + dirY);
+	}
+
+
+
+	public void move () {
+		if(yProp.get() > 355) {
+			//            System.out.println(yProp);
+			this.xProp.set(xProp.get() + direction);
+			sauter();
+		}
+
+	}
+
+    public void gravite() {
+        if(getY() <= 395 ) {
+            setY(getY()  + 2);
+
+        }
+    }
+
 	public void seDeplace() {
 
 		int coordonneErenX =getEnv().getEren().getX();
 		int coordonneErenY =getEnv().getEren().getY();
+		int porteeCoup = 2;
+		//int porteeCoup2 = 3;
+
+
+		int vitesse =2;
+				System.out.println("\n Coordonne Titan X " + getX());
+				System.out.println("\n Coordonne Titan YU " + getY());
 		
-		System.out.println("\n Coordonnee Eren X :" + coordonneErenX);
-		System.out.println("\n Coordonnee Eren Y :" + coordonneErenY);
+				System.out.println("\n Coordonne Eren X " + coordonneErenX);
+				System.out.println("\n Coordonne Eren Y " + coordonneErenY);
 
-		System.out.println("\n Coordonnee Titan :" + getX());
-		System.out.println("\n Coordonnee titan :" + getY());
+		if( (getX() -porteeCoup) <=coordonneErenX && (getX() +porteeCoup) >=coordonneErenX 
+				&&  (getY() -porteeCoup) <=coordonneErenY && (getY() +porteeCoup) >=coordonneErenY
+				) {
+			attaquer(getEnv().getEren());
 
-		int vitesse =1;
-
-		if (getX()!= coordonneErenX  ) {
-
-			if(getX()> coordonneErenX) 
-				setX(getX()-vitesse);
-			
-			else   
-				setX(getX()+vitesse);
 		}
 
-		else if(getY() !=coordonneErenY) {
+		else {
+			if (getX()!= coordonneErenX) {
 
-			 if (getY() >coordonneErenY)
-				setY(getY()-vitesse);
-			
-			else  
-				setY(getY()+vitesse);
+				if(getX()> coordonneErenX) 
+					setX(getX()-vitesse);
+
+				else   
+					setX(getX()+vitesse);
 			}
 
-	else 
-		attaquer(getEnv().getEren());
+			else if(getY()!=coordonneErenY) {
+
+				if (getY() >coordonneErenY)
+					setY(getY()-vitesse);
+
+				else  
+					setY(getY()+vitesse);
+			}
+		}
 
 	}
 
@@ -75,7 +106,7 @@ public  class PnjMechantTitan extends Personnage {
 	@Override
 	public void attaquer(Personnage p) {
 
-		//			System.out.println("\n jsui dna sle if");
+		System.out.println("\n jsui dna sle if");
 		getEnv().getEren().perdrePv();
 	}
 
