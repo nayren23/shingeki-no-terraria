@@ -10,6 +10,16 @@ public class Parametre {
 
         public static int changementDuBlocCasser = 0; //a changer
 
+        public static int tailleTuile = 32;
+        
+        public static int longueurTerrain = 40;
+        
+        public static int vitessePersonnage = 3;
+        
+        public static int hauteurSautPersonnage = 7;
+        
+        public static int forceGravite = 3;
+        
         public static final int blocTerre = 2; // Bloc de terre final car pas senser chanegr
         
         public static final int blocCharbon = 3; // Bloc de terre final car pas senser chanegr

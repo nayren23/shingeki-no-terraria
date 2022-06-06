@@ -21,7 +21,6 @@ public class KeyReleased implements EventHandler<KeyEvent>{
 
 		if(event.getCode() == KeyCode.Q || event.getCode() == KeyCode.D ) {
 			this.hero.setDirection(0);
-
 		}
 		
 		
