@@ -10,6 +10,7 @@ import jeu.controleur.listener.InventaireListener;
 import jeu.model.Environnement;
 import jeu.model.Heros;
 import jeu.model.inventaire.Inventaire;
+import jeu.model.inventaire.Objet;
 
 public class InventaireVue extends Pane{
 	
@@ -21,7 +22,9 @@ public class InventaireVue extends Pane{
 	public InventaireVue(Environnement env, TilePane inv, TilePane obj) {
 		this.env = env;
 		this.afficherInventaire=inv;
+		this.getChildren().add(this.afficherInventaire);
 		this.afficherObjet=obj;
+		this.getChildren().add(this.afficherObjet);
 		this.tableauImage = new Image [13];
 		new InventaireListener(this, env.getEren().getInventaireHeros());
 		initialiserInventaire();
@@ -74,6 +77,7 @@ public class InventaireVue extends Pane{
 
 		case 0:
 			image = new ImageView(this.tableauImage[0]);
+			image.setId("epee");
 			break;
 
 		case 1:
@@ -132,7 +136,14 @@ public class InventaireVue extends Pane{
 		}
 		this.afficherObjet.getChildren().add(image);
 		image.addEventHandler(MouseEvent.MOUSE_CLICKED, new MouseClickInventaire(env.getEren().getInventaireHeros().getInventaire().get(iteration),env.getEren()));
-		this.afficherObjet.setVisible(false);
+		//this.afficherObjet.setVisible(false);
+	}
+	
+	public void enleverObjet (Objet o) {
+		ImageView image;
+		int id = o.getIdObjet();
+		image = new ImageView(this.tableauImage[id]);
+		this.afficherObjet.getChildren().remove(image);
 	}
 
 }

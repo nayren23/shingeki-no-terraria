@@ -6,14 +6,12 @@ import jeu.model.inventaire.Objet;
 
 public class Ressource extends Objet{
 
-	private int nbMax;
 	private int nbRessource;
 	private String nomRessource;
 	private int resistance;//vie de la ressource
 
 	public Ressource (int res, int id, String nom) {
 		super(id);
-		this.nbMax=200;
 		this.nbRessource=1;
 		this.resistance=res;
 		this.nomRessource=nom;
@@ -38,10 +36,6 @@ public class Ressource extends Objet{
 		return resistance;
 	}
 
-	public int getNbMax() {
-		return nbMax;
-	}
-
 	public int getNbRessource() {
 		return nbRessource;
 	}
@@ -55,6 +49,4 @@ public class Ressource extends Objet{
 		return "Nom de la ressource = " + this.nomRessource + " nbRessource=" + nbRessource;
 	}
 	
-	
-
 }

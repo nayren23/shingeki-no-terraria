@@ -14,12 +14,9 @@ public class Pioche extends Outil{
 	@Override
 	public int enleverResistanceBloc(int numeroTuilesCasser) {
 		int indiceBloc = -1;
-		System.out.println("\n Affichage vie du bloc  !!!!" +getEnv().getRessources().get(numeroTuilesCasser).getResistance());
 
 		if ((getEnv().getObjet(numeroTuilesCasser).getIdObjet() ==3 || getEnv().getObjet(numeroTuilesCasser).getIdObjet() !=4 || getEnv().getObjet(numeroTuilesCasser).getIdObjet() ==5) 
 				/*&& getEnv().getObjet(numeroTuilesCasser).getResistance()<=0*/){
- 
-			
 
 			if(getEnv().getTerrain().getTabTerrain()[numeroTuilesCasser]==3 ) {
 				indiceBloc = 3;
