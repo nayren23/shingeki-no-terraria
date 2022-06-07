@@ -40,6 +40,7 @@ public class Parametre {
 
         public static int porteeCoupDuTitan = 50;
 
+        
         public 	static	int vitesseTitan =2;
         
         ///////////////////////////////////////////

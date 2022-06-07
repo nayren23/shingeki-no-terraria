@@ -39,7 +39,6 @@ public  class PnjMechantTitan extends Personnage {
 
 	public void seDeplace() {
 
-		int chiffreDe =(int)(Math.random()* 6 +1);
 		int coordonneErenX =getEnv().getEren().getX();
 		int coordonneErenY =getEnv().getEren().getY();
 		//				System.out.println("\n Coordonne Titan X " + getX());
@@ -56,7 +55,9 @@ public  class PnjMechantTitan extends Personnage {
 		}
 
 		else {
-			if (getX()!= coordonneErenX) {
+			int dee=(int)(Math.random()* 2 +1);
+			
+			if (getX()!= coordonneErenX && dee ==1) {
 
 				if(getX()> coordonneErenX) 
 					setX(getX()-Parametre.vitesseTitan);
@@ -65,7 +66,7 @@ public  class PnjMechantTitan extends Personnage {
 					setX(getX()+Parametre.vitesseTitan);
 			}
 
-			else if(getY()!=coordonneErenY) {
+			else if(getY()!=coordonneErenY && dee ==2) {
 
 				if (getY() >coordonneErenY)
 					setY(getY()-Parametre.vitesseTitan);

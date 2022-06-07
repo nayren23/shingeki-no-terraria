@@ -159,7 +159,7 @@ public class Controleur implements Initializable{
 					env.getEren().gravite();
 					env.getEren().move();
 
-					for(int i =0 ; i<10 ; i++) {
+					for(int i =0 ; i<env.getListeTitans().size() ; i++) {
 						env.getListeTitans().get(i).verificationMort();
 						env.getListeTitans().get(i).collisions();
 						env.getListeTitans().get(i).gravite();

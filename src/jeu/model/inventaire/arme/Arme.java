@@ -12,7 +12,7 @@ public abstract class Arme extends Objet{
 	public Arme (int id, String nom) {
 		super(id);
 		this.durabilite = 100;
-		this.degats = 20;
+		this.degats = 100;
 		this.nom=nom;
 	}
 	
