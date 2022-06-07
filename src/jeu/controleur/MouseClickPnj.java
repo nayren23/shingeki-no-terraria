@@ -30,7 +30,7 @@ public class MouseClickPnj implements EventHandler<MouseEvent> {
 			env.getTitans().perdrePv(arme);
 			arme.decrementerDurabiliteArme(arme);
 			System.out.println("\n Affichage durabilite arme " + arme.getDurabilite());
-			System.out.println(" \nAffichage pv " + env.getTitans().getPvProperty().getValue());
+			System.out.println(" \nAffichage pv " + env.getTitans().PvProperty().getValue());
 			titanVue.mort();
 		}
 

@@ -32,7 +32,7 @@ public class Environnement {
 		this.personnages = new ArrayList<>();
 		this.eren = new Heros(0, 0, terrain, this);
 		this.personnages.add(eren);
-		this.titans = new PnjMechantTitan(200, 360, this.getTerrain(), this);
+		this.titans = new PnjMechantTitan(200, 360, this);
 
 		//creationTitans();
 		this.ressources = new ArrayList<Ressource>();

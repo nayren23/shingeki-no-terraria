@@ -111,7 +111,7 @@ public class Controleur implements Initializable{
 		//------------------------------------------------------------//
 
 		//Creation de l usage du clavier
-		BorderPaneId.addEventHandler(KeyEvent.KEY_PRESSED,new KeyPressed(env.getEren(), viehero, invVue)); //pour savoir les touches qui sont appuee
+		BorderPaneId.addEventHandler(KeyEvent.KEY_PRESSED,new KeyPressed(env.getEren(), viehero, invVue, hero1)); //pour savoir les touches qui sont appuee
 		BorderPaneId.addEventHandler(KeyEvent.KEY_RELEASED,new KeyReleased(env.getEren()));//pour savoir les touches qui sont relachee
 	
 		//------------------------------------------------------------//
@@ -156,9 +156,15 @@ public class Controleur implements Initializable{
 
 				//	System.out.println(hero.getDirection());
 
+					env.getEren().collisions();
 					env.getEren().gravite();
 					env.getEren().move();
+					
 					env.getTitans().verificationMort();
+					
+					env.getTitans().collisions();
+					env.getTitans().gravite();
+					env.getTitans().move();
 			//		env.getTitans().gravite();
 
 				}

@@ -8,6 +8,18 @@ public class Parametre {
 		
 		//Ici c'est quand on casse le bloc il sera remplacer par le loc choisit en bas
 
+
+        public static int tailleTuile = 32;
+        
+        public static int longueurTerrain = 40;
+        
+        public static int vitessePersonnage = 3;
+        
+        public static int hauteurSautPersonnage = 7;
+        
+        public static int forceGravite = 3;
+        
+        
         public static int changementDuBlocCasser = 0; //a changer
 
         public static final int blocTerre = 2; // Bloc de terre final car pas senser chanegr
@@ -17,6 +29,21 @@ public class Parametre {
         public static final int blocGaz = 4; // Bloc de terre final car pas senser chanegr
 	
         public static final int blocFer = 5; // Bloc de terre final car pas senser chanegr
+
+        
+        ///////////////////////////////////////////
+     //   Parametre Titan
+        //recharge du titan initialiser a 0
+        public  static  int rechargeAttaqueTitans = 0; 
+        
+        public  static  int rechargeAttaqueTitansTemps = 60; 
+
+        public static int porteeCoupDuTitan = 50;
+
+        public 	static	int vitesseTitan =2;
+        
+        ///////////////////////////////////////////
+
 
         //---------------------------------------------------------------------------------------//
 

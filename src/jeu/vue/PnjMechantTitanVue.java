@@ -11,7 +11,7 @@ public class PnjMechantTitanVue extends ImageView {
 
 	
 	private PnjMechantTitan pnj;
-	private Image image = new Image("jeu/image/Reiner.png");
+	private Image image = new Image("jeu/image/Reiner1.png");
 
 	public PnjMechantTitanVue (PnjMechantTitan pnj) {			// initialisation de l'image et de ses coordoonées de base 
 		super();
