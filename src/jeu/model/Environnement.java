@@ -22,8 +22,9 @@ public class Environnement {
 
 	private ArrayList<Personnage> personnages;
 	private ArrayList<Ressource> ressources;
+	private ArrayList<PnjMechantTitan> listeTitans;
 	private Heros eren;
-	private PnjMechantTitan titans ;
+	//private PnjMechantTitan titans ;
 
 	public Environnement() {
 		this.terrain = new Terrain();
@@ -32,11 +33,25 @@ public class Environnement {
 		this.personnages = new ArrayList<>();
 		this.eren = new Heros(0, 0, terrain, this);
 		this.personnages.add(eren);
-		this.titans = new PnjMechantTitan(200, 360, this);
+		listeTitans = new ArrayList<PnjMechantTitan>();
 
-		//creationTitans();
+		creationListeTitans();
 		this.ressources = new ArrayList<Ressource>();
 		creationRessources();
+	}
+
+	/**
+	 * on creer la liste qui contient les 10 Titans
+	 */
+	public void creationListeTitans() {
+
+		for (int i= 0 ; i< 10;i++) {
+			int posX = 200 + i *100;
+			int posY = -360 + i *20;
+
+			listeTitans.add(new PnjMechantTitan(posX, posY, this, "titan" + i));
+		}
+		System.out.println("\n AffichagelisteTitans " + listeTitans);
 	}
 
 	public void creationRessources() {
@@ -72,21 +87,29 @@ public class Environnement {
 		}
 	}
 
-//	public void creationTitans () {
-////		for(int i=0 ;i<titans.length;i++) {
-//			new PnjMechantTitan(10, 10, this.getTerrain(), this);
-////		}
-//	}
+	//	public void creationTitans () {
+	////		for(int i=0 ;i<titans.length;i++) {
+	//			new PnjMechantTitan(10, 10, this.getTerrain(), this);
+	////		}
+	//	}
 
-	
+
 	public void detruireBloc (Ressource o) {
 		o.enleverResistance(o);
 		//		if (r.getResistance()<=0) 
 		//			eren.getInventaireHeros().stackRessource(r); Pas utilile car stack ressources dej appeller 
 	}
 
-	public PnjMechantTitan getTitans() {
-		return titans;
+	//	public PnjMechantTitan getTitans() {
+	//		return titans;
+	//	}
+
+	public ArrayList<PnjMechantTitan> getListeTitans() {
+		return listeTitans;
+	}
+
+	public void setListeTitans(ArrayList<PnjMechantTitan> listeTitans) {
+		this.listeTitans = listeTitans;
 	}
 
 	public ArrayList<Ressource> getRessources() {
@@ -99,14 +122,14 @@ public class Environnement {
 		return getRessources().get(numeroTuile);
 	}
 
-	
-//	public PnjMechantTitan[] getTitans() {
-//		return titans;
-//	}
-//
-//	public void setTitans(PnjMechantTitan[] titans) {
-//		this.titans = titans;
-//	}
+
+	//	public PnjMechantTitan[] getTitans() {
+	//		return titans;
+	//	}
+	//
+	//	public void setTitans(PnjMechantTitan[] titans) {
+	//		this.titans = titans;
+	//	}
 
 	public int getWidth() {
 		return width;

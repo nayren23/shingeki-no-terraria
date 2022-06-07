@@ -8,10 +8,12 @@ import jeu.model.inventaire.arme.Epee;
 public  class PnjMechantTitan extends Personnage {
 
 	int direction, dirY;
+	private String nom ;
 	//private HitBox hitboxTitans;
 
-	public PnjMechantTitan(int x ,int y,  Environnement env) {
+	public PnjMechantTitan(int x ,int y,  Environnement env, String nom) {
 		super(x, y, 100, env); // 100 pv
+		this.	nom = nom;
 		//	this.hitboxTitans = new HitBox(x, y, 2, 3, 1, 4);
 	}
 
@@ -37,6 +39,7 @@ public  class PnjMechantTitan extends Personnage {
 
 	public void seDeplace() {
 
+		int chiffreDe =(int)(Math.random()* 6 +1);
 		int coordonneErenX =getEnv().getEren().getX();
 		int coordonneErenY =getEnv().getEren().getY();
 		//				System.out.println("\n Coordonne Titan X " + getX());
@@ -93,7 +96,7 @@ public  class PnjMechantTitan extends Personnage {
 	 */
 	public void attaquer() {
 		if (Parametre.rechargeAttaqueTitans == Parametre.rechargeAttaqueTitansTemps) {
-			System.out.println("\n jsui dna sle if");
+			//			System.out.println("\n jsui dna sle if");
 			getEnv().getEren().perdrePv();
 			Parametre.rechargeAttaqueTitans =0;
 		}
@@ -117,6 +120,11 @@ public  class PnjMechantTitan extends Personnage {
 
 	public int getDirection() {
 		return direction;
+	}
+
+	@Override
+	public String toString() {
+		return "PnjMechantTitan [direction=" + direction + ", dirY=" + dirY + ", nom=" + nom + "]";
 	}
 
 }

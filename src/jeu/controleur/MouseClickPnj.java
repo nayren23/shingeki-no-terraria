@@ -27,10 +27,10 @@ public class MouseClickPnj implements EventHandler<MouseEvent> {
 
 		if(objet instanceof Epee && arg0.getButton() == MouseButton.PRIMARY ) {
 			Arme arme = (Arme) objet;
-			env.getTitans().perdrePv(arme);
+//			env.getTitans().perdrePv(arme);
 			arme.decrementerDurabiliteArme(arme);
 			System.out.println("\n Affichage durabilite arme " + arme.getDurabilite());
-			System.out.println(" \nAffichage pv " + env.getTitans().PvProperty().getValue());
+//			System.out.println(" \nAffichage pv " + env.getTitans().PvProperty().getValue());
 			titanVue.mort();
 		}
 
