@@ -75,7 +75,6 @@ public  class PnjMechantTitan extends Personnage {
 					setY(getY()+Parametre.vitesseTitan);
 			}
 		}
-
 	}
 
 	public boolean verificationMort () {

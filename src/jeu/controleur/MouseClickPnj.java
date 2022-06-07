@@ -23,19 +23,23 @@ public class MouseClickPnj implements EventHandler<MouseEvent> {
 	@Override
 	public void handle(MouseEvent arg0) {
 		
-		Objet objet = this.env.getEren().getObjetHeros();
-
-		if(objet instanceof Epee && arg0.getButton() == MouseButton.PRIMARY ) {
-			Arme arme = (Arme) objet;
-			for(int i =0 ; i<env.getListeTitans().size() ; i++) {
-				env.getListeTitans().get(i).perdrePv(arme);
-			}
-
-			arme.decrementerDurabiliteArme(arme);
-			System.out.println("\n Affichage durabilite arme " + arme.getDurabilite());
-			//System.out.println(" \nAffichage pv " + env.getTitans().PvProperty().getValue());
-			titanVue.mort();
-		}
+//		int x = (int)arg0.getX();
+//		int y = (int)arg0.getY();
+//		
+//		Objet objet = this.env.getEren().getObjetHeros();
+//
+//		if(objet instanceof Epee && arg0.getButton() == MouseButton.PRIMARY ) {
+//			Arme arme = (Arme) objet;
+//			
+//				env.getListeTitans().get(i).perdrePv(arme);
+//				System.out.println("\n Affichage pv titans " + env.getListeTitans().get(i).PvProperty());
+//			
+//
+//			arme.decrementerDurabiliteArme(arme);
+//			System.out.println("\n Affichage durabilite arme " + arme.getDurabilite());
+//			//System.out.println(" \nAffichage pv " + env.getTitans().PvProperty().getValue());
+//			titanVue.mort();
+//		}
 
 		
 	}

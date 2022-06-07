@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
@@ -25,7 +26,9 @@ import jeu.model.Environnement;
 import jeu.model.Heros;
 import jeu.model.PnjMechantTitan;
 import jeu.model.inventaire.Inventaire;
+import jeu.model.inventaire.Objet;
 import jeu.vue.HeroVue;
+import jeu.model.inventaire.arme.Arme;
 import jeu.model.inventaire.arme.Epee;
 import jeu.model.inventaire.outil.Pelle;
 import jeu.model.inventaire.outil.Pioche;
@@ -81,7 +84,7 @@ public class Controleur implements Initializable{
 		env = new Environnement();
 
 		for(int i =0 ;i< 10 ;i++) {
-			PnjMechantTitanVue  pnjTitanVue = new PnjMechantTitanVue(env.getListeTitans().get(i));
+			PnjMechantTitanVue  pnjTitanVue = new PnjMechantTitanVue(env.getListeTitans().get(i),env.getEren());
 			this.PanePrincipale.getChildren().add(pnjTitanVue);
 			pnjTitanVue.affichageTitan(env.getListeTitans().get(i));
 		}
@@ -167,7 +170,7 @@ public class Controleur implements Initializable{
 					}
 
 					//		env.getTitans().gravite();
-					
+
 				}
 						));
 		gameLoop.getKeyFrames().add(kf);
