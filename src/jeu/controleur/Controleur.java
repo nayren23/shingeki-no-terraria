@@ -137,30 +137,29 @@ public class Controleur implements Initializable{
 				(ev -> {
 
 					hero1.affichageEren(env.getEren());
-//										System.out.println(" x d'eren" + Math.abs(env.getEren().getX()/30));
-//										System.out.println(" y d'eren" + Math.abs(env.getEren().getY()/30));
-//										int test = ((env.getEren().getY()/30)*40) + ((env.getEren().getX()/30)+1);
-//										System.out.println("tuile nm : " + test);
-				
-//										System.out.println(" x d'eren" + Math.abs(env.getEren().getX()));
-//										System.out.println(" y d'eren" + Math.abs(env.getEren().getY()));
-					
-					//gravité
+					//										System.out.println(" x d'eren" + Math.abs(env.getEren().getX()/30));
+					//										System.out.println(" y d'eren" + Math.abs(env.getEren().getY()/30));
+					//										int test = ((env.getEren().getY()/30)*40) + ((env.getEren().getX()/30)+1);
+					//										System.out.println("tuile nm : " + test);
 
-					//	System.out.println(hero.getDirection());
+					//										System.out.println(" x d'eren" + Math.abs(env.getEren().getX()));
+					//										System.out.println(" y d'eren" + Math.abs(env.getEren().getY()));
+
+
+
+					System.out.println(env.getEren().getDirection());
 					env.getEren().collisions();
 					env.getEren().gravite();
 					env.getEren().move();
-					
-//					if (!env.getEren().collisionBas(env.getEren().getX(), env.getEren().getY())) {
-//						if(env.getEren().getDirY() < 5) {
-////							env.getEren().setDirY(env.getEren().getDirY() + 1);
-//						}
-//					}
-					
-					
-					
-					
+
+					if (!env.getEren().collisionDuBas(env.getEren().getX(), env.getEren().getY())) {
+
+
+					}
+
+
+
+
 				}
 						));
 		gameLoop.getKeyFrames().add(kf);
