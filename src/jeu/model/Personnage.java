@@ -22,7 +22,9 @@ public abstract class Personnage {
 		this.direction = 0;
 		this.dirY = 0;
 		this.env=env;
+		this.space = false;
 	}
+
 
 	//-------------------------------------------------------------------//
 
@@ -47,71 +49,62 @@ public abstract class Personnage {
 			valeurClamp= max;
 		return valeurClamp;
 	}
+
 	public void collisions () {
 		int x = this.xProp.get();
 		int y = this.yProp.get();
-		
-		collisionDroite(x,y);
-		collisionGauche(x,y);
-		collisionHaut(x,y);
-		collisionBas(x,y);
-		
 
-
+		collisionDeDroite(x,y);
+		collisionDeGauche(x,y);
+		collisionDuHaut(x,y);
+		collisionDuBas(x,y);
 	}
+
 	public void move () {
 		this.xProp.set(xProp.get() + direction);
 		sauter();
-
-
 	}
 
 
 	public void sauter() {
-
 		if(space == true) {
-//			System.out.println("je saute");
+			System.out.println("je saute");
 			this.yProp.set(yProp.get() + getDirY());
 		}
 		else {
 			setDirY(0);
 		}
-
 	}
-	
-public static int coordoonneTuile (int x,int y) {
-		if(x < 0 || y < -75){
-			return -1;
+	public static int coordoonneTuile (int x,int y) {
+		x = x / Parametre.tailleTuile;
+
+		if (y > 0) {
+			y = y / Parametre.tailleTuile;
 		}
 		else {
-			x = x/Parametre.tailleTuile;
-			if (y > 0) {
-				y = y / Parametre.tailleTuile;
-			}
-			else {
-				y = -1;
-			}
-			return (x+(y+1)*Parametre.longueurTerrain);
+			y = -1;
 		}
+
+		return (x+(y+1)*Parametre.longueurTerrain);
+
 
 	}
 
 
-	public void collisionHaut (int x,int y) {
-		if (verifCollisions(coordoonneTuile(x+17, y-32))||verifCollisions(coordoonneTuile(x+12, y-32))) {
+	//permet de verifier la collision du haut avec le personnage en prenant le x du personnage et le y
+	//verification avec la collision sur le bloc du haut soit y - la difference avec le bloc du haut et met donc la direction du Y a 0 si il y a collision
+	public void collisionDuHaut (int x,int y) {
+		if (verificationDeCollisions(coordoonneTuile(x + 17, y - Parametre.diffBlocDessu )) || verificationDeCollisions(coordoonneTuile(x + 17, y - Parametre.diffBlocDessu))) {
 			this.setDirY(0);
 		}
 	}
 
 
-	public boolean collisionBas (int x,int y) {
-		if (verifCollisions(coordoonneTuile(x+17 ,y+1))||verifCollisions(coordoonneTuile(x+12, y+1))) {
-			if (verifCollisions(coordoonneTuile(x+17 ,y))||verifCollisions(coordoonneTuile(x+12, y))) {
+	//permet de verifier la collision du bas avec le personnage en prenant le x du personnage et le y
+	//Verification avec de pixel en y  avec ici y et y + 1
+	public boolean collisionDuBas (int x,int y) {
+		if (verificationDeCollisions(coordoonneTuile(x + 12 ,y)) || verificationDeCollisions(coordoonneTuile(x + 12, y))) {
 				this.yProp.set(this.yProp.get() - Parametre.forceGravite);
-			}
-			if (this.getDirY()>0 || this.getDirY()==-1) {
-				this.setDirY(0);
-			}
 			return true;
 		}
 		else {
@@ -120,23 +113,34 @@ public static int coordoonneTuile (int x,int y) {
 	}
 
 
-	public void collisionDroite (int x,int y) {
-		if (verifCollisions(coordoonneTuile(x+20, y-25))||verifCollisions(coordoonneTuile(x+20, y-1))) {
-			this.xProp.set(x-this.direction);
+	public void collisionDeDroite (int x,int y) {
+		if (verificationDeCollisions(coordoonneTuile(x + Parametre.largeurPersonnage, y - Parametre.hauteurPersonnage)) || verificationDeCollisions(coordoonneTuile(x + Parametre.largeurPersonnage, y - 1))) {
+			this.xProp.set(x - this.direction);
+		}
+		if (verificationDeCollisions(coordoonneTuile(x + Parametre.largeurPersonnage, y - Parametre.hauteurPersonnage)) || verificationDeCollisions(coordoonneTuile(x +  Parametre.largeurPersonnage, y - 1))) {
+			this.xProp.set(this.xProp.get() - 1);
+
 		}
 	}
 
-	
-	public void collisionGauche (int x,int y) {
-		if (verifCollisions(coordoonneTuile(x+10, y-25))||verifCollisions(coordoonneTuile(x+10, y-1))) {
-			this.xProp.set(x+this.direction);
+
+	public void collisionDeGauche (int x,int y) {
+		if (verificationDeCollisions(coordoonneTuile(x + 9, y - Parametre.hauteurPersonnage)) || verificationDeCollisions(coordoonneTuile(x + 9, y))) {
+			this.xProp.set(x - this.direction);
+		}
+		if (verificationDeCollisions(coordoonneTuile(x + 9, y - Parametre.hauteurPersonnage)) || verificationDeCollisions(coordoonneTuile(x + 9, y))) {
+			this.xProp.set(this.xProp.get() + 1);
 		}
 	}
 
 
-	private boolean verifCollisions (int x) {
-		return (x < 0 || getEnv().getTerrain().getTabTerrain()[x]>0);
+
+	private boolean verificationDeCollisions (int x) {
+		return (x < 0 || getEnv().getTerrain().getTabTerrain()[x] > 0);
 	}
+
+
+
 
 
 	//-------------------------------------------------------------------//

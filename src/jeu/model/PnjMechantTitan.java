@@ -65,23 +65,41 @@ public  class PnjMechantTitan extends Personnage {
 		int coordonneeMinTerrain =320;
 		int coordonneeMaxTerrain =1052;
 
-		int dee=(int)(Math.random()* 6 +1);
-		System.out.println("\n affichage du dee" +dee);
+		//int dee=(int)(Math.random()* 2 +1);
+//		System.out.println("\n affichage du dee" +dee);
 		System.out.println("\n affichage X titan" + getX());
 		System.out.println("\n affichage y titan" + getY());
 
-		if(coordonneeMinTerrain  <getX()  && getX()< coordonneeMaxTerrain ) {
-			if(getX() < coordonneeMaxTerrain) {
-				setX(getX() -2);  // on le fait allez jusqu a gauche puis 
-//				if(getX() <= coordonneeMinTerrain) {
-//					setX(getX() +2);  // on le fait allez jusqu a gauche puis 
-//				}
-			}
+		if( (getX() -2)<=coordonneeMinTerrain  ) {
+			setDirection(0);  //droite
 		}
-		else 
-			setX(1050); //on le remet tout a droite
+
+		else if((getX() +2)>=coordonneeMaxTerrain) {
+			setDirection(2); //gauche
+		}
+		
+		if(getDirection() == 0) {
+			setX(getX()+2);
+		}
+		
+		else
+			setX(getX()-2);
+		
+		System.out.println("\n Affichage direction" + getDirection());
 
 	}
+	//		if(coordonneeMinTerrain  <getX()  && getX()< coordonneeMaxTerrain ) {
+	//			if(getX() < coordonneeMaxTerrain) {
+	//				setX(getX() -2);  // on le fait allez jusqu a gauche puis 
+	////				if(getX() <= coordonneeMinTerrain) {
+	////					setX(getX() +2);  // on le fait allez jusqu a gauche puis 
+	////				}
+	//			}
+	//		}
+	//		else 
+	//			setX(1050); //on le remet tout a droite
+	//
+	//	}
 
 	public void attaquePnj () {
 

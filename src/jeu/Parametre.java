@@ -19,6 +19,14 @@ public class Parametre {
         
         public static int forceGravite = 3;
         
+
+        
+        public static int largeurPersonnage = 20;
+        
+        public static int hauteurPersonnage = 25;
+        
+        public static int diffBlocDessu = 32;
+        
         
         public static int changementDuBlocCasser = 0; //a changer
 
