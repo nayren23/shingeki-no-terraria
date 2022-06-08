@@ -41,8 +41,9 @@ public class Parametre {
         public static int porteeCoupDuTitan = 50;
 
         
-        public 	static	int vitesseTitan =2;
+        public 	static	int vitesseTitan =1;
         
+        public static int nbTitansGenerer = 5;
         ///////////////////////////////////////////
 
 

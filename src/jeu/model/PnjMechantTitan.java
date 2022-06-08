@@ -36,28 +36,76 @@ public  class PnjMechantTitan extends Personnage {
 
 	}
 
+	/**
+	 * 
+	 * @param coordooneeX
+	 * @param coordonneeY
+	 * @param coordonneeErenX
+	 * @param coordonneeErenY
+	 * @param porteeCoup
+	 * @return
+	 */
+	public boolean hitbox(int coordooneeX ,int coordonneeY , int coordonneeErenX , int coordonneeErenY, int porteeCoup) {
+		boolean estComprisDansIntervalle = false;
+
+		if( (coordooneeX -porteeCoup) <=coordonneeErenX && (coordooneeX +porteeCoup) >=coordonneeErenX 
+				&&  (coordonneeY -porteeCoup) <=coordonneeErenY && (coordonneeY +porteeCoup) >=coordonneeErenY) {
+			estComprisDansIntervalle = true;
+		}
+		else {
+			estComprisDansIntervalle = false;
+		}
+		return estComprisDansIntervalle;
+	}
 
 	public void seDeplace() {
 
+
+
+		int coordonneeMinTerrain =320;
+		int coordonneeMaxTerrain =1052;
+
+		int dee=(int)(Math.random()* 6 +1);
+		System.out.println("\n affichage du dee" +dee);
+		System.out.println("\n affichage X titan" + getX());
+		System.out.println("\n affichage y titan" + getY());
+
+		if(coordonneeMinTerrain  <getX()  && getX()< coordonneeMaxTerrain ) {
+			if(getX() < coordonneeMaxTerrain) {
+				setX(getX() -2);  // on le fait allez jusqu a gauche puis 
+//				if(getX() <= coordonneeMinTerrain) {
+//					setX(getX() +2);  // on le fait allez jusqu a gauche puis 
+//				}
+			}
+		}
+		else 
+			setX(1050); //on le remet tout a droite
+
+	}
+
+	public void attaquePnj () {
+
+		if (erenDansZone() ==  true) {
+			attaquer();
+		}
+		else 
+			seDeplace();
+	}
+
+	public boolean erenDansZone () {
+
+		boolean erenPresent = false;
 		int coordonneErenX =getEnv().getEren().getX();
 		int coordonneErenY =getEnv().getEren().getY();
-		//				System.out.println("\n Coordonne Titan X " + getX());
-		//				System.out.println("\n Coordonne Titan YU " + getY());
-		//		
-		//				System.out.println("\n Coordonne Eren X " + coordonneErenX);
-		//				System.out.println("\n Coordonne Eren Y " + coordonneErenY);
 
 		if( (getX() -Parametre.porteeCoupDuTitan) <=coordonneErenX && (getX() +Parametre.porteeCoupDuTitan) >=coordonneErenX 
 				&&  (getY() -Parametre.porteeCoupDuTitan) <=coordonneErenY && (getY() +Parametre.porteeCoupDuTitan) >=coordonneErenY
 				) {
-			attaquer();
+			erenPresent = true;		
 
-		}
 
-		else {
-			int dee=(int)(Math.random()* 2 +1);
-			
-			if (getX()!= coordonneErenX && dee ==1) {
+
+			if (getX()!= coordonneErenX  ) {
 
 				if(getX()> coordonneErenX) 
 					setX(getX()-Parametre.vitesseTitan);
@@ -65,22 +113,22 @@ public  class PnjMechantTitan extends Personnage {
 				else   
 					setX(getX()+Parametre.vitesseTitan);
 			}
-
-			else if(getY()!=coordonneErenY && dee ==2) {
-
-				if (getY() >coordonneErenY)
-					setY(getY()-Parametre.vitesseTitan);
-
-				else  
-					setY(getY()+Parametre.vitesseTitan);
-			}
 		}
+		return erenPresent;
+
 	}
+
+
+
+
+
+
+
 
 	public boolean verificationMort () {
 		boolean mort = false;
 		if(PvProperty().getValue() >0) {
-			seDeplace();
+			attaquePnj();
 		}
 		else {
 			//	System.out.println("\n Est mort");

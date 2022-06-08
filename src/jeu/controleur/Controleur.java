@@ -22,6 +22,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.util.Duration;
+import jeu.Parametre;
 import jeu.model.Environnement;
 import jeu.model.Heros;
 import jeu.model.PnjMechantTitan;
@@ -83,7 +84,7 @@ public class Controleur implements Initializable{
 		//Creation de l'environnement qui lui recupere le Terrain
 		env = new Environnement();
 
-		for(int i =0 ;i< 10 ;i++) {
+		for(int i =0 ;i< Parametre.nbTitansGenerer ;i++) {
 			PnjMechantTitanVue  pnjTitanVue = new PnjMechantTitanVue(env.getListeTitans().get(i),env.getEren());
 			this.PanePrincipale.getChildren().add(pnjTitanVue);
 			pnjTitanVue.affichageTitan(env.getListeTitans().get(i));
@@ -167,6 +168,9 @@ public class Controleur implements Initializable{
 						env.getListeTitans().get(i).collisions();
 						env.getListeTitans().get(i).gravite();
 						env.getListeTitans().get(i).move();
+//						if (env.getListeTitans().get(i).getX() == env.getListeTitans().get(i++).getX()) {
+//							env.getListeTitans().get(i).setX(env.getListeTitans().get(i).getX() + 30);
+//						}
 					}
 
 					//		env.getTitans().gravite();

@@ -1,6 +1,8 @@
 package jeu.model;
 
 import java.util.ArrayList;
+
+import jeu.Parametre;
 import jeu.model.inventaire.Objet;
 import jeu.model.inventaire.ressource.Charbon;
 import jeu.model.inventaire.ressource.Ciel;
@@ -45,9 +47,9 @@ public class Environnement {
 	 */
 	public void creationListeTitans() {
 
-		for (int i= 0 ; i< 10;i++) {
-			int posX = 200 + i *100;
-			int posY = -360 + i *20;
+		for (int i= 0 ; i< Parametre.nbTitansGenerer;i++) {
+			int posX = 500 +i *100  ;
+			int posY = 450  ;
 
 			listeTitans.add(new PnjMechantTitan(posX, posY, this, "titan" + i));
 		}
