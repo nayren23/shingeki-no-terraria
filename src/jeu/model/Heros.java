@@ -1,79 +1,37 @@
 package jeu.model;
 
 import jeu.Parametre;
+import jeu.Parametre.DIRECTION;
 import jeu.model.inventaire.Inventaire;
 import jeu.model.inventaire.Objet;
 import jeu.model.inventaire.arme.Hand;
 
 public class Heros extends Personnage{
 
-	int direction, dirY = -7;
-	boolean space = false;
 	private Inventaire inventaireHeros;
 	private Objet objetHeros;
 	private Hand mainHeros;
+	private Collisions collisions;
+
 	//changer le type terrain en type environnement
 	public Heros(int x, int y, Terrain terrain, Environnement env) {
-		super(x, y, 5, 9, terrain, env);
+		super(x, y, 9, env);
 		this.mainHeros = new Hand();
 		this.objetHeros= mainHeros;
 		this.inventaireHeros = new Inventaire(super.getEnv());
+		this.collisions = new Collisions(super.getEnv().getTerrain());
+
 	}
+
 
 	//------------------------------------------------------------//
-
-	@Override
-	public void seDeplace(Parametre.DIRECTION d) {
-		switch(d) {
-		case LEFT:
-			setDirection(-3);
-			break;
-
-		case RIGHT:
-			setDirection(3);
-			break;
-
-		case SPACE:
-			dirY = -5;
-			break;
-
-		default:
-			System.out.println("Entrée incorrecte");
-			break;
-		}
-	}
-
-	//------------------------------------------------------------//
-
-	public void move () {
-		if(yProp.get() >= 149) {
-			System.out.println(yProp);
-			this.xProp.set(xProp.get() + direction);
-			if(space == true) {
-				this.yProp.set(yProp.get() + dirY);
-			}
-		}
-	}
 	
-	//------------------------------------------------------------//
 
 	public void gravite() {
-		if(getY() <= 185)  {
+		setY(getY()  + Parametre.forceGravite);
 
-			if(getDirection() == -3) {
-				setX(getX() - 2);
-				setY(getY() + 2);
-			}
-			else if (getDirection() == 3){
-				setY(getY() + 2);
-				setX(getX() + 2);
-			}
-
-			else {
-				setY(getY() + 2);
-			}
-		}
 	}
+
 
 	//------------------------------------------------------------//
 
@@ -116,7 +74,7 @@ public class Heros extends Personnage{
 		int pv = clamp(this.PvProperty().getValue()+1, 0, 9);	
 		this.PvProperty().setValue(pv);  // -1 pour le heros 
 	}
-	
+
 	//------------------------------------------------------------//
 
 	/**
@@ -124,17 +82,17 @@ public class Heros extends Personnage{
 	 * @param numeroTuilesCasser que l on veut casser
 	 * @param terrain sur quel terrain l'action doit se faire
 	 */
-//	public void casserBloc (int numeroTuilesCasser, Terrain terrain) {  // ensuite rajouter l'objet miner dans l'inventaire 
-//		System.out.println("casser tuile : " + numeroTuilesCasser);
-//		terrain.changerTuiles(numeroTuilesCasser,Parametre.changementDuBlocCasser); //changer le 1 en bloc choisit
-//		System.out.println("C'est cassee Yes");			
-//	}
-	
+	//	public void casserBloc (int numeroTuilesCasser, Terrain terrain) {  // ensuite rajouter l'objet miner dans l'inventaire 
+	//		System.out.println("casser tuile : " + numeroTuilesCasser);
+	//		terrain.changerTuiles(numeroTuilesCasser,Parametre.changementDuBlocCasser); //changer le 1 en bloc choisit
+	//		System.out.println("C'est cassee Yes");			
+	//	}
+
 	public void equiper (Objet o) {
 		setObjetHeros(o);
 		System.out.println("Objet  " +o.getIdObjet());
 	}
-	
+
 	public Objet getObjetHeros() {
 		return this.objetHeros;
 	}
@@ -151,40 +109,24 @@ public class Heros extends Personnage{
 	//			
 	//}
 
-	public boolean isSpace() {
-		return space;
-	}
-	
 	//------------------------------------------------------------//
-	
+
 	//Getters et Setter
 
-	public int getDirection() {
-		return this.direction;
-	}
+	
 
 	public Inventaire getInventaireHeros() {
 		return inventaireHeros;
 	}
+	
 
-	public int setDirection(int i) {
-		return this.direction = i;
-	}
-
-	public int getDirY() {
-		return dirY;
-	}
-
-	public void setDirY(int dirY) {
-		this.dirY = dirY;
-	}
-
-	public void setSpace(boolean space) {
-		this.space = space;
-	}
+	
 	public void setObjetHeros(Objet objetHeros) {
 		this.objetHeros = objetHeros;
 	}
+	
+
+	
 
 }
 

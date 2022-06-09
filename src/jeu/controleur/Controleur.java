@@ -20,8 +20,10 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.util.Duration;
+import jeu.model.Collisions;
 import jeu.model.Environnement;
 import jeu.model.Heros;
+import jeu.model.Terrain;
 import jeu.model.inventaire.Inventaire;
 import jeu.vue.HeroVue;
 import jeu.model.inventaire.arme.Epee;
@@ -37,9 +39,10 @@ public class Controleur implements Initializable{
 
 	private Timeline gameLoop;
 	private Environnement env;
+	private HeroVue hero1;
+
 	@FXML
 	private TilePane tuilesFond;
-	
 	@FXML
 	private BorderPane BorderPaneId;
 	@FXML
@@ -48,27 +51,27 @@ public class Controleur implements Initializable{
 	private TilePane afficherInventaire;
 	@FXML
 	private ImageView eren;
-	
 	@FXML
 	private TilePane afficherObjet;
-	
+
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
 		//------------------------------------------------------------//
-		
+
 		//on creer l image
 		Image img = new Image("jeu/image/arriereplanSNK.jpg");
-		
+
 		//on creer un backgroundImage qui contient notre image
 		BackgroundImage backImage = new BackgroundImage(img,BackgroundRepeat.NO_REPEAT,
 				BackgroundRepeat.NO_REPEAT,
 				BackgroundPosition.DEFAULT,
 				BackgroundSize.DEFAULT);
-		
+
 		//Puis on creer un background qui contient notre Backgroundimage
 		Background backGround = new Background(backImage);
-		
+
 		//Ensuite on ajoute notre background a notre borderpane principale
 		BorderPaneId.setBackground(backGround);
 
@@ -78,20 +81,20 @@ public class Controleur implements Initializable{
 
 		TerrainVue terrainVue = new TerrainVue(tuilesFond, env.getTerrain());	//cree le terrain vue
 		terrainVue.dessinerTerrain();
-		
+
 		//------------------------------------------------------------//
-	
+
 		//Creation de la Vue du hero eren puis ajout de celui ci dans le pane
-		HeroVue hero1 = new HeroVue(env.getEren());
+		hero1 = new HeroVue(env.getEren());
 		this.PanePrincipale.getChildren().add(hero1);
 		hero1.affichageEren(env.getEren());
-		
+
 		HerosVieVue viehero = new HerosVieVue(env.getEren(), PanePrincipale);
 		viehero.affichageVie(env.getEren().PvProperty().getValue()); //affichage vie hero en haut droite
-		
-		
+
+
 		//------------------------------------------------------------//
-		
+
 		//Creation  de la VUE de l inventaire
 		InventaireVue invVue = new InventaireVue(env,afficherInventaire, afficherObjet);
 		this.PanePrincipale.getChildren().add(invVue);
@@ -99,29 +102,26 @@ public class Controleur implements Initializable{
 		//------------------------------------------------------------//
 
 		//Creation de l usage du clavier
-		BorderPaneId.addEventHandler(KeyEvent.KEY_PRESSED,new KeyPressed(env.getEren(), viehero, invVue)); //pour savoir les touches qui sont appuee
+		BorderPaneId.addEventHandler(KeyEvent.KEY_PRESSED,new KeyPressed(env.getEren(), viehero, invVue, hero1)); //pour savoir les touches qui sont appuee
 		BorderPaneId.addEventHandler(KeyEvent.KEY_RELEASED,new KeyReleased(env.getEren()));//pour savoir les touches qui sont relachee
-	
+
 		//------------------------------------------------------------//
 
 		//Creation de l usage de la souris 
 		BorderPaneId.addEventHandler(MouseEvent.MOUSE_CLICKED, new MouseClick(env,terrainVue)); //fait la distinction entre les differant click de la souris
-		
+
 		Pelle pelle = new Pelle(env);
 		env.getEren().getInventaireHeros().ajouterDansInventaire(pelle);
 
 		Pioche pioche = new Pioche(env);
 		env.getEren().getInventaireHeros().ajouterDansInventaire(pioche);
-		
-		
 
-//		System.out.println(inv.getInventaire().get(0).getIdObjet());
-//		System.out.println(inv.getInventaire().get(1).getIdObjet());
-//		System.out.println(inv.getInventaire());
+
+
 
 		initAnimation();
 		// demarre l'animation
-	//	gameLoop.play();
+		gameLoop.play();
 	}
 
 	private void initAnimation() {
@@ -136,13 +136,30 @@ public class Controleur implements Initializable{
 				// c'est un eventHandler d'ou le lambda
 				(ev -> {
 
-					//System.out.println(hero.getY());
-					//gravité
+					hero1.affichageEren(env.getEren());
+					//										System.out.println(" x d'eren" + Math.abs(env.getEren().getX()/30));
+					//										System.out.println(" y d'eren" + Math.abs(env.getEren().getY()/30));
+					//										int test = ((env.getEren().getY()/30)*40) + ((env.getEren().getX()/30)+1);
+					//										System.out.println("tuile nm : " + test);
 
-				//	System.out.println(hero.getDirection());
+					//										System.out.println(" x d'eren" + Math.abs(env.getEren().getX()));
+					//										System.out.println(" y d'eren" + Math.abs(env.getEren().getY()));
 
+
+
+					System.out.println(env.getEren().getDirection());
+					env.getEren().collisions();
 					env.getEren().gravite();
 					env.getEren().move();
+
+					if (!env.getEren().collisionDuBas(env.getEren().getX(), env.getEren().getY())) {
+
+
+					}
+
+
+
+
 				}
 						));
 		gameLoop.getKeyFrames().add(kf);

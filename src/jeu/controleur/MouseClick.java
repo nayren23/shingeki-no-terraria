@@ -43,7 +43,7 @@ public class MouseClick implements EventHandler<MouseEvent> {
 		int x = (int)arg0.getX()/tailleTuile;
 		int y = (int)arg0.getY()/tailleTuile;
 		int positionTuileDansTableau = (y * tailleMapLongueur  ) + x;
-		//System.out.println("\nAffichage X " + x+ " Affichage Y "+ y);
+		System.out.println("\nAffichage X " + x+ " Affichage Y "+ y);
 
 		
 		Objet objet = this.env.getEren().getObjetHeros();
