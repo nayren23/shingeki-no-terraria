@@ -63,8 +63,8 @@ public  class PnjMechantTitan extends Personnage {
 
 		//int dee=(int)(Math.random()* 2 +1);
 		//		System.out.println("\n affichage du dee" +dee);
-		System.out.println("\n affichage X titan" + getX());
-		System.out.println("\n affichage y titan" + getY());
+//		System.out.println("\n affichage X titan" + getX());
+//		System.out.println("\n affichage y titan" + getY());
 
 		//		int dee=(int)(Math.random()* 3 +1); // vitesse aléatoire entre 1,2,3
 
@@ -83,11 +83,11 @@ public  class PnjMechantTitan extends Personnage {
 		else
 			setX(getX()-2);
 
-		System.out.println("\n Affichage direction" + getDirection());
+//		System.out.println("\n Affichage direction" + getDirection());
 
 	}
 
-	public void attaquePnj () {
+	public void attaquePnjDansZone () {
 
 		if (erenDansZone() ==  true) {
 			attaquer();
@@ -135,7 +135,7 @@ public  class PnjMechantTitan extends Personnage {
 	public boolean verificationMort () {
 		boolean mort = false;
 		if(PvProperty().getValue() >0) {
-			attaquePnj();
+			attaquePnjDansZone();
 		}
 		else {
 			//	System.out.println("\n Est mort");

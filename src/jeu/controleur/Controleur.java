@@ -85,10 +85,12 @@ public class Controleur implements Initializable{
 		env = new Environnement();
 
 		for(int i =0 ;i< Parametre.nbTitansGenerer ;i++) {
-			PnjMechantTitanVue  pnjTitanVue = new PnjMechantTitanVue(env.getListeTitans().get(i),env.getEren());
+			PnjMechantTitanVue  pnjTitanVue = new PnjMechantTitanVue(env.getListeTitans().get(i),env.getEren(),PanePrincipale, env);
 			this.PanePrincipale.getChildren().add(pnjTitanVue);
 			pnjTitanVue.affichageTitan(env.getListeTitans().get(i));
+			
 		}
+
 
 		TerrainVue terrainVue = new TerrainVue(tuilesFond, env.getTerrain());	//cree le terrain vue
 		terrainVue.dessinerTerrain();
@@ -168,15 +170,18 @@ public class Controleur implements Initializable{
 
 
 					}
-					for(int i =0 ; i<env.getListeTitans().size() ; i++) {
-						env.getListeTitans().get(i).verificationMort();
+					for(int i =0 ; i<env.getListeTitans().size() ; i++) {						
 						env.getListeTitans().get(i).collisions();
 						env.getListeTitans().get(i).gravite();
 						env.getListeTitans().get(i).move();
-//						if (env.getListeTitans().get(i).getX() == env.getListeTitans().get(i++).getX()) {
-//							env.getListeTitans().get(i).setX(env.getListeTitans().get(i).getX() + 30);
-//						}
+						env.getListeTitans().get(i).verificationMort();
+
+						//						if (env.getListeTitans().get(i).getX() == env.getListeTitans().get(i++).getX()) {
+						//							env.getListeTitans().get(i).setX(env.getListeTitans().get(i).getX() + 30);
+						//						}
 					}
+//					System.out.println(" \n J'affiches la liste" + env.getListeTitans());
+
 
 
 				}

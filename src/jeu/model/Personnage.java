@@ -68,7 +68,7 @@ public abstract class Personnage {
 
 	public void sauter() {
 		if(space == true) {
-			System.out.println("je saute");
+//			System.out.println("je saute");
 			this.yProp.set(yProp.get() + getDirY());
 		}
 		else {

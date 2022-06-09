@@ -2,6 +2,8 @@ package jeu.model;
 
 import java.util.ArrayList;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import jeu.Parametre;
 import jeu.model.inventaire.Objet;
 import jeu.model.inventaire.ressource.Charbon;
@@ -24,7 +26,8 @@ public class Environnement {
 
 	private ArrayList<Personnage> personnages;
 	private ArrayList<Ressource> ressources;
-	private ArrayList<PnjMechantTitan> listeTitans;
+	private ObservableList<PnjMechantTitan> listeTitans;
+
 	private Heros eren;
 	//private PnjMechantTitan titans ;
 
@@ -35,7 +38,7 @@ public class Environnement {
 		this.personnages = new ArrayList<>();
 		this.eren = new Heros(0, 0, terrain, this);
 		this.personnages.add(eren);
-		listeTitans = new ArrayList<PnjMechantTitan>();
+		listeTitans = FXCollections.observableArrayList();
 
 		creationListeTitans();
 		this.ressources = new ArrayList<Ressource>();
@@ -106,13 +109,10 @@ public class Environnement {
 	//		return titans;
 	//	}
 
-	public ArrayList<PnjMechantTitan> getListeTitans() {
+	public ObservableList<PnjMechantTitan> getListeTitans() {
 		return listeTitans;
 	}
 
-	public void setListeTitans(ArrayList<PnjMechantTitan> listeTitans) {
-		this.listeTitans = listeTitans;
-	}
 
 	public ArrayList<Ressource> getRessources() {
 		return ressources;
