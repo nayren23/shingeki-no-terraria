@@ -21,7 +21,7 @@ public class InventaireListener {
 					invVue.mettreAJourInventaire();
 				
 				for (int i=0; i<c.getRemovedSize(); i++) {
-					System.out.println(c + "plop" );
+					System.out.println(c);
 					invVue.enleverObjet(c.getRemoved().get(i));
 				}
 			}

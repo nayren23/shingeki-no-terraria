@@ -30,7 +30,7 @@ public class Ressource extends Objet{
 	}
 	
 	public void enleverResistance(Ressource r) {
-		this.resistance=r.getResistance()-1;
+		this.resistance=r.getResistance()-2;
 	}
 
 	public int getResistance() {

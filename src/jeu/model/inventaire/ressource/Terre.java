@@ -6,7 +6,7 @@ import jeu.model.Terrain;
 public class Terre extends Ressource {
 
 	public Terre() {
-		super(3, 12, "Terre");
+		super(6, 12, "Terre");
 	}
 
 //	public void poserBloc (int numeroTuilesCasser, Terrain terrain) {  // ensuite rajouter l'objet miner dans l'inventaire 

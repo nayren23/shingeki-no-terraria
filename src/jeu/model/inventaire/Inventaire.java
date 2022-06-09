@@ -138,6 +138,17 @@ public class Inventaire {
 	public ObservableList<Objet> getInventaire() {
 		return inventaire;
 	}
+	
+//	public int getPositionObjetSupprimer(Objet o) {
+//		Objet inv;
+//		for (int i=0; i<this.inventaire.size(); i++) {
+//			if (this.inventaire.contains(o))
+//				inv=o;
+//		}
+//		int position = inv.getIdObjet().
+//		detruireObjet(inv);
+//		return position;
+//	}
 
 	@Override
 	public String toString() {
