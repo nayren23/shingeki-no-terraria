@@ -77,7 +77,7 @@ public  class PnjMechantTitan extends Personnage {
 		}
 
 		if(getDirection() == 0) {
-			setX(getX()+2);
+//			setX(getX()+2);
 		}
 
 		else
