@@ -85,6 +85,9 @@ public class Terrain {
 	public void affichertableau(Terrain terrain) {
 		for (int i = 0 ; i<terrain.longueurterrain(); i++) {
 			System.out.print(terrain.getTabTerrain()[i]);
+			if(i % 40 == 0) {
+				System.out.println();
+			}
 		}
 	}
 	

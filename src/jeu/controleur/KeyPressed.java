@@ -5,6 +5,7 @@ import javafx.scene.input.KeyEvent;
 import jeu.Parametre;
 import jeu.model.Heros;
 import jeu.model.Personnage;
+import jeu.vue.HeroVue;
 import jeu.vue.HerosVieVue;
 import jeu.vue.inventaire.InventaireVue;
 
@@ -12,12 +13,15 @@ public class KeyPressed implements EventHandler<KeyEvent>{
 
 	private Heros hero;
 	private InventaireVue inventaire;
-	private HerosVieVue heroVue;
+	private HerosVieVue heroVieVue;
+	private HeroVue heroVue;
 
-	public KeyPressed(Personnage hero2 , HerosVieVue heroVue, InventaireVue inv) {
+	public KeyPressed(Personnage hero2 , HerosVieVue heroVieVue, InventaireVue inv, HeroVue heroVue) {
 		this.hero = (Heros) hero2;
 		this.inventaire=inv;
+		this.heroVieVue = heroVieVue;
 		this.heroVue = heroVue;
+		
 	}
 
 	@Override
@@ -26,22 +30,25 @@ public class KeyPressed implements EventHandler<KeyEvent>{
 
 		switch(event.getCode()) {
 		case Q:
-			hero.seDeplace(Parametre.DIRECTION.LEFT);
+			heroVue.changerImage("jeu/image/Eren22.png");
+			hero.setDirection(-Parametre.vitessePersonnage);
 			break;
 		case LEFT:
-			hero.seDeplace(Parametre.DIRECTION.LEFT);
+			heroVue.changerImage("jeu/image/Eren22.png");
+			hero.setDirection(-Parametre.vitessePersonnage);
 			break;
 		case D:
-			hero.seDeplace(Parametre.DIRECTION.RIGHT);
+			heroVue.changerImage("jeu/image/Eren11.png");
+			hero.setDirection(Parametre.vitessePersonnage);
 			break;
 		case RIGHT:
-			hero.seDeplace(Parametre.DIRECTION.RIGHT);
+			heroVue.changerImage("jeu/image/Eren11.png");
+			hero.setDirection(Parametre.vitessePersonnage);
 			break;
 		case SPACE:
-			hero.seDeplace(Parametre.DIRECTION.SPACE);
-			if(this.hero.getY() < 330) {
-				this.hero.setSpace(false);
-			}
+			this.hero.setDirY(-Parametre.hauteurSautPersonnage);
+			this.hero.setSpace(true);
+
 			break;
 			// option pour enlever rajouter des pv 
 		case F1:

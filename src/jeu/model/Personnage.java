@@ -11,27 +11,123 @@ public abstract class Personnage {
 	private IntegerProperty PvProperty;
 	private Terrain terrain;
 	private Environnement env;
-	
-	public Personnage(int x, int y, int vitesse, int pv, Terrain terrain, Environnement env) {
+	private int direction, dirY;
+	private boolean space;
+
+
+	public Personnage(int x, int y, int pv, Environnement env) {
 		this.xProp = (new SimpleIntegerProperty(x));
 		this.yProp = new SimpleIntegerProperty(y);
-		this.vitesse = vitesse;
 		this.PvProperty = new SimpleIntegerProperty(pv) ;
-		this.terrain = terrain;
+		this.direction = 0;
+		this.dirY = 0;
 		this.env=env;
+		this.space = false;
 	}
-	
+
 	//-------------------------------------------------------------------//
 
 	//Methodes Abstract//
 	public abstract void perdrePv();
-	
+
 	public abstract void augmenterPv();
 
-	public abstract void seDeplace(Parametre.DIRECTION d);
-	
+
+	public void collisions () {
+		int x = this.xProp.get();
+		int y = this.yProp.get();
+
+		collisionDeDroite(x,y);
+		collisionDeGauche(x,y);
+		collisionDuHaut(x,y);
+		collisionDuBas(x,y);
+	}
+
+	public void move () {
+		this.xProp.set(xProp.get() + direction);
+		sauter();
+	}
+
+
+	public void sauter() {
+		if(space == true) {
+			System.out.println("je saute");
+			this.yProp.set(yProp.get() + getDirY());
+		}
+		else {
+			setDirY(0);
+		}
+	}
+	public static int coordoonneTuile (int x,int y) {
+		x = x / Parametre.tailleTuile;
+
+		if (y > 0) {
+			y = y / Parametre.tailleTuile;
+		}
+		else {
+			y = -1;
+		}
+
+		return (x+(y+1)*Parametre.longueurTerrain);
+
+
+	}
+
+
+	//permet de verifier la collision du haut avec le personnage en prenant le x du personnage et le y
+	//verification avec la collision sur le bloc du haut soit y - la difference avec le bloc du haut et met donc la direction du Y a 0 si il y a collision
+	public void collisionDuHaut (int x,int y) {
+		if (verificationDeCollisions(coordoonneTuile(x + 17, y - Parametre.diffBlocDessu )) || verificationDeCollisions(coordoonneTuile(x + 17, y - Parametre.diffBlocDessu))) {
+			this.setDirY(0);
+		}
+	}
+
+
+	//permet de verifier la collision du bas avec le personnage en prenant le x du personnage et le y
+	//Verification avec de pixel en y  avec ici y et y + 1
+	public boolean collisionDuBas (int x,int y) {
+		if (verificationDeCollisions(coordoonneTuile(x + 12 ,y)) || verificationDeCollisions(coordoonneTuile(x + 12, y))) {
+				this.yProp.set(this.yProp.get() - Parametre.forceGravite);
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+
+
+	public void collisionDeDroite (int x,int y) {
+		if (verificationDeCollisions(coordoonneTuile(x + Parametre.largeurPersonnage, y - Parametre.hauteurPersonnage)) || verificationDeCollisions(coordoonneTuile(x + Parametre.largeurPersonnage, y - 1))) {
+			this.xProp.set(x - this.direction);
+		}
+		if (verificationDeCollisions(coordoonneTuile(x + Parametre.largeurPersonnage, y - Parametre.hauteurPersonnage)) || verificationDeCollisions(coordoonneTuile(x +  Parametre.largeurPersonnage, y - 1))) {
+			this.xProp.set(this.xProp.get() - 1);
+
+		}
+	}
+
+
+	public void collisionDeGauche (int x,int y) {
+		if (verificationDeCollisions(coordoonneTuile(x + 9, y - Parametre.hauteurPersonnage)) || verificationDeCollisions(coordoonneTuile(x + 9, y))) {
+			this.xProp.set(x - this.direction);
+		}
+		if (verificationDeCollisions(coordoonneTuile(x + 9, y - Parametre.hauteurPersonnage)) || verificationDeCollisions(coordoonneTuile(x + 9, y))) {
+			this.xProp.set(this.xProp.get() + 1);
+		}
+	}
+
+
+
+	private boolean verificationDeCollisions (int x) {
+		return (x < 0 || getEnv().getTerrain().getTabTerrain()[x] > 0);
+	}
+
+
+
+
+
 	//-------------------------------------------------------------------//
-	
+
 	//Getters
 	public final IntegerProperty PvProperty() {
 		return PvProperty;
@@ -40,7 +136,7 @@ public abstract class Personnage {
 	public final int getX() {
 		return this.xProp.getValue();
 	}
-	
+
 	public final int getY() {
 		return this.yProp.getValue();
 	}
@@ -51,34 +147,60 @@ public abstract class Personnage {
 	public final IntegerProperty yProperty() {
 		return this.yProp;
 	}
-		
+
 	public int getVitesse() {
 		return vitesse;
 	}
-	
+
 	public Terrain getTerrain() {
 		return terrain;
 	}
-	
+
 	public Environnement getEnv() {
 		return env;
 	}
+
+	public int getDirection() {
+		return this.direction;
+	}
+
+	public int getDirY() {
+		return dirY;
+	}
+
+	public boolean getSpace() {
+		return space;
+	}
+
 	//-------------------------------------------------------------------//
 	//Setters
 
 	public final void setX(double d) {
 		this.xProp.setValue(d);
 	}
-	
+
 	public final void setY(int val) {
 		this.yProp.setValue(val);
 	}
-	
+
 	public void setTerrain(Terrain terrain) {
 		this.terrain = terrain;
 	}
 
 	public void setPv(IntegerProperty pv) {
 		this.PvProperty = pv;
+	}
+
+	public int setDirection(int i) {
+		return this.direction= i;
+	}
+
+
+	public void setDirY(int dirY) {
+		this.dirY = dirY;
+	}
+
+	public void setSpace(boolean space) {
+		this.space = space;
 	}
 }

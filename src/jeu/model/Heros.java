@@ -1,88 +1,37 @@
 package jeu.model;
 
 import jeu.Parametre;
+import jeu.Parametre.DIRECTION;
 import jeu.model.inventaire.Inventaire;
 import jeu.model.inventaire.Objet;
 import jeu.model.inventaire.arme.Hand;
 
 public class Heros extends Personnage{
 
-	int direction, dirY;
-	boolean space;
 	private Inventaire inventaireHeros;
 	private Objet objetHeros;
 	private Hand mainHeros;
+	private Collisions collisions;
+
 	//changer le type terrain en type environnement
 	public Heros(int x, int y, Terrain terrain, Environnement env) {
-		super(x, y, 5, 9, terrain, env);
+		super(x, y, 9, env);
 		this.mainHeros = new Hand();
 		this.objetHeros= mainHeros;
 		this.inventaireHeros = new Inventaire(super.getEnv());
-	}
-
-	//------------------------------------------------------------//
-
-	@Override
-	public void seDeplace(Parametre.DIRECTION d) {
-		switch(d) {
-		case LEFT:
-			setDirection(-5);
-			break;
-
-		case RIGHT:
-			setDirection(5);
-			break;
-
-		case SPACE:
-			dirY = -5;
-			System.out.println(this.space);
-
-			break;
-
-		default:
-			System.out.println("Entrée incorrecte");
-			break;
-		}
-	}
-
-	//------------------------------------------------------------//
-	public void move () {
-		if(yProp.get() > 320) {
-			System.out.println(yProp);
-			System.out.println(getX()/30);
-			System.out.println(getY()/28);
-			this.xProp.set(xProp.get() + direction);
-			if(space == true) {
-				this.yProp.set(yProp.get() + dirY);
-
-			}
-			else {
-				dirY = 0;
-			}
-
-		}
+		this.collisions = new Collisions(super.getEnv().getTerrain());
 
 	}
 
+
 	//------------------------------------------------------------//
+	
 
 	public void gravite() {
-		if(getY() <= 360)  {
+		setY(getY()  + Parametre.forceGravite);
 
-			if(getDirection() == -3) {
-				setX(getX() - 2);
-				setY(getY() + 2);
-			}
-			else if (getDirection() == 3){
-				setY(getY() + 2);
-				setX(getX() + 2);
-			}
-			else {
-				setY(getY() + 2);
-
-			}
-		}
 	}
+
 
 	//------------------------------------------------------------//
 
@@ -160,41 +109,24 @@ public class Heros extends Personnage{
 	//			
 	//}
 
-
-
 	//------------------------------------------------------------//
 
 	//Getters et Setter
 
-	public int getDirection() {
-		return this.direction;
-	}
+	
 
 	public Inventaire getInventaireHeros() {
 		return inventaireHeros;
 	}
+	
 
-	public int setDirection(int i) {
-		return this.direction = i;
-	}
-
-	public int getDirY() {
-		return dirY;
-	}
-
-	public void setDirY(int dirY) {
-		this.dirY = dirY;
-	}
-
-	public void setSpace(boolean space) {
-		this.space = space;
-	}
+	
 	public void setObjetHeros(Objet objetHeros) {
 		this.objetHeros = objetHeros;
 	}
-	public boolean isSpace() {
-		return space;
-	}
+	
+
+	
 
 }
 
