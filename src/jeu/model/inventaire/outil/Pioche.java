@@ -15,8 +15,7 @@ public class Pioche extends Outil{
 	public int enleverResistanceBloc(int numeroTuilesCasser) {
 		int indiceBloc = -1;
 
-		if ((getEnv().getObjet(numeroTuilesCasser).getIdObjet() ==3 || getEnv().getObjet(numeroTuilesCasser).getIdObjet() !=4 || getEnv().getObjet(numeroTuilesCasser).getIdObjet() ==5) 
-				/*&& getEnv().getObjet(numeroTuilesCasser).getResistance()<=0*/){
+		if ((getEnv().getObjet(numeroTuilesCasser).getIdObjet() ==3 || getEnv().getObjet(numeroTuilesCasser).getIdObjet() !=4 || getEnv().getObjet(numeroTuilesCasser).getIdObjet() ==5 )&& getEnv().getObjet(numeroTuilesCasser).getResistance()<=0){
 
 			if(getEnv().getTerrain().getTabTerrain()[numeroTuilesCasser]==3 ) {
 				indiceBloc = 3;

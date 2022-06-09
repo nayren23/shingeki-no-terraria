@@ -63,10 +63,13 @@ public class MouseClick implements EventHandler<MouseEvent> {
 		}
 
 		else if(objet instanceof Terre && arg0.getButton() == MouseButton.SECONDARY) {
+			
 			((Terre) objet).poserBloc(positionTuileDansTableau, env.getTerrain(),Parametre.blocTerre);
+			terrainVue.changementTuileMinage(positionTuileDansTableau,env.getTerrain(),Parametre.blocTerre);// changer et faire une fonction qui actualise juste l'image chang�			}
+
+			// Inventaire
 			Terre terre = new Terre();
 			env.getRessources().set(positionTuileDansTableau, terre);
-			terrainVue.changementTuileMinage(positionTuileDansTableau,env.getTerrain(),Parametre.blocTerre);// changer et faire une fonction qui actualise juste l'image chang�			}
 			System.out.println(" \nAffichage liste changer " +env.getRessources().get(0));
 
 		}

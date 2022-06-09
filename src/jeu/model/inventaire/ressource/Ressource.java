@@ -22,6 +22,7 @@ public class Ressource extends Objet{
 	}
 	
 	public void poserBloc (int numeroTuilesCasser, Terrain terrain , int blocAPoser) {  // ensuite rajouter l'objet miner dans l'inventaire 
+		
 		//rajouter condition pour pas build au meme endroit
 		if(terrain.getTabTerrain()[numeroTuilesCasser] ==0)     {
 			terrain.getTabTerrain()[numeroTuilesCasser]=blocAPoser; // 0 = le ciel

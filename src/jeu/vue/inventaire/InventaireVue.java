@@ -44,7 +44,7 @@ public class InventaireVue extends Pane{
 		this.tableauImage[8]= new Image("jeu/image/BlocGaz.png");	
 		this.tableauImage[9]= new Image("jeu/image/inventaire/liquideTitanInventaire.png");
 		this.tableauImage[10]= new Image("jeu/image/inventaire/painInventaire.png");
-		//this.tableauImage[11]= new Image("jeu/image/inventaire/piqureTitanInventaire.png");
+		this.tableauImage[11]= new Image("jeu/image/inventaire/piqureTitanInventaire.png");
 		this.tableauImage[12]= new Image("jeu/image/4.png");
 	}
 
@@ -77,55 +77,67 @@ public class InventaireVue extends Pane{
 
 		case 0:
 			image = new ImageView(this.tableauImage[0]);
-			image.setId("epee");
+			image.setId("objet" + iteration);
 			break;
 
 		case 1:
 			image = new ImageView(this.tableauImage[1]);
+			image.setId("objet" + iteration);
 			break;
 
 		case 2:
 			image = new ImageView(this.tableauImage[2]);
+			image.setId("objet" + iteration);
 			break;
 
 		case 3:
 			image = new ImageView(this.tableauImage[3]);
+			image.setId("objet" + iteration);
 			break;
 
 		case 4:
 			image = new ImageView(this.tableauImage[4]);
+			image.setId("objet" + iteration);
 			break;
 
 		case 5:
 			image = new ImageView(this.tableauImage[5]);
+			image.setId("objet" + iteration);
 			break;
 
 		case 6:
 			image = new ImageView(this.tableauImage[6]);
+			image.setId("objet" + iteration);
 			break;
 
 		case 7:
 			image = new ImageView(this.tableauImage[7]);
+			image.setId("objet" + iteration);
 			break;
 
 		case 8:
 			image = new ImageView(this.tableauImage[8]);
+			image.setId("objet" + iteration);
 			break;
 
 		case 9:
 			image = new ImageView(this.tableauImage[9]);
+			image.setId("objet" + iteration);
 			break;
 
 		case 10:
 			image = new ImageView(this.tableauImage[10]);
+			image.setId("objet" + iteration);
 			break;
 
 		case 11:
 			image = new ImageView(this.tableauImage[11]);
+			image.setId("objet" + iteration);
 			break;
 
 		case 12:
 			image = new ImageView(this.tableauImage[12]);
+			image.setId("objet" + iteration);
 			break;
 
 		default:
@@ -140,10 +152,8 @@ public class InventaireVue extends Pane{
 	}
 	
 	public void enleverObjet (Objet o) {
-		ImageView image;
-		int id = o.getIdObjet();
-		image = new ImageView(this.tableauImage[id]);
-		this.afficherObjet.getChildren().remove(image);
+		int position = this.env.getEren().getInventaireHeros().getInventaire().indexOf(o);
+		this.afficherObjet.getChildren().remove(position+1);
 	}
 
 }
