@@ -6,14 +6,12 @@ import jeu.model.inventaire.Objet;
 
 public class Ressource extends Objet{
 
-	private int nbMax;
 	private int nbRessource;
 	private String nomRessource;
 	private int resistance;//vie de la ressource
 
 	public Ressource (int res, int id, String nom) {
 		super(id);
-		this.nbMax=200;
 		this.nbRessource=1;
 		this.resistance=res;
 		this.nomRessource=nom;
@@ -24,6 +22,7 @@ public class Ressource extends Objet{
 	}
 	
 	public void poserBloc (int numeroTuilesCasser, Terrain terrain , int blocAPoser) {  // ensuite rajouter l'objet miner dans l'inventaire 
+		
 		//rajouter condition pour pas build au meme endroit
 		if(terrain.getTabTerrain()[numeroTuilesCasser] ==0)     {
 			terrain.getTabTerrain()[numeroTuilesCasser]=blocAPoser; // 0 = le ciel
@@ -31,15 +30,11 @@ public class Ressource extends Objet{
 	}
 	
 	public void enleverResistance(Ressource r) {
-		this.resistance=r.getResistance()-1;
+		this.resistance=r.getResistance()-2;
 	}
 
 	public int getResistance() {
 		return resistance;
-	}
-
-	public int getNbMax() {
-		return nbMax;
 	}
 
 	public int getNbRessource() {
@@ -55,6 +50,4 @@ public class Ressource extends Objet{
 		return "Nom de la ressource = " + this.nomRessource + " nbRessource=" + nbRessource;
 	}
 	
-	
-
 }

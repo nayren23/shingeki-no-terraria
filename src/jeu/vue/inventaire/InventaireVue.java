@@ -10,6 +10,7 @@ import jeu.controleur.listener.InventaireListener;
 import jeu.model.Environnement;
 import jeu.model.Heros;
 import jeu.model.inventaire.Inventaire;
+import jeu.model.inventaire.Objet;
 
 public class InventaireVue extends Pane{
 	
@@ -21,7 +22,9 @@ public class InventaireVue extends Pane{
 	public InventaireVue(Environnement env, TilePane inv, TilePane obj) {
 		this.env = env;
 		this.afficherInventaire=inv;
+		this.getChildren().add(this.afficherInventaire);
 		this.afficherObjet=obj;
+		this.getChildren().add(this.afficherObjet);
 		this.tableauImage = new Image [13];
 		new InventaireListener(this, env.getEren().getInventaireHeros());
 		initialiserInventaire();
@@ -36,13 +39,13 @@ public class InventaireVue extends Pane{
 		this.tableauImage[3]= new Image("jeu/image/inventaire/pelleInventaire.png");
 		this.tableauImage[4]= new Image("jeu/image/inventaire/piocheInventaire.png");
 		this.tableauImage[5]= new Image("jeu/image/inventaire/boisInventaire.png");
-		this.tableauImage[6]= new Image("jeu/image/BlocCharbon.png");
-		this.tableauImage[7]= new Image("jeu/image/BlocFer.png");
-		this.tableauImage[8]= new Image("jeu/image/BlocGaz.png");	
+		this.tableauImage[6]= new Image("jeu/image/inventaire/charbonInventaire.png");
+		this.tableauImage[7]= new Image("jeu/image/inventaire/ferInventaire.png");
+		this.tableauImage[8]= new Image("jeu/image/inventaire/gazInventaire.png");	
 		this.tableauImage[9]= new Image("jeu/image/inventaire/liquideTitanInventaire.png");
 		this.tableauImage[10]= new Image("jeu/image/inventaire/painInventaire.png");
-		//this.tableauImage[11]= new Image("jeu/image/inventaire/piqureTitanInventaire.png");
-		this.tableauImage[12]= new Image("jeu/image/4.png");
+		this.tableauImage[11]= new Image("jeu/image/inventaire/piqureTitanInventaire.png");
+		this.tableauImage[12]= new Image("jeu/image/inventaire/terreInventaire.png");
 	}
 
 	public void initialiserInventaire () {
@@ -74,54 +77,67 @@ public class InventaireVue extends Pane{
 
 		case 0:
 			image = new ImageView(this.tableauImage[0]);
+			image.setId("objet" + iteration);
 			break;
 
 		case 1:
 			image = new ImageView(this.tableauImage[1]);
+			image.setId("objet" + iteration);
 			break;
 
 		case 2:
 			image = new ImageView(this.tableauImage[2]);
+			image.setId("objet" + iteration);
 			break;
 
 		case 3:
 			image = new ImageView(this.tableauImage[3]);
+			image.setId("objet" + iteration);
 			break;
 
 		case 4:
 			image = new ImageView(this.tableauImage[4]);
+			image.setId("objet" + iteration);
 			break;
 
 		case 5:
 			image = new ImageView(this.tableauImage[5]);
+			image.setId("objet" + iteration);
 			break;
 
 		case 6:
 			image = new ImageView(this.tableauImage[6]);
+			image.setId("objet" + iteration);
 			break;
 
 		case 7:
 			image = new ImageView(this.tableauImage[7]);
+			image.setId("objet" + iteration);
 			break;
 
 		case 8:
 			image = new ImageView(this.tableauImage[8]);
+			image.setId("objet" + iteration);
 			break;
 
 		case 9:
 			image = new ImageView(this.tableauImage[9]);
+			image.setId("objet" + iteration);
 			break;
 
 		case 10:
 			image = new ImageView(this.tableauImage[10]);
+			image.setId("objet" + iteration);
 			break;
 
 		case 11:
 			image = new ImageView(this.tableauImage[11]);
+			image.setId("objet" + iteration);
 			break;
 
 		case 12:
 			image = new ImageView(this.tableauImage[12]);
+			image.setId("objet" + iteration);
 			break;
 
 		default:
@@ -132,7 +148,12 @@ public class InventaireVue extends Pane{
 		}
 		this.afficherObjet.getChildren().add(image);
 		image.addEventHandler(MouseEvent.MOUSE_CLICKED, new MouseClickInventaire(env.getEren().getInventaireHeros().getInventaire().get(iteration),env.getEren()));
-		this.afficherObjet.setVisible(false);
+		//this.afficherObjet.setVisible(false);
+	}
+	
+	public void enleverObjet (Objet o) {
+		int position = this.env.getEren().getInventaireHeros().getInventaire().indexOf(o);
+		this.afficherObjet.getChildren().remove(position+1);
 	}
 
 }

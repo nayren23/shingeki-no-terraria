@@ -6,7 +6,7 @@ import jeu.model.Terrain;
 public class Fer extends Ressource{
 
 	public Fer() {
-		super(5, 7, "Fer");
+		super(6, 7, "Fer");
 
 	
 		
