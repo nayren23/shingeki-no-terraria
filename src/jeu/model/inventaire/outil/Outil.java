@@ -15,7 +15,7 @@ public abstract class Outil extends Objet{
 
 	public Outil(int id, String nom, Environnement env) {
 		super(id);
-		this.durabilite = 10;
+		this.durabilite = 1000;
 		this.degats = 2;
 		this.nom=nom;
 		this.env = env;
