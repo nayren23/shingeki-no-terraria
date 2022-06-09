@@ -20,16 +20,16 @@ public class Heros extends Personnage{
 		this.mainHeros = new Hand();
 		this.objetHeros= mainHeros;
 		this.inventaireHeros = new Inventaire(super.getEnv());
-
-	}
 		this.collisions = new Collisions(super.getEnv().getTerrain());
 
-
-	//------------------------------------------------------------//
-
-
-	//------------------------------------------------------------//
 	}
+
+
+	//------------------------------------------------------------//
+
+
+	//------------------------------------------------------------//
+	
 
 
 	//------------------------------------------------------------//
