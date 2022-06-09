@@ -119,8 +119,6 @@ public class Environnement {
 	}
 
 	public Ressource getObjet (int numeroTuile) {
-		Ressource r = getRessources().get(numeroTuile);
-		System.out.println("\n c'est moi wsh" + r);
 		return getRessources().get(numeroTuile);
 	}
 

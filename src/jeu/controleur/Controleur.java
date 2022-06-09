@@ -22,9 +22,11 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.util.Duration;
+import jeu.model.Collisions;
 import jeu.Parametre;
 import jeu.model.Environnement;
 import jeu.model.Heros;
+import jeu.model.Terrain;
 import jeu.model.PnjMechantTitan;
 import jeu.model.inventaire.Inventaire;
 import jeu.model.inventaire.Objet;
@@ -44,6 +46,8 @@ public class Controleur implements Initializable{
 
 	private Timeline gameLoop;
 	private Environnement env;
+	private HeroVue hero1;
+
 
 	@FXML
 	private TilePane tuilesFond;
@@ -98,7 +102,7 @@ public class Controleur implements Initializable{
 		//------------------------------------------------------------//
 
 		//Creation de la Vue du hero eren puis ajout de celui ci dans le pane
-		HeroVue hero1 = new HeroVue(env.getEren());
+		hero1 = new HeroVue(env.getEren());
 		this.PanePrincipale.getChildren().add(hero1);
 		hero1.affichageEren(env.getEren());
 

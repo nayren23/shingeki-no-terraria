@@ -5,6 +5,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
 import jeu.Parametre;
 import jeu.model.Terrain;
+import jeu.model.Tile;
 
 public class TerrainVue {
 
@@ -12,6 +13,7 @@ public class TerrainVue {
 	private TilePane tuilesFond;
 	private Terrain terrain;
 	private Image imageTerrain[];
+	
 
 	/**
 	 * Cette methodes crer une seul fois les images necessaire a l affichage du Terrain 

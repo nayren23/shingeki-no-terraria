@@ -12,6 +12,8 @@ public class Heros extends Personnage{
 	private Objet objetHeros;
 	private Hand mainHeros;
 
+	private Collisions collisions;
+
 	//changer le type terrain en type environnement
 	public Heros(int x, int y, Terrain terrain, Environnement env) {
 		super(x, y, 9, env);
@@ -20,13 +22,18 @@ public class Heros extends Personnage{
 		this.inventaireHeros = new Inventaire(super.getEnv());
 
 	}
+		this.collisions = new Collisions(super.getEnv().getTerrain());
 
 
 	//------------------------------------------------------------//
 
 
 	//------------------------------------------------------------//
+	}
 
+
+	//------------------------------------------------------------//
+	
 
 	public void gravite() {
 		setY(getY()  + Parametre.forceGravite);
@@ -105,6 +112,7 @@ public class Heros extends Personnage{
 	public Inventaire getInventaireHeros() {
 		return inventaireHeros;
 	}
+	
 
 
 
