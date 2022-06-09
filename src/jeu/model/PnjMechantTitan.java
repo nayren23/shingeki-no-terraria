@@ -7,7 +7,6 @@ import jeu.model.inventaire.arme.Epee;
 
 public  class PnjMechantTitan extends Personnage {
 
-	int direction, dirY;
 	private String nom ;
 	//private HitBox hitboxTitans;
 
@@ -62,19 +61,18 @@ public  class PnjMechantTitan extends Personnage {
 
 
 
-		int coordonneeMinTerrain =320;
-		int coordonneeMaxTerrain =1052;
-
 		//int dee=(int)(Math.random()* 2 +1);
 //		System.out.println("\n affichage du dee" +dee);
 		System.out.println("\n affichage X titan" + getX());
 		System.out.println("\n affichage y titan" + getY());
 
-		if( (getX() -2)<=coordonneeMinTerrain  ) {
+//		int dee=(int)(Math.random()* 3 +1); // vitesse aléatoire entre 1,2,3
+
+		if( (getX() -2)<=Parametre.coordonneeMinTerrainTitanGauche  ) { // on le fait allez jusqu a gauche puis
 			setDirection(0);  //droite
 		}
 
-		else if((getX() +2)>=coordonneeMaxTerrain) {
+		else if((getX() +2)>=Parametre.coordonneeMaxTerrainTitanDroite) {
 			setDirection(2); //gauche
 		}
 		
@@ -121,7 +119,7 @@ public  class PnjMechantTitan extends Personnage {
 				) {
 			erenPresent = true;		
 
-
+		}
 
 			if (getX()!= coordonneErenX  ) {
 
@@ -131,7 +129,7 @@ public  class PnjMechantTitan extends Personnage {
 				else   
 					setX(getX()+Parametre.vitesseTitan);
 			}
-		}
+		
 		return erenPresent;
 
 	}
@@ -172,25 +170,11 @@ public  class PnjMechantTitan extends Personnage {
 
 
 
-	public int setDirection(int i) {
-		return this.direction = i;
-	}
-
-	public int getDirY() {
-		return dirY;
-	}
-
-	public void setDirY(int dirY) {
-		this.dirY = dirY;
-	}
-
-	public int getDirection() {
-		return direction;
-	}
+	
 
 	@Override
 	public String toString() {
-		return "PnjMechantTitan [direction=" + direction + ", dirY=" + dirY + ", nom=" + nom + "]";
+		return "PnjMechantTitan [direction=" + getDirection() + ", dirY=" + getDirY() + ", nom=" + nom + "]";
 	}
 
 }

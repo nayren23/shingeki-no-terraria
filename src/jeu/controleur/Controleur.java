@@ -66,7 +66,7 @@ public class Controleur implements Initializable{
 		//------------------------------------------------------------//
 
 		//on creer l image
-		Image img = new Image("jeu/image/arriereplanSNK.jpg");
+		Image img = new Image("jeu/image/titanSNK.jpg"); //arriereplanSNK.jpg
 
 		//on creer un backgroundImage qui contient notre image
 		BackgroundImage backImage = new BackgroundImage(img,BackgroundRepeat.NO_REPEAT,

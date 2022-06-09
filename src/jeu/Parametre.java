@@ -49,11 +49,16 @@ public class Parametre {
         public static int porteeCoupDuTitan = 50;
 
         
-        public 	static	int vitesseTitan =1;
+        public 	static	int vitesseTitan =2;
         
         public static int nbTitansGenerer = 5;
         ///////////////////////////////////////////
 
+        public static int coordonneeMinTerrainTitanGauche =320;
+        
+        public static int coordonneeMaxTerrainTitanDroite =1052;
+
+        public static int coordonneeTerrainTitanY =450;
 
         //---------------------------------------------------------------------------------------//
 
