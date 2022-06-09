@@ -26,36 +26,12 @@ public  class PnjMechantTitan extends Personnage {
 		this.PvProperty().setValue(pv); 		
 	}
 
-	//	public void sauter() {
-	//		this.yProp.set(yProp.get() + dirY);
-	//	}
 
 	public void gravite() {
 		setY(getY()  + Parametre.forceGravite);
 
 	}
 
-	/**
-	 * 
-	 * @param coordooneeX
-	 * @param coordonneeY
-	 * @param coordonneeErenX
-	 * @param coordonneeErenY
-	 * @param porteeCoup
-	 * @return
-	 */
-	public boolean hitbox(int coordooneeX ,int coordonneeY , int coordonneeErenX , int coordonneeErenY, int porteeCoup) {
-		boolean estComprisDansIntervalle = false;
-
-		if( (coordooneeX -porteeCoup) <=coordonneeErenX && (coordooneeX +porteeCoup) >=coordonneeErenX 
-				&&  (coordonneeY -porteeCoup) <=coordonneeErenY && (coordonneeY +porteeCoup) >=coordonneeErenY) {
-			estComprisDansIntervalle = true;
-		}
-		else {
-			estComprisDansIntervalle = false;
-		}
-		return estComprisDansIntervalle;
-	}
 
 	public void seDeplace() {
 

@@ -64,12 +64,12 @@ public class Parametre {
 
 	//---------------------------------------------------------------------------------------//
 
-	public static boolean rangePourCasserBloc (int coordonneeJoueurX, int coordonneeJoueurY , int positionBlocX, int positionBlocY ,int rangeShouaiter ) {
+	public static boolean rangePourCasserBloc (int coordonneeJoueurX, int coordonneeJoueurY , int positionBlocX, int positionBlocY ,int rangeGauche , int rangeDroite , int rangeHaut ,int rangeBas ) {
 
 		boolean peutCreuser = false;
 
-		if( (coordonneeJoueurX -rangeShouaiter <= positionBlocX  &&  coordonneeJoueurX + rangeShouaiter >=positionBlocX )
-				&&  (coordonneeJoueurY -rangeShouaiter <= positionBlocY &&  coordonneeJoueurY + rangeShouaiter >=positionBlocY) ) {
+		if( (coordonneeJoueurX -rangeGauche <= positionBlocX  &&  coordonneeJoueurX + rangeDroite >=positionBlocX )
+				&&  (coordonneeJoueurY -rangeHaut <= positionBlocY &&  coordonneeJoueurY + rangeBas >=positionBlocY) ) {
 			peutCreuser = true;
 			System.out.println("\n tu peux  creuser frerot !!!");
 

@@ -5,6 +5,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import jeu.Parametre;
 import jeu.controleur.MouseClickInventaire;
 import jeu.controleur.MouseClickPnj;
 import jeu.controleur.listener.InventaireListener;
@@ -71,7 +72,7 @@ public class PnjMechantTitanVue extends ImageView {
 		this.setOnMouseClicked(e -> {
 			Objet objet = this.hero.getObjetHeros();
 
-			if(objet instanceof Epee) {
+			if(objet instanceof Epee && Parametre.rangePourCasserBloc(0, 0, 0, 0, 0, 0, 0, 0)) {
 				Arme arme = (Arme) objet;
 
 				this.pnj.perdrePv(arme);
