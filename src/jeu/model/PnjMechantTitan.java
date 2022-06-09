@@ -60,14 +60,6 @@ public  class PnjMechantTitan extends Personnage {
 	public void seDeplace() {
 
 
-
-		//int dee=(int)(Math.random()* 2 +1);
-		//		System.out.println("\n affichage du dee" +dee);
-//		System.out.println("\n affichage X titan" + getX());
-//		System.out.println("\n affichage y titan" + getY());
-
-		//		int dee=(int)(Math.random()* 3 +1); // vitesse aléatoire entre 1,2,3
-
 		if( (getX() -2)<=Parametre.coordonneeMinTerrainTitanGauche  ) { // on le fait allez jusqu a gauche puis
 			setDirection(0);  //droite
 		}
@@ -77,13 +69,13 @@ public  class PnjMechantTitan extends Personnage {
 		}
 
 		if(getDirection() == 0) {
-//			setX(getX()+2);
+			//			setX(getX()+2);
 		}
 
 		else
 			setX(getX()-2);
 
-//		System.out.println("\n Affichage direction" + getDirection());
+		//		System.out.println("\n Affichage direction" + getDirection());
 
 	}
 
@@ -96,6 +88,10 @@ public  class PnjMechantTitan extends Personnage {
 			seDeplace();
 	}
 
+	/**
+	 * si eren dans la zone du titan il l'attauqe sinon 
+	 * @return si eren est dans la zone du titan
+	 */
 	public boolean erenDansZone () {
 
 		boolean erenPresent = false;
@@ -108,27 +104,20 @@ public  class PnjMechantTitan extends Personnage {
 				) {
 			erenPresent = true;		
 			System.out.println("\n on a trouvé");
-		
 
-		if (getX()!= coordonneErenX  ) {
+			if (getX()!= coordonneErenX  ) {
 
-			if(getX()> coordonneErenX) 
-				setX(getX()-Parametre.vitesseTitan);
-
-			else   
-				setX(getX()+Parametre.vitesseTitan);
-		System.out.println("\n je cherche");
-
+				if(getX()> coordonneErenX) 
+					setDirection(1);
+				else   
+					setDirection(0);
+			}
 		}
-		}
+		else 
+			erenPresent = false;		
 		return erenPresent;
 
 	}
-
-
-
-
-
 
 
 
