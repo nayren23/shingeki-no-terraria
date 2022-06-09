@@ -62,11 +62,11 @@ public  class PnjMechantTitan extends Personnage {
 
 
 		//int dee=(int)(Math.random()* 2 +1);
-//		System.out.println("\n affichage du dee" +dee);
+		//		System.out.println("\n affichage du dee" +dee);
 		System.out.println("\n affichage X titan" + getX());
 		System.out.println("\n affichage y titan" + getY());
 
-//		int dee=(int)(Math.random()* 3 +1); // vitesse aléatoire entre 1,2,3
+		//		int dee=(int)(Math.random()* 3 +1); // vitesse aléatoire entre 1,2,3
 
 		if( (getX() -2)<=Parametre.coordonneeMinTerrainTitanGauche  ) { // on le fait allez jusqu a gauche puis
 			setDirection(0);  //droite
@@ -75,29 +75,17 @@ public  class PnjMechantTitan extends Personnage {
 		else if((getX() +2)>=Parametre.coordonneeMaxTerrainTitanDroite) {
 			setDirection(2); //gauche
 		}
-		
+
 		if(getDirection() == 0) {
 			setX(getX()+2);
 		}
-		
+
 		else
 			setX(getX()-2);
-		
+
 		System.out.println("\n Affichage direction" + getDirection());
 
 	}
-	//		if(coordonneeMinTerrain  <getX()  && getX()< coordonneeMaxTerrain ) {
-	//			if(getX() < coordonneeMaxTerrain) {
-	//				setX(getX() -2);  // on le fait allez jusqu a gauche puis 
-	////				if(getX() <= coordonneeMinTerrain) {
-	////					setX(getX() +2);  // on le fait allez jusqu a gauche puis 
-	////				}
-	//			}
-	//		}
-	//		else 
-	//			setX(1050); //on le remet tout a droite
-	//
-	//	}
 
 	public void attaquePnj () {
 
@@ -114,22 +102,25 @@ public  class PnjMechantTitan extends Personnage {
 		int coordonneErenX =getEnv().getEren().getX();
 		int coordonneErenY =getEnv().getEren().getY();
 
-		if( (getX() -Parametre.porteeCoupDuTitan) <=coordonneErenX && (getX() +Parametre.porteeCoupDuTitan) >=coordonneErenX 
-				&&  (getY() -Parametre.porteeCoupDuTitan) <=coordonneErenY && (getY() +Parametre.porteeCoupDuTitan) >=coordonneErenY
+		// si coordonne titans a 50 de pres <= coordonneErenX
+		if( (getX() -Parametre.porteeCoupDuTitanX) <=coordonneErenX && (getX() +Parametre.porteeCoupDuTitanX) >=coordonneErenX 
+				&&  (getY() -Parametre.porteeCoupDuTitanY) <=coordonneErenY && (getY() +Parametre.porteeCoupDuTitanY) >=coordonneErenY
 				) {
 			erenPresent = true;		
+			System.out.println("\n on a trouvé");
+		
+
+		if (getX()!= coordonneErenX  ) {
+
+			if(getX()> coordonneErenX) 
+				setX(getX()-Parametre.vitesseTitan);
+
+			else   
+				setX(getX()+Parametre.vitesseTitan);
+		System.out.println("\n je cherche");
 
 		}
-
-			if (getX()!= coordonneErenX  ) {
-
-				if(getX()> coordonneErenX) 
-					setX(getX()-Parametre.vitesseTitan);
-
-				else   
-					setX(getX()+Parametre.vitesseTitan);
-			}
-		
+		}
 		return erenPresent;
 
 	}
@@ -170,7 +161,7 @@ public  class PnjMechantTitan extends Personnage {
 
 
 
-	
+
 
 	@Override
 	public String toString() {
