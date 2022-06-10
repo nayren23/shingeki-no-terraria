@@ -27,11 +27,6 @@ public abstract class Personnage {
 
 	//-------------------------------------------------------------------//
 
-	//Methodes Abstract//
-	public abstract void perdrePv();
-
-	public abstract void augmenterPv();
-
 
 	public void collisions () {
 		int x = this.xProp.get();

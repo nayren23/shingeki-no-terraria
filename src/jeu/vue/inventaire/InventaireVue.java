@@ -1,5 +1,7 @@
 package jeu.vue.inventaire;
 
+import java.util.HashMap;
+
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -18,6 +20,8 @@ public class InventaireVue extends Pane{
 	private TilePane afficherInventaire;
 	private TilePane afficherObjet;
 	private Image tableauImage[];
+	private HashMap<ImageView, Integer> positionImageVue;
+	private int iteration=0;
 
 	public InventaireVue(Environnement env, TilePane inv, TilePane obj) {
 		this.env = env;
@@ -147,13 +151,17 @@ public class InventaireVue extends Pane{
 			
 		}
 		this.afficherObjet.getChildren().add(image);
+		this.iteration++;
+		this.positionImageVue.put(image, this.iteration);
 		image.addEventHandler(MouseEvent.MOUSE_CLICKED, new MouseClickInventaire(env.getEren().getInventaireHeros().getInventaire().get(iteration),env.getEren()));
 		//this.afficherObjet.setVisible(false);
 	}
 	
 	public void enleverObjet (Objet o) {
-		int position = this.env.getEren().getInventaireHeros().getInventaire().indexOf(o);
-		this.afficherObjet.getChildren().remove(position+1);
+		int position = this.positionImageVue.get(this.iteration);
+		this.afficherObjet.getChildren().remove(position);
+//		int position = this.env.getEren().getInventaireHeros().getPositionObjet(o);
+//		this.afficherObjet.getChildren().remove(position);
 	}
 
 }

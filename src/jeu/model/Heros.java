@@ -5,6 +5,7 @@ import jeu.Parametre.DIRECTION;
 import jeu.model.inventaire.Inventaire;
 import jeu.model.inventaire.Objet;
 import jeu.model.inventaire.arme.Hand;
+import jeu.model.inventaire.ressource.Pain;
 
 public class Heros extends Personnage{
 
@@ -25,7 +26,7 @@ public class Heros extends Personnage{
 
 
 	//------------------------------------------------------------//
-	
+
 
 	public void gravite() {
 		setY(getY()  + Parametre.forceGravite);
@@ -55,7 +56,6 @@ public class Heros extends Personnage{
 
 	//------------------------------------------------------------//
 
-	@Override
 	/**
 	 * on ne peut pas etre en dessous de 0 pv g�rer grace au clamp
 	 */
@@ -66,13 +66,16 @@ public class Heros extends Personnage{
 
 	//------------------------------------------------------------//
 
-	@Override
+	
 	/**
 	 * on ne peut pas etre en dessus de 9 pv g�rer grace au clamp
 	 */
-	public void augmenterPv() { // on prend notre valeur et on fait +1 et doit etre comprise entre 0 et 9
-		int pv = clamp(this.PvProperty().getValue()+1, 0, 9);	
-		this.PvProperty().setValue(pv);  // -1 pour le heros 
+	public void augmenterPv(Pain pain) { // on prend notre valeur et on fait +1 et doit etre comprise entre 0 et 9
+		int pv;
+		if(this.inventaireHeros.verifierRessource(pain)) {
+			pv = clamp(this.PvProperty().getValue()+1, 0, 9);	
+			this.PvProperty().setValue(pv);  // -1 pour le heros 
+		}
 	}
 
 	//------------------------------------------------------------//
@@ -113,20 +116,20 @@ public class Heros extends Personnage{
 
 	//Getters et Setter
 
-	
+
 
 	public Inventaire getInventaireHeros() {
 		return inventaireHeros;
 	}
-	
 
-	
+
+
 	public void setObjetHeros(Objet objetHeros) {
 		this.objetHeros = objetHeros;
 	}
-	
 
-	
+
+
 
 }
 

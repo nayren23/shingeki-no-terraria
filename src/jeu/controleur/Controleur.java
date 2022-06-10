@@ -1,8 +1,8 @@
 package jeu.controleur;
 
 import java.net.URL;
+import java.util.HashMap;
 import java.util.ResourceBundle;
-
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
@@ -20,17 +20,11 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.util.Duration;
-import jeu.model.Collisions;
 import jeu.model.Environnement;
-import jeu.model.Heros;
-import jeu.model.Terrain;
-import jeu.model.inventaire.Inventaire;
 import jeu.vue.HeroVue;
-import jeu.model.inventaire.arme.Epee;
 import jeu.model.inventaire.outil.Pelle;
 import jeu.model.inventaire.outil.Pioche;
-import jeu.model.inventaire.ressource.Fer;
-import jeu.model.inventaire.ressource.Terre;
+import jeu.model.inventaire.ressource.Pain;
 import jeu.vue.HerosVieVue;
 import jeu.vue.TerrainVue;
 import jeu.vue.inventaire.InventaireVue;
@@ -40,6 +34,7 @@ public class Controleur implements Initializable{
 	private Timeline gameLoop;
 	private Environnement env;
 	private HeroVue hero1;
+	private HashMap<Integer, Image> positionImageTableau;
 
 	@FXML
 	private TilePane tuilesFond;
@@ -116,13 +111,15 @@ public class Controleur implements Initializable{
 		Pioche pioche = new Pioche(env);
 		env.getEren().getInventaireHeros().ajouterDansInventaire(pioche);
 
-
+		Pain pain = new Pain();
+		env.getEren().getInventaireHeros().ajouterDansInventaire(pain);
 
 
 		initAnimation();
 		// demarre l'animation
 		gameLoop.play();
 	}
+	
 
 	private void initAnimation() {
 		gameLoop = new Timeline();
@@ -147,7 +144,6 @@ public class Controleur implements Initializable{
 
 
 
-					System.out.println(env.getEren().getDirection());
 					env.getEren().collisions();
 					env.getEren().gravite();
 					env.getEren().move();
