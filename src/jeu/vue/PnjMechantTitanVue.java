@@ -72,7 +72,21 @@ public class PnjMechantTitanVue extends ImageView {
 		this.setOnMouseClicked(e -> {
 			Objet objet = this.hero.getObjetHeros();
 
-			if(objet instanceof Epee && Parametre.rangePourCasserBloc(0, 0, 0, 0, 0, 0, 0, 0)) {
+			int x =	(int) e.getX()*32;
+
+			
+			int y = (int) e.getY()*32;
+			
+			System.out.println("Coordonne titan X " + x);
+			System.out.println("Coordonne titan Y " + y);
+			
+			System.out.println("Coordonne eren X " + env.getEren().getX());
+
+			System.out.println("Coordonne eren Y " + env.getEren().getY());
+
+			//(int coordonneeJoueurX, int coordonneeJoueurY, int positionBlocX, int positionBlocY ,int rangeX , int rangeY) {
+
+			if(objet instanceof Epee && Parametre.rangeTitan(env.getEren().getX(),env.getEren().getY(), x, y, 100,100 )) {
 				Arme arme = (Arme) objet;
 
 				this.pnj.perdrePv(arme);

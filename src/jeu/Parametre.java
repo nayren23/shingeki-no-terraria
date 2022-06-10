@@ -68,7 +68,7 @@ public class Parametre {
 
 		boolean peutCreuser = false;
 
-		if( (coordonneeJoueurX -rangeGauche <= positionBlocX  &&  coordonneeJoueurX + rangeDroite >=positionBlocX )
+		if( coordonneeJoueurX -rangeGauche <= positionBlocX  &&  coordonneeJoueurX + rangeDroite >=positionBlocX 
 				&&  (coordonneeJoueurY -rangeHaut <= positionBlocY &&  coordonneeJoueurY + rangeBas >=positionBlocY) ) {
 			peutCreuser = true;
 			System.out.println("\n tu peux  creuser frerot !!!");
@@ -79,7 +79,21 @@ public class Parametre {
 		return peutCreuser;
 	}
 
+	public static boolean rangeTitan (int coordonneeJoueurX, int coordonneeJoueurY, int positionBlocX, int positionBlocY ,int rangeX , int rangeY) {
 
+		boolean peutCreuser = false;
+
+		if( (coordonneeJoueurX -rangeX <= positionBlocX  &&  coordonneeJoueurX + rangeX >=positionBlocX )
+			&&  (coordonneeJoueurY -rangeY <= positionBlocY &&  coordonneeJoueurY + rangeY >=positionBlocY) ) {
+
+			peutCreuser = true;
+			System.out.println("\n tu peux  creuser frerot !!!");
+
+		}
+		else
+			System.out.println("\n tu peux pas creuser frerot !!!");
+		return peutCreuser;
+	}
 
 
 
