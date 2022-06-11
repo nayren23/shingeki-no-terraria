@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
+<<<<<<< HEAD
 	<name>shingeki-no-terraria-main</name>
+=======
+	<name>shingeki-no-terraria</name>
+>>>>>>> develop
 	<comment></comment>
 	<projects>
 	</projects>

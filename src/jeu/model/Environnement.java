@@ -69,8 +69,6 @@ public class Environnement {
 	
 	public void detruireBloc (Ressource o) {
 		o.enleverResistance(o);
-//		if (r.getResistance()<=0) 
-//			eren.getInventaireHeros().stackRessource(r); Pas utilile car stack ressources dej appeller 
 	}
 	
 	public ArrayList<Ressource> getRessources() {
@@ -78,8 +76,6 @@ public class Environnement {
 	}
 	
 	public Ressource getObjet (int numeroTuile) {
-		Ressource r = getRessources().get(numeroTuile);
-		System.out.println("\n c'est moi wsh" + r);
 		return getRessources().get(numeroTuile);
 	}
 
