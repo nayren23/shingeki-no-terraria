@@ -136,7 +136,6 @@ public class Controleur implements Initializable{
 				// c'est un eventHandler d'ou le lambda
 				(ev -> {
 
-					hero1.affichageEren(env.getEren());
 					//										System.out.println(" x d'eren" + Math.abs(env.getEren().getX()/30));
 					//										System.out.println(" y d'eren" + Math.abs(env.getEren().getY()/30));
 					//										int test = ((env.getEren().getY()/30)*40) + ((env.getEren().getX()/30)+1);
@@ -147,15 +146,19 @@ public class Controleur implements Initializable{
 
 
 
-					System.out.println(env.getEren().getDirection());
 					env.getEren().collisions();
 					env.getEren().gravite();
 					env.getEren().move();
-
-					if (!env.getEren().collisionDuBas(env.getEren().getX(), env.getEren().getY())) {
-
-
+					env.getEren().collisionDuBas(env.getEren().getX(), env.getEren().getY());
+					
+					if(!env.getEren().collisionDuBas(env.getEren().getX(), env.getEren().getY())){
+						if(env.getEren().getDirY() < 10) {
+							env.getEren().additionnerDirY(2);
+						}
 					}
+
+
+					
 
 
 

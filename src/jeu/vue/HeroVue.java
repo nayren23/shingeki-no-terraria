@@ -13,7 +13,7 @@ public class HeroVue extends ImageView{
 	public HeroVue(Heros h) {			// initialisation de l'image et de ses coordoonées de base 
 		super();
 		this.h = h;
-		this.h.setX(200);
+		this.h.setX(125);
 		this.h.setY(417);
 		this.setImage(image);
 	}
