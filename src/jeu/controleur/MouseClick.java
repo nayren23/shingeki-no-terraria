@@ -43,7 +43,7 @@ public class MouseClick implements EventHandler<MouseEvent> {
 		int x = (int)arg0.getX()/tailleTuile;
 		int y = (int)arg0.getY()/tailleTuile;
 		int positionTuileDansTableau = (y * tailleMapLongueur  ) + x;
-		System.out.println("\nAffichage X " + x+ " Affichage Y "+ y);
+//		System.out.println("\nAffichage X " + x+ " Affichage Y "+ y);
 
 
 		Objet objet = this.env.getEren().getObjetHeros();
@@ -51,9 +51,9 @@ public class MouseClick implements EventHandler<MouseEvent> {
 		int xCase = (int)arg0.getX();
 		int yCase = (int)arg0.getY();
 		//en fonction de l objet equipe ont fait differentes action creuser ou poser un bloc
-		System.out.println("Coordonnee eren x" +env.getEren().getX());
-		System.out.println("Coordonnee eren Y" +env.getEren().getY());
-		System.out.println("\nAffichage X " + xCase+ " Affichage Y "+ yCase);
+//		System.out.println("Coordonnee eren x" +env.getEren().getX());
+//		System.out.println("Coordonnee eren Y" +env.getEren().getY());
+//		System.out.println("\nAffichage X " + xCase+ " Affichage Y "+ yCase);
 
 
 		//int rangeGauche , int rangeDroite , int rangeHaut ,int rangeBas

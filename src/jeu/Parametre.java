@@ -68,11 +68,12 @@ public class Parametre {
 		if( coordonneeJoueurX -rangeGauche <= positionBlocX  &&  coordonneeJoueurX + rangeDroite >=positionBlocX 
 				&&  (coordonneeJoueurY -rangeHaut <= positionBlocY &&  coordonneeJoueurY + rangeBas >=positionBlocY) ) {
 			peutCreuser = true;
-			System.out.println("\n tu peux  creuser frerot !!!");
+//			System.out.println("\n tu peux  creuser frerot !!!");
 
 		}
-		else
-			System.out.println("\n tu peux pas creuser frerot !!!");
+		else {
+//			System.out.println("\n tu peux pas creuser frerot !!!");
+		}
 		return peutCreuser;
 	}
 	
