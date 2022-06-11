@@ -79,7 +79,7 @@ public  class PnjMechantTitan extends Personnage {
 				&&  (getY() -Parametre.porteeCoupDuTitanY) <=coordonneErenY && (getY() +Parametre.porteeCoupDuTitanY) >=coordonneErenY
 				) {
 			erenPresent = true;		
-			System.out.println("\n on a trouvé");
+//			System.out.println("\n on a trouvé");
 
 			if (getX()!= coordonneErenX  ) {
 

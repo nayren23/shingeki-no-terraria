@@ -54,6 +54,11 @@ public class Parametre {
 	public 	static	int vitesseTitan =2;
 
 	public static int nbTitansGenerer = 6;
+	
+	public static int rangeAttaqueErenSurTitanX = 60; 
+	
+	public static int rangeAttaqueErenSurTitanY = 10; 
+
 	///////////////////////////////////////////
 
 	public static int coordonneeMinTerrainTitanGauche =320;
@@ -79,24 +84,20 @@ public class Parametre {
 		return peutCreuser;
 	}
 
-	public static boolean rangeTitan (int coordonneeJoueurX, int coordonneeJoueurY, int positionBlocX, int positionBlocY ,int rangeX , int rangeY) {
+	public static boolean rangeTitan (int coordonneeJoueurX, int coordonneeJoueurY, int positionTitanX, int positionTitanY ,int rangeErenX , int rangeErenY) {
 
 		boolean peutCreuser = false;
 
-		if( (coordonneeJoueurX -rangeX <= positionBlocX  &&  coordonneeJoueurX + rangeX >=positionBlocX )
-			&&  (coordonneeJoueurY -rangeY <= positionBlocY &&  coordonneeJoueurY + rangeY >=positionBlocY) ) {
-
+		if( (coordonneeJoueurX -rangeErenX <= positionTitanX  &&  coordonneeJoueurX + rangeErenX >=positionTitanX )
+			&&  (coordonneeJoueurY -rangeErenY <= positionTitanY &&  coordonneeJoueurY + rangeErenY >=positionTitanY) ) {
 			peutCreuser = true;
-			System.out.println("\n tu peux  creuser frerot !!!");
-
+//			System.out.println("\n tu peux  le tuer frerot !!!");
 		}
-		else
-			System.out.println("\n tu peux pas creuser frerot !!!");
+		else {
+//			System.out.println("\n tu peux pas le tuer frerot !!!");
+		}
 		return peutCreuser;
 	}
-
-
-
 
 
 
