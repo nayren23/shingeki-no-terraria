@@ -1,14 +1,11 @@
 package jeu.vue;
 
-import javafx.collections.ListChangeListener;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import jeu.Parametre;
-import jeu.controleur.MouseClickInventaire;
 import jeu.controleur.MouseClickPnj;
-import jeu.controleur.listener.InventaireListener;
 import jeu.model.Environnement;
 import jeu.model.Heros;
 import jeu.model.PnjMechantTitan;
@@ -18,9 +15,9 @@ import jeu.model.inventaire.arme.Epee;
 
 public class PnjMechantTitanVue extends ImageView {
 
-	
+
 	private PnjMechantTitan pnj;
-	private Image image = new Image("jeu/image/Reiner1.png");
+	private Image image = new Image("jeu/image/Reiner.png");
 	private Heros hero;
 	private Pane PanePrincipale;
 	private Environnement env;
@@ -37,54 +34,46 @@ public class PnjMechantTitanVue extends ImageView {
 
 		//listener des pv qui retire le titan mort de la vue et du modele
 		pnj.PvProperty().addListener((obs,old,newP) -> { 
-			if(pnj.verificationMort() == true) {
+			if(pnj.verificationMort()) {
 				env.getListeTitans().remove(pnj);
 				supprimerTitan();
-				System.out.println(" \nJ'affiche je suis mort Titann!!!!!!!!!!");
 			}
 		});
 
 	}
 
+	/**
+	 * 
+	 * @param bind les coordonne du pnj avec celle de son image
+	 */
 	public void affichageTitan(PnjMechantTitan pnj) {
 		this.translateXProperty().bind(pnj.xProperty());	//la position du hero va être mise à jour en mm temps que la position du hero dans la vue
 		this.translateYProperty().bind(pnj.yProperty());
 		System.out.println("\n Affichage du x pnj" + xProperty());
-//		changerImage();
+		//		changerImage();
 	}
-	
+
 	/**
-	 * agit en fonction du listener listeTitans quand un titan disparrait on le supprime son image
+	 * agit en fonction du listener listeTitans quand un titan disparrait du modele on supprime son image
 	 */
 	public void supprimerTitan () {
-			this.PanePrincipale.getChildren().remove(this);  // on supprime l'image associer
-			System.out.println(" \nje passe dans la mort");
-}
+		this.PanePrincipale.getChildren().remove(this);  // on supprime l'image associer
+	}
 
 
-	
+	/**
+	 * des que on clique sur un titan verifie si on a l eppe et que si on se trouve a la bonne distance alors on peut l attaquer
+	 */
 	private void setOnClickListener () {
-	
+
 		//Listener
 		this.setOnMouseClicked(e -> {
 			Objet objet = this.hero.getObjetHeros();
 
-		
-//			System.out.println("Coordonne titan X " + pnj.getX());
-//			System.out.println("Coordonne titan Y " + pnj.getY());
-//			
-//			System.out.println("Coordonne eren X " + env.getEren().getX());
-//
-//			System.out.println("Coordonne eren Y " + env.getEren().getY());
-
-			//(int coordonneeJoueurX, int coordonneeJoueurY, int positionBlocX, int positionBlocY ,int rangeX , int rangeY) {
 
 			if(objet instanceof Epee && Parametre.rangeTitan(env.getEren().getX(),env.getEren().getY(), pnj.getX(), pnj.getY(), Parametre.rangeAttaqueErenSurTitanX,Parametre.rangeAttaqueErenSurTitanY )) {
 				Arme arme = (Arme) objet;
-
 				this.pnj.perdrePv(arme);
-				System.out.println("\n Affichage pv titans " + this.pnj.PvProperty());
-		
 				arme.decrementerDurabiliteArme(arme);
 			}
 		});

@@ -57,7 +57,7 @@ public class MouseClick implements EventHandler<MouseEvent> {
 
 
 		//int rangeGauche , int rangeDroite , int rangeHaut ,int rangeBas
-		if (Parametre.rangePourCasserBloc(env.getEren().getX(), env.getEren().getY(), xCase ,yCase, 20, 47 , 25, 64) == true) {
+		if (Parametre.rangePourCasserBloc(env.getEren().getX(), env.getEren().getY(), xCase ,yCase, 20, 47 , 25, 64)) {
 
 			Inventaire inv = env.getEren().getInventaireHeros();
 			if (objet instanceof Pioche && arg0.getButton() == MouseButton.PRIMARY  ) {

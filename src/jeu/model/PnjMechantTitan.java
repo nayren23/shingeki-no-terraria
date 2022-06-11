@@ -1,23 +1,18 @@
 package jeu.model;
 
 import jeu.Parametre;
-import jeu.Parametre.DIRECTION;
 import jeu.model.inventaire.arme.Arme;
-import jeu.model.inventaire.arme.Epee;
 
 public  class PnjMechantTitan extends Personnage {
 
 	private String nom ;
-	//private HitBox hitboxTitans;
 
 	public PnjMechantTitan(int x ,int y,  Environnement env, String nom) {
 		super(x, y, 100, env); // 100 pv
-		this.	nom = nom;
-		//	this.hitboxTitans = new HitBox(x, y, 2, 3, 1, 4);
+		this.nom = nom;
 	}
 
 	/**
-	 * 
 	 * @param arme avec laquelle on afflige des degat au titans
 	 * en fonction de l'arme on inflige plus ou moins de degat
 	 */
@@ -29,10 +24,12 @@ public  class PnjMechantTitan extends Personnage {
 
 	public void gravite() {
 		setY(getY()  + Parametre.forceGravite);
-
 	}
 
-
+	/**
+	 * Tant que le titan n a pas atteind sa limite aussi bien a gauceh que a droite on le fait avencer
+	 * sinon s il a taper a droite ou a gauche on change sa direction 
+	 */
 	public void seDeplace() {
 
 
@@ -50,11 +47,11 @@ public  class PnjMechantTitan extends Personnage {
 
 		else
 			setX(getX()-2);
-
-		//		System.out.println("\n Affichage direction" + getDirection());
-
 	}
 
+	/**
+	 * si eren est a cote du titan alor le titan attauqe eren sinon juste il continue a se deplacer normalement
+	 */
 	public void attaquePnjDansZone () {
 
 		if (erenDansZone() ==  true) {
@@ -79,7 +76,7 @@ public  class PnjMechantTitan extends Personnage {
 				&&  (getY() -Parametre.porteeCoupDuTitanY) <=coordonneErenY && (getY() +Parametre.porteeCoupDuTitanY) >=coordonneErenY
 				) {
 			erenPresent = true;		
-//			System.out.println("\n on a trouvé");
+			//			System.out.println("\n on a trouvé");
 
 			if (getX()!= coordonneErenX  ) {
 
@@ -96,14 +93,17 @@ public  class PnjMechantTitan extends Personnage {
 	}
 
 
-
+	/**
+	 * Fonction qui verifie si le titan est mort alors il bouge plus et disparait aussi dans la vue
+	 * sinon il appelle la fonction attaquerPNJ
+	 * @return
+	 */
 	public boolean verificationMort () {
 		boolean mort = false;
 		if(PvProperty().getValue() >0) {
 			attaquePnjDansZone();
 		}
 		else {
-			//	System.out.println("\n Est mort");
 			mort = true;
 		}
 		return mort;
@@ -112,21 +112,16 @@ public  class PnjMechantTitan extends Personnage {
 
 	/**
 	 * 
-	 * 
+	 * Fonction qui met un cooldown au attaque du titans pour pas qu il attauqe en boucle eren
 	 */
 	public void attaquer() {
 		if (Parametre.rechargeAttaqueTitans == Parametre.rechargeAttaqueTitansTemps) {
-			//			System.out.println("\n jsui dna sle if");
 			getEnv().getEren().perdrePv();
 			Parametre.rechargeAttaqueTitans =0;
 		}
 		else 
 			Parametre.rechargeAttaqueTitans++;
 	}
-
-
-
-
 
 	@Override
 	public String toString() {

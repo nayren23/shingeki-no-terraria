@@ -1,9 +1,7 @@
 package jeu.controleur;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
-
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
@@ -11,7 +9,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
@@ -22,21 +19,11 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.util.Duration;
-import jeu.model.Collisions;
-import jeu.Parametre;
 import jeu.model.Environnement;
-import jeu.model.Heros;
-import jeu.model.Terrain;
-import jeu.model.PnjMechantTitan;
-import jeu.model.inventaire.Inventaire;
-import jeu.model.inventaire.Objet;
 import jeu.vue.HeroVue;
-import jeu.model.inventaire.arme.Arme;
 import jeu.model.inventaire.arme.Epee;
 import jeu.model.inventaire.outil.Pelle;
 import jeu.model.inventaire.outil.Pioche;
-import jeu.model.inventaire.ressource.Fer;
-import jeu.model.inventaire.ressource.Terre;
 import jeu.vue.HerosVieVue;
 import jeu.vue.PnjMechantTitanVue;
 import jeu.vue.TerrainVue;
@@ -69,6 +56,7 @@ public class Controleur implements Initializable{
 
 		//------------------------------------------------------------//
 
+		// Ajout d une image de fon dans le BorderPane
 		//on creer l image
 		Image img = new Image("jeu/image/titanSNK.jpg"); //arriereplanSNK.jpg
 
@@ -84,18 +72,23 @@ public class Controleur implements Initializable{
 		//Ensuite on ajoute notre background a notre borderpane principale
 		BorderPaneId.setBackground(backGround);
 
+		//------------------------------------------------------------//
 
 		//Creation de l'environnement qui lui recupere le Terrain
 		env = new Environnement();
 
-		for(int i =0 ;i< Parametre.nbTitansGenerer ;i++) {
+		//------------------------------------------------------------//
+
+		//Creeation de la vue de chaque titan present de la liste qu'on afiche ensuite sur l'ecran
+		for(int i =0 ;i< env.getListeTitans().size() ;i++) {
 			PnjMechantTitanVue  pnjTitanVue = new PnjMechantTitanVue(env.getListeTitans().get(i),env.getEren(),PanePrincipale, env);
 			this.PanePrincipale.getChildren().add(pnjTitanVue);
 			pnjTitanVue.affichageTitan(env.getListeTitans().get(i));
-			
 		}
 
+		//------------------------------------------------------------//
 
+		// Creation de la Vue du Terrain 
 		TerrainVue terrainVue = new TerrainVue(tuilesFond, env.getTerrain());	//cree le terrain vue
 		terrainVue.dessinerTerrain();
 
@@ -108,7 +101,6 @@ public class Controleur implements Initializable{
 
 		HerosVieVue viehero = new HerosVieVue(env.getEren(), PanePrincipale);
 		viehero.affichageVie(env.getEren().PvProperty().getValue()); //affichage vie hero en haut droite
-
 
 		//------------------------------------------------------------//
 
@@ -174,20 +166,14 @@ public class Controleur implements Initializable{
 
 
 					}
+					// Boucle qui verifie en permanance la collission gravite si le titan est present dans la liste
 					for(int i =0 ; i<env.getListeTitans().size() ; i++) {						
 						env.getListeTitans().get(i).collisions();
 						env.getListeTitans().get(i).gravite();
 						env.getListeTitans().get(i).move();
 						env.getListeTitans().get(i).verificationMort();
-
-						//						if (env.getListeTitans().get(i).getX() == env.getListeTitans().get(i++).getX()) {
-						//							env.getListeTitans().get(i).setX(env.getListeTitans().get(i).getX() + 30);
-						//						}
 					}
-//					System.out.println(" \n J'affiches la liste" + env.getListeTitans());
-
-
-
+					//					System.out.println(" \n J'affiches la liste" + env.getListeTitans());
 				}
 						));
 		gameLoop.getKeyFrames().add(kf);
