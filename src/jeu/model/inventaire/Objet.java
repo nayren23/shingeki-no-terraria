@@ -1,24 +1,20 @@
 package jeu.model.inventaire;
 
-import java.util.ArrayList;
-
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-
-public abstract class Objet extends Inventaire{
+public abstract class Objet{
 	
-	private ArrayList<Objet> objets;
 	private int idObjet;
-	IntegerProperty xProp,yProp;
 
-	public Objet(int idObjet, ArrayList<Objet> o, int x, int y) {
-		this.xProp = new SimpleIntegerProperty(x);
-		this.yProp = new SimpleIntegerProperty(y);
-		this.idObjet = idObjet;
+	public Objet(int id) {
+		this.idObjet=id;
 	}
-	
+
 	public int getIdObjet() {
 		return idObjet;
+	}
+
+	@Override
+	public String toString() {
+		return "idObjet=" + idObjet + "";
 	}
 
 }

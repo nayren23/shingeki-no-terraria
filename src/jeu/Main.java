@@ -14,10 +14,10 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("fenetre_principale.fxml"));
-			final Scene scene = new Scene(root,1280,720);
+			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("/jeu/vue/fenetre_principale.fxml"));
+			final Scene scene = new Scene(root,1280,736);
 			root.requestFocus();
-			primaryStage.setTitle("SNT");
+			primaryStage.setTitle("Shingeki No Terraria");
 			primaryStage.setScene(scene);
 			primaryStage.show();
 //			primaryStage.setResizable(false);

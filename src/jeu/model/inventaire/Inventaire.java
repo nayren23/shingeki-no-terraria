@@ -1,28 +1,158 @@
 package jeu.model.inventaire;
 
-import java.util.ArrayList;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import jeu.model.Environnement;
+import jeu.model.inventaire.arme.Arme;
+import jeu.model.inventaire.arme.Hand;
+import jeu.model.inventaire.outil.Outil;
+import jeu.model.inventaire.ressource.Charbon;
+import jeu.model.inventaire.ressource.Fer;
+import jeu.model.inventaire.ressource.Gaz;
+import jeu.model.inventaire.ressource.Ressource;
+import jeu.model.inventaire.ressource.Terre;
 
 public class Inventaire {
 
-	protected ArrayList<Objet> inventaire;
+	private ObservableList<Objet> inventaire;
 	private int stockageMax;
+	private Environnement env;
 
-	public Inventaire() {
-		this.inventaire = new ArrayList<>();
+	public Inventaire(Environnement env) {
+		this.inventaire = FXCollections.observableArrayList();
 		this.stockageMax = 20;
+		this.env=env;
 	}
 
+	/**
+	 * la fonction ajoute un objet dans l'inventaire 
+	 * @param o correspond a l'objet envoyer en paramètre par stackRessource(Objet)
+	 */
 	public void ajouterDansInventaire (Objet o) {
-		if (verifierPlace()==true)
-			this.inventaire.add(o);
+		this.inventaire.add(o);
+		System.out.println(this.inventaire);
 	}
-	
+
+	/**
+	 * lorsqu'un objet n'a plus de durabilite ou que le nombre est egal a zero, alors l'objet recu en parametre est retirer
+	 * @param o correspond a l'objet envoyer en paramètre par faireDegatsBloc
+	 */
+	public void detruireObjet (Objet o) {
+		Arme hand = new Hand();
+		this.env.getEren().equiper(hand);
+		this.inventaire.remove(o);
+	}
+
+	//	public void detruireBloc(Ressource r) {
+	//		int id = r.getIdObjet();
+	//		this.inventaire.remove(id);
+	//	}
+
+	/**
+	 * enleve resistance du bloc et durabilite de l'arme
+	 * @param o est l'outil qui enleve de la resistance
+	 * @param numeroTuile est la ressource qui perd de la resistance
+	 */
+	public void faireDegatsBloc(Outil o,  int numeroTuile) {
+		//if (o.getIdObjet()==3)
+		if (numeroTuile!=0)
+			o.decrementerDurabiliteOutil(o);
+		this.env.detruireBloc(env.getRessources().get(numeroTuile));
+		if (o.getDurabilite()==0)
+			detruireObjet(o);
+	}
+
+	/**
+	 * une ressource peut avoir jusqu'a 200 d'elle meme dans le meme emplacement de l'inventaire, si la ressource n'existe pas encore, ajoute dans l'inventaire
+	 * verifie si l'id de la ressource envoyer en parametre est deja presente dans l'inventaire, si oui, 
+	 * parcours la liste et regarde lorsque les id de la ressource en parametre est egale a l'id de l'objet de l'inventaire et augmente le nombre de ressource
+	 * @param r est la ressource qui va soit se stack soit s'ajouter dans l'inventaire
+	 */
+	public void stackRessource (Ressource r){
+		if (existeDansInventaire(r.getIdObjet())){
+			Ressource ressource;
+			for (int i=0; i<this.inventaire.size(); i++) {
+				if (r.getIdObjet()==this.inventaire.get(i).getIdObjet()) {
+					ressource=(Ressource) this.inventaire.get(i);
+					ressource.incrementerRessource();
+					System.out.println(this.inventaire);
+				}
+			}
+		}
+		else
+			ajouterDansInventaire(r);
+	}
+
+	/**
+	 * verifie si l'id envoyer en parametre est deja dans la liste
+	 * @param id est le parametre de l'objet
+	 * @return renvoie true si l'id est deja dans l'inventaire, false si non
+	 */
+	public boolean existeDansInventaire (int id) {
+		for(int i=0; i<this.inventaire.size(); i++) 
+			if (this.inventaire.get(i).getIdObjet()==id)
+				return true;
+
+		return false;
+	}
+
+	/**
+	 * creer la ressource puis appelle stackRessource en l'envoyant
+	 * @param o est l'outil qui fait detruit le bloc
+	 * @param numeroTuile est l'emplacement du bloc detruit
+	 */
+	public void creationBlocCasser (Outil o, int numeroTuile) {
+		int cases=o.enleverResistanceBloc(numeroTuile);
+		Terre terre = new Terre();
+
+		switch (cases) {
+		case 1:
+			stackRessource(terre);
+			break;
+
+		case 2:
+			stackRessource(terre);
+			break;
+		case 3:
+			Charbon charbon = new Charbon();
+			stackRessource(charbon);
+			break;
+		case 4:
+			Gaz gaz = new Gaz();
+			stackRessource(gaz);
+			break;
+		case 5:
+			Fer fer = new Fer();
+			stackRessource(fer);
+			break;
+
+		default:
+			break;
+		}
+	}
+
 	public boolean verifierPlace () {
 		return this.inventaire.size()!=this.stockageMax;
 	}
 
-	public ArrayList<Objet> getInventaire() {
+	public ObservableList<Objet> getInventaire() {
 		return inventaire;
+	}
+	
+//	public int getPositionObjetSupprimer(Objet o) {
+//		Objet inv;
+//		for (int i=0; i<this.inventaire.size(); i++) {
+//			if (this.inventaire.contains(o))
+//				inv=o;
+//		}
+//		int position = inv.getIdObjet().
+//		detruireObjet(inv);
+//		return position;
+//	}
+
+	@Override
+	public String toString() {
+		return "Vous avez dans votre inventaire = " + inventaire + " ]";
 	}
 
 }
