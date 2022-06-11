@@ -150,22 +150,33 @@ public class Controleur implements Initializable{
 				// c'est un eventHandler d'ou le lambda
 				(ev -> {
 
-					//					System.out.println(env.getEren().getX()/30);
-					//					System.out.println(env.getEren().getY()/28);
-					//System.out.println(hero.getY());
-					//gravité
+					//										System.out.println(" x d'eren" + Math.abs(env.getEren().getX()/30));
+					//										System.out.println(" y d'eren" + Math.abs(env.getEren().getY()/30));
+					//										int test = ((env.getEren().getY()/30)*40) + ((env.getEren().getX()/30)+1);
+					//										System.out.println("tuile nm : " + test);
 
 					//	System.out.println(hero.getDirection());
+
+
 
 					env.getEren().collisions();
 					env.getEren().gravite();
 					env.getEren().move();
-
-
-					if (!env.getEren().collisionDuBas(env.getEren().getX(), env.getEren().getY())) {
-
-
+					env.getEren().collisionDuBas(env.getEren().getX(), env.getEren().getY());
+					
+					if(!env.getEren().collisionDuBas(env.getEren().getX(), env.getEren().getY())){
+						if(env.getEren().getDirY() < 10) {
+							env.getEren().additionnerDirY(1);
+						}
 					}
+
+
+					
+
+
+
+
+					
 					// Boucle qui verifie en permanance la collission gravite si le titan est present dans la liste
 					for(int i =0 ; i<env.getListeTitans().size() ; i++) {						
 						env.getListeTitans().get(i).collisions();

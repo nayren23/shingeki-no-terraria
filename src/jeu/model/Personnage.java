@@ -62,19 +62,18 @@ public abstract class Personnage {
 
 	public void move () {
 		this.xProp.set(xProp.get() + direction);
-		sauter();
+		this.yProp.set(yProp.get() + dirY);
 	}
 
 
 	public void sauter() {
-		if(space == true) {
-//			System.out.println("je saute");
-			this.yProp.set(yProp.get() + getDirY());
-		}
-		else {
-			setDirY(0);
+		if (this.collisionDuBas( getX(), getY())) {
+			additionnerDirY(-Parametre.hauteurSautPersonnage);
 		}
 	}
+
+
+
 	public static int coordoonneTuile (int x,int y) {
 		x = x / Parametre.tailleTuile;
 
@@ -89,7 +88,9 @@ public abstract class Personnage {
 
 
 	}
-
+	public void additionnerDirY(int nb) {
+		this.dirY += nb;
+	}
 
 	//permet de verifier la collision du haut avec le personnage en prenant le x du personnage et le y
 	//verification avec la collision sur le bloc du haut soit y - la difference avec le bloc du haut et met donc la direction du Y a 0 si il y a collision
@@ -103,8 +104,15 @@ public abstract class Personnage {
 	//permet de verifier la collision du bas avec le personnage en prenant le x du personnage et le y
 	//Verification avec de pixel en y  avec ici y et y + 1
 	public boolean collisionDuBas (int x,int y) {
-		if (verificationDeCollisions(coordoonneTuile(x + 12 ,y)) || verificationDeCollisions(coordoonneTuile(x + 12, y))) {
+		if (verificationDeCollisions(coordoonneTuile(x + 12 ,y+1)) || verificationDeCollisions(coordoonneTuile(x + 12, y+1))) {
+			if (verificationDeCollisions(coordoonneTuile(x + 12 ,y)) || verificationDeCollisions(coordoonneTuile(x + 12, y))) {
 				this.yProp.set(this.yProp.get() - Parametre.forceGravite);
+
+			}
+			if (this.getDirY() > 0  || this.getDirY()==-1) {
+				this.setDirY(0);
+				
+			}
 			return true;
 		}
 		else {

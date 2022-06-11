@@ -16,22 +16,26 @@ public class Parametre {
 	//Parametre du Terrain
 	public static int tailleTuile = 32;
 
-	public static int longueurTerrain = 40;
+        
+        public static int longueurTerrain = 40;
+        
+         
+    
 
 	//---------------------------------------------------------------------------------------//
 
 	//Parametre du Heros 
 	public static int vitessePersonnage = 3;
 
-	public static int hauteurSautPersonnage = 7;
-
-	public static int forceGravite = 3;
-
-	public static int largeurPersonnage = 20;
-
-	public static int hauteurPersonnage = 25;
-
-	public static int diffBlocDessu = 32;
+    public static int hauteurSautPersonnage = 12;
+    
+    public static int forceGravite = 2;
+    
+    public static int largeurPersonnage = 20;
+    
+    public static int hauteurPersonnage = 25;
+    
+    public static int diffBlocDessu = 32;
 
 	//---------------------------------------------------------------------------------------//
 
