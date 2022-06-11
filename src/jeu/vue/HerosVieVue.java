@@ -59,51 +59,62 @@ public class HerosVieVue extends Pane  {
 	 */
 	public void affichageVie(Number newPv) {
 //		System.out.println("New pv" + newPv.intValue());
-		switch(newPv.intValue()) { // des que pv change 
-		case 0 :
-			imageCoeur.setImage(tableauImage[0]);
-			break;
-
-		case 1 :
-			imageCoeur.setImage(tableauImage[1]);
-			break;
-
-		case 2 :
-			imageCoeur.setImage(tableauImage[2]);
-			break;
-
-		case 3 :
-			imageCoeur.setImage(tableauImage[3]);
-			break;
-			
-		case 4 :
-			imageCoeur.setImage(tableauImage[4]);
-			break;
-
-		case 5 :
-			imageCoeur.setImage(tableauImage[5]);
-			break;
-
-		case 6 :
-			imageCoeur.setImage(tableauImage[6]);
-			break;
-
-		case 7 :
-			imageCoeur.setImage(tableauImage[7]);
-			break;
-			
-		case 8 :
-			imageCoeur.setImage(tableauImage[8]);
-			break;
-			
-		case 9 :
-			System.out.println(imageCoeur);
-			imageCoeur.setImage(tableauImage[9]);
-			break;
-
-		default : 
-			imageCoeur = null;
-			break;
+		
+		// optimisation de l affichage de la vie
+		
+		if(newPv.intValue()<=9 && newPv.intValue() >=0) {
+			imageCoeur.setImage(tableauImage[newPv.intValue()]);
 		}
+		
+		else {
+			System.out.println("Probleme affichage image coeur");
+		}
+//		
+//		switch(newPv.intValue()) { // des que pv change 
+//		case 0 :
+//			imageCoeur.setImage(tableauImage[0]);
+//			break;
+//
+//		case 1 :
+//			imageCoeur.setImage(tableauImage[1]);
+//			break;
+//
+//		case 2 :
+//			imageCoeur.setImage(tableauImage[2]);
+//			break;
+//
+//		case 3 :
+//			imageCoeur.setImage(tableauImage[3]);
+//			break;
+//			
+//		case 4 :
+//			imageCoeur.setImage(tableauImage[4]);
+//			break;
+//
+//		case 5 :
+//			imageCoeur.setImage(tableauImage[5]);
+//			break;
+//
+//		case 6 :
+//			imageCoeur.setImage(tableauImage[6]);
+//			break;
+//
+//		case 7 :
+//			imageCoeur.setImage(tableauImage[7]);
+//			break;
+//			
+//		case 8 :
+//			imageCoeur.setImage(tableauImage[8]);
+//			break;
+//			
+//		case 9 :
+//			System.out.println(imageCoeur);
+//			imageCoeur.setImage(tableauImage[9]);
+//			break;
+//
+//		default : 
+//			imageCoeur = null;
+//			break;
+//		}
 	}
 }
