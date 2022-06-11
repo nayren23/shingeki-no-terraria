@@ -16,9 +16,9 @@ public class Parametre {
         
         public static int vitessePersonnage = 3;
          
-        public static int hauteurSautPersonnage = 7;
+        public static int hauteurSautPersonnage = 12;
         
-        public static int forceGravite = 3;
+        public static int forceGravite = 2;
         
         public static int largeurPersonnage = 20;
         

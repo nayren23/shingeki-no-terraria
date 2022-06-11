@@ -46,8 +46,7 @@ public class KeyPressed implements EventHandler<KeyEvent>{
 			hero.setDirection(Parametre.vitessePersonnage);
 			break;
 		case SPACE:
-			this.hero.setDirY(-Parametre.hauteurSautPersonnage);
-			this.hero.setSpace(true);
+			hero.sauter();
 
 			break;
 			// option pour enlever rajouter des pv 
