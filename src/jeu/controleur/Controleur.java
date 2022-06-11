@@ -153,7 +153,7 @@ public class Controleur implements Initializable{
 					
 					if(!env.getEren().collisionDuBas(env.getEren().getX(), env.getEren().getY())){
 						if(env.getEren().getDirY() < 10) {
-							env.getEren().additionnerDirY(2);
+							env.getEren().additionnerDirY(1);
 						}
 					}
 
