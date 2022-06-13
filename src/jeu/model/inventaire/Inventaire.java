@@ -3,9 +3,13 @@ package jeu.model.inventaire;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import jeu.model.Environnement;
+import jeu.model.Terrain;
 import jeu.model.inventaire.arme.Arme;
 import jeu.model.inventaire.arme.Hand;
+import jeu.model.inventaire.outil.Hache;
 import jeu.model.inventaire.outil.Outil;
+import jeu.model.inventaire.outil.Pelle;
+import jeu.model.inventaire.outil.Pioche;
 import jeu.model.inventaire.ressource.Bois;
 import jeu.model.inventaire.ressource.Charbon;
 import jeu.model.inventaire.ressource.Fer;
@@ -147,11 +151,22 @@ public class Inventaire {
 	 * enleve resistance du bloc et durabilite de l'arme
 	 * @param o est l'outil qui enleve de la resistance
 	 * @param numeroTuile est la ressource qui perd de la resistance
+	 * @param t est le terrain
 	 */
-	public void faireDegatsBloc(Outil o,  int numeroTuile) {
+	public void faireDegatsBloc(Outil o,  int numeroTuile, Terrain t) {
 		//if (o.getIdObjet()==3)
-		if (numeroTuile!=0)
-			o.decrementerDurabiliteOutil(o);
+		if(o instanceof Pelle) {
+			if (t.getTabTerrain()[numeroTuile]!=0 && t.getTabTerrain()[numeroTuile]!=3 && t.getTabTerrain()[numeroTuile]!=4 && t.getTabTerrain()[numeroTuile]!=5 && t.getTabTerrain()[numeroTuile]!=6)
+				o.decrementerDurabiliteOutil(o);
+		}
+		else if(o instanceof Hache) {
+			if (t.getTabTerrain()[numeroTuile]!=0 && t.getTabTerrain()[numeroTuile]!=1 && t.getTabTerrain()[numeroTuile]!=2 && t.getTabTerrain()[numeroTuile]!=3 && t.getTabTerrain()[numeroTuile]!=4 && t.getTabTerrain()[numeroTuile]!=5)
+				o.decrementerDurabiliteOutil(o);
+		}
+		else if(o instanceof Pioche) {
+			if (t.getTabTerrain()[numeroTuile]!=0 && t.getTabTerrain()[numeroTuile]!=1 && t.getTabTerrain()[numeroTuile]!=2 && t.getTabTerrain()[numeroTuile]!=6)
+				o.decrementerDurabiliteOutil(o);
+		}
 		this.env.detruireBloc(env.getRessources().get(numeroTuile));
 		if (o.getDurabilite()==0)
 			detruireObjet(o);
@@ -240,7 +255,7 @@ public class Inventaire {
 	public ObservableList<Objet> getInventaire() {
 		return inventaire;
 	}
-	
+
 	public int getPositionObjet(Objet o) {
 		for (int i=0; i<this.inventaire.size(); i++) {
 			System.out.println(o.getIdObjet() + " yuichi " + this.inventaire.get(i));

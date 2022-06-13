@@ -50,13 +50,13 @@ public class MouseClick implements EventHandler<MouseEvent> {
 
 		Inventaire inv = env.getEren().getInventaireHeros();
 		if (objet instanceof Pioche && arg0.getButton() == MouseButton.PRIMARY  ) {
-			env.getEren().getInventaireHeros().faireDegatsBloc((Outil) objet, positionTuileDansTableau);
+			env.getEren().getInventaireHeros().faireDegatsBloc((Outil) objet, positionTuileDansTableau, env.getTerrain());
 			env.getEren().getInventaireHeros().creationBlocCasser((Outil) objet , positionTuileDansTableau);
 			terrainVue.changementTuileMinage(positionTuileDansTableau,env.getTerrain(),Parametre.changementDuBlocCasser);
 		}
 
 		else if(objet instanceof Pelle && arg0.getButton() == MouseButton.PRIMARY) {
-			env.getEren().getInventaireHeros().faireDegatsBloc((Outil) objet, positionTuileDansTableau);
+			env.getEren().getInventaireHeros().faireDegatsBloc((Outil) objet, positionTuileDansTableau, env.getTerrain());
 			env.getEren().getInventaireHeros().creationBlocCasser((Outil) objet , positionTuileDansTableau);
 			terrainVue.changementTuileMinage(positionTuileDansTableau,env.getTerrain(),Parametre.changementDuBlocCasser);
 		}

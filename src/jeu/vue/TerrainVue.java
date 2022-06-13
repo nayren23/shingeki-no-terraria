@@ -5,7 +5,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
 import jeu.Parametre;
 import jeu.model.Terrain;
-import jeu.model.Tile;
 
 public class TerrainVue {
 
