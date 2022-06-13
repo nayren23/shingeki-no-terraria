@@ -3,12 +3,19 @@ package jeu.model.inventaire;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import jeu.model.Environnement;
+import jeu.model.Terrain;
 import jeu.model.inventaire.arme.Arme;
 import jeu.model.inventaire.arme.Hand;
+import jeu.model.inventaire.outil.Hache;
 import jeu.model.inventaire.outil.Outil;
+import jeu.model.inventaire.outil.Pelle;
+import jeu.model.inventaire.outil.Pioche;
+import jeu.model.inventaire.ressource.Bois;
 import jeu.model.inventaire.ressource.Charbon;
 import jeu.model.inventaire.ressource.Fer;
 import jeu.model.inventaire.ressource.Gaz;
+import jeu.model.inventaire.ressource.LiquideTitan;
+import jeu.model.inventaire.ressource.Pain;
 import jeu.model.inventaire.ressource.Ressource;
 import jeu.model.inventaire.ressource.Terre;
 
@@ -26,7 +33,7 @@ public class Inventaire {
 
 	/**
 	 * la fonction ajoute un objet dans l'inventaire 
-	 * @param o correspond a l'objet envoyer en paramÃ¨tre par stackRessource(Objet)
+	 * @param o correspond a l'objet envoyer en paramètre par stackRessource(Objet)
 	 */
 	public void ajouterDansInventaire (Objet o) {
 		this.inventaire.add(o);
@@ -35,12 +42,104 @@ public class Inventaire {
 
 	/**
 	 * lorsqu'un objet n'a plus de durabilite ou que le nombre est egal a zero, alors l'objet recu en parametre est retirer
-	 * @param o correspond a l'objet envoyer en paramÃ¨tre par faireDegatsBloc
+	 * @param o correspond a l'objet envoyer en paramètre par faireDegatsBloc
 	 */
 	public void detruireObjet (Objet o) {
 		Arme hand = new Hand();
 		this.env.getEren().equiper(hand);
 		this.inventaire.remove(o);
+	}
+
+	public void detruireRessource (Ressource r) {
+		if(r instanceof Pain) {
+			for (int i=0; i<this.inventaire.size(); i++) 
+				if (this.inventaire.get(i).getIdObjet()==r.getIdObjet()) {
+					this.inventaire.remove(i);
+					System.out.println(this.inventaire);
+				}
+		}
+		else if(r instanceof Fer) {
+			for (int i=0; i<this.inventaire.size(); i++) 
+				if (this.inventaire.get(i).getIdObjet()==r.getIdObjet()) {
+					Fer fer = (Fer) this.inventaire.get(i);
+					if (fer.getNbRessource()>1) {
+						fer.decrementerRessource();
+						this.inventaire.set(i, fer);
+						System.out.println(this.inventaire);
+					}
+					else {
+						this.inventaire.remove(i);
+						System.out.println(this.inventaire);
+					}
+				}
+		}
+		else if(r instanceof Terre) {
+			for (int i=0; i<this.inventaire.size(); i++) 
+				if (this.inventaire.get(i).getIdObjet()==r.getIdObjet()) {
+					Terre terre = (Terre) this.inventaire.get(i);
+					if (terre.getNbRessource()>1) {
+						terre.decrementerRessource();
+						this.inventaire.set(i, terre);
+						System.out.println(this.inventaire);
+					}
+					else {
+						this.inventaire.remove(i);
+						System.out.println(this.inventaire);
+					}
+				}
+		}
+		else if (r instanceof Gaz) {
+			for (int i=0; i<this.inventaire.size(); i++) 
+				if (this.inventaire.get(i).getIdObjet()==r.getIdObjet()) {
+					Gaz gaz = (Gaz) this.inventaire.get(i);
+					if (gaz.getNbRessource()>1) {
+						gaz.decrementerRessource();
+						this.inventaire.set(i, gaz);
+						System.out.println(this.inventaire);
+					}
+					else {
+						this.inventaire.remove(i);
+						System.out.println(this.inventaire);
+					}
+				}
+		}
+		else if (r instanceof Charbon) {
+			for (int i=0; i<this.inventaire.size(); i++) 
+				if (this.inventaire.get(i).getIdObjet()==r.getIdObjet()) {
+					Charbon charbon= (Charbon) this.inventaire.get(i);
+					if (charbon.getNbRessource()>1) {
+						charbon.decrementerRessource();
+						this.inventaire.set(i, charbon);
+						System.out.println(this.inventaire);
+					}
+					else {
+						this.inventaire.remove(i);
+						System.out.println(this.inventaire);
+					}
+				}
+		}
+		else if (r instanceof Bois) {
+			for (int i=0; i<this.inventaire.size(); i++) 
+				if (this.inventaire.get(i).getIdObjet()==r.getIdObjet()) {
+					Bois bois = (Bois) this.inventaire.get(i);
+					if (bois.getNbRessource()>1) {
+						bois.decrementerRessource();
+						this.inventaire.set(i, bois);
+						System.out.println(this.inventaire);
+					}
+					else {
+						this.inventaire.remove(i);
+						System.out.println(this.inventaire);
+					}
+				}
+		}
+		else if (r instanceof LiquideTitan) {
+			for (int i=0; i<this.inventaire.size(); i++) 
+				if (this.inventaire.get(i).getIdObjet()==r.getIdObjet()) {
+					this.inventaire.remove(i);
+					System.out.println(this.inventaire);
+				}
+		}
 	}
 
 	//	public void detruireBloc(Ressource r) {
@@ -52,11 +151,22 @@ public class Inventaire {
 	 * enleve resistance du bloc et durabilite de l'arme
 	 * @param o est l'outil qui enleve de la resistance
 	 * @param numeroTuile est la ressource qui perd de la resistance
+	 * @param t est le terrain
 	 */
-	public void faireDegatsBloc(Outil o,  int numeroTuile) {
+	public void faireDegatsBloc(Outil o,  int numeroTuile, Terrain t) {
 		//if (o.getIdObjet()==3)
-		if (numeroTuile!=0)
-			o.decrementerDurabiliteOutil(o);
+		if(o instanceof Pelle) {
+			if (t.getTabTerrain()[numeroTuile]!=0 && t.getTabTerrain()[numeroTuile]!=3 && t.getTabTerrain()[numeroTuile]!=4 && t.getTabTerrain()[numeroTuile]!=5 && t.getTabTerrain()[numeroTuile]!=6)
+				o.decrementerDurabiliteOutil(o);
+		}
+		else if(o instanceof Hache) {
+			if (t.getTabTerrain()[numeroTuile]!=0 && t.getTabTerrain()[numeroTuile]!=1 && t.getTabTerrain()[numeroTuile]!=2 && t.getTabTerrain()[numeroTuile]!=3 && t.getTabTerrain()[numeroTuile]!=4 && t.getTabTerrain()[numeroTuile]!=5)
+				o.decrementerDurabiliteOutil(o);
+		}
+		else if(o instanceof Pioche) {
+			if (t.getTabTerrain()[numeroTuile]!=0 && t.getTabTerrain()[numeroTuile]!=1 && t.getTabTerrain()[numeroTuile]!=2 && t.getTabTerrain()[numeroTuile]!=6)
+				o.decrementerDurabiliteOutil(o);
+		}
 		this.env.detruireBloc(env.getRessources().get(numeroTuile));
 		if (o.getDurabilite()==0)
 			detruireObjet(o);
@@ -135,20 +245,37 @@ public class Inventaire {
 		return this.inventaire.size()!=this.stockageMax;
 	}
 
+	public boolean verifierRessource (Ressource r) {
+		for (int i=0; i<this.inventaire.size(); i++)
+			if (this.inventaire.get(i).getIdObjet()==r.getIdObjet()) 
+				return true;
+		return false;
+	}
+
 	public ObservableList<Objet> getInventaire() {
 		return inventaire;
 	}
-	
-//	public int getPositionObjetSupprimer(Objet o) {
-//		Objet inv;
-//		for (int i=0; i<this.inventaire.size(); i++) {
-//			if (this.inventaire.contains(o))
-//				inv=o;
-//		}
-//		int position = inv.getIdObjet().
-//		detruireObjet(inv);
-//		return position;
-//	}
+
+	public int getPositionObjet(Objet o) {
+		for (int i=0; i<this.inventaire.size(); i++) {
+			System.out.println(o.getIdObjet() + " yuichi " + this.inventaire.get(i));
+			if (this.inventaire.get(i).getIdObjet()==o.getIdObjet()) {
+				return i;
+			}
+		}
+		return 0;
+	}
+
+	//	public int getPositionObjetSupprimer(Objet o) {
+	//		Objet inv;
+	//		for (int i=0; i<this.inventaire.size(); i++) {
+	//			if (this.inventaire.contains(o))
+	//				inv=o;
+	//		}
+	//		int position = inv.getIdObjet().
+	//		detruireObjet(inv);
+	//		return position;
+	//	}
 
 	@Override
 	public String toString() {

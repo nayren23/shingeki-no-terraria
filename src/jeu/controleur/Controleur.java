@@ -1,6 +1,7 @@
 package jeu.controleur;
 
 import java.net.URL;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -24,6 +25,7 @@ import jeu.vue.HeroVue;
 import jeu.model.inventaire.arme.Epee;
 import jeu.model.inventaire.outil.Pelle;
 import jeu.model.inventaire.outil.Pioche;
+import jeu.model.inventaire.ressource.Pain;
 import jeu.vue.HerosVieVue;
 import jeu.vue.PnjMechantTitanVue;
 import jeu.vue.TerrainVue;
@@ -125,6 +127,9 @@ public class Controleur implements Initializable{
 		Pioche pioche = new Pioche(env);
 		env.getEren().getInventaireHeros().ajouterDansInventaire(pioche);
 
+		Pain pain = new Pain();
+		env.getEren().getInventaireHeros().ajouterDansInventaire(pain);
+		
 		Epee epee = new Epee();
 		env.getEren().getInventaireHeros().ajouterDansInventaire(epee);
 
@@ -137,6 +142,7 @@ public class Controleur implements Initializable{
 		// demarre l'animation
 		gameLoop.play();
 	}
+	
 
 	private void initAnimation() {
 		gameLoop = new Timeline();

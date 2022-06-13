@@ -12,10 +12,12 @@ public abstract class Outil extends Objet{
 	private String nom;
 	private Environnement env;
 
+	
+	//durabilite est la durée de vie de l'outil, à chaque fois qu'il est utilise il perd 1 pv, il est donc possible de la baisser pour voir si elle se supprime
 
 	public Outil(int id, String nom, Environnement env) {
 		super(id);
-		this.durabilite = 1000;
+		this.durabilite = 2000;
 		this.degats = 2;
 		this.nom=nom;
 		this.env = env;

@@ -69,7 +69,7 @@ public class PnjMechantTitanVue extends ImageView {
 		//Listener
 		this.setOnMouseClicked(e -> {
 			Objet objet = this.hero.getObjetHeros();
-
+			System.out.println("\npalalal");
 
 			if(objet instanceof Epee && Parametre.rangeTitan(env.getEren().getX(),env.getEren().getY(), pnj.getX(), pnj.getY(), Parametre.rangeAttaqueErenSurTitanX,Parametre.rangeAttaqueErenSurTitanY )) {
 				Arme arme = (Arme) objet;

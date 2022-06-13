@@ -54,12 +54,7 @@ public class KeyPressed implements EventHandler<KeyEvent>{
 			System.out.println("enlever vie");
 			hero.perdrePv();
 			System.out.println(hero.PvProperty());
-			break;
-		case F2:
-			System.out.println("ajout vie");
-			hero.augmenterPv(); //test pour voir si le coeur change d'image quand on augmente les pv
-			System.out.println(hero.PvProperty());
-			break;		
+			break;	
 		case I: 
 			inventaire.afficherInventaire();
 			break;		
