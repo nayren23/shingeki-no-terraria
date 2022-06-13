@@ -22,10 +22,12 @@ import javafx.scene.layout.TilePane;
 import javafx.util.Duration;
 import jeu.model.Environnement;
 import jeu.vue.HeroVue;
+import jeu.model.inventaire.arme.Epee;
 import jeu.model.inventaire.outil.Pelle;
 import jeu.model.inventaire.outil.Pioche;
 import jeu.model.inventaire.ressource.Pain;
 import jeu.vue.HerosVieVue;
+import jeu.vue.PnjMechantTitanVue;
 import jeu.vue.TerrainVue;
 import jeu.vue.inventaire.InventaireVue;
 
@@ -34,10 +36,10 @@ public class Controleur implements Initializable{
 	private Timeline gameLoop;
 	private Environnement env;
 	private HeroVue hero1;
-	private HashMap<Integer, Image> positionImageTableau;
 
 	@FXML
 	private TilePane tuilesFond;
+
 	@FXML
 	private BorderPane BorderPaneId;
 	@FXML
@@ -46,17 +48,18 @@ public class Controleur implements Initializable{
 	private TilePane afficherInventaire;
 	@FXML
 	private ImageView eren;
+
 	@FXML
 	private TilePane afficherObjet;
-
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
 		//------------------------------------------------------------//
 
+		// Ajout d une image de fon dans le BorderPane
 		//on creer l image
-		Image img = new Image("jeu/image/arriereplanSNK.jpg");
+		Image img = new Image("jeu/image/titanSNK.jpg"); //arriereplanSNK.jpg
 
 		//on creer un backgroundImage qui contient notre image
 		BackgroundImage backImage = new BackgroundImage(img,BackgroundRepeat.NO_REPEAT,
@@ -70,10 +73,23 @@ public class Controleur implements Initializable{
 		//Ensuite on ajoute notre background a notre borderpane principale
 		BorderPaneId.setBackground(backGround);
 
+		//------------------------------------------------------------//
 
 		//Creation de l'environnement qui lui recupere le Terrain
 		env = new Environnement();
 
+		//------------------------------------------------------------//
+
+		//Creeation de la vue de chaque titan present de la liste qu'on afiche ensuite sur l'ecran
+		for(int i =0 ;i< env.getListeTitans().size() ;i++) {
+			PnjMechantTitanVue  pnjTitanVue = new PnjMechantTitanVue(env.getListeTitans().get(i),env.getEren(),PanePrincipale, env);
+			this.PanePrincipale.getChildren().add(pnjTitanVue);
+			pnjTitanVue.affichageTitan(env.getListeTitans().get(i));
+		}
+
+		//------------------------------------------------------------//
+
+		// Creation de la Vue du Terrain 
 		TerrainVue terrainVue = new TerrainVue(tuilesFond, env.getTerrain());	//cree le terrain vue
 		terrainVue.dessinerTerrain();
 
@@ -86,7 +102,6 @@ public class Controleur implements Initializable{
 
 		HerosVieVue viehero = new HerosVieVue(env.getEren(), PanePrincipale);
 		viehero.affichageVie(env.getEren().PvProperty().getValue()); //affichage vie hero en haut droite
-
 
 		//------------------------------------------------------------//
 
@@ -113,7 +128,14 @@ public class Controleur implements Initializable{
 
 		Pain pain = new Pain();
 		env.getEren().getInventaireHeros().ajouterDansInventaire(pain);
+		
+		Epee epee = new Epee();
+		env.getEren().getInventaireHeros().ajouterDansInventaire(epee);
 
+		//		System.out.println(inv.getInventaire().get(0).getIdObjet());
+		//		System.out.println(inv.getInventaire().get(1).getIdObjet());
+		//		System.out.println(inv.getInventaire());
+		System.out.println("Affichage liste Titans" + env.getListeTitans());
 
 		initAnimation();
 		// demarre l'animation
@@ -133,29 +155,41 @@ public class Controleur implements Initializable{
 				// c'est un eventHandler d'ou le lambda
 				(ev -> {
 
-					hero1.affichageEren(env.getEren());
 					//										System.out.println(" x d'eren" + Math.abs(env.getEren().getX()/30));
 					//										System.out.println(" y d'eren" + Math.abs(env.getEren().getY()/30));
 					//										int test = ((env.getEren().getY()/30)*40) + ((env.getEren().getX()/30)+1);
 					//										System.out.println("tuile nm : " + test);
 
-					//										System.out.println(" x d'eren" + Math.abs(env.getEren().getX()));
-					//										System.out.println(" y d'eren" + Math.abs(env.getEren().getY()));
+					//	System.out.println(hero.getDirection());
 
 
 
 					env.getEren().collisions();
 					env.getEren().gravite();
 					env.getEren().move();
-
-					if (!env.getEren().collisionDuBas(env.getEren().getX(), env.getEren().getY())) {
-
-
+					env.getEren().collisionDuBas(env.getEren().getX(), env.getEren().getY());
+					
+					if(!env.getEren().collisionDuBas(env.getEren().getX(), env.getEren().getY())){
+						if(env.getEren().getDirY() < 10) {
+							env.getEren().additionnerDirY(1);
+						}
 					}
 
 
+					
 
 
+
+
+					
+					// Boucle qui verifie en permanance la collission gravite si le titan est present dans la liste
+					for(int i =0 ; i<env.getListeTitans().size() ; i++) {						
+						env.getListeTitans().get(i).collisions();
+						env.getListeTitans().get(i).gravite();
+						env.getListeTitans().get(i).move();
+						env.getListeTitans().get(i).verificationMort();
+					}
+					//					System.out.println(" \n J'affiches la liste" + env.getListeTitans());
 				}
 						));
 		gameLoop.getKeyFrames().add(kf);

@@ -12,7 +12,7 @@ public class Heros extends Personnage{
 	private Inventaire inventaireHeros;
 	private Objet objetHeros;
 	private Hand mainHeros;
-	private Collisions collisions;
+
 
 	//changer le type terrain en type environnement
 	public Heros(int x, int y, Terrain terrain, Environnement env) {
@@ -20,8 +20,6 @@ public class Heros extends Personnage{
 		this.mainHeros = new Hand();
 		this.objetHeros= mainHeros;
 		this.inventaireHeros = new Inventaire(super.getEnv());
-		this.collisions = new Collisions(super.getEnv().getTerrain());
-
 	}
 
 
@@ -30,8 +28,9 @@ public class Heros extends Personnage{
 
 	public void gravite() {
 		setY(getY()  + Parametre.forceGravite);
-
 	}
+
+
 
 
 	//------------------------------------------------------------//
@@ -44,15 +43,15 @@ public class Heros extends Personnage{
 	 * @param max valeur la plus haute a ne jamais d�passer
 	 * @return  notre valeur comprise entre 0 et 9
 	 */
-	private int clamp (int val1 , int min, int max) {  // Pour borner un chiffre entre 2 valeurs pour pas que l'image s'enleve
-		int valeurClamp = val1;
-
-		if(valeurClamp<min) 
-			valeurClamp = min;
-		else if(valeurClamp>max) 
-			valeurClamp= max;
-		return valeurClamp;
-	}
+	//	private int clamp (int val1 , int min, int max) {  // Pour borner un chiffre entre 2 valeurs pour pas que l'image s'enleve
+	//		int valeurClamp = val1;
+	//
+	//		if(valeurClamp<min) 
+	//			valeurClamp = min;
+	//		else if(valeurClamp>max) 
+	//			valeurClamp= max;
+	//		return valeurClamp;
+	//	}
 
 	//------------------------------------------------------------//
 
@@ -99,20 +98,6 @@ public class Heros extends Personnage{
 	public Objet getObjetHeros() {
 		return this.objetHeros;
 	}
-
-	//------------------------------------------------------------//
-
-	//	public boolean estMort(int pv) { // a finir
-	//			boolean estMort = false;
-	//			
-	//			if(pv==0) {
-	//				estMort =true;
-	//			}
-	//			return estMort;
-	//			
-	//}
-
-	//------------------------------------------------------------//
 
 	//Getters et Setter
 

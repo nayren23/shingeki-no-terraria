@@ -33,7 +33,7 @@ public class Inventaire {
 
 	/**
 	 * la fonction ajoute un objet dans l'inventaire 
-	 * @param o correspond a l'objet envoyer en paramÃ¨tre par stackRessource(Objet)
+	 * @param o correspond a l'objet envoyer en paramètre par stackRessource(Objet)
 	 */
 	public void ajouterDansInventaire (Objet o) {
 		this.inventaire.add(o);
@@ -42,7 +42,7 @@ public class Inventaire {
 
 	/**
 	 * lorsqu'un objet n'a plus de durabilite ou que le nombre est egal a zero, alors l'objet recu en parametre est retirer
-	 * @param o correspond a l'objet envoyer en paramÃ¨tre par faireDegatsBloc
+	 * @param o correspond a l'objet envoyer en paramètre par faireDegatsBloc
 	 */
 	public void detruireObjet (Objet o) {
 		Arme hand = new Hand();

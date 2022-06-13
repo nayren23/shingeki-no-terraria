@@ -16,10 +16,9 @@ public class InventaireListener {
 				for (int i=0; i<c.getAddedSize(); i++) 
 					invVue.mettreAJourInventaire();
 				
-				for (int i=0; i<c.getRemovedSize(); i++) {
-					System.out.println(c);
+				for (int i=0; i<c.getRemovedSize(); i++) 
 					invVue.enleverObjet(c.getRemoved().get(i));
-				}
+				
 			}
 		});
 	}
