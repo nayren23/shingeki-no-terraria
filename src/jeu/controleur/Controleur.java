@@ -5,8 +5,11 @@ import java.util.HashMap;
 import java.util.ResourceBundle;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -28,6 +31,7 @@ import jeu.model.inventaire.outil.Pioche;
 import jeu.model.inventaire.ressource.Pain;
 import jeu.vue.HerosVieVue;
 import jeu.vue.PnjMechantTitanVue;
+import jeu.vue.SoundEffect;
 import jeu.vue.TerrainVue;
 import jeu.vue.inventaire.InventaireVue;
 
@@ -47,11 +51,32 @@ public class Controleur implements Initializable{
 	private Pane PanePrincipale;
 	@FXML
 	private TilePane afficherInventaire;
+		
 	@FXML
 	private ImageView eren;
 
 	@FXML
 	private TilePane afficherObjet;
+
+	@FXML
+	private Button exit;
+
+	@FXML
+	private Pane panePause;
+
+    @FXML
+    private Label pause;
+
+
+	@FXML
+	void sortirJeu(ActionEvent event) {
+		System.out.println("gateaux");
+		
+//		gameLoop.pause();
+		System.exit(0);  // pour sortir du programme
+	}
+
+
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -111,9 +136,11 @@ public class Controleur implements Initializable{
 		this.PanePrincipale.getChildren().add(invVue);
 
 		//------------------------------------------------------------//
-
+		panePause.setVisible(false);
 		//Creation de l usage du clavier
-		BorderPaneId.addEventHandler(KeyEvent.KEY_PRESSED,new KeyPressed(env.getEren(), viehero, invVue, hero1)); //pour savoir les touches qui sont appuee
+		gameLoop = new Timeline();
+
+		BorderPaneId.addEventHandler(KeyEvent.KEY_PRESSED,new KeyPressed(env.getEren(), viehero, invVue, hero1,panePause,gameLoop)); //pour savoir les touches qui sont appuee
 		BorderPaneId.addEventHandler(KeyEvent.KEY_RELEASED,new KeyReleased(env.getEren()));//pour savoir les touches qui sont relachee
 
 		//------------------------------------------------------------//
@@ -129,7 +156,7 @@ public class Controleur implements Initializable{
 
 		Pain pain = new Pain();
 		env.getEren().getInventaireHeros().ajouterDansInventaire(pain);
-		
+
 		Epee epee = new Epee();
 		env.getEren().getInventaireHeros().ajouterDansInventaire(epee);
 
@@ -141,11 +168,15 @@ public class Controleur implements Initializable{
 		initAnimation();
 		// demarre l'animation
 		gameLoop.play();
+
+		SoundEffect s1 = new SoundEffect("jeu/sound/snkPrincipale.wav");
+
+		s1.playSound();
+
 	}
-	
+
 
 	private void initAnimation() {
-		gameLoop = new Timeline();
 
 		gameLoop.setCycleCount(Timeline.INDEFINITE);
 
@@ -169,7 +200,7 @@ public class Controleur implements Initializable{
 					env.getEren().gravite();
 					env.getEren().move();
 					env.getEren().collisionDuBas(env.getEren().getX(), env.getEren().getY());
-					
+
 					if(!env.getEren().collisionDuBas(env.getEren().getX(), env.getEren().getY())){
 						if(env.getEren().getDirY() < 10) {
 							env.getEren().additionnerDirY(1);
@@ -177,18 +208,20 @@ public class Controleur implements Initializable{
 					}
 
 
-					
 
 
 
 
-					
+
+
 					// Boucle qui verifie en permanance la collission gravite si le titan est present dans la liste
 					for(int i =0 ; i<env.getListeTitans().size() ; i++) {						
 						env.getListeTitans().get(i).collisions();
 						env.getListeTitans().get(i).gravite();
 						env.getListeTitans().get(i).move();
 						env.getListeTitans().get(i).verificationMort();
+						
+
 					}
 					//					System.out.println(" \n J'affiches la liste" + env.getListeTitans());
 				}

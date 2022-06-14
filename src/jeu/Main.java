@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.fxml.FXMLLoader;
@@ -20,6 +21,7 @@ public class Main extends Application {
 			primaryStage.setTitle("Shingeki No Terraria");
 			primaryStage.setScene(scene);
 			primaryStage.show();
+			primaryStage.getIcons().add(new Image("jeu/image/eren1.png"));
 //			primaryStage.setResizable(false);
 			//Savoir les touches
 			scene.setOnKeyPressed(new EventHandler<KeyEvent>() {

@@ -1,18 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.TilePane?>
 
-<BorderPane fx:id="BorderPaneId" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jeu.controleur.Controleur">
+<BorderPane fx:id="BorderPaneId" prefHeight="361.0" prefWidth="480.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jeu.controleur.Controleur">
    <center>
       <Pane fx:id="PanePrincipale" BorderPane.alignment="CENTER">
          <children>
             <TilePane fx:id="tuilesFond" prefColumns="40" prefRows="23" />
             <TilePane fx:id="afficherInventaire" prefColumns="10" />
             <TilePane fx:id="afficherObjet" prefColumns="10" />
+            <Pane fx:id="panePause" layoutX="-1.0" layoutY="-2.0" opacity="0.75" prefHeight="736.0" prefWidth="1280.0" style="-fx-background-color: black;">
+               <children>
+                  <Button fx:id="exit" alignment="CENTER" graphicTextGap="100.0" layoutX="588.0" layoutY="429.0" mnemonicParsing="false" onAction="#sortirJeu" textAlignment="CENTER">
+                     <graphic>
+                        <ImageView fx:id="imageExit" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../image/exitGame.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Label fx:id="pause" alignment="CENTER" layoutX="577.0" layoutY="257.0" prefHeight="69.0" prefWidth="56.0" textFill="#d91414" />
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="596.0" layoutY="267.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../image/pause.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
          </children>
       </Pane>
    </center>
