@@ -33,60 +33,59 @@ public class KeyPressed implements EventHandler<KeyEvent>{
 	//Deplacement
 	public void handle(KeyEvent event) {
 
-		switch(event.getCode()) {
-		case Q:
-			heroVue.changerImage("jeu/image/Eren22.png");
-			hero.setDirection(-Parametre.vitessePersonnage);
-			break;
-		case LEFT:
-			heroVue.changerImage("jeu/image/Eren22.png");
-			hero.setDirection(-Parametre.vitessePersonnage);
-			break;
-		case D:
-			heroVue.changerImage("jeu/image/Eren11.png");
-			hero.setDirection(Parametre.vitessePersonnage);
-			break;
-		case RIGHT:
-			heroVue.changerImage("jeu/image/Eren11.png");
-			hero.setDirection(Parametre.vitessePersonnage);
-			break;
-		case SPACE:
-			hero.sauter();
+		// si pas mort alors peut bouger
+		if(!hero.estMort()) {
+			switch(event.getCode()) {
+			case Q:
+				heroVue.changerImage("jeu/image/Eren22.png");
+				hero.setDirection(-Parametre.vitessePersonnage);
+				break;
+			case LEFT:
+				heroVue.changerImage("jeu/image/Eren22.png");
+				hero.setDirection(-Parametre.vitessePersonnage);
+				break;
+			case D:
+				heroVue.changerImage("jeu/image/Eren11.png");
+				hero.setDirection(Parametre.vitessePersonnage);
+				break;
+			case RIGHT:
+				heroVue.changerImage("jeu/image/Eren11.png");
+				hero.setDirection(Parametre.vitessePersonnage);
+				break;
+			case SPACE:
+				hero.sauter();
 
-			break;
-			// option pour enlever rajouter des pv 
-		case F1:
-			System.out.println("enlever vie");
-			hero.perdrePv();
-			System.out.println(hero.PvProperty());
-			break;	
-		case I: 
-			inventaire.afficherInventaire();
-			break;	
-			
-		case ESCAPE: 
-			System.out.println("\n affichage echape");
-			
-			//methodes de la pause
-			if (panePause.isVisible()== true) {
-				panePause.setVisible(false);
-				System.out.println("pause");
-				gameLoop.play();
+				break;
+				// option pour enlever rajouter des pv 
+			case F1:
+				System.out.println("enlever vie");
+				hero.perdrePv();
+				System.out.println(hero.PvProperty());
+				break;	
+			case I: 
+				inventaire.afficherInventaire();
+				break;	
 
+			case ESCAPE: 
+				System.out.println("\n affichage echape");
+
+				//methodes de la pause
+				if (panePause.isVisible()== true) {
+					panePause.setVisible(false);
+					System.out.println("pause");
+					gameLoop.play();
+				}
+
+				else {
+					panePause.setVisible(true);
+					gameLoop.pause();
+				}
+				break;	
+
+			default:
+				System.out.println("Entree incorrecte" );
+				break;       
 			}
-			
-			
-			else {
-				panePause.setVisible(true);
-				gameLoop.pause();
-
-			}
-			
-			break;	
-			
-		default:
-			System.out.println("Entree incorrecte" );
-            break;       
 		}
 	}
 }

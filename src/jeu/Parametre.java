@@ -36,7 +36,7 @@ public class Parametre {
     public static int hauteurPersonnage = 25;
     
     public static int diffBlocDessu = 32;
-
+    
 	//---------------------------------------------------------------------------------------//
 
 	//Parametre du minage

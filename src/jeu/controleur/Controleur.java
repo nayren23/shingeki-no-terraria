@@ -55,6 +55,9 @@ public class Controleur implements Initializable{
 	@FXML
 	private ImageView eren;
 
+    @FXML
+    private Pane gameOver;
+    
 	@FXML
 	private TilePane afficherObjet;
 
@@ -67,6 +70,8 @@ public class Controleur implements Initializable{
     @FXML
     private Label pause;
 
+    @FXML
+    private Button boutonRestart;
 
 	@FXML
 	void sortirJeu(ActionEvent event) {
@@ -76,10 +81,17 @@ public class Controleur implements Initializable{
 		System.exit(0);  // pour sortir du programme
 	}
 
+	//quand partie perdue
+    @FXML
+    void restart(ActionEvent event) {
+    	System.out.println("Je relance le jeu");
+    }
 
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+
+		gameLoop = new Timeline();
 
 		//------------------------------------------------------------//
 
@@ -106,6 +118,7 @@ public class Controleur implements Initializable{
 
 		//------------------------------------------------------------//
 
+		gameOver.setVisible(false);
 		//Creeation de la vue de chaque titan present de la liste qu'on afiche ensuite sur l'ecran
 		for(int i =0 ;i< env.getListeTitans().size() ;i++) {
 			PnjMechantTitanVue  pnjTitanVue = new PnjMechantTitanVue(env.getListeTitans().get(i),env.getEren(),PanePrincipale, env);
@@ -122,7 +135,7 @@ public class Controleur implements Initializable{
 		//------------------------------------------------------------//
 
 		//Creation de la Vue du hero eren puis ajout de celui ci dans le pane
-		hero1 = new HeroVue(env.getEren());
+		hero1 = new HeroVue(env.getEren(),gameOver,gameLoop);
 		this.PanePrincipale.getChildren().add(hero1);
 		hero1.affichageEren(env.getEren());
 
@@ -138,7 +151,6 @@ public class Controleur implements Initializable{
 		//------------------------------------------------------------//
 		panePause.setVisible(false);
 		//Creation de l usage du clavier
-		gameLoop = new Timeline();
 
 		BorderPaneId.addEventHandler(KeyEvent.KEY_PRESSED,new KeyPressed(env.getEren(), viehero, invVue, hero1,panePause,gameLoop)); //pour savoir les touches qui sont appuee
 		BorderPaneId.addEventHandler(KeyEvent.KEY_RELEASED,new KeyReleased(env.getEren()));//pour savoir les touches qui sont relachee

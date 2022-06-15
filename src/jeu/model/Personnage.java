@@ -65,6 +65,12 @@ public abstract class Personnage {
 		this.yProp.set(yProp.get() + dirY);
 	}
 
+	public boolean estMort () {
+		boolean mort = false;
+		if (this.PvProperty().getValue()<=0)
+			mort = true;
+		return mort;
+	}
 
 	public void sauter() {
 		if (this.collisionDuBas( getX(), getY())) {
