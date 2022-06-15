@@ -36,7 +36,7 @@ public class PnjMechantTitanVue extends ImageView {
 
 		barreVie.setVisible(true);
 		barreVie.setStyle("-fx-accent: #FF0000"); // on set la couleur sur rouge
-		barreVie.setPrefSize(60, 10); // on choisit la taille de la barre de dégat
+		barreVie.setPrefSize(40, 10); // on choisit la taille de la barre de dégat
 		
 		this.PanePrincipale.getChildren().add(barreVie);
 
