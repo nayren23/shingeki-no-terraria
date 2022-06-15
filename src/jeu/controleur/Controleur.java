@@ -85,12 +85,13 @@ public class Controleur implements Initializable{
     @FXML
     void restart(ActionEvent event) {
     	System.out.println("Je relance le jeu");
+    	initialize(null, null);
     }
 
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-
+		
 		gameLoop = new Timeline();
 
 		//------------------------------------------------------------//
