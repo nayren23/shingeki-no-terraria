@@ -188,7 +188,7 @@ public class Controleur implements Initializable{
 		gameLoop.play();
 
 
-//		Parametre.sonMapTitan.playSound();
+		Parametre.sonMapTitan.playSound();
 	}
 
 
