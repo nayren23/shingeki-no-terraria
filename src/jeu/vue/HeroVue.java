@@ -22,13 +22,16 @@ public class HeroVue extends ImageView{
 		this.setImage(image);
 		this.gameOver = gameOver;
 		this.gameLoop = gameLoop;
+		SoundEffect s2 = new SoundEffect("jeu/sound/gameOver.wav");
 
-		//listener des pv qui retire le titan mort de la vue et du modele
+		//listener des pv quan eren mort
 		h.PvProperty().addListener((obs,old,newP) -> { 
 			if(h.estMort()) {
 				changerImage("jeu/image/erenMort.png")	;
 				gameOver.setVisible(true);
 				gameLoop.pause(); // on met tout en pause 
+
+				s2.playSound();
 			}
 		});
 	}

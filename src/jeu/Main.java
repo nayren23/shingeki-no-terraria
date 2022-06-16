@@ -22,7 +22,7 @@ public class Main extends Application {
 			primaryStage.setScene(scene);
 			primaryStage.show();
 			primaryStage.getIcons().add(new Image("jeu/image/eren1.png"));
-//			primaryStage.setResizable(false);
+			primaryStage.setResizable(false);
 			//Savoir les touches
 			scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 

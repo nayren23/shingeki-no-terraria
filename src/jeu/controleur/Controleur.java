@@ -41,12 +41,11 @@ public class Controleur implements Initializable{
 	private Environnement env;
 	private HeroVue hero1;
 
-
 	@FXML
 	private TilePane tuilesFond;
 
     @FXML
-    private Pane panePersoMap;
+    private Pane panePersoMap;	
     
 	@FXML
 	private BorderPane BorderPaneId;
