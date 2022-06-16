@@ -55,7 +55,9 @@ public class MouseClick implements EventHandler<MouseEvent> {
 		//si pas mort alors peut faire action de la souris
 		if(!env.getEren().estMort()) {
 
-			if (Parametre.rangePourCasserBloc(env.getEren().getX(), env.getEren().getY(), xCase ,yCase, 20, 47 , 25, 64)) {
+			//	(int coordonneeJoueurX, int coordonneeJoueurY , int positionBlocX, int positionBlocY ,int rangeGauche , int rangeDroite , int rangeHaut ,int rangeBas ) {
+
+			if (Parametre.rangePourCasserBloc(env.getEren().getX(), env.getEren().getY(), xCase ,yCase, 30*2, 47*2 , 25*2, 64*2)) {
 
 				Inventaire inv = env.getEren().getInventaireHeros();
 				if (objet instanceof Pioche && arg0.getButton() == MouseButton.PRIMARY  ) {

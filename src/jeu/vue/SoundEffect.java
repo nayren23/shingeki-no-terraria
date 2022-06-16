@@ -31,5 +31,12 @@ public class SoundEffect {
             clip.setFramePosition(0);
         }
     }
+    
+    public void stopSound () {
+        if(clip.isRunning()) {
+        	clip.stop();
+            clip.setFramePosition(0);
+        }
+    }
 
 }

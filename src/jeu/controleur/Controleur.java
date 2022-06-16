@@ -23,6 +23,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.util.Duration;
+import jeu.Parametre;
 import jeu.model.Environnement;
 import jeu.vue.HeroVue;
 import jeu.model.inventaire.arme.Epee;
@@ -186,10 +187,8 @@ public class Controleur implements Initializable{
 		// demarre l'animation
 		gameLoop.play();
 
-		SoundEffect s1 = new SoundEffect("jeu/sound/snkPrincipale.wav");
 
-		s1.playSound();
-
+//		Parametre.sonMapTitan.playSound();
 	}
 
 
@@ -224,7 +223,7 @@ public class Controleur implements Initializable{
 						}
 					}
 
-
+					
 
 
 

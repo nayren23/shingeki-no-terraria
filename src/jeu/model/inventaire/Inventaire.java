@@ -2,6 +2,7 @@ package jeu.model.inventaire;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import jeu.Parametre;
 import jeu.model.Environnement;
 import jeu.model.Terrain;
 import jeu.model.inventaire.arme.Arme;
@@ -191,6 +192,8 @@ public class Inventaire {
 		}
 		else
 			ajouterDansInventaire(r);
+		Parametre.sonAjoutObjetInventaire.playSound();
+
 	}
 
 	/**

@@ -5,6 +5,7 @@ import javafx.animation.Timeline;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import jeu.Parametre;
 import jeu.model.Heros;
 
 public class HeroVue extends ImageView{
@@ -22,7 +23,6 @@ public class HeroVue extends ImageView{
 		this.setImage(image);
 		this.gameOver = gameOver;
 		this.gameLoop = gameLoop;
-		SoundEffect s2 = new SoundEffect("jeu/sound/gameOver.wav");
 
 		//listener des pv quan eren mort
 		h.PvProperty().addListener((obs,old,newP) -> { 
@@ -30,8 +30,8 @@ public class HeroVue extends ImageView{
 				changerImage("jeu/image/erenMort.png")	;
 				gameOver.setVisible(true);
 				gameLoop.pause(); // on met tout en pause 
-
-				s2.playSound();
+				Parametre.sonMapTitan.stopSound();
+				Parametre.sonGameOverFinaleTatakae.playSound();
 			}
 		});
 	}

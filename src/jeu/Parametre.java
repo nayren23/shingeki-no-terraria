@@ -1,5 +1,7 @@
 package jeu;
 
+import jeu.vue.SoundEffect;
+
 public class Parametre {
 
 	//---------------------------------------------------------------------------------------//
@@ -135,6 +137,12 @@ public class Parametre {
 		}
 		return peutCreuser;
 	}
+
+	//////////////////////SON
+	
+	public static SoundEffect sonMapTitan = new SoundEffect("jeu/sound/snkPrincipale.wav");
+	public static SoundEffect sonGameOverFinaleTatakae = new SoundEffect("jeu/sound/tatakae.wav");
+	public static SoundEffect sonAjoutObjetInventaire	 = new SoundEffect("jeu/sound/ajoutItem.wav");
 
 
 
