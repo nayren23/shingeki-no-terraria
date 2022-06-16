@@ -40,6 +40,8 @@ public class Controleur implements Initializable{
 	private Timeline gameLoop;
 	private Environnement env;
 	private HeroVue hero1;
+	private int coordonneeMax;
+
 
 	@FXML
 	private TilePane tuilesFond;
@@ -164,15 +166,43 @@ public class Controleur implements Initializable{
 					}
 
 
+//					System.out.println(env.getEren().getX());
+					System.out.println("la coordo  max " + coordonneeMax);
+					if(env.getEren().getX() >= 1257) {
+					
+						coordonneeMax = 1257;
+						env.getEren().setX(-5);
+						env.getEren().setY(415);
 
-					if(env.getEren().getX() >= 600) {
-						env.getEren().setX(-1);
+						env.getTerrain().changerTerrain(env.getTerrain().getTabTerrain3());
+						TerrainVue terrainVue = new TerrainVue(tuilesFond, env.getTerrain());	
+						terrainVue.dessinerTerrain();
+						
+						
+					}
+					
+					System.out.println("addition " + (coordonneeMax + env.getEren().getX()));
+					if(coordonneeMax + env.getEren().getX() >= 2505) {
+						
+						
+						env.getEren().setX(-5);
+						env.getEren().setY(447);
 						env.getTerrain().changerTerrain(env.getTerrain().getTabTerrain2());
 						TerrainVue terrainVue = new TerrainVue(tuilesFond, env.getTerrain());	
 						terrainVue.dessinerTerrain();
+						
+						
 					}
+					
 
-
+					if(env.getEren().getX() <= -7) {
+						System.out.println("je rentre la la la l al al al al alal");
+						coordonneeMax = 0;
+						env.getEren().setX(1250);
+						env.getTerrain().changerTerrain(env.getTerrain().getTabTerrain3());
+						TerrainVue terrainVue = new TerrainVue(tuilesFond, env.getTerrain());	
+						terrainVue.dessinerTerrain();
+					}
 
 				}
 						));
