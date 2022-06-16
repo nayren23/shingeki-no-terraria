@@ -36,8 +36,9 @@ Bloc de Fer : 5
 		imageTerrain[3] = new Image("jeu/image/BlocCharbon.png");
 		imageTerrain[4] = new Image("jeu/image/BlocGaz.png");
 		imageTerrain[5] = new Image("jeu/image/BlocFer.png");
-		imageTerrain[6] = new Image("jeu/image/BlocBois.png");
+		imageTerrain[6] = new Image("jeu/image/bois.png");
 
+		
 	}
 
 	/**
@@ -90,9 +91,6 @@ Bloc de Fer : 5
 				images = new ImageView(imageTerrain[6]);
 				break;
 				
-			case 7 :
-				images = new ImageView(imageTerrain[7]);
-				break;
 
 			default : 
 				images = null;

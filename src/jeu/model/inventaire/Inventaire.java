@@ -6,6 +6,7 @@ import jeu.model.Environnement;
 import jeu.model.inventaire.arme.Arme;
 import jeu.model.inventaire.arme.Hand;
 import jeu.model.inventaire.outil.Outil;
+import jeu.model.inventaire.ressource.Bois;
 import jeu.model.inventaire.ressource.Charbon;
 import jeu.model.inventaire.ressource.Fer;
 import jeu.model.inventaire.ressource.Gaz;
@@ -126,6 +127,9 @@ public class Inventaire {
 			stackRessource(fer);
 			break;
 
+		case 6:
+			Bois bois = new Bois();
+			stackRessource(bois);
 		default:
 			break;
 		}

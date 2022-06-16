@@ -12,7 +12,7 @@ public abstract class Arme extends Objet{
 	public Arme (int id, String nom) {
 		super(id);
 		this.durabilite = 100;
-		this.degats = 100;
+		this.degats = 2;
 		this.nom=nom;
 	}
 	
@@ -41,10 +41,5 @@ public abstract class Arme extends Objet{
 	public String toString() {
 		return "Nom de l'arme= " + nom;
 	}
-
-	public int getDegats() {
-		return degats;
-	}
-	
 
 }

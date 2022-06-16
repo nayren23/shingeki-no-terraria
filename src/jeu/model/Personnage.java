@@ -25,30 +25,13 @@ public abstract class Personnage {
 		this.space = false;
 	}
 
-
 	//-------------------------------------------------------------------//
 
 	//Methodes Abstract//
+	public abstract void perdrePv();
 
-	//------------------------------------------------------------//
+	public abstract void augmenterPv();
 
-	/**
-	 * // Pour borner un chiffre entre 2 valeurs pour pas que l'image du coeur s'enleve aisni ne pas 
-	 * ainsi ne pas avoir + de 9 pv et - de 0 pv
-	 * @param val1  notre pv actuelle
-	 * @param min valeur la plus basse a ne jamais d�passer
-	 * @param max valeur la plus haute a ne jamais d�passer
-	 * @return  notre valeur comprise entre 0 et 9
-	 */
-	public int clamp (int val1 , int min, int max) {  // Pour borner un chiffre entre 2 valeurs pour pas que l'image s'enleve
-		int valeurClamp = val1;
-
-		if(valeurClamp<min) 
-			valeurClamp = min;
-		else if(valeurClamp>max) 
-			valeurClamp= max;
-		return valeurClamp;
-	}
 
 	public void collisions () {
 		int x = this.xProp.get();

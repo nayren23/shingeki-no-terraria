@@ -30,19 +30,15 @@ public class KeyPressed implements EventHandler<KeyEvent>{
 
 		switch(event.getCode()) {
 		case Q:
-			heroVue.changerImage("jeu/image/Eren22.png");
 			hero.setDirection(-Parametre.vitessePersonnage);
 			break;
 		case LEFT:
-			heroVue.changerImage("jeu/image/Eren22.png");
 			hero.setDirection(-Parametre.vitessePersonnage);
 			break;
 		case D:
-			heroVue.changerImage("jeu/image/Eren11.png");
 			hero.setDirection(Parametre.vitessePersonnage);
 			break;
 		case RIGHT:
-			heroVue.changerImage("jeu/image/Eren11.png");
 			hero.setDirection(Parametre.vitessePersonnage);
 			break;
 		case SPACE:
