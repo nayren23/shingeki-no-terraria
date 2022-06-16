@@ -45,23 +45,23 @@ public class Controleur implements Initializable{
 	@FXML
 	private TilePane tuilesFond;
 
-    @FXML
-    private Pane panePersoMap;	
-    
+	@FXML
+	private Pane panePersoMap;	
+
 	@FXML
 	private BorderPane BorderPaneId;
-	
+
 	@FXML
 	private Pane PanePrincipale;
 	@FXML
 	private TilePane afficherInventaire;
-		
+
 	@FXML
 	private ImageView eren;
 
-    @FXML
-    private Pane gameOver;
-    
+	@FXML
+	private Pane gameOver;
+
 	@FXML
 	private TilePane afficherObjet;
 
@@ -71,31 +71,31 @@ public class Controleur implements Initializable{
 	@FXML
 	private Pane panePause;
 
-    @FXML
-    private Label pause;
+	@FXML
+	private Label pause;
 
-    @FXML
-    private Button boutonRestart;
+	@FXML
+	private Button boutonRestart;
 
 	@FXML
 	void sortirJeu(ActionEvent event) {
 		System.out.println("gateaux");
-		
-//		gameLoop.pause();
+
+		//		gameLoop.pause();
 		System.exit(0);  // pour sortir du programme
 	}
 
 	//quand partie perdue
-    @FXML
-    void restart(ActionEvent event) {
-    	System.out.println("Je relance le jeu");
-    	initialize(null, null);
-    }
+	@FXML
+	void restart(ActionEvent event) {
+		System.out.println("Je relance le jeu");
+		initialize(null, null);
+	}
 
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
+
 		gameLoop = new Timeline();
 
 		//------------------------------------------------------------//
@@ -203,15 +203,6 @@ public class Controleur implements Initializable{
 				// c'est un eventHandler d'ou le lambda
 				(ev -> {
 
-					//										System.out.println(" x d'eren" + Math.abs(env.getEren().getX()/30));
-					//										System.out.println(" y d'eren" + Math.abs(env.getEren().getY()/30));
-					//										int test = ((env.getEren().getY()/30)*40) + ((env.getEren().getX()/30)+1);
-					//										System.out.println("tuile nm : " + test);
-
-					//	System.out.println(hero.getDirection());
-
-
-
 					env.getEren().collisions();
 					env.getEren().gravite();
 					env.getEren().move();
@@ -223,12 +214,6 @@ public class Controleur implements Initializable{
 						}
 					}
 
-					
-
-
-
-
-
 
 					// Boucle qui verifie en permanance la collission gravite si le titan est present dans la liste
 					for(int i =0 ; i<env.getListeTitans().size() ; i++) {						
@@ -236,10 +221,9 @@ public class Controleur implements Initializable{
 						env.getListeTitans().get(i).gravite();
 						env.getListeTitans().get(i).move();
 						env.getListeTitans().get(i).verificationMort();
-						
+
 
 					}
-					//					System.out.println(" \n J'affiches la liste" + env.getListeTitans());
 				}
 						));
 		gameLoop.getKeyFrames().add(kf);

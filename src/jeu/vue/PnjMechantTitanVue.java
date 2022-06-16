@@ -46,6 +46,7 @@ public class PnjMechantTitanVue extends ImageView {
 				env.getListeTitans().remove(pnj);
 				supprimerTitan();
 				this.PanePrincipale.getChildren().remove(this.barreVie);  // on supprime la barre de vie 
+				Parametre.mortTitan.playSound();
 			}
 
 		});
@@ -93,7 +94,7 @@ public class PnjMechantTitanVue extends ImageView {
 			if(objet instanceof Epee && Parametre.rangeTitan(env.getEren().getX(),env.getEren().getY(), pnj.getX(), pnj.getY(), Parametre.rangeAttaqueErenSurTitanX,Parametre.rangeAttaqueErenSurTitanY )) {
 				Arme arme = (Arme) objet;
 				progress += 0.1;  //de combien eon incremente la barre de vie
-
+				Parametre.epee.playSound();
 				this.barreVie.setProgress(progress); //a chque coup le pnj prend  1 degat 
 				this.pnj.perdrePv(arme);
 				arme.decrementerDurabiliteArme(arme);

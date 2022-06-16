@@ -143,7 +143,10 @@ public class Parametre {
 	public static SoundEffect sonMapTitan = new SoundEffect("jeu/sound/snkPrincipale.wav");
 	public static SoundEffect sonGameOverFinaleTatakae = new SoundEffect("jeu/sound/tatakae.wav");
 	public static SoundEffect sonAjoutObjetInventaire	 = new SoundEffect("jeu/sound/ajoutItem.wav");
+	public static SoundEffect mortTitan	 = new SoundEffect("jeu/sound/mortTitan.wav");
+	public static SoundEffect epee	 = new SoundEffect("jeu/sound/epee.wav");
 
+	
 
 
 }
