@@ -45,8 +45,12 @@ public class Controleur implements Initializable{
 	@FXML
 	private TilePane tuilesFond;
 
+    @FXML
+    private Pane panePersoMap;
+    
 	@FXML
 	private BorderPane BorderPaneId;
+	
 	@FXML
 	private Pane PanePrincipale;
 	@FXML
@@ -122,8 +126,8 @@ public class Controleur implements Initializable{
 		gameOver.setVisible(false);
 		//Creeation de la vue de chaque titan present de la liste qu'on afiche ensuite sur l'ecran
 		for(int i =0 ;i< env.getListeTitans().size() ;i++) {
-			PnjMechantTitanVue  pnjTitanVue = new PnjMechantTitanVue(env.getListeTitans().get(i),env.getEren(),PanePrincipale, env);
-			this.PanePrincipale.getChildren().add(pnjTitanVue);
+			PnjMechantTitanVue  pnjTitanVue = new PnjMechantTitanVue(env.getListeTitans().get(i),env.getEren(),panePersoMap, env);
+			this.panePersoMap.getChildren().add(pnjTitanVue);
 			pnjTitanVue.affichageTitan(env.getListeTitans().get(i));
 		}
 
@@ -136,18 +140,19 @@ public class Controleur implements Initializable{
 		//------------------------------------------------------------//
 
 		//Creation de la Vue du hero eren puis ajout de celui ci dans le pane
+		// pane different pour eren pour qu'on puisse voir son image quand il est mort 
 		hero1 = new HeroVue(env.getEren(),gameOver,gameLoop);
 		this.PanePrincipale.getChildren().add(hero1);
 		hero1.affichageEren(env.getEren());
 
-		HerosVieVue viehero = new HerosVieVue(env.getEren(), PanePrincipale);
+		HerosVieVue viehero = new HerosVieVue(env.getEren(), panePersoMap);
 		viehero.affichageVie(env.getEren().PvProperty().getValue()); //affichage vie hero en haut droite
 
 		//------------------------------------------------------------//
 
 		//Creation  de la VUE de l inventaire
 		InventaireVue invVue = new InventaireVue(env,afficherInventaire, afficherObjet);
-		this.PanePrincipale.getChildren().add(invVue);
+		this.panePersoMap.getChildren().add(invVue);
 
 		//------------------------------------------------------------//
 		panePause.setVisible(false);

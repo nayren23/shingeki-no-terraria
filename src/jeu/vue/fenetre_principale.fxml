@@ -12,10 +12,14 @@
    <center>
       <Pane fx:id="PanePrincipale" BorderPane.alignment="CENTER">
          <children>
-            <TilePane fx:id="tuilesFond" prefColumns="40" prefRows="23" />
-            <TilePane fx:id="afficherInventaire" prefColumns="10" />
-            <TilePane fx:id="afficherObjet" prefColumns="10" />
-            <Pane fx:id="panePause" layoutX="-1.0" layoutY="-2.0" opacity="0.75" prefHeight="736.0" prefWidth="1280.0" style="-fx-background-color: black;">
+            <Pane fx:id="panePersoMap" prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <TilePane fx:id="tuilesFond" prefColumns="40" prefRows="23" />
+                  <TilePane fx:id="afficherInventaire" prefColumns="10" />
+                  <TilePane fx:id="afficherObjet" prefColumns="10" />
+               </children>
+            </Pane>
+            <Pane fx:id="panePause" opacity="0.9" prefHeight="736.0" prefWidth="1280.0" style="-fx-background-color: black;">
                <children>
                   <Button fx:id="exit" alignment="CENTER" graphicTextGap="100.0" layoutX="588.0" layoutY="429.0" mnemonicParsing="false" onAction="#sortirJeu" textAlignment="CENTER">
                      <graphic>
