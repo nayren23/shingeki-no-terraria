@@ -41,7 +41,7 @@ public class Controleur implements Initializable{
 	private Environnement env;
 	private HeroVue hero1;
 	private int coordonneeMax;
-
+	private TerrainVue terrainVue;
 
 	@FXML
 	private TilePane tuilesFond;
@@ -55,6 +55,7 @@ public class Controleur implements Initializable{
 	private ImageView eren;
 	@FXML
 	private TilePane afficherObjet;
+	
 
 
 	@Override
@@ -81,7 +82,7 @@ public class Controleur implements Initializable{
 		//Creation de l'environnement qui lui recupere le Terrain
 		env = new Environnement();
 
-		TerrainVue terrainVue = new TerrainVue(tuilesFond, env.getTerrain());	//cree le terrain vue
+		terrainVue = new TerrainVue(tuilesFond, env.getTerrain());	//cree le terrain vue
 		terrainVue.dessinerTerrain();
 
 
@@ -165,45 +166,79 @@ public class Controleur implements Initializable{
 						}
 					}
 
-
-//					System.out.println(env.getEren().getX());
-					System.out.println("la coordo  max " + coordonneeMax);
-					if(env.getEren().getX() >= 1257) {
+//					System.out.println( "verification des maps"+ env.getTerrain().getVerifMap());
+//					//					System.out.println(env.getEren().getX());
+//					System.out.println("la coordo  max " + coordonneeMax);
 					
-						coordonneeMax = 1257;
-						env.getEren().setX(-5);
+					
+					
+
+					System.out.println( "voici la comparaison  1 : "+ env.getTerrain().parcourrirTab(env.getTerrain().getTabTerrain(), env.getTerrain().getVerifMap().get("1")));
+					System.out.println( "voici la comparaison  2 : "+ env.getTerrain().parcourrirTab(env.getTerrain().getTabTerrain(), env.getTerrain().getVerifMap().get("2")));
+					System.out.println( "voici la comparaison  3 : "+ env.getTerrain().parcourrirTab(env.getTerrain().getTabTerrain(), env.getTerrain().getVerifMap().get("3")));
+
+					//transition map2
+					if(env.getEren().getX() >= 1257 && env.getTerrain().parcourrirTab(env.getTerrain().getTabTerrain(),env.getTerrain().getVerifMap().get("1"))) {
+
+						//						coordonneeMax = 1257;
+						env.getEren().setX(130);
 						env.getEren().setY(415);
 
-						env.getTerrain().changerTerrain(env.getTerrain().getTabTerrain3());
-						TerrainVue terrainVue = new TerrainVue(tuilesFond, env.getTerrain());	
-						terrainVue.dessinerTerrain();
-						
-						
-					}
-					
-					System.out.println("addition " + (coordonneeMax + env.getEren().getX()));
-					if(coordonneeMax + env.getEren().getX() >= 2505) {
-						
-						
-						env.getEren().setX(-5);
-						env.getEren().setY(447);
 						env.getTerrain().changerTerrain(env.getTerrain().getTabTerrain2());
-						TerrainVue terrainVue = new TerrainVue(tuilesFond, env.getTerrain());	
+						terrainVue = new TerrainVue(tuilesFond, env.getTerrain());	
 						terrainVue.dessinerTerrain();
-						
-						
+
+
 					}
 					
+					
+					
+					//transition map3
+					if(env.getEren().getX() >= 1257 && env.getTerrain().parcourrirTab(env.getTerrain().getTabTerrain(),env.getTerrain().getVerifMap().get("2"))) {
 
-					if(env.getEren().getX() <= -7) {
-						System.out.println("je rentre la la la l al al al al alal");
-						coordonneeMax = 0;
-						env.getEren().setX(1250);
+						System.out.println("addition " + (coordonneeMax + env.getEren().getX()));
+						//if(env.getEren().getX() >= 2505) {
+
+
+						env.getEren().setX(10);
+						env.getEren().setY(447);
 						env.getTerrain().changerTerrain(env.getTerrain().getTabTerrain3());
-						TerrainVue terrainVue = new TerrainVue(tuilesFond, env.getTerrain());	
+						terrainVue = new TerrainVue(tuilesFond, env.getTerrain());	
 						terrainVue.dessinerTerrain();
-					}
 
+					}
+					
+					
+					
+					
+					if(env.getEren().getX() <= 0 && env.getTerrain().parcourrirTab(env.getTerrain().getTabTerrain(),env.getTerrain().getVerifMap().get("2"))) {
+						System.out.println("je rentre dans la condition");
+
+
+						env.getEren().setX(1257);
+						env.getEren().setY(447);
+						env.getTerrain().changerTerrain(env.getTerrain().getTabTerrain());
+						terrainVue = new TerrainVue(tuilesFond, env.getTerrain());	
+						terrainVue.dessinerTerrain();
+
+					}
+					
+					
+					if(env.getEren().getX() <= 0 && env.getTerrain().parcourrirTab(env.getTerrain().getTabTerrain(),env.getTerrain().getVerifMap().get("3"))) {
+						
+						env.getEren().setX(1257);
+						env.getEren().setY(511);
+						env.getTerrain().changerTerrain(env.getTerrain().getTabTerrain2());
+						terrainVue = new TerrainVue(tuilesFond, env.getTerrain());	
+						terrainVue.dessinerTerrain();
+
+					}
+					
+					
+					
+					
+					
+			
 				}
 						));
 		gameLoop.getKeyFrames().add(kf);
