@@ -234,15 +234,9 @@ public class Controleur implements Initializable{
 						env.getListeTitans().get(i).gravite();
 						env.getListeTitans().get(i).move();
 						env.getListeTitans().get(i).verificationMort();
-//						System.out.println("\n affichage pv titan!!!!!!!!!!! " + env.getListeTitans().get(i).PvProperty().getValue());
-						
+						System.out.println("\n affichage pv titan!!!!!!!!!!! " + env.getListeTitans().get(i).PvProperty().getValue());
 						}
-
-						env.getListeTitans().get(0).collisions();
-						env.getListeTitans().get(0).gravite();
-						env.getListeTitans().get(0).move();
-						env.getListeTitans().get(0).verificationMort();
-					
+		
 					
 				}
 						));

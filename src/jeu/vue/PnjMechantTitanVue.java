@@ -48,6 +48,7 @@ public class PnjMechantTitanVue extends ImageView {
 				supprimerTitan();
 				this.PanePrincipale.getChildren().remove(this.barreVie);  // on supprime la barre de vie 
 				Parametre.mortTitan.playSound();
+				System.out.println("meurrrr");
 			}
 
 		});
@@ -92,7 +93,7 @@ public class PnjMechantTitanVue extends ImageView {
 			Objet objet = this.hero.getObjetHeros();
 			System.out.println("\npalalal");
 			
-			if(Parametre.rangeTitan(env.getEren().getX(),env.getEren().getY(), pnj.getX(), pnj.getY(), Parametre.rangeAttaqueErenSurTitanX,Parametre.rangeAttaqueErenSurTitanY )) {
+//			if(Parametre.rangeTitan(env.getEren().getX(),env.getEren().getY(), pnj.getX(), pnj.getY(), Parametre.rangeAttaqueErenSurTitanX,Parametre.rangeAttaqueErenSurTitanY )) {
 				if(objet instanceof Epee ) {
 					Arme arme = (Arme) objet;
 					progress += 0.1;  //de combien eon incremente la barre de vie
@@ -104,19 +105,19 @@ public class PnjMechantTitanVue extends ImageView {
 					System.out.println("\n barre vie" + this.barreVie.getProgress());
 
 				}
-				
-				if(objet instanceof LanceFoudroyante ) {
-					Arme arme = (Arme) objet;
-					
-					
-//					progress += 0.1;  //de combien eon incremente la barre de vie
-//					this.barreVie.setProgress(progress); //a chque coup le pnj prend  1 degat 
-//					this.pnj.perdrePv(arme);
-//					arme.decrementerDurabiliteArme(arme);
-//					System.out.println("\n barre vie" + this.barreVie.getProgress());
-
-				}
-			}
+//				
+//				if(objet instanceof LanceFoudroyante ) {
+//					Arme arme = (Arme) objet;
+//					
+//					
+////					progress += 0.1;  //de combien eon incremente la barre de vie
+////					this.barreVie.setProgress(progress); //a chque coup le pnj prend  1 degat 
+////					this.pnj.perdrePv(arme);
+////					arme.decrementerDurabiliteArme(arme);
+////					System.out.println("\n barre vie" + this.barreVie.getProgress());
+//
+//				}
+//			}
 
 			
 			

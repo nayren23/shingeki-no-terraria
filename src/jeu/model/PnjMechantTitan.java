@@ -43,7 +43,7 @@ public  class PnjMechantTitan extends Personnage {
 		else if( collisionDeGauche(getX(), getY())) {
 			setDirection(1); //droite
 		}
-
+		
 	}
 
 	/**
