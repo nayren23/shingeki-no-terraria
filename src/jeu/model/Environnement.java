@@ -12,7 +12,7 @@ import jeu.model.inventaire.ressource.Fer;
 import jeu.model.inventaire.ressource.Gaz;
 import jeu.model.inventaire.ressource.Ressource;
 import jeu.model.inventaire.ressource.Terre;
-
+import jeu.vue.PnjGentilVue;
 import jeu.model.inventaire.ressource.Charbon;
 import jeu.model.inventaire.ressource.Fer;
 import jeu.model.inventaire.ressource.Gaz;
@@ -56,7 +56,6 @@ public class Environnement {
 
 			listeTitans.add(new PnjMechantTitan(posX, posY, this, "titan" + i));
 		}
-		System.out.println("\n AffichagelisteTitans " + listeTitans);
 	}
 
 	public void creationRessources() {

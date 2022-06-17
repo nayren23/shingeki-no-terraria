@@ -9,6 +9,7 @@ import jeu.model.Heros;
 import jeu.model.Terrain;
 import jeu.model.inventaire.Inventaire;
 import jeu.model.inventaire.Objet;
+import jeu.model.inventaire.arme.Hand;
 import jeu.model.inventaire.outil.Outil;
 import jeu.model.inventaire.outil.Pelle;
 import jeu.model.inventaire.outil.Pioche;
@@ -17,6 +18,7 @@ import jeu.model.inventaire.ressource.Ciel;
 import jeu.model.inventaire.ressource.Fer;
 import jeu.model.inventaire.ressource.Gaz;
 import jeu.model.inventaire.ressource.Pain;
+import jeu.model.inventaire.ressource.Ressource;
 import jeu.model.inventaire.ressource.Terre;
 import jeu.vue.TerrainVue;
 
@@ -118,11 +120,20 @@ public class MouseClick implements EventHandler<MouseEvent> {
 				}
 			}
 		}
-			else if(objet instanceof Pain) {
-				Pain pain = new Pain();
-				env.getEren().augmenterPv(pain);
-				env.getEren().getInventaireHeros().detruireRessource(pain);
+		else if(objet instanceof Pain) {
+			Pain pain = new Pain();
+			env.getEren().augmenterPv(pain);
+			if(this.env.getEren().getInventaireHeros().existeDansInventaire(pain.getIdObjet())) {
+				int positionPain = this.env.getEren().getInventaireHeros().positionRessourceDansListe(pain);
+				if( ((Ressource)this.env.getEren().getInventaireHeros().getInventaire().get(positionPain)).getNbRessource()>=2) {
+					((Ressource) this.env.getEren().getInventaireHeros().getInventaire().get(positionPain)).decrementerRessource(positionPain);
+					Hand hand = new Hand();
+					this.env.getEren().equiper(hand);
+				}
+				else
+					env.getEren().getInventaireHeros().detruireRessource(pain);
 			}
-		
+		}
+
 	}
 }
