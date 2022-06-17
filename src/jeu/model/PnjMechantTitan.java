@@ -10,8 +10,8 @@ public  class PnjMechantTitan extends Personnage {
 	public PnjMechantTitan(int x ,int y,  Environnement env, String nom) {
 		super(x, y, 100, env); // 100 pv
 		this.nom = nom;
-		setDirection(1);
-
+		setDirection(1); // on le fait d'abor allez a droite
+		// -1 pour gauche 1 droite
 	}
 
 	/**

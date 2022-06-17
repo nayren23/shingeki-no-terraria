@@ -40,10 +40,10 @@ public class PnjMechantTitanVue extends ImageView {
 		barreVie.setPrefSize(40, 10); // on choisit la taille de la barre de dégat
 		
 		this.PanePrincipale.getChildren().add(barreVie);
-
+//		&& this.barreVie.getProgress()>=0.9
 		//listener des pv qui retire le titan mort de la vue et du modele
 		pnj.PvProperty().addListener((obs,old,newP) -> { 
-			if(pnj.verificationMort() && this.barreVie.getProgress()>=0.9) { // on regarde aussi si la barre de vie et complete
+			if(pnj.verificationMort() ) { // on regarde aussi si la barre de vie et complete
 				env.getListeTitans().remove(pnj);
 				supprimerTitan();
 				this.PanePrincipale.getChildren().remove(this.barreVie);  // on supprime la barre de vie 
@@ -105,18 +105,19 @@ public class PnjMechantTitanVue extends ImageView {
 					System.out.println("\n barre vie" + this.barreVie.getProgress());
 
 				}
-//				
-//				if(objet instanceof LanceFoudroyante ) {
-//					Arme arme = (Arme) objet;
-//					
-//					
-////					progress += 0.1;  //de combien eon incremente la barre de vie
-////					this.barreVie.setProgress(progress); //a chque coup le pnj prend  1 degat 
-////					this.pnj.perdrePv(arme);
-////					arme.decrementerDurabiliteArme(arme);
-////					System.out.println("\n barre vie" + this.barreVie.getProgress());
-//
-//				}
+				
+				if(objet instanceof LanceFoudroyante ) {
+					Arme arme = (Arme) objet;
+					
+					
+					progress += 1;  //de combien eon incremente la barre de vie
+					
+//					this.barreVie.setProgress(progress); //a chque coup le pnj prend  1 degat 
+					this.pnj.perdrePv(arme);
+//					arme.decrementerDurabiliteArme(arme);
+//					System.out.println("\n barre vie" + this.barreVie.getProgress());
+
+				}
 			}
 
 			

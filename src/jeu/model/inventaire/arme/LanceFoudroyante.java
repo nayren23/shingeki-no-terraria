@@ -12,34 +12,52 @@ public class LanceFoudroyante extends Arme{
 
 	private IntegerProperty coordonneeX;
 	private IntegerProperty coordonneeY;
-	private int direction;
+	private int direction ,dirY;
 	private Environnement env;
-
+	private boolean droite , gauche;
+	private int pv;
 	public LanceFoudroyante(int x, int y , Environnement env) {
 		super(1,"lance");
 		this.coordonneeX = new SimpleIntegerProperty(x);
 		this.coordonneeY = new SimpleIntegerProperty(y);
 		this.direction= 0;
 		this.env = env;
+		this.dirY = 0;
+		this.pv = 1;
 	}	
+
+	public void move () {
+		this.coordonneeX.set(coordonneeX.get() + direction);
+		this.coordonneeY.set(coordonneeY.get() + dirY);
+	}
+
 
 	public void seDeplace() {
 
+		//
+		//		System.out.println("erenn direction " + env.getEren().getDirection());
+		//		System.out.println("erenn droite" +droite);
+		//		System.out.println("erenn gauceh" +gauche);
 
-		
 		if( env.getEren().getDirection() == 3 ) { // on le fait allez jusqu a gauche puis
-			setX(getX()+1);
+			droite = true;
+			gauche =false;
 		}
 
 		else if(env.getEren().getDirection()  == -3 ) { // on le fait allez jusqu a gauche puis
-			setX(getX()-1);
+			droite = false;
+			gauche =true;
 		}
-		
-//		else if(env.getEren().getDirection()  == 0 ) { // on le fait allez jusqu a gauche puis
-//			setX(getX()+1);
-//		}
-		
-//		attaque();
+
+		if(droite) {
+			setDirection(1);
+		}
+
+		else if (gauche) {
+			setDirection(-1);
+		}
+		attaque();
+		move();
 
 
 	}
@@ -47,15 +65,31 @@ public class LanceFoudroyante extends Arme{
 	public void attaque() 	{
 
 		for(int i = 0 ; i< env.getListeTitans().size();i++) {
-			if(getX() == env.getListeTitans().get(i).getX() ) {
+			if(getX() >= env.getListeTitans().get(i).getX() && verifMort() ==false) {
 				System.out.println("\n passage de la mortttt");
-				env.getListeTitans().get(i).perdrePv(this);;
+				System.out.println("affichage degatss" + this.getDegats());
+				env.getListeTitans().get(i).perdrePv(this);
+				pv =0;
+				//				System.out.println(	"Affichage vie titans "+env.getListeTitans().get(i).PvProperty().getValue());
 			}
 
 		}
 	}
+
+	public boolean verifMort () {
+		boolean mort = false;
+		if(pv <= 0) {
+			mort =true;
+		}
+		else {
+			mort =false;
+			action();
+		}
+		return mort;
+
+	}
 	public void action () {
-//		System.out.println("\n je me deplace");
+		//		System.out.println("\n je me deplace");
 		seDeplace();
 
 		//		if(!this.collisionDuBas(this.getX(), this.getY())){

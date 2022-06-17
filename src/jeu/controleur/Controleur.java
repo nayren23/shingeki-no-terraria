@@ -186,20 +186,20 @@ public class Controleur implements Initializable{
 		//		System.out.println(inv.getInventaire());
 		System.out.println("Affichage liste Titans" + env.getListeTitans());
 
-		
+
 		lance = new LanceFoudroyante(200 , 450, env);
-		
+
 		lanceFoudroyanteVue lanceVue = new lanceFoudroyanteVue(lance,panePersoMap,env);
 		this.panePersoMap.getChildren().add(lanceVue);
 		lanceVue.affichageTitan(lance);
 		env.getEren().getInventaireHeros().ajouterDansInventaire(lance);
 
-		
- 		
+//		Parametre.sonMapTitan.playSound();
+
 		initAnimation();
 		// demarre l'animation
 		gameLoop.play();
-		
+
 
 	}
 
@@ -225,8 +225,8 @@ public class Controleur implements Initializable{
 							env.getEren().additionnerDirY(1);
 						}
 					}
-					
-					lance.action();
+
+					lance.verifMort();
 
 					// Boucle qui verifie en permanance la collission gravite si le titan est present dans la liste
 					for(int i =0 ; i<env.getListeTitans().size() ; i++) {						
@@ -234,10 +234,9 @@ public class Controleur implements Initializable{
 						env.getListeTitans().get(i).gravite();
 						env.getListeTitans().get(i).move();
 						env.getListeTitans().get(i).verificationMort();
-						System.out.println("\n affichage pv titan!!!!!!!!!!! " + env.getListeTitans().get(i).PvProperty().getValue());
-						}
-		
-					
+					}
+
+
 				}
 						));
 		gameLoop.getKeyFrames().add(kf);

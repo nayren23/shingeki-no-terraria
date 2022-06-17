@@ -131,7 +131,7 @@ public class MouseClick implements EventHandler<MouseEvent> {
 			
 			else if(objet instanceof LanceFoudroyante ) {
 				LanceFoudroyante lance = new LanceFoudroyante(env.getEren().getX(),env.getEren().getY(),env );
-				lance.action();
+				lance.verifMort();
 				System.out.println("\n Affichage X de la lance  " + lance.getX());
 				System.out.println("\n Affichage Y de la lance  " + lance.getY());
 
