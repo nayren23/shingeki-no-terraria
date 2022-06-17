@@ -97,7 +97,7 @@ public class Parametre {
 
 	public 	static	int vitesseTitan =2;
 
-	public static int nbTitansGenerer = 6;
+	public static int nbTitansGenerer = 1;
 
 	public static int rangeAttaqueErenSurTitanX = 60; 
 
@@ -108,7 +108,7 @@ public class Parametre {
 	//Parametre de ou a ou le titan peut se deplacer
 	public static int coordonneeMinTerrainTitanGauche =325;
 
-	public static int coordonneeMaxTerrainTitanDroite =1045;
+	public static int coordonneeMaxTerrainTitanDroite =1030;
 
 	public static int coordonneeTerrainTitanY =450;
 

@@ -19,45 +19,44 @@ public class LanceFoudroyante extends Arme{
 		super(1,"lance");
 		this.coordonneeX = new SimpleIntegerProperty(x);
 		this.coordonneeY = new SimpleIntegerProperty(y);
-		this.direction=0;
+		this.direction= 0;
 		this.env = env;
-
 	}	
 
 	public void seDeplace() {
 
 
-
-			if( env.getEren().getDirection() == -3 ) { // on le fait allez jusqu a gauche puis
-				setDirection(0);  //droite
-			}
-
-			else if( env.getEren().getDirection() == 3 ) { // on le fait allez jusqu a gauche puis
-				setDirection(2);  //gauche
-			}
-
-			if(getDirection() == 0) {
-				//			setX(getX()+2);
-			}
-
-			else
-				setX(getX()-2);
+		
+		if( env.getEren().getDirection() == 3 ) { // on le fait allez jusqu a gauche puis
+			setX(getX()+1);
 		}
-	
+
+		else if(env.getEren().getDirection()  == -3 ) { // on le fait allez jusqu a gauche puis
+			setX(getX()-1);
+		}
+		
+//		else if(env.getEren().getDirection()  == 0 ) { // on le fait allez jusqu a gauche puis
+//			setX(getX()+1);
+//		}
+		
+//		attaque();
+
+
+	}
+
 	public void attaque() 	{
 
 		for(int i = 0 ; i< env.getListeTitans().size();i++) {
-			if(coordonneeX.getValue() == env.getListeTitans().get(i).getX() ) {
-				env.getListeTitans().get(i).setPv(coordonneeX);
+			if(getX() == env.getListeTitans().get(i).getX() ) {
+				System.out.println("\n passage de la mortttt");
+				env.getListeTitans().get(i).perdrePv(this);;
 			}
 
 		}
 	}
 	public void action () {
-//		this.move();
-		System.out.println("\n je me deplace");
+//		System.out.println("\n je me deplace");
 		seDeplace();
-		attaque();
 
 		//		if(!this.collisionDuBas(this.getX(), this.getY())){
 		//			if(this.getDirY() < 10) {
@@ -71,11 +70,11 @@ public class LanceFoudroyante extends Arme{
 		return coordonneeX;
 	}
 
-	
+
 	public int getX() {
 		return coordonneeX.getValue();
 	}
-	
+
 	public int getY() {
 		return coordonneeY.getValue();
 	}
@@ -89,7 +88,7 @@ public class LanceFoudroyante extends Arme{
 		return direction;
 	}
 
-	
+
 
 	public final void setX(int d) {
 		this.coordonneeX.setValue(d);

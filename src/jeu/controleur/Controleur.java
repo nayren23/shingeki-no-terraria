@@ -187,7 +187,7 @@ public class Controleur implements Initializable{
 		System.out.println("Affichage liste Titans" + env.getListeTitans());
 
 		
-		lance = new LanceFoudroyante(env.getEren().getX() , env.getEren().getY(), env);
+		lance = new LanceFoudroyante(200 , 450, env);
 		
 		lanceFoudroyanteVue lanceVue = new lanceFoudroyanteVue(lance,panePersoMap,env);
 		this.panePersoMap.getChildren().add(lanceVue);
@@ -234,7 +234,14 @@ public class Controleur implements Initializable{
 						env.getListeTitans().get(i).gravite();
 						env.getListeTitans().get(i).move();
 						env.getListeTitans().get(i).verificationMort();
-					}
+//						System.out.println("\n affichage pv titan!!!!!!!!!!! " + env.getListeTitans().get(i).PvProperty().getValue());
+						
+						}
+
+						env.getListeTitans().get(0).collisions();
+						env.getListeTitans().get(0).gravite();
+						env.getListeTitans().get(0).move();
+						env.getListeTitans().get(0).verificationMort();
 					
 					
 				}

@@ -10,6 +10,8 @@ public  class PnjMechantTitan extends Personnage {
 	public PnjMechantTitan(int x ,int y,  Environnement env, String nom) {
 		super(x, y, 100, env); // 100 pv
 		this.nom = nom;
+		setDirection(1);
+
 	}
 
 	/**
@@ -33,20 +35,15 @@ public  class PnjMechantTitan extends Personnage {
 	public void seDeplace() {
 
 
-		if( (getX() -2)<=Parametre.coordonneeMinTerrainTitanGauche  ) { // on le fait allez jusqu a gauche puis
-			setDirection(0);  //droite
+		if( collisionDeDroite(getX(), getY()) ) { // on le fait allez jusqu a gauche puis
+			System.out.println("lalalalala");
+			setDirection(-1);  //gauche
 		}
 
-		else if((getX() +2)>=Parametre.coordonneeMaxTerrainTitanDroite) {
-			setDirection(2); //gauche
+		else if( collisionDeGauche(getX(), getY())) {
+			setDirection(1); //droite
 		}
 
-		if(getDirection() == 0) {
-			//			setX(getX()+2);
-		}
-
-		else
-			setX(getX()-2);
 	}
 
 	/**
@@ -81,9 +78,9 @@ public  class PnjMechantTitan extends Personnage {
 			if (getX()!= coordonneErenX  ) {
 
 				if(getX()> coordonneErenX) 
-					setDirection(1);
+					setDirection(-1);
 				else   
-					setDirection(0);
+					setDirection(1);
 			}
 		}
 		else 

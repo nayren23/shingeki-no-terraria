@@ -99,6 +99,7 @@ public class PnjMechantTitanVue extends ImageView {
 					Parametre.epee.playSound();
 					this.barreVie.setProgress(progress); //a chque coup le pnj prend  1 degat 
 					this.pnj.perdrePv(arme);
+					System.out.println("hp titan" + pnj.PvProperty().getValue());
 					arme.decrementerDurabiliteArme(arme);
 					System.out.println("\n barre vie" + this.barreVie.getProgress());
 

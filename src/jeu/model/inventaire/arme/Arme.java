@@ -12,8 +12,8 @@ public abstract class Arme extends Objet{
 	//durabilite est la durée de vie de l'arme, à chaque fois qu'il est utilise il perd 1 pv, il est donc possible de la baisser pour voir si elle se supprime
 	public Arme (int id, String nom) {
 		super(id);
-		this.durabilite = 100;
-		this.degats = 10;  /// canger en fonction de la vie 
+		this.durabilite = 10;
+		this.degats = 100;  /// canger en fonction de la vie 
 		this.nom=nom;
 	}
 	
