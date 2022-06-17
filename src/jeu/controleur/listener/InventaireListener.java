@@ -13,8 +13,10 @@ public class InventaireListener {
 			public void onChanged(Change<? extends Objet> c) {
 				
 				c.next();
-				for (int i=0; i<c.getAddedSize(); i++) 
+				for (int i=0; i<c.getAddedSize(); i++) {
+					System.out.println(c.getAddedSubList().get(i));
 					invVue.mettreAJourInventaire();
+				}
 				
 				for (int i=0; i<c.getRemovedSize(); i++) 
 					invVue.enleverObjet(c.getRemoved().get(i));

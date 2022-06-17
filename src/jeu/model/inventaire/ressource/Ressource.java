@@ -21,8 +21,8 @@ public class Ressource extends Objet{
 		this.nbRessource ++;
 	}
 	
-	public void decrementerRessource() {
-		this.nbRessource --;
+	public void decrementerRessource(int quantite) {
+		this.nbRessource-=quantite;
 	}
 
 	public void poserBloc (int numeroTuilesCasser, Terrain terrain , int blocAPoser) {  // ensuite rajouter l'objet miner dans l'inventaire 
