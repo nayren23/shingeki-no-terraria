@@ -21,7 +21,7 @@
                      <children>
                         <ImageView fitHeight="69.0" fitWidth="120.0" layoutX="26.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../imageInventaireDeBase/pelleInventaire(1).png" />
+                              <Image url="@../image/inventaire/vue/pelleInventaire(1).png" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="150.0" fitWidth="34.0" layoutX="10.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true">
@@ -43,7 +43,7 @@
                      <children>
                         <ImageView fitHeight="69.0" fitWidth="120.0" layoutX="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../imageInventaireDeBase/piocheInventaire1.png" />
+                              <Image url="@../image/inventaire/vue/piocheInventaire1.png" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="150.0" fitWidth="32.0" layoutX="9.0" layoutY="76.0" pickOnBounds="true" preserveRatio="true">
@@ -65,7 +65,7 @@
                      <children>
                         <ImageView fitHeight="69.0" fitWidth="120.0" layoutX="23.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../imageInventaireDeBase/hacheInventaire.png" />
+                              <Image url="@../image/inventaire/vue/hacheInventaire.png" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="42.0" fitWidth="33.0" layoutX="70.0" layoutY="76.0" pickOnBounds="true" preserveRatio="true">
@@ -87,7 +87,7 @@
                      <children>
                         <ImageView fitHeight="69.0" fitWidth="110.0" layoutX="26.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../imageInventaireDeBase/epeeInventaire.png" />
+                              <Image url="@../image/inventaire/vue/epeeInventaire.png" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="150.0" fitWidth="32.0" layoutX="10.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true">
@@ -109,7 +109,7 @@
                      <children>
                         <ImageView fitHeight="77.0" fitWidth="150.0" layoutX="22.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../imageInventaireDeBase/lanceFoudroyanteInventaire.png" />
+                              <Image url="@../image/inventaire/vue/lanceFoudroyanteInventaire.png" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="150.0" fitWidth="32.0" layoutX="9.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
@@ -151,7 +151,7 @@
                <children>
                   <ImageView fitHeight="70.0" fitWidth="76.0" layoutX="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../imageInventaireDeBase/painInventaire.png" />
+                        <Image url="@../image/inventaire/vue/painInventaire.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="150.0" fitWidth="34.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">

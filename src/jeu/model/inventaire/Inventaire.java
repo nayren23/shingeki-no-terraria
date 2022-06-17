@@ -60,13 +60,11 @@ public class Inventaire {
 				if(r instanceof Pain) {
 					this.inventaire.remove(i);
 					System.out.println(this.inventaire);
-
 				}
 				else if(r instanceof Fer) {
 					Fer fer = (Fer) this.inventaire.get(i);
 					if (fer.getNbRessource()>1) {
 						fer.decrementerRessource(1);
-						this.inventaire.set(i, fer);
 						System.out.println(this.inventaire);
 					}
 					else {
@@ -78,7 +76,6 @@ public class Inventaire {
 					Terre terre = (Terre) this.inventaire.get(i);
 					if (terre.getNbRessource()>1) {
 						terre.decrementerRessource(1);
-						this.inventaire.set(i, terre);
 						System.out.println(this.inventaire);
 					}
 					else {
@@ -90,7 +87,6 @@ public class Inventaire {
 					Gaz gaz = (Gaz) this.inventaire.get(i);
 					if (gaz.getNbRessource()>1) {
 						gaz.decrementerRessource(1);
-						this.inventaire.set(i, gaz);
 						System.out.println(this.inventaire);
 					}
 					else {
@@ -102,7 +98,6 @@ public class Inventaire {
 					Charbon charbon= (Charbon) this.inventaire.get(i);
 					if (charbon.getNbRessource()>1) {
 						charbon.decrementerRessource(1);
-						this.inventaire.set(i, charbon);
 						System.out.println(this.inventaire);
 					}
 					else {
@@ -115,7 +110,6 @@ public class Inventaire {
 					Bois bois = (Bois) this.inventaire.get(i);
 					if (bois.getNbRessource()>1) {
 						bois.decrementerRessource(1);
-						this.inventaire.set(i, bois);
 						System.out.println(this.inventaire);
 					}
 					else {

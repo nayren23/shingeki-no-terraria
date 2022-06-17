@@ -125,7 +125,7 @@ public class MouseClick implements EventHandler<MouseEvent> {
 			env.getEren().augmenterPv(pain);
 			if(this.env.getEren().getInventaireHeros().existeDansInventaire(pain.getIdObjet())) {
 				int positionPain = this.env.getEren().getInventaireHeros().positionRessourceDansListe(pain);
-				if( ((Ressource)this.env.getEren().getInventaireHeros().getInventaire().get(positionPain)).getNbRessource()>=2) {
+				if( ((Ressource)this.env.getEren().getInventaireHeros().getInventaire().get(positionPain)).getNbRessource()>1) {
 					((Ressource) this.env.getEren().getInventaireHeros().getInventaire().get(positionPain)).decrementerRessource(positionPain);
 					Hand hand = new Hand();
 					this.env.getEren().equiper(hand);
