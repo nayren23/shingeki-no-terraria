@@ -61,6 +61,8 @@ public class Controleur implements Initializable{
 	@FXML
 	private Pane panePersoMap;	
 
+
+
 	@FXML
 	private BorderPane BorderPaneId;
 
@@ -73,6 +75,8 @@ public class Controleur implements Initializable{
 	private ImageView eren;
 	@FXML
 	private Pane gameOver;
+
+
 
 	@FXML
 	private TilePane afficherObjet;
