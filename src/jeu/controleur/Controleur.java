@@ -27,6 +27,7 @@ import jeu.Parametre;
 import jeu.model.Environnement;
 import jeu.vue.HeroVue;
 import jeu.model.inventaire.arme.Epee;
+import jeu.model.inventaire.arme.LanceFoudroyante;
 import jeu.model.inventaire.outil.Pelle;
 import jeu.model.inventaire.outil.Pioche;
 import jeu.model.inventaire.ressource.Pain;
@@ -34,6 +35,7 @@ import jeu.vue.HerosVieVue;
 import jeu.vue.PnjMechantTitanVue;
 import jeu.vue.SoundEffect;
 import jeu.vue.TerrainVue;
+import jeu.vue.lanceFoudroyanteVue;
 import jeu.vue.inventaire.InventaireVue;
 
 public class Controleur implements Initializable{
@@ -41,6 +43,7 @@ public class Controleur implements Initializable{
 	private Timeline gameLoop;
 	private Environnement env;
 	private HeroVue hero1;
+	private LanceFoudroyante lance;
 
 	@FXML
 	private TilePane tuilesFond;
@@ -183,12 +186,21 @@ public class Controleur implements Initializable{
 		//		System.out.println(inv.getInventaire());
 		System.out.println("Affichage liste Titans" + env.getListeTitans());
 
+		
+		lance = new LanceFoudroyante(env.getEren().getX() , env.getEren().getY(), env);
+		
+		lanceFoudroyanteVue lanceVue = new lanceFoudroyanteVue(lance,panePersoMap,env);
+		this.panePersoMap.getChildren().add(lanceVue);
+		lanceVue.affichageTitan(lance);
+		env.getEren().getInventaireHeros().ajouterDansInventaire(lance);
+
+		
+ 		
 		initAnimation();
 		// demarre l'animation
 		gameLoop.play();
+		
 
-
-		Parametre.sonMapTitan.playSound();
 	}
 
 
@@ -213,7 +225,8 @@ public class Controleur implements Initializable{
 							env.getEren().additionnerDirY(1);
 						}
 					}
-
+					
+					lance.action();
 
 					// Boucle qui verifie en permanance la collission gravite si le titan est present dans la liste
 					for(int i =0 ; i<env.getListeTitans().size() ; i++) {						
@@ -221,9 +234,9 @@ public class Controleur implements Initializable{
 						env.getListeTitans().get(i).gravite();
 						env.getListeTitans().get(i).move();
 						env.getListeTitans().get(i).verificationMort();
-
-
 					}
+					
+					
 				}
 						));
 		gameLoop.getKeyFrames().add(kf);

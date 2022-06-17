@@ -9,6 +9,7 @@ import jeu.model.Heros;
 import jeu.model.Terrain;
 import jeu.model.inventaire.Inventaire;
 import jeu.model.inventaire.Objet;
+import jeu.model.inventaire.arme.LanceFoudroyante;
 import jeu.model.inventaire.outil.Outil;
 import jeu.model.inventaire.outil.Pelle;
 import jeu.model.inventaire.outil.Pioche;
@@ -126,6 +127,14 @@ public class MouseClick implements EventHandler<MouseEvent> {
 				Pain pain = new Pain();
 				env.getEren().augmenterPv(pain);
 				env.getEren().getInventaireHeros().detruireRessource(pain);
+			}
+			
+			else if(objet instanceof LanceFoudroyante ) {
+				LanceFoudroyante lance = new LanceFoudroyante(env.getEren().getX(),env.getEren().getY(),env );
+				lance.action();
+				System.out.println("\n Affichage X de la lance  " + lance.getX());
+				System.out.println("\n Affichage Y de la lance  " + lance.getY());
+
 			}
 		}
 	}
