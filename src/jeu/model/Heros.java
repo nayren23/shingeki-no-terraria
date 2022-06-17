@@ -31,7 +31,12 @@ public class Heros extends Personnage{
 	}
 
 
-
+	public boolean estMort () {
+		boolean mort = false;
+		if (this.PvProperty().getValue()<=0)
+			mort = true;
+		return mort;
+	}
 
 	//------------------------------------------------------------//
 

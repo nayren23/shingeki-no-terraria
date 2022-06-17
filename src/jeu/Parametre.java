@@ -1,5 +1,7 @@
 package jeu;
 
+import jeu.vue.SoundEffect;
+
 public class Parametre {
 
 	//---------------------------------------------------------------------------------------//
@@ -36,7 +38,7 @@ public class Parametre {
     public static int hauteurPersonnage = 25;
     
     public static int diffBlocDessu = 32;
-
+    
 	//---------------------------------------------------------------------------------------//
 
 	//Parametre du minage
@@ -104,9 +106,9 @@ public class Parametre {
 	//---------------------------------------------------------------------------------------//
 
 	//Parametre de ou a ou le titan peut se deplacer
-	public static int coordonneeMinTerrainTitanGauche =320;
+	public static int coordonneeMinTerrainTitanGauche =325;
 
-	public static int coordonneeMaxTerrainTitanDroite =1052;
+	public static int coordonneeMaxTerrainTitanDroite =1045;
 
 	public static int coordonneeTerrainTitanY =450;
 
@@ -136,6 +138,15 @@ public class Parametre {
 		return peutCreuser;
 	}
 
+	//////////////////////SON
+	
+	public static SoundEffect sonMapTitan = new SoundEffect("jeu/sound/snkPrincipale.wav");
+	public static SoundEffect sonGameOverFinaleTatakae = new SoundEffect("jeu/sound/tatakae.wav");
+	public static SoundEffect sonAjoutObjetInventaire	 = new SoundEffect("jeu/sound/ajoutItem.wav");
+	public static SoundEffect mortTitan	 = new SoundEffect("jeu/sound/mortTitan.wav");
+	public static SoundEffect epee	 = new SoundEffect("jeu/sound/epee.wav");
+
+	
 
 
 }

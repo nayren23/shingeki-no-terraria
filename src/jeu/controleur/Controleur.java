@@ -23,7 +23,10 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
+import javafx.stage.Stage;
 import javafx.util.Duration;
+import jeu.Main;
+import jeu.Parametre;
 import jeu.model.Environnement;
 import jeu.vue.HeroVue;
 import jeu.model.inventaire.arme.Epee;
@@ -39,11 +42,13 @@ import jeu.model.inventaire.ressource.Terre;
 import jeu.vue.HerosVieVue;
 import jeu.vue.PnjGentilVue;
 import jeu.vue.PnjMechantTitanVue;
+import jeu.vue.SoundEffect;
 import jeu.vue.TerrainVue;
 import jeu.vue.inventaire.InventaireVue;
 
 public class Controleur implements Initializable{
 
+	private static final Stage Stage = new Stage();
 	private Timeline gameLoop;
 	private Environnement env;
 	private HeroVue hero1;
@@ -54,13 +59,21 @@ public class Controleur implements Initializable{
 	@FXML
 	private TilePane tuilesFond;
 	@FXML
+	private Pane panePersoMap;	
+
+	@FXML
 	private BorderPane BorderPaneId;
+
 	@FXML
 	private Pane PanePrincipale;
 	@FXML
 	private TilePane afficherInventaire;
+
 	@FXML
 	private ImageView eren;
+	@FXML
+	private Pane gameOver;
+
 	@FXML
 	private TilePane afficherObjet;
 	@FXML
@@ -76,45 +89,75 @@ public class Controleur implements Initializable{
 	@FXML
 	private Button construireEpee;
 	@FXML
-    private Button construireLanceFoudroyante;
+	private Button construireLanceFoudroyante;
 	@FXML
-    private Pane paneBateau;
-    @FXML
-    private Button construireBateau;
-    @FXML
-    private Label statutConstructionBateau;
-    @FXML
-    private Pane paneSacha;
-    @FXML
-    private Button echangerPain;
-    @FXML
-    private Label statutEchangePain;
-    
-    @FXML
-    void construireRessource(ActionEvent event) {
-    	if (event.getSource()==construireBateau) {
-    		Bois bois = new Bois();
-    		if (this.env.getEren().getInventaireHeros().interactionArminSacha(bois)) {
+	private Pane paneBateau;
+	@FXML
+	private Button construireBateau;
+	@FXML
+	private Label statutConstructionBateau;
+	@FXML
+	private Pane paneSacha;
+	@FXML
+	private Button echangerPain;
+	@FXML
+	private Label statutEchangePain;
+
+	@FXML
+	void construireRessource(ActionEvent event) {
+		if (event.getSource()==construireBateau) {
+			Bois bois = new Bois();
+			if (this.env.getEren().getInventaireHeros().interactionArminSacha(bois)) {
 				this.statutConstructionBateau.setText("CONSTRUIT");
 				this.statutConstructionBateau.toFront();
-    		}
-    		else {
+			}
+			else {
 				this.statutConstructionBateau.setText("PAS ASSEZ DE RESSOURCES");
 				this.statutConstructionBateau.toFront();
 			}
-    	}
-    	if (event.getSource()==echangerPain) {
-    		Terre terre = new Terre();
-    		if (this.env.getEren().getInventaireHeros().interactionArminSacha(terre)) {
-    			this.statutEchangePain.setText("Merci pour l'échange!");
-    			this.statutEchangePain.toFront();
-    		}
-    		else {
-    			this.statutEchangePain.setText("Vous n'avez pas assez de terre...");
-    			this.statutEchangePain.toFront();
-    		}
-    	}
-    }
+		}
+		if (event.getSource()==echangerPain) {
+			Terre terre = new Terre();
+			if (this.env.getEren().getInventaireHeros().interactionArminSacha(terre)) {
+				this.statutEchangePain.setText("Merci pour l'echange!");
+				this.statutEchangePain.toFront();
+			}
+			else {
+				this.statutEchangePain.setText("Vous n'avez pas assez de terre...");
+				this.statutEchangePain.toFront();
+			}
+		}
+	}
+
+	@FXML
+	private Button exit;
+
+	@FXML
+	private Pane panePause;
+
+	@FXML
+	private Label pause;
+
+	@FXML
+	private Button boutonRestart;
+
+	@FXML
+	void sortirJeu(ActionEvent event) {
+		System.out.println("gateaux");
+
+		//		gameLoop.pause();
+		System.exit(0);  // pour sortir du programme
+	}
+
+	//quand partie perdue
+	@FXML
+	void restart(ActionEvent event) {
+		System.out.println("Je relance le jeu");
+		Main lancement = new Main();
+		((Stage) ((Button) event.getSource()).getScene().getWindow()).close();// pour sortir du programme
+		lancement.start(Stage );
+	}
+
 
 	@FXML
 	void construire(ActionEvent event) {
@@ -181,6 +224,7 @@ public class Controleur implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
+		gameLoop = new Timeline();
 
 		//------------------------------------------------------------//
 
@@ -193,7 +237,7 @@ public class Controleur implements Initializable{
 				BackgroundRepeat.NO_REPEAT,
 				BackgroundPosition.DEFAULT,
 				BackgroundSize.DEFAULT);
-
+		
 		//Puis on creer un background qui contient notre Backgroundimage
 		Background backGround = new Background(backImage);
 
@@ -214,10 +258,11 @@ public class Controleur implements Initializable{
 
 		//------------------------------------------------------------//
 
+		gameOver.setVisible(false);
 		//Creeation de la vue de chaque titan present de la liste qu'on afiche ensuite sur l'ecran
 		for(int i =0 ;i< env.getListeTitans().size() ;i++) {
-			PnjMechantTitanVue  pnjTitanVue = new PnjMechantTitanVue(env.getListeTitans().get(i),env.getEren(),PanePrincipale, env);
-			this.PanePrincipale.getChildren().add(pnjTitanVue);
+			PnjMechantTitanVue  pnjTitanVue = new PnjMechantTitanVue(env.getListeTitans().get(i),env.getEren(),panePersoMap, env);
+			this.panePersoMap.getChildren().add(pnjTitanVue);
 			pnjTitanVue.affichageTitan(env.getListeTitans().get(i));
 		}
 
@@ -230,50 +275,52 @@ public class Controleur implements Initializable{
 		//------------------------------------------------------------//
 
 		//Creation de la Vue du hero eren puis ajout de celui ci dans le pane
-		hero1 = new HeroVue(env.getEren());
+		// pane different pour eren pour qu'on puisse voir son image quand il est mort 
+		hero1 = new HeroVue(env.getEren(),gameOver,gameLoop);
 		this.PanePrincipale.getChildren().add(hero1);
 		hero1.affichageEren(env.getEren());
-		
-		Image imageErwin = new Image("jeu/image/erwin.png");
-		this.erwin = new  PnjGentilVue(imageErwin);
-		this.PanePrincipale.getChildren().add(erwin);
-		this.erwin.setOnMouseClicked(mouseEvent -> {
-			this.hboxEtabli.setVisible(!this.hboxEtabli.isVisible());
-			this.statutConstruction.setVisible(!this.statutConstruction.isVisible());
-		this.PanePrincipale.requestFocus();
-		});
-		
-//		Image imageArmin = new Image("jeu/image/armin.png");
-//		this.armin = new PnjGentilVue(imageArmin);
-//		this.PanePrincipale.getChildren().add(armin);
-//		this.armin.setOnMouseClicked(mouseEvent -> {
-//			this.paneBateau.setVisible(!this.paneBateau.isVisible());
-//			this.statutConstructionBateau.setVisible(!this.statutConstructionBateau.isVisible());
-//		this.PanePrincipale.requestFocus();
-//		});
-		
+
+				Image imageErwin = new Image("jeu/image/erwin.png");
+				this.erwin = new  PnjGentilVue(imageErwin);
+				this.panePersoMap.getChildren().add(erwin);
+				this.erwin.setOnMouseClicked(mouseEvent -> {
+					this.hboxEtabli.setVisible(!this.hboxEtabli.isVisible());
+					this.statutConstruction.setVisible(!this.statutConstruction.isVisible());
+				this.panePersoMap.requestFocus();
+				});
+
+		//		Image imageArmin = new Image("jeu/image/armin.png");
+		//		this.armin = new PnjGentilVue(imageArmin);
+		//		this.panePersoMap.getChildren().add(armin);
+		//		this.armin.setOnMouseClicked(mouseEvent -> {
+		//			this.paneBateau.setVisible(!this.paneBateau.isVisible());
+		//			this.statutConstructionBateau.setVisible(!this.statutConstructionBateau.isVisible());
+		//		this.panePersoMap.requestFocus();
+		//		});
+
 //		Image imageSacha = new Image("jeu/image/sacha.png");
 //		this.sacha = new PnjGentilVue(imageSacha);
-//		this.PanePrincipale.getChildren().add(sacha);
+//		this.panePersoMap.getChildren().add(sacha);
 //		this.sacha.setOnMouseClicked(mouseEvent -> {
 //			this.paneSacha.setVisible(!this.paneSacha.isVisible());
 //			this.statutEchangePain.setVisible(!this.statutEchangePain.isVisible());
-//			this.PanePrincipale.requestFocus();
+//			this.panePersoMap.requestFocus();
 //		});
 
-		HerosVieVue viehero = new HerosVieVue(env.getEren(), PanePrincipale);
+		HerosVieVue viehero = new HerosVieVue(env.getEren(), panePersoMap);
 		viehero.affichageVie(env.getEren().PvProperty().getValue()); //affichage vie hero en haut droite
 
 		//------------------------------------------------------------//
 
 		//Creation  de la VUE de l inventaire
 		InventaireVue invVue = new InventaireVue(env,afficherInventaire, afficherObjet);
-		this.PanePrincipale.getChildren().add(invVue);
+		this.panePersoMap.getChildren().add(invVue);
 
 		//------------------------------------------------------------//
-
+		panePause.setVisible(false);
 		//Creation de l usage du clavier
-		BorderPaneId.addEventHandler(KeyEvent.KEY_PRESSED,new KeyPressed(env.getEren(), viehero, invVue, hero1)); //pour savoir les touches qui sont appuee
+
+		BorderPaneId.addEventHandler(KeyEvent.KEY_PRESSED,new KeyPressed(env.getEren(), viehero, invVue, hero1,panePause,gameLoop)); //pour savoir les touches qui sont appuee
 		BorderPaneId.addEventHandler(KeyEvent.KEY_RELEASED,new KeyReleased(env.getEren()));//pour savoir les touches qui sont relachee
 
 		//------------------------------------------------------------//
@@ -315,7 +362,7 @@ public class Controleur implements Initializable{
 		bois.incrementerRessource();
 		bois.incrementerRessource();
 		env.getEren().getInventaireHeros().ajouterDansInventaire(bois);
-		
+
 		Terre terre = new Terre();
 		terre.incrementerRessource();
 		terre.incrementerRessource();
@@ -330,7 +377,7 @@ public class Controleur implements Initializable{
 		terre.incrementerRessource();
 		terre.incrementerRessource();
 		env.getEren().getInventaireHeros().ajouterDansInventaire(terre);
-		
+
 		Gaz gaz = new Gaz();
 		gaz.incrementerRessource();
 		gaz.incrementerRessource();
@@ -342,11 +389,13 @@ public class Controleur implements Initializable{
 		initAnimation();
 		// demarre l'animation
 		gameLoop.play();
+
+
+		Parametre.sonMapTitan.playSound();
 	}
 
 
 	private void initAnimation() {
-		gameLoop = new Timeline();
 
 		gameLoop.setCycleCount(Timeline.INDEFINITE);
 
@@ -369,18 +418,14 @@ public class Controleur implements Initializable{
 					}
 
 
-
-
-
-
-
-
 					// Boucle qui verifie en permanance la collission gravite si le titan est present dans la liste
 					for(int i =0 ; i<env.getListeTitans().size() ; i++) {						
 						env.getListeTitans().get(i).collisions();
 						env.getListeTitans().get(i).gravite();
 						env.getListeTitans().get(i).move();
 						env.getListeTitans().get(i).verificationMort();
+
+
 					}
 				}
 						));

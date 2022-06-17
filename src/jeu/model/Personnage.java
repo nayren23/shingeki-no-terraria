@@ -66,6 +66,7 @@ public abstract class Personnage {
 	}
 
 
+
 	public void sauter() {
 		if (this.collisionDuBas( getX(), getY())) {
 			additionnerDirY(-Parametre.hauteurSautPersonnage);
