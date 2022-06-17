@@ -152,9 +152,8 @@ public class Controleur implements Initializable{
 					//										System.out.println(" y d'eren" + Math.abs(env.getEren().getY()));
 					hero1.animations(env.getEren());
 
-
-					System.out.println(env.getEren().getX());
-					System.out.println(env.getEren().getY());
+//					System.out.println(env.getEren().getX());
+//					System.out.println(env.getEren().getY());
 					env.getEren().collisions();
 					env.getEren().gravite();
 					env.getEren().move();
@@ -172,12 +171,13 @@ public class Controleur implements Initializable{
 					
 					
 					
+//
+//					System.out.println( "voici la comparaison  1 : "+ env.getTerrain().parcourrirTab(env.getTerrain().getTabTerrain(), env.getTerrain().getVerifMap().get("1")));
+//					System.out.println( "voici la comparaison  2 : "+ env.getTerrain().parcourrirTab(env.getTerrain().getTabTerrain(), env.getTerrain().getVerifMap().get("2")));
+//					System.out.println( "voici la comparaison  3 : "+ env.getTerrain().parcourrirTab(env.getTerrain().getTabTerrain(), env.getTerrain().getVerifMap().get("3")));
 
-					System.out.println( "voici la comparaison  1 : "+ env.getTerrain().parcourrirTab(env.getTerrain().getTabTerrain(), env.getTerrain().getVerifMap().get("1")));
-					System.out.println( "voici la comparaison  2 : "+ env.getTerrain().parcourrirTab(env.getTerrain().getTabTerrain(), env.getTerrain().getVerifMap().get("2")));
-					System.out.println( "voici la comparaison  3 : "+ env.getTerrain().parcourrirTab(env.getTerrain().getTabTerrain(), env.getTerrain().getVerifMap().get("3")));
-
-					//transition map2
+					
+					//transition map 1 -> 2
 					if(env.getEren().getX() >= 1257 && env.getTerrain().parcourrirTab(env.getTerrain().getTabTerrain(),env.getTerrain().getVerifMap().get("1"))) {
 
 						//						coordonneeMax = 1257;
@@ -188,12 +188,11 @@ public class Controleur implements Initializable{
 						terrainVue = new TerrainVue(tuilesFond, env.getTerrain());	
 						terrainVue.dessinerTerrain();
 
-
 					}
 					
 					
 					
-					//transition map3
+					//transition map 2 -> 3
 					if(env.getEren().getX() >= 1257 && env.getTerrain().parcourrirTab(env.getTerrain().getTabTerrain(),env.getTerrain().getVerifMap().get("2"))) {
 
 						System.out.println("addition " + (coordonneeMax + env.getEren().getX()));
@@ -209,13 +208,14 @@ public class Controleur implements Initializable{
 					}
 					
 					
-					
-					
-					if(env.getEren().getX() <= 0 && env.getTerrain().parcourrirTab(env.getTerrain().getTabTerrain(),env.getTerrain().getVerifMap().get("2"))) {
-						System.out.println("je rentre dans la condition");
+					//transition map 4 -> 1
+					if(env.getEren().getX() >= 1257 && env.getTerrain().parcourrirTab(env.getTerrain().getTabTerrain(),env.getTerrain().getVerifMap().get("4"))) {
+
+						System.out.println("addition " + (coordonneeMax + env.getEren().getX()));
+						//if(env.getEren().getX() >= 2505) {
 
 
-						env.getEren().setX(1257);
+						env.getEren().setX(10);
 						env.getEren().setY(447);
 						env.getTerrain().changerTerrain(env.getTerrain().getTabTerrain());
 						terrainVue = new TerrainVue(tuilesFond, env.getTerrain());	
@@ -223,9 +223,23 @@ public class Controleur implements Initializable{
 
 					}
 					
-					
-					if(env.getEren().getX() <= 0 && env.getTerrain().parcourrirTab(env.getTerrain().getTabTerrain(),env.getTerrain().getVerifMap().get("3"))) {
+					//transition map 2 -> 1
+					if(env.getEren().getX() <= 0 && env.getTerrain().parcourrirTab(env.getTerrain().getTabTerrain(),env.getTerrain().getVerifMap().get("2"))) {
+						System.out.println("je rentre dans la condition");
+
+
+						env.getEren().setX(1257);
+						env.getEren().setY(447);
 						
+						env.getTerrain().changerTerrain(env.getTerrain().getTabTerrain());
+						terrainVue = new TerrainVue(tuilesFond, env.getTerrain());	
+						terrainVue.dessinerTerrain();
+
+					}
+					
+					
+					//transition map 3 -> 2
+					if(env.getEren().getX() <= 0 && env.getTerrain().parcourrirTab(env.getTerrain().getTabTerrain(),env.getTerrain().getVerifMap().get("3"))) {
 						env.getEren().setX(1257);
 						env.getEren().setY(511);
 						env.getTerrain().changerTerrain(env.getTerrain().getTabTerrain2());
@@ -233,7 +247,7 @@ public class Controleur implements Initializable{
 						terrainVue.dessinerTerrain();
 
 					}
-					
+	
 					
 					
 					

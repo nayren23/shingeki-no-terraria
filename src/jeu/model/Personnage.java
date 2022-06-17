@@ -116,10 +116,10 @@ public abstract class Personnage {
 
 
 	public void collisionDeGauche (int x,int y) {
-		if (verificationDeCollisions(coordoonneTuile(x + 9, y - Parametre.hauteurPersonnage)) || verificationDeCollisions(coordoonneTuile(x + 9, y))) {
+		if (verificationDeCollisions(coordoonneTuile(x + 9, y - Parametre.hauteurPersonnage)) || verificationDeCollisions(coordoonneTuile(x + 9, y - 1))) {
 			this.xProp.set(x - this.direction);
 		}
-		if (verificationDeCollisions(coordoonneTuile(x + 9, y - Parametre.hauteurPersonnage)) || verificationDeCollisions(coordoonneTuile(x + 9, y))) {
+		if (verificationDeCollisions(coordoonneTuile(x + 9, y - Parametre.hauteurPersonnage)) || verificationDeCollisions(coordoonneTuile(x + 9, y - 1))) {
 			this.xProp.set(this.xProp.get() + 1);
 		}
 	}

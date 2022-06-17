@@ -12,7 +12,8 @@ import jeu.model.Heros;
 
 public class HeroVue extends ImageView{
 
-	private Image image = new Image("jeu/image/Eren11.png") ;
+	private Image image = new Image("jeu/image/Eren11.png");
+	
 	private ArrayList<Image> images = new ArrayList<Image>();
 	private int count;
 	
@@ -26,9 +27,6 @@ public class HeroVue extends ImageView{
 		images.add(new Image("jeu/image/ErenCour4.png"));
 		images.add(new Image("jeu/image/ErenCour5.png"));
 		images.add(new Image("jeu/image/ErenCour6.png"));
-		images.add(new Image("jeu/image/ErenCour7.png"));
-		images.add(new Image("jeu/image/ErenCour8.png"));
-		images.add(new Image("jeu/image/ErenCour9.png"));
 
 		this.count=0;
 	}
@@ -41,7 +39,7 @@ public class HeroVue extends ImageView{
 	public void animations(Heros h) {
 		
 		if(h.getDirection() == 3) {
-			if (count==20) {
+			if (count==60) {
 				count=0;
 
 			}
@@ -51,7 +49,7 @@ public class HeroVue extends ImageView{
 			count++;
 		}
 		else if (h.getDirection() == -3 ) {
-			if (count==20) {
+			if (count==60) {
 				count=0;
 
 			}
@@ -66,6 +64,7 @@ public class HeroVue extends ImageView{
 		}
 		
 	}
+	
 
 	public void changerImage(String image) {
 		Image monImage = new Image(image);

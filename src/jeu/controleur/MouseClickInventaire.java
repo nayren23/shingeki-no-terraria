@@ -20,4 +20,6 @@ public class MouseClickInventaire implements EventHandler<MouseEvent>{
 		eren.equiper(objet);
 	}
 
+	
+	
 }
