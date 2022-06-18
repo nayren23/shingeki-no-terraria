@@ -20,7 +20,7 @@ public class LanceFoudroyante extends Arme{
 	private boolean lanceAvance;
 	
 	public LanceFoudroyante(int x, int y , Environnement env) {
-		super(1,"lance");
+		super(2,"lance");
 		this.coordonneeX = new SimpleIntegerProperty(x);
 		this.coordonneeY = new SimpleIntegerProperty(y);
 		this.direction= 0;
