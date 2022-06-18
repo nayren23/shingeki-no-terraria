@@ -40,6 +40,7 @@ import jeu.model.inventaire.outil.Hache;
 import jeu.model.inventaire.outil.Pelle;
 import jeu.model.inventaire.outil.Pioche;
 import jeu.model.inventaire.ressource.Bois;
+import jeu.model.inventaire.ressource.Charbon;
 import jeu.model.inventaire.ressource.Fer;
 import jeu.model.inventaire.ressource.Gaz;
 import jeu.model.inventaire.ressource.Pain;
@@ -74,12 +75,8 @@ public class Controleur implements Initializable{
 	private TilePane tuilesFond;
 	@FXML
 	private Pane panePersoMap;	
-
-
-
 	@FXML
 	private BorderPane BorderPaneId;
-
 	@FXML
 	private Pane PanePrincipale;
 	@FXML
@@ -89,9 +86,6 @@ public class Controleur implements Initializable{
 	private ImageView eren;
 	@FXML
 	private Pane gameOver;
-
-
-
 	@FXML
 	private TilePane afficherObjet;
 	@FXML
@@ -120,7 +114,33 @@ public class Controleur implements Initializable{
 	private Button echangerPain;
 	@FXML
 	private Label statutEchangePain;
-
+	@FXML
+	private Label qteBois;
+	@FXML
+	private Label qteCharbon;
+	@FXML
+	private Label qteFer;
+	@FXML
+	private Label qteTerre;
+	@FXML
+	private Button exit;
+	@FXML
+	private Pane panePause;
+	@FXML
+	private Label pause;
+	@FXML
+	private Button boutonRestart;
+	@FXML
+	private Label bois;
+	@FXML
+	private Label terre;
+	@FXML
+	private Label fer;
+	@FXML
+	private Label charbon;
+	
+	
+	
 	@FXML
 	void construireRessource(ActionEvent event) {
 		if (event.getSource()==construireBateau) {
@@ -147,17 +167,8 @@ public class Controleur implements Initializable{
 		}
 	}
 
-	@FXML
-	private Button exit;
-
-	@FXML
-	private Pane panePause;
-
-	@FXML
-	private Label pause;
-
-	@FXML
-	private Button boutonRestart;
+	
+	
 
 	@FXML
 	void sortirJeu(ActionEvent event) {
@@ -268,7 +279,23 @@ public class Controleur implements Initializable{
 		this.statutConstructionBateau.setVisible(false);
 		this.hboxEtabli.setVisible(false);
 		this.statutConstruction.setVisible(false);
-
+		this.qteBois.setVisible(true);
+		this.qteBois.toFront();
+		this.bois.toFront();
+		this.bois.setVisible(true);
+		this.qteCharbon.setVisible(true);
+		this.qteCharbon.toFront();
+		this.charbon.toFront();
+		this.charbon.setVisible(true);
+		this.qteFer.setVisible(true);
+		this.qteFer.toFront();
+		this.fer.toFront();
+		this.fer.setVisible(true);
+		this.qteTerre.setVisible(true);
+		this.qteTerre.toFront();
+		this.terre.toFront();
+		this.terre.setVisible(true);
+		
 		//Creation de l'environnement qui lui recupere le Terrain
 		env = new Environnement();
 
@@ -322,6 +349,7 @@ public class Controleur implements Initializable{
 		HerosVieVue viehero = new HerosVieVue(env.getEren(), panePersoMap);
 		viehero.affichageVie(env.getEren().PvProperty().getValue()); //affichage vie hero en haut droite
 
+	
 
 		//------------------------------------------------------------//
 
@@ -401,6 +429,9 @@ public class Controleur implements Initializable{
 		gaz.incrementerRessource();
 		env.getEren().getInventaireHeros().ajouterDansInventaire(gaz);
 
+		
+		
+		
 		initAnimation();
 		// demarre l'animation
 		gameLoop.play();
@@ -430,9 +461,7 @@ public class Controleur implements Initializable{
 					//										System.out.println(" y d'eren" + Math.abs(env.getEren().getY()));
 					hero1.animations(env.getEren());
 
-					System.out.println("voici mes coordonnée x" + env.getEren().getX());
-					System.out.println("voici mes coordonnée y" + env.getEren().getY());
-
+					
 
 					//					System.out.println(env.getEren().getX());
 					//					System.out.println(env.getEren().getY());
@@ -446,7 +475,22 @@ public class Controleur implements Initializable{
 							env.getEren().additionnerDirY(1);
 						}
 					}
-
+					
+					for(int i = 0; i < env.getEren().getInventaireHeros().getInventaire().size(); i++) {
+						if(env.getEren().getInventaireHeros().getInventaire().get(i) instanceof Bois ) {
+							this.bois.setText(env.getEren().getInventaireHeros().getInventaire().get(i) + "");
+						}
+						else if(env.getEren().getInventaireHeros().getInventaire().get(i) instanceof Terre ) {
+							this.terre.setText(env.getEren().getInventaireHeros().getInventaire().get(i) + "");
+						}
+						else if(env.getEren().getInventaireHeros().getInventaire().get(i) instanceof Fer ) {
+							this.fer.setText(env.getEren().getInventaireHeros().getInventaire().get(i) + "");
+						}
+						else if(env.getEren().getInventaireHeros().getInventaire().get(i) instanceof Charbon ) {
+							this.charbon.setText(env.getEren().getInventaireHeros().getInventaire().get(i) + "");
+						}
+					}
+					
 
 					//pnj premiere map 
 					if(apparitionErwin && env.getTerrain().parcourrirTab(env.getTerrain().getTabTerrain(),env.getTerrain().getVerifMap().get("2")) ) {
@@ -579,7 +623,6 @@ public class Controleur implements Initializable{
 
 
 					//apparition des titans dans l'arene qui est sur la map 4
-					System.out.println("apparition du titan" + apparitionTitan);
 					if(apparitionTitan && env.getTerrain().parcourrirTab(env.getTerrain().getTabTerrain(),env.getTerrain().getVerifMap().get("5")) ) {
 						apparitionTitan = false;
 						env.creationListeTitans();

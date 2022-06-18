@@ -64,7 +64,7 @@ public class Inventaire {
 				}
 				else if(r instanceof Fer) {
 					Fer fer = (Fer) this.inventaire.get(i);
-					if (fer.getNbRessource()>1) {
+					if (fer.getNbRessource()>=1) {
 						fer.decrementerRessource(1);
 						System.out.println(this.inventaire);
 					}
@@ -75,7 +75,7 @@ public class Inventaire {
 				}
 				else if(r instanceof Terre) {
 					Terre terre = (Terre) this.inventaire.get(i);
-					if (terre.getNbRessource()>1) {
+					if (terre.getNbRessource()>=1) {
 						terre.decrementerRessource(1);
 						System.out.println(this.inventaire);
 					}
@@ -86,7 +86,7 @@ public class Inventaire {
 				}
 				else if (r instanceof Gaz) {
 					Gaz gaz = (Gaz) this.inventaire.get(i);
-					if (gaz.getNbRessource()>1) {
+					if (gaz.getNbRessource()>=1) {
 						gaz.decrementerRessource(1);
 						System.out.println(this.inventaire);
 					}
@@ -97,7 +97,7 @@ public class Inventaire {
 				}
 				else if (r instanceof Charbon) {
 					Charbon charbon= (Charbon) this.inventaire.get(i);
-					if (charbon.getNbRessource()>1) {
+					if (charbon.getNbRessource()>=1) {
 						charbon.decrementerRessource(1);
 						System.out.println(this.inventaire);
 					}
@@ -109,12 +109,13 @@ public class Inventaire {
 				}
 				else if (r instanceof Bois) {
 					Bois bois = (Bois) this.inventaire.get(i);
-					if (bois.getNbRessource()>1) {
-						bois.decrementerRessource(1);
-						System.out.println(this.inventaire);
-					}
-					else {
+					if (bois.getNbRessource() <= 1) {
 						this.inventaire.remove(i);
+						System.out.println(this.inventaire);
+						
+					}
+					else{
+						bois.decrementerRessource(1);
 						System.out.println(this.inventaire);
 					}
 
@@ -443,7 +444,7 @@ public class Inventaire {
 
 	@Override
 	public String toString() {
-		return "Vous avez dans votre inventaire = " + inventaire + " ]";
+		return "Vous avez dans votre inventaire = " + inventaire + " ] ";
 	}
 
 }
