@@ -9,10 +9,11 @@ public abstract class Arme extends Objet{
 	private int qualite;
 	private String nom;
 	
-	public Arme (int id, String nom) {
+	//durabilite est la durée de vie de l'arme, à chaque fois qu'il est utilise il perd 1 pv, il est donc possible de la baisser pour voir si elle se supprime
+	public Arme (int id, String nom, int degats, int durabilite) {
 		super(id);
-		this.durabilite = 100;
-		this.degats = 2;
+		this.durabilite = durabilite;
+		this.degats = degats;
 		this.nom=nom;
 	}
 	
@@ -41,5 +42,7 @@ public abstract class Arme extends Objet{
 	public String toString() {
 		return "Nom de l'arme= " + nom;
 	}
-
+	public int getDegats() {
+        return degats;
+    }
 }

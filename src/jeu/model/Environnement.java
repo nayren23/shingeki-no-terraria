@@ -1,6 +1,10 @@
 package jeu.model;
 
 import java.util.ArrayList;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import jeu.Parametre;
 import jeu.model.inventaire.Objet;
 import jeu.model.inventaire.ressource.Bois;
 import jeu.model.inventaire.ressource.Charbon;
@@ -9,7 +13,7 @@ import jeu.model.inventaire.ressource.Fer;
 import jeu.model.inventaire.ressource.Gaz;
 import jeu.model.inventaire.ressource.Ressource;
 import jeu.model.inventaire.ressource.Terre;
-
+import jeu.vue.PnjGentilVue;
 import jeu.model.inventaire.ressource.Charbon;
 import jeu.model.inventaire.ressource.Fer;
 import jeu.model.inventaire.ressource.Gaz;
@@ -23,6 +27,8 @@ public class Environnement {
 	private ArrayList<Personnage> personnages;
 	private ArrayList<Ressource> ressources;
 	private Heros eren;
+    private ObservableList<PnjMechantTitan> listeTitans;
+
 
 	public Environnement() {
 		this.terrain = new Terrain();
@@ -33,6 +39,21 @@ public class Environnement {
 		this.personnages.add(eren);
 		this.ressources = new ArrayList<Ressource>();
 		creationRessources();
+        listeTitans = FXCollections.observableArrayList();
+
+	}
+
+	/**
+	 * on creer la liste qui contient les 10 Titans
+	 */
+	public void creationListeTitans() {
+
+		for (int i= 0 ; i< Parametre.nbTitansGenerer;i++) {
+			int posX = 320 + (i *150 ) ;
+			int posY = 450  ;
+
+			listeTitans.add(new PnjMechantTitan(posX, posY, this, "titan" + i));
+		}
 	}
 
 	public void creationRessources() {
@@ -106,4 +127,8 @@ public class Environnement {
 		return personnages;
 	}
 
+
+public ObservableList<PnjMechantTitan> getListeTitans() {
+		return listeTitans;
+	}
 }

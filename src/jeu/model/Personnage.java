@@ -28,11 +28,17 @@ public abstract class Personnage {
 	//-------------------------------------------------------------------//
 
 	//Methodes Abstract//
-	public abstract void perdrePv();
 
-	public abstract void augmenterPv();
+	public int clamp (int val1 , int min, int max) {  // Pour borner un chiffre entre 2 valeurs pour pas que l'image s'enleve
+		int valeurClamp = val1;
 
-
+		if(valeurClamp<min) 
+			valeurClamp = min;
+		else if(valeurClamp>max) 
+			valeurClamp= max;
+		return valeurClamp;
+	}
+	
 	public void collisions () {
 		int x = this.xProp.get();
 		int y = this.yProp.get();
@@ -47,6 +53,7 @@ public abstract class Personnage {
 		this.xProp.set(xProp.get() + direction);
 		this.yProp.set(yProp.get() + dirY);
 	}
+
 
 
 	public void sauter() {

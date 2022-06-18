@@ -1,18 +1,220 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.TilePane?>
 
-<BorderPane fx:id="BorderPaneId" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jeu.controleur.Controleur">
+<BorderPane fx:id="BorderPaneId" prefHeight="361.0" prefWidth="480.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jeu.controleur.Controleur">
    <center>
-      <Pane fx:id="PanePrincipale" BorderPane.alignment="CENTER">
+      <Pane fx:id="PanePrincipale" prefHeight="361.0" prefWidth="555.0" BorderPane.alignment="CENTER">
          <children>
-            <TilePane fx:id="tuilesFond" prefColumns="40" prefRows="23" />
-            <TilePane fx:id="afficherInventaire" prefColumns="10" />
-            <TilePane fx:id="afficherObjet" prefColumns="10" />
+            <Pane fx:id="panePersoMap" prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <TilePane fx:id="tuilesFond" prefColumns="40" prefRows="23" />
+                  <TilePane fx:id="afficherInventaire" prefColumns="10" />
+                  <TilePane fx:id="afficherObjet" prefColumns="10" />
+               </children>
+            </Pane>
+            <Pane fx:id="panePause" opacity="0.9" prefHeight="736.0" prefWidth="1280.0" style="-fx-background-color: black;">
+               <children>
+                  <Button fx:id="exit" alignment="CENTER" graphicTextGap="100.0" layoutX="588.0" layoutY="429.0" mnemonicParsing="false" onAction="#sortirJeu" textAlignment="CENTER">
+                     <graphic>
+                        <ImageView fx:id="imageExit" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../image/exitGame.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Label fx:id="pause" alignment="CENTER" layoutX="577.0" layoutY="257.0" prefHeight="69.0" prefWidth="56.0" textFill="#d91414" />
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="596.0" layoutY="267.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../image/pause.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane fx:id="gameOver" prefHeight="736.0" prefWidth="1280.0" style="-fx-background-color: black;">
+               <children>
+                  <ImageView fitHeight="117.0" fitWidth="471.0" layoutX="405.0" layoutY="231.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../image/gameOver.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="boutonRestart" layoutX="532.0" layoutY="352.0" mnemonicParsing="false" onAction="#restart">
+                     <graphic>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../image/restart.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="exit1" alignment="CENTER" graphicTextGap="100.0" layoutX="532.0" layoutY="406.0" mnemonicParsing="false" onAction="#sortirJeu" textAlignment="CENTER">
+                     <graphic>
+                        <ImageView fx:id="imageExit1" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../image/exitGame.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </Pane>
+            <HBox fx:id="hboxEtabli" alignment="CENTER" layoutX="283.0" layoutY="77.0" prefHeight="151.0" prefWidth="600.0">
+               <children>
+                  <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black; -fx-background-color: grey;">
+                     <children>
+                        <ImageView fitHeight="69.0" fitWidth="120.0" layoutX="26.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../image/inventaire/vue/pelleInventaire(1).png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="150.0" fitWidth="34.0" layoutX="10.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../image/BlocFer.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="51.0" layoutY="89.0" text="4" />
+                        <ImageView fitHeight="42.0" fitWidth="33.0" layoutX="69.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../image/BlocBois.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="106.0" layoutY="89.0" text="2" />
+                        <Button fx:id="construirePelle" layoutX="17.0" layoutY="111.0" mnemonicParsing="false" onAction="#construire" text="Construire" />
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black; -fx-background-color: grey;">
+                     <children>
+                        <ImageView fitHeight="69.0" fitWidth="120.0" layoutX="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../image/inventaire/vue/piocheInventaire1.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="150.0" fitWidth="32.0" layoutX="9.0" layoutY="76.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../image/BlocFer.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="55.0" layoutY="85.0" prefHeight="16.0" prefWidth="8.0" text="5" />
+                        <ImageView fitHeight="42.0" fitWidth="33.0" layoutX="70.0" layoutY="76.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../image/BlocBois.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="105.0" layoutY="85.0" text="3" />
+                        <Button fx:id="construirePioche" layoutX="17.0" layoutY="111.0" mnemonicParsing="false" onAction="#construire" text="Construire" />
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black; -fx-background-color: grey;">
+                     <children>
+                        <ImageView fitHeight="69.0" fitWidth="120.0" layoutX="23.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../image/inventaire/vue/hacheInventaire.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="42.0" fitWidth="33.0" layoutX="70.0" layoutY="76.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../image/BlocBois.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="51.0" layoutY="85.0" text="6" />
+                        <ImageView fitHeight="150.0" fitWidth="32.0" layoutX="7.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../image/BlocFer.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="105.0" layoutY="84.0" text="4" />
+                        <Button fx:id="construireHache" layoutX="17.0" layoutY="111.0" mnemonicParsing="false" onAction="#construire" text="Construire" />
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black; -fx-background-color: grey;">
+                     <children>
+                        <ImageView fitHeight="69.0" fitWidth="110.0" layoutX="26.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../image/inventaire/vue/epeeInventaire.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="150.0" fitWidth="32.0" layoutX="10.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../image/BlocFer.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="51.0" layoutY="82.0" text="10" />
+                        <ImageView fitHeight="42.0" fitWidth="33.0" layoutX="69.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../image/BlocBois.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="106.0" layoutY="82.0" text="1" />
+                        <Button fx:id="construireEpee" layoutX="17.0" layoutY="111.0" mnemonicParsing="false" onAction="#construire" text="Construire" />
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: grey; -fx-border-color: black;">
+                     <children>
+                        <ImageView fitHeight="77.0" fitWidth="150.0" layoutX="22.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../image/inventaire/vue/lanceFoudroyanteInventaire.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="150.0" fitWidth="32.0" layoutX="9.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../image/BlocFer.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="41.0" layoutY="83.0" text="15" />
+                        <ImageView fitHeight="42.0" fitWidth="33.0" layoutX="66.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../image/BlocGaz.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="102.0" layoutY="83.0" text="6" />
+                        <Button fx:id="construireLanceFoudroyante" layoutX="17.0" layoutY="111.0" mnemonicParsing="false" onAction="#construire" text="Construire" />
+                     </children>
+                  </Pane>
+               </children>
+            </HBox>
+            <Label fx:id="statutConstruction" alignment="CENTER" layoutX="344.0" layoutY="254.0" prefHeight="38.0" prefWidth="480.0" textFill="WHITE" />
+            <Pane fx:id="paneBateau" layoutX="484.0" layoutY="228.0" prefHeight="238.0" prefWidth="200.0" style="-fx-background-color: grey;">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="6.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../image/bateau.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="41.0" fitWidth="44.0" layoutX="27.0" layoutY="151.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../image/BlocBois.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="83.0" layoutY="164.0" text="50" />
+                  <Button fx:id="construireBateau" layoutX="114.0" layoutY="159.0" mnemonicParsing="false" onAction="#construireRessource" text="Construire" />
+                  <Label fx:id="statutConstructionBateau" alignment="CENTER" layoutX="-2.0" layoutY="208.0" prefHeight="16.0" prefWidth="204.0" textAlignment="CENTER" textFill="WHITE" />
+               </children>
+            </Pane>
+            <Pane fx:id="paneSacha" layoutX="14.0" layoutY="76.0" prefHeight="154.0" prefWidth="142.0" style="-fx-background-color: grey;">
+               <children>
+                  <ImageView fitHeight="70.0" fitWidth="76.0" layoutX="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../image/inventaire/vue/painInventaire.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="150.0" fitWidth="34.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../image/4.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="41.0" layoutY="88.0" text="2" />
+                  <Button fx:id="echangerPain" layoutX="57.0" layoutY="83.0" mnemonicParsing="false" onAction="#construireRessource" text="Echanger" />
+                  <Label fx:id="statutEchangePain" alignment="CENTER" layoutX="-2.0" layoutY="124.0" prefHeight="16.0" prefWidth="145.0" textFill="WHITE" />
+               </children>
+            </Pane>
          </children>
       </Pane>
    </center>

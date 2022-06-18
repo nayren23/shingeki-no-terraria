@@ -1,7 +1,9 @@
 package jeu.controleur;
 
+import javafx.animation.Timeline;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Pane;
 import jeu.Parametre;
 import jeu.model.Heros;
 import jeu.model.Personnage;
@@ -15,53 +17,71 @@ public class KeyPressed implements EventHandler<KeyEvent>{
 	private InventaireVue inventaire;
 	private HerosVieVue heroVieVue;
 	private HeroVue heroVue;
+	private Pane panePause;
+	private Timeline gameLoop;
 
-	public KeyPressed(Personnage hero2 , HerosVieVue heroVieVue, InventaireVue inv, HeroVue heroVue) {
+	public KeyPressed(Personnage hero2 , HerosVieVue heroVieVue, InventaireVue inv, HeroVue heroVue,Pane panePause, Timeline gameLoop) {
 		this.hero = (Heros) hero2;
 		this.inventaire=inv;
 		this.heroVieVue = heroVieVue;
 		this.heroVue = heroVue;
-		
+		this.panePause = panePause;
+		this.gameLoop = gameLoop;
 	}
 
 	@Override
 	//Deplacement
 	public void handle(KeyEvent event) {
 
-		switch(event.getCode()) {
-		case Q:
-			hero.setDirection(-Parametre.vitessePersonnage);
-			break;
-		case LEFT:
-			hero.setDirection(-Parametre.vitessePersonnage);
-			break;
-		case D:
-			hero.setDirection(Parametre.vitessePersonnage);
-			break;
-		case RIGHT:
-			hero.setDirection(Parametre.vitessePersonnage);
-			break;
-		case SPACE:
-			hero.sauter();
+		// si pas mort alors peut bouger
+		if(!hero.estMort()) {
+			switch(event.getCode()) {
+			case Q:
+				hero.setDirection(-Parametre.vitessePersonnage);
+				break;
+			case LEFT:
+				hero.setDirection(-Parametre.vitessePersonnage);
+				break;
+			case D:
+				hero.setDirection(Parametre.vitessePersonnage);
+				break;
+			case RIGHT:
+				hero.setDirection(Parametre.vitessePersonnage);
+				break;
+			case SPACE:
+				hero.sauter();
 
-			break;
-			// option pour enlever rajouter des pv 
-		case F1:
-			System.out.println("enlever vie");
-			hero.perdrePv();
-			System.out.println(hero.PvProperty());
-			break;
-		case F2:
-			System.out.println("ajout vie");
-			hero.augmenterPv(); //test pour voir si le coeur change d'image quand on augmente les pv
-			System.out.println(hero.PvProperty());
-			break;		
-		case I: 
-			inventaire.afficherInventaire();
-			break;		
-		default:
-			System.out.println("Entree incorrecte" );
-            break;       
+				break;
+				// option pour enlever rajouter des pv 
+			case F1:
+				System.out.println("enlever vie");
+				hero.perdrePv();
+				System.out.println(hero.PvProperty());
+				break;	
+			case I: 
+				inventaire.afficherInventaire();
+				break;	
+
+			case ESCAPE: 
+				System.out.println("\n affichage echape");
+
+				//methodes de la pause
+				if (panePause.isVisible()== true) {
+					panePause.setVisible(false);
+					System.out.println("pause");
+					gameLoop.play();
+				}
+
+				else {
+					panePause.setVisible(true);
+					gameLoop.pause();
+				}
+				break;	
+
+			default:
+				System.out.println("Entree incorrecte" );
+				break;       
+			}
 		}
 	}
 }

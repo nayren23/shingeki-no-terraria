@@ -5,6 +5,7 @@ import jeu.Parametre.DIRECTION;
 import jeu.model.inventaire.Inventaire;
 import jeu.model.inventaire.Objet;
 import jeu.model.inventaire.arme.Hand;
+import jeu.model.inventaire.ressource.Pain;
 
 public class Heros extends Personnage{
 
@@ -14,7 +15,7 @@ public class Heros extends Personnage{
 
 	//changer le type terrain en type environnement
 	public Heros(int x, int y, Terrain terrain, Environnement env) {
-		super(125, 417, 9, env);
+		super(555, 417, 9, env);
 		this.mainHeros = new Hand();
 		this.objetHeros= mainHeros;
 		this.inventaireHeros = new Inventaire(super.getEnv());
@@ -23,13 +24,20 @@ public class Heros extends Personnage{
 
 
 	//------------------------------------------------------------//
-	
+
 
 	public void gravite() {
 		setY(getY()  + Parametre.forceGravite);
 
 	}
 
+
+	public boolean estMort () {
+		boolean mort = false;
+		if (this.PvProperty().getValue()<=0)
+			mort = true;
+		return mort;
+	}
 
 	//------------------------------------------------------------//
 
@@ -41,19 +49,9 @@ public class Heros extends Personnage{
 	 * @param max valeur la plus haute a ne jamais d�passer
 	 * @return  notre valeur comprise entre 0 et 9
 	 */
-	private int clamp (int val1 , int min, int max) {  // Pour borner un chiffre entre 2 valeurs pour pas que l'image s'enleve
-		int valeurClamp = val1;
+	
 
-		if(valeurClamp<min) 
-			valeurClamp = min;
-		else if(valeurClamp>max) 
-			valeurClamp= max;
-		return valeurClamp;
-	}
 
-	//------------------------------------------------------------//
-
-	@Override
 	/**
 	 * on ne peut pas etre en dessous de 0 pv g�rer grace au clamp
 	 */
@@ -64,13 +62,16 @@ public class Heros extends Personnage{
 
 	//------------------------------------------------------------//
 
-	@Override
+	
 	/**
 	 * on ne peut pas etre en dessus de 9 pv g�rer grace au clamp
 	 */
-	public void augmenterPv() { // on prend notre valeur et on fait +1 et doit etre comprise entre 0 et 9
-		int pv = clamp(this.PvProperty().getValue()+1, 0, 9);	
-		this.PvProperty().setValue(pv);  // -1 pour le heros 
+	public void augmenterPv(Pain pain) { // on prend notre valeur et on fait +1 et doit etre comprise entre 0 et 9
+		int pv;
+		if(this.inventaireHeros.verifierRessource(pain)) {
+			pv = clamp(this.PvProperty().getValue()+1, 0, 9);	
+			this.PvProperty().setValue(pv);  // -1 pour le heros 
+		}
 	}
 
 	//------------------------------------------------------------//
@@ -88,7 +89,7 @@ public class Heros extends Personnage{
 
 	public void equiper (Objet o) {
 		setObjetHeros(o);
-		System.out.println("Objet  " +o.getIdObjet());
+		System.out.println("Objet " +o.getIdObjet());
 	}
 
 	public Objet getObjetHeros() {
@@ -116,7 +117,6 @@ public class Heros extends Personnage{
 	public Inventaire getInventaireHeros() {
 		return inventaireHeros;
 	}
-	
 
 	
 	public void setObjetHeros(Objet objetHeros) {
@@ -125,6 +125,8 @@ public class Heros extends Personnage{
 	
 
 	
+
+
 
 }
 
