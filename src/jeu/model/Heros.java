@@ -12,7 +12,7 @@ public class Heros extends Personnage{
 	private Inventaire inventaireHeros;
 	private Objet objetHeros;
 	private Hand mainHeros;
-
+	private int directionActuelle;
 
 	//changer le type terrain en type environnement
 	public Heros(int x, int y, Terrain terrain, Environnement env) {
@@ -20,6 +20,7 @@ public class Heros extends Personnage{
 		this.mainHeros = new Hand();
 		this.objetHeros= mainHeros;
 		this.inventaireHeros = new Inventaire(super.getEnv());
+		this.directionActuelle = 0;
 	}
 
 
@@ -116,6 +117,16 @@ public class Heros extends Personnage{
 
 	public void setObjetHeros(Objet objetHeros) {
 		this.objetHeros = objetHeros;
+	}
+
+
+	public int getDirectionActuelle() {
+		return directionActuelle;
+	}
+
+
+	public void setDirectionActuelle(int directionActuelle) {
+		this.directionActuelle = directionActuelle;
 	}
 
 

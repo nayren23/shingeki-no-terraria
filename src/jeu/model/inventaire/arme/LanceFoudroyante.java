@@ -42,11 +42,11 @@ public class LanceFoudroyante extends Arme{
 		 * listener qui ecoute les coordonneer du joueur pour mettre les bonne coordonner a la lance en Y
 		 */
 		env.getEren().yProperty().addListener((obs,old,newP) -> {
-			this.setY((int)newP);
+			this.setY((int)old);
 
 		}
-
 				);
+		
 	}	
 
 	public void move () {
@@ -62,12 +62,12 @@ public class LanceFoudroyante extends Arme{
 //				System.out.println("erenn droite" +droite);
 //				System.out.println("erenn gauceh" +gauche);
 
-		if( env.getEren().getDirection() == 3  ) { // on le fait allez jusqu a gauche puis
+		if( env.getEren().getDirectionActuelle() == 3  ) { // on le fait allez jusqu a gauche puis
 			droite = true;
 			gauche =false;
 		}
 
-		else if(env.getEren().getDirection()  == -3) { // on le fait allez jusqu a gauche puis
+		else if(env.getEren().getDirectionActuelle()  == -3) { // on le fait allez jusqu a gauche puis
 			droite = false;
 			gauche =true;
 		}

@@ -25,14 +25,12 @@ public class lanceFoudroyanteVue extends ImageView {
 		this.env =env;
 
 		lance.getPv().addListener((obs,old,newP) -> { 
-			//			if(lance.estMort() ) { 
-			supprimerLance();
-			//				Parametre.mortTitan.playSound();
-			System.out.println("meurrrr");
-			//			}
+			if(lance.estMort() ) { 
+				supprimerLance();
+				//				Parametre.mortTitan.playSound();
+				System.out.println("meurrrr");
+			}
 		});
-
-
 
 	}
 
@@ -57,5 +55,5 @@ public class lanceFoudroyanteVue extends ImageView {
 
 		//		changerImage();
 	}
-
+	
 }
