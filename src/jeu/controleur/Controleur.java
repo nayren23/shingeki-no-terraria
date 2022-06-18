@@ -134,6 +134,17 @@ public class Controleur implements Initializable{
 		lanceFoudroyanteVue lanceVue2 = new lanceFoudroyanteVue(lance2,panePersoMap,env);
 		this.panePersoMap.getChildren().add(lanceVue2);
 		lanceVue2.affichageTitan(lance2);
+		
+		LanceFoudroyante lance3 = new LanceFoudroyante(env.getEren().getX() , env.getEren().getY(), env);
+		lanceFoudroyanteVue lanceVue3 = new lanceFoudroyanteVue(lance3,panePersoMap,env);
+		this.panePersoMap.getChildren().add(lanceVue3);
+		lanceVue3.affichageTitan(lance3);
+		
+		
+		LanceFoudroyante lance4 = new LanceFoudroyante(env.getEren().getX() , env.getEren().getY(), env);
+		lanceFoudroyanteVue lanceVue4 = new lanceFoudroyanteVue(lance4,panePersoMap,env);
+		this.panePersoMap.getChildren().add(lanceVue4);
+		lanceVue4.affichageTitan(lance4);
 		//------------------------------------------------------------//
 
 		gameOver.setVisible(false);
@@ -202,8 +213,10 @@ public class Controleur implements Initializable{
 
 		env.getEren().getInventaireHeros().ajouterDansInventaire(lance2);
 
+		env.getEren().getInventaireHeros().ajouterDansInventaire(lance3);
+		env.getEren().getInventaireHeros().ajouterDansInventaire(lance4);
 
-//				Parametre.sonMapTitan.playSound();
+				Parametre.sonMapTitan.playSound();
 
 		initAnimation();
 		// demarre l'animation

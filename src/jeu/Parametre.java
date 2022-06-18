@@ -147,7 +147,10 @@ public class Parametre {
 	public static SoundEffect epee	 = new SoundEffect("jeu/sound/epee.wav");
 	public static SoundEffect lanceFoudroyante	= new SoundEffect("jeu/sound/lanceFoudroyante.wav");
 
+	//////////////////////// 
+	//		changerImage();
 	
-
+	public static int dimensionLanceHauteur = 32 ;
+	public static int dimensionLanceLargeur= 32 ;
 
 }

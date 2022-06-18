@@ -53,7 +53,7 @@ public class lanceFoudroyanteVue extends ImageView {
 		System.out.println("\n Affichage du x lance" +lance.getCoordonneeX().getValue());
 		System.out.println("\n Affichage du y lance" + lance.getCoordonneeY().getValue());
 
-		//		changerImage();
+
 	}
 	
 }
