@@ -123,7 +123,14 @@ public class Heros extends Personnage{
 	public int getDirectionActuelle() {
 		return directionActuelle;
 	}
-
+	
+	public int getPv() {
+		return this.PvProperty().getValue();
+	}
+	
+	public void setPv(int d) {
+		this.PvProperty().set(d);
+	}
 
 	public void setDirectionActuelle(int directionActuelle) {
 		this.directionActuelle = directionActuelle;
