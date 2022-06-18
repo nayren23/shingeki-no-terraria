@@ -87,33 +87,10 @@ public class LanceFoudroyante extends Arme{
 
 	}
 
-	//	public void attaque() 	{
-	//
-	//		for(int i = 0 ; i< env.getListeTitans().size();i++) {
-	//			System.out.println("la je suis dans le for");
-	//			//range de la lance en X et Y
-	//		if(	Parametre.rangeTitan(getX(),getY(), env.getListeTitans().get(i).getX(), env.getListeTitans().get(i).getY(), 10,30)) {
-	//				
-	//				System.out.println("\n passage de la mortttt");
-	//				System.out.println("affichage degatss" + this.getDegats());
-	//				env.getListeTitans().get(i).perdrePv(this);
-	//				pv.set(pv.getValue()-1);
-	//				
-	////				System.out.println("affichage vie des titans vivantsss !!!"  + env.getListeTitans().get(i).PvProperty().getValue());
-	//				//				System.out.println(	"Affichage vie titans "+env.getListeTitans().get(i).PvProperty().getValue());
-	//			}
-	//
-	//		}
-	//	}
-
-
-
 	public void attaque() {
 		int i=0;
 		while (i<env.getListeTitans().size()) {
 			if(	Parametre.rangeTitan(getX(),getY(), env.getListeTitans().get(i).getX(), env.getListeTitans().get(i).getY(), 10,60)) {
-//				System.out.println("\n passage de la mortttt");
-
 				env.getListeTitans().get(i).perdrePv(this);
 				pv.set(pv.getValue()-1);
 			}
@@ -135,8 +112,7 @@ public class LanceFoudroyante extends Arme{
 		return mort;
 	}
 	public void action () {
-		//		System.out.println("\n je me deplace");
-		
+	
 			seDeplace();
 			move();
 			attaque();

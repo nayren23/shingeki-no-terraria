@@ -97,7 +97,7 @@ public class Parametre {
 
 	public 	static	int vitesseTitan =2;
 
-	public static int nbTitansGenerer = 2;
+	public static int nbTitansGenerer = 6;
 
 	public static int rangeAttaqueErenSurTitanX = 60; 
 

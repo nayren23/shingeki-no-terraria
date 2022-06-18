@@ -203,7 +203,7 @@ public class Controleur implements Initializable{
 		env.getEren().getInventaireHeros().ajouterDansInventaire(lance2);
 
 
-		//		Parametre.sonMapTitan.playSound();
+//				Parametre.sonMapTitan.playSound();
 
 		initAnimation();
 		// demarre l'animation

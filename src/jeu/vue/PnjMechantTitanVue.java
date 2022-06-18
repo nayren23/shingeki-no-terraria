@@ -24,7 +24,7 @@ public class PnjMechantTitanVue extends ImageView {
 	private Pane PanePrincipale;
 	private Environnement env;
 	private ProgressBar barreVie;
-	
+
 	double progress ;
 	public PnjMechantTitanVue (PnjMechantTitan pnj ,Heros hero, Pane PanePrincipale ,Environnement env ) {			// initialisation de l'image et de ses coordoonÃ©es de base 
 		this.pnj = pnj;
@@ -39,9 +39,9 @@ public class PnjMechantTitanVue extends ImageView {
 		barreVie.setVisible(true);
 		barreVie.setStyle("-fx-accent: #FF0000"); // on set la couleur sur rouge
 		barreVie.setPrefSize(40, 10); // on choisit la taille de la barre de dégat
-		
+
 		this.PanePrincipale.getChildren().add(barreVie);
-//		&& this.barreVie.getProgress()>=0.9
+		//		&& this.barreVie.getProgress()>=0.9
 		//listener des pv qui retire le titan mort de la vue et du modele
 		pnj.PvProperty().addListener((obs,old,newP) -> { 
 			if(pnj.verificationMort() ) { // on regarde aussi si la barre de vie et complete
@@ -53,12 +53,12 @@ public class PnjMechantTitanVue extends ImageView {
 			}
 
 		});
-		
+
 		//Listener pour que la barre de vie bouge avec son Titan
 		pnj.xProperty().addListener((obs,old,newP) -> {
 			barreVie.setLayoutX(pnj.getX());
 		});
-		
+
 		//Listener pour que la barre de vie bouge avec son Titan
 		pnj.yProperty().addListener((obs,old,newP) -> {
 			barreVie.setLayoutY(pnj.getY()-30);
@@ -92,8 +92,8 @@ public class PnjMechantTitanVue extends ImageView {
 		//Listener
 		this.setOnMouseClicked(e -> {
 			Objet objet = this.hero.getObjetHeros();
-//			System.out.println("\npalalal");
-			
+			//			System.out.println("\npalalal");
+
 			if(Parametre.rangeTitan(env.getEren().getX(),env.getEren().getY(), pnj.getX(), pnj.getY(), Parametre.rangeAttaqueErenSurTitanX,Parametre.rangeAttaqueErenSurTitanY )) {
 				if(objet instanceof Epee ) {
 					Arme arme = (Arme) objet;
@@ -106,20 +106,8 @@ public class PnjMechantTitanVue extends ImageView {
 					System.out.println("\n barre vie" + this.barreVie.getProgress());
 
 				}
-				
-				
-//				else if(objet instanceof LanceFoudroyante ) {
-//				LanceFoudroyante lance = new LanceFoudroyante(env.getEren().getX(),env.getEren().getY(),env );
-//				lance.estMort();
-//				System.out.println("\n Affichage X de la lance  " + lance.getX());
-//				System.out.println("\n Affichage Y de la lance  " + lance.getY());
-//
-//			}
 
 			}
-
-			
-			
 		});
 	}
 }
