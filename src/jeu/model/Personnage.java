@@ -86,9 +86,8 @@ public abstract class Personnage {
 		}
 
 		return (x+(y+1)*Parametre.longueurTerrain);
-
-
 	}
+	
 	public void additionnerDirY(int nb) {
 		this.dirY += nb;
 	}

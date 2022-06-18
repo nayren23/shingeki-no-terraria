@@ -4,6 +4,7 @@ import java.util.Iterator;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import jeu.Collisions;
 import jeu.Parametre;
 import jeu.model.Environnement;
 import jeu.model.Personnage;
@@ -116,17 +117,90 @@ public class LanceFoudroyante extends Arme{
 			seDeplace();
 			move();
 			attaque();
-		
-
-
-		//		if(!this.collisionDuBas(this.getX(), this.getY())){
-		//			if(this.getDirY() < 10) {
-		//				this.additionnerDirY(1);
-		//			}
-		//		}
+			collisions();
 	}
 
 
+	
+	//////////////////////////////////////////////////////
+	
+	
+	public  void collisions () {
+		int x = this.coordonneeX.get();
+		int y = this.coordonneeX.get();
+		
+		if (collisionDeDroite(x,y) == true || collisionDeGauche(x,y) == true) {
+//			pv.set(pv.getValue()-1);
+		}
+		collisionDuHaut(x,y);
+		collisionDuBas(x,y);
+	}
+	
+	//permet de verifier la collision du haut avec le personnage en prenant le x du personnage et le y
+		//verification avec la collision sur le bloc du haut soit y - la difference avec le bloc du haut et met donc la direction du Y a 0 si il y a collision
+		public void collisionDuHaut (int x,int y) {
+			if (Collisions.verificationDeCollisions(Collisions.coordoonneTuile(x + 17, y - Parametre.diffBlocDessu ), env) || Collisions.verificationDeCollisions(Collisions.coordoonneTuile(x + 17, y - Parametre.diffBlocDessu),env)) {
+				this.setDirY(0);
+			}
+		}
+
+
+		//permet de verifier la collision du bas avec le personnage en prenant le x du personnage et le y
+		//Verification avec de pixel en y  avec ici y et y + 1
+		public boolean collisionDuBas (int x,int y) {
+			if (Collisions.verificationDeCollisions(Collisions.coordoonneTuile(x + 12 ,y+1),env) || Collisions.verificationDeCollisions(Collisions.coordoonneTuile(x + 12, y+1),env)) {
+				if (Collisions.verificationDeCollisions(Collisions.coordoonneTuile(x + 12 ,y),env) || Collisions.verificationDeCollisions(Collisions.coordoonneTuile(x + 12, y),env)) {
+					this.coordonneeY.set(this.coordonneeY.get() - Parametre.forceGravite);
+
+				}
+				if (this.getDirY() > 0  || this.getDirY()==-1) {
+					this.setDirY(0);
+					
+				}
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+
+
+		public boolean collisionDeDroite (int x,int y) {
+				boolean bloque = false;
+			if (Collisions.verificationDeCollisions(Collisions.coordoonneTuile(x + Parametre.largeurPersonnage, y - Parametre.hauteurPersonnage),env) || Collisions.verificationDeCollisions(Collisions.coordoonneTuile(x + Parametre.largeurPersonnage, y - 1),env)) {
+				this.coordonneeX.set(x - this.direction);
+				bloque = true;
+			}
+			if (Collisions.verificationDeCollisions(Collisions.coordoonneTuile(x + Parametre.largeurPersonnage, y - Parametre.hauteurPersonnage),env) || Collisions.verificationDeCollisions(Collisions.coordoonneTuile(x +  Parametre.largeurPersonnage, y - 1),env)) {
+				this.coordonneeX.set(this.coordonneeX.get() - 1);
+				bloque= true;
+
+			}
+			return bloque;
+			
+		}
+
+
+		public boolean collisionDeGauche (int x,int y) {
+			boolean bloque = false;
+
+			if (Collisions.verificationDeCollisions(Collisions.coordoonneTuile(x + 9, y - Parametre.hauteurPersonnage),env) || Collisions.verificationDeCollisions(Collisions.coordoonneTuile(x + 9, y -1),env)) {
+				this.coordonneeX.set(x - this.direction);
+				bloque = true;
+			}
+			if (Collisions.verificationDeCollisions(Collisions.coordoonneTuile(x + 9, y - Parametre.hauteurPersonnage),env) || Collisions.verificationDeCollisions(Collisions.coordoonneTuile(x + 9, y-1),env)) {
+				this.coordonneeX.set(this.coordonneeX.get() + 1);
+				bloque= true;
+			}
+			return bloque;
+		}
+
+	
+	
+	
+	
+	////////////////////////////////////////////////////
+	
 	
 	public boolean isLanceAvance() {
 		return lanceAvance;
@@ -182,6 +256,14 @@ public class LanceFoudroyante extends Arme{
 
 	public void setPv(IntegerProperty pv) {
 		this.pv = pv;
+	}
+
+	public int getDirY() {
+		return dirY;
+	}
+
+	public void setDirY(int dirY) {
+		this.dirY = dirY;
 	}
 
 
