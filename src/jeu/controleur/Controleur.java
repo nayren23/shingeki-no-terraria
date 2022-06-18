@@ -26,6 +26,7 @@ import javafx.util.Duration;
 import jeu.Parametre;
 import jeu.model.Environnement;
 import jeu.vue.HeroVue;
+import jeu.model.inventaire.Objet;
 import jeu.model.inventaire.arme.Epee;
 import jeu.model.inventaire.arme.LanceFoudroyante;
 import jeu.model.inventaire.outil.Pelle;
@@ -43,7 +44,6 @@ public class Controleur implements Initializable{
 	private Timeline gameLoop;
 	private Environnement env;
 	private HeroVue hero1;
-	private LanceFoudroyante lance;
 
 	@FXML
 	private TilePane tuilesFond;
@@ -124,6 +124,16 @@ public class Controleur implements Initializable{
 		//Creation de l'environnement qui lui recupere le Terrain
 		env = new Environnement();
 
+		LanceFoudroyante lance = new LanceFoudroyante(200 , 450, env);
+		lanceFoudroyanteVue lanceVue = new lanceFoudroyanteVue(lance,panePersoMap,env);
+		this.panePersoMap.getChildren().add(lanceVue);
+		lanceVue.affichageTitan(lance);
+
+
+		LanceFoudroyante lance2 = new LanceFoudroyante(250 , 450, env);
+		lanceFoudroyanteVue lanceVue2 = new lanceFoudroyanteVue(lance2,panePersoMap,env);
+		this.panePersoMap.getChildren().add(lanceVue2);
+		lanceVue2.affichageTitan(lance2);
 		//------------------------------------------------------------//
 
 		gameOver.setVisible(false);
@@ -187,14 +197,13 @@ public class Controleur implements Initializable{
 		System.out.println("Affichage liste Titans" + env.getListeTitans());
 
 
-		lance = new LanceFoudroyante(200 , 450, env);
 
-		lanceFoudroyanteVue lanceVue = new lanceFoudroyanteVue(lance,panePersoMap,env);
-		this.panePersoMap.getChildren().add(lanceVue);
-		lanceVue.affichageTitan(lance);
 		env.getEren().getInventaireHeros().ajouterDansInventaire(lance);
 
-//		Parametre.sonMapTitan.playSound();
+		env.getEren().getInventaireHeros().ajouterDansInventaire(lance2);
+
+
+		//		Parametre.sonMapTitan.playSound();
 
 		initAnimation();
 		// demarre l'animation
@@ -226,7 +235,6 @@ public class Controleur implements Initializable{
 						}
 					}
 
-					lance.verifMort();
 
 					// Boucle qui verifie en permanance la collission gravite si le titan est present dans la liste
 					for(int i =0 ; i<env.getListeTitans().size() ; i++) {						
@@ -235,8 +243,17 @@ public class Controleur implements Initializable{
 						env.getListeTitans().get(i).move();
 						env.getListeTitans().get(i).verificationMort();
 					}
+					Objet objet = this.env.getEren().getObjetHeros();
+					if(objet instanceof LanceFoudroyante ) {
+						LanceFoudroyante arme = (LanceFoudroyante) objet;
 
+						if (arme.isLanceAvance() ==true) {
+							arme.estMort();
 
+						}
+					}
+					
+					
 				}
 						));
 		gameLoop.getKeyFrames().add(kf);

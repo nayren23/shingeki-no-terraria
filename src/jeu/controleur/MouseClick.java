@@ -128,14 +128,10 @@ public class MouseClick implements EventHandler<MouseEvent> {
 				env.getEren().augmenterPv(pain);
 				env.getEren().getInventaireHeros().detruireRessource(pain);
 			}
-			
-			else if(objet instanceof LanceFoudroyante ) {
-				LanceFoudroyante lance = new LanceFoudroyante(env.getEren().getX(),env.getEren().getY(),env );
-				lance.verifMort();
-				System.out.println("\n Affichage X de la lance  " + lance.getX());
-				System.out.println("\n Affichage Y de la lance  " + lance.getY());
 
+			if(objet instanceof LanceFoudroyante ) {
+				LanceFoudroyante arme = (LanceFoudroyante) objet;
+				arme.setLanceAvance(true);
+//				Parametre.lanceFoudroyante.playSound();
 			}
-		}
-	}
-}
+		}}}

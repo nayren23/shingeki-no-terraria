@@ -15,7 +15,10 @@ public class LanceFoudroyante extends Arme{
 	private int direction ,dirY;
 	private Environnement env;
 	private boolean droite , gauche;
-	private int pv;
+	private IntegerProperty pv;
+	
+	private boolean lanceAvance;
+	
 	public LanceFoudroyante(int x, int y , Environnement env) {
 		super(1,"lance");
 		this.coordonneeX = new SimpleIntegerProperty(x);
@@ -23,7 +26,27 @@ public class LanceFoudroyante extends Arme{
 		this.direction= 0;
 		this.env = env;
 		this.dirY = 0;
-		this.pv = 1;
+		this.pv = new SimpleIntegerProperty(1);
+		this.lanceAvance = false;
+		
+		/**
+		 * listener qui ecoute les coordonneer du joueur pour mettre les bonne coordonner a la lance en X
+		 */
+		env.getEren().xProperty().addListener((obs,old,newP) -> {
+			this.setX((int)newP);
+
+		}
+				);
+		
+		/**
+		 * listener qui ecoute les coordonneer du joueur pour mettre les bonne coordonner a la lance en Y
+		 */
+		env.getEren().yProperty().addListener((obs,old,newP) -> {
+			this.setY((int)newP);
+
+		}
+
+				);
 	}	
 
 	public void move () {
@@ -32,65 +55,93 @@ public class LanceFoudroyante extends Arme{
 	}
 
 
-	public void seDeplace() {
+	public void seDeplace(  ) {
 
-		//
-		//		System.out.println("erenn direction " + env.getEren().getDirection());
-		//		System.out.println("erenn droite" +droite);
-		//		System.out.println("erenn gauceh" +gauche);
+		
+//				System.out.println("erenn direction " + env.getEren().getDirection());
+//				System.out.println("erenn droite" +droite);
+//				System.out.println("erenn gauceh" +gauche);
 
-		if( env.getEren().getDirection() == 3 ) { // on le fait allez jusqu a gauche puis
+		if( env.getEren().getDirection() == 3  ) { // on le fait allez jusqu a gauche puis
 			droite = true;
 			gauche =false;
 		}
 
-		else if(env.getEren().getDirection()  == -3 ) { // on le fait allez jusqu a gauche puis
+		else if(env.getEren().getDirection()  == -3) { // on le fait allez jusqu a gauche puis
 			droite = false;
 			gauche =true;
 		}
 
 		if(droite) {
-			setDirection(1);
+			setDirection(4);
+			Parametre.lanceFoudroyante.playSound();
+
 		}
 
 		else if (gauche) {
-			setDirection(-1);
-		}
-		attaque();
-		move();
+			setDirection(-4);
+			Parametre.lanceFoudroyante.playSound();
 
+		}
+//		System.out.println("Direction eren" +env.getEren().getDirection());
 
 	}
 
-	public void attaque() 	{
+	//	public void attaque() 	{
+	//
+	//		for(int i = 0 ; i< env.getListeTitans().size();i++) {
+	//			System.out.println("la je suis dans le for");
+	//			//range de la lance en X et Y
+	//		if(	Parametre.rangeTitan(getX(),getY(), env.getListeTitans().get(i).getX(), env.getListeTitans().get(i).getY(), 10,30)) {
+	//				
+	//				System.out.println("\n passage de la mortttt");
+	//				System.out.println("affichage degatss" + this.getDegats());
+	//				env.getListeTitans().get(i).perdrePv(this);
+	//				pv.set(pv.getValue()-1);
+	//				
+	////				System.out.println("affichage vie des titans vivantsss !!!"  + env.getListeTitans().get(i).PvProperty().getValue());
+	//				//				System.out.println(	"Affichage vie titans "+env.getListeTitans().get(i).PvProperty().getValue());
+	//			}
+	//
+	//		}
+	//	}
 
-		for(int i = 0 ; i< env.getListeTitans().size();i++) {
-			if(getX() >= env.getListeTitans().get(i).getX() && verifMort() ==false) {
-				System.out.println("\n passage de la mortttt");
-				System.out.println("affichage degatss" + this.getDegats());
+
+
+	public void attaque() {
+		int i=0;
+		while (i<env.getListeTitans().size()) {
+			if(	Parametre.rangeTitan(getX(),getY(), env.getListeTitans().get(i).getX(), env.getListeTitans().get(i).getY(), 10,60)) {
+//				System.out.println("\n passage de la mortttt");
+
 				env.getListeTitans().get(i).perdrePv(this);
-				pv =0;
-				//				System.out.println(	"Affichage vie titans "+env.getListeTitans().get(i).PvProperty().getValue());
+				pv.set(pv.getValue()-1);
 			}
-
+			i++;
 		}
 	}
 
-	public boolean verifMort () {
+	public boolean estMort () {
 		boolean mort = false;
-		if(pv <= 0) {
-			mort =true;
+		if (this.pv.getValue()<=0) {
+			mort = true;
+			env.getEren().getInventaireHeros().detruireObjet(this);
 		}
+
 		else {
 			mort =false;
 			action();
 		}
 		return mort;
-
 	}
 	public void action () {
 		//		System.out.println("\n je me deplace");
-		seDeplace();
+		
+			seDeplace();
+			move();
+			attaque();
+		
+
 
 		//		if(!this.collisionDuBas(this.getX(), this.getY())){
 		//			if(this.getDirY() < 10) {
@@ -99,6 +150,15 @@ public class LanceFoudroyante extends Arme{
 		//		}
 	}
 
+
+	
+	public boolean isLanceAvance() {
+		return lanceAvance;
+	}
+
+	public void setLanceAvance(boolean lanceAvance) {
+		this.lanceAvance = lanceAvance;
+	}
 
 	public IntegerProperty getCoordonneeX() {
 		return coordonneeX;
@@ -127,6 +187,10 @@ public class LanceFoudroyante extends Arme{
 	public final void setX(int d) {
 		this.coordonneeX.setValue(d);
 	}
+	
+	public final void setY(int d) {
+		this.coordonneeY.setValue(d);
+	}
 
 	public void setDirection(int direction) {
 		this.direction = direction;
@@ -135,6 +199,15 @@ public class LanceFoudroyante extends Arme{
 	public Environnement getEnv() {
 		return env;
 	}
+
+	public IntegerProperty getPv() {
+		return pv;
+	}
+
+	public void setPv(IntegerProperty pv) {
+		this.pv = pv;
+	}
+
 
 
 

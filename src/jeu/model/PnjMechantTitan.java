@@ -36,7 +36,6 @@ public  class PnjMechantTitan extends Personnage {
 
 
 		if( collisionDeDroite(getX(), getY()) ) { // on le fait allez jusqu a gauche puis
-			System.out.println("lalalalala");
 			setDirection(-1);  //gauche
 		}
 

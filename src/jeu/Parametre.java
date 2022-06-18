@@ -145,6 +145,7 @@ public class Parametre {
 	public static SoundEffect sonAjoutObjetInventaire	 = new SoundEffect("jeu/sound/ajoutItem.wav");
 	public static SoundEffect mortTitan	 = new SoundEffect("jeu/sound/mortTitan.wav");
 	public static SoundEffect epee	 = new SoundEffect("jeu/sound/epee.wav");
+	public static SoundEffect lanceFoudroyante	= new SoundEffect("jeu/sound/lanceFoudroyante.wav");
 
 	
 

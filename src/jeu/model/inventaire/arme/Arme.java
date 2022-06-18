@@ -13,7 +13,7 @@ public abstract class Arme extends Objet{
 	public Arme (int id, String nom) {
 		super(id);
 		this.durabilite = 10;
-		this.degats = 50;  /// canger en fonction de la vie 
+		this.degats = 100;  /// canger en fonction de la vie 
 		this.nom=nom;
 	}
 	

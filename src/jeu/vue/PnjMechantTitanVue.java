@@ -24,6 +24,7 @@ public class PnjMechantTitanVue extends ImageView {
 	private Pane PanePrincipale;
 	private Environnement env;
 	private ProgressBar barreVie;
+	
 	double progress ;
 	public PnjMechantTitanVue (PnjMechantTitan pnj ,Heros hero, Pane PanePrincipale ,Environnement env ) {			// initialisation de l'image et de ses coordoonées de base 
 		this.pnj = pnj;
@@ -91,7 +92,7 @@ public class PnjMechantTitanVue extends ImageView {
 		//Listener
 		this.setOnMouseClicked(e -> {
 			Objet objet = this.hero.getObjetHeros();
-			System.out.println("\npalalal");
+//			System.out.println("\npalalal");
 			
 			if(Parametre.rangeTitan(env.getEren().getX(),env.getEren().getY(), pnj.getX(), pnj.getY(), Parametre.rangeAttaqueErenSurTitanX,Parametre.rangeAttaqueErenSurTitanY )) {
 				if(objet instanceof Epee ) {
@@ -106,18 +107,15 @@ public class PnjMechantTitanVue extends ImageView {
 
 				}
 				
-				if(objet instanceof LanceFoudroyante ) {
-					Arme arme = (Arme) objet;
-					
-					
-					progress += 1;  //de combien eon incremente la barre de vie
-					
-//					this.barreVie.setProgress(progress); //a chque coup le pnj prend  1 degat 
-					this.pnj.perdrePv(arme);
-//					arme.decrementerDurabiliteArme(arme);
-//					System.out.println("\n barre vie" + this.barreVie.getProgress());
+				
+//				else if(objet instanceof LanceFoudroyante ) {
+//				LanceFoudroyante lance = new LanceFoudroyante(env.getEren().getX(),env.getEren().getY(),env );
+//				lance.estMort();
+//				System.out.println("\n Affichage X de la lance  " + lance.getX());
+//				System.out.println("\n Affichage Y de la lance  " + lance.getY());
+//
+//			}
 
-				}
 			}
 
 			
