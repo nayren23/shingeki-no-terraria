@@ -124,13 +124,13 @@ public class Controleur implements Initializable{
 		//Creation de l'environnement qui lui recupere le Terrain
 		env = new Environnement();
 
-		LanceFoudroyante lance = new LanceFoudroyante(200 , 450, env);
+		LanceFoudroyante lance = new LanceFoudroyante(env.getEren().getX() , env.getEren().getY(), env);
 		lanceFoudroyanteVue lanceVue = new lanceFoudroyanteVue(lance,panePersoMap,env);
 		this.panePersoMap.getChildren().add(lanceVue);
 		lanceVue.affichageTitan(lance);
 
 
-		LanceFoudroyante lance2 = new LanceFoudroyante(250 , 450, env);
+		LanceFoudroyante lance2 = new LanceFoudroyante(env.getEren().getX() , env.getEren().getY(), env);
 		lanceFoudroyanteVue lanceVue2 = new lanceFoudroyanteVue(lance2,panePersoMap,env);
 		this.panePersoMap.getChildren().add(lanceVue2);
 		lanceVue2.affichageTitan(lance2);
