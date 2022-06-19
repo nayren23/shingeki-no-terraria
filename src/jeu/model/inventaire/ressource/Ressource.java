@@ -20,17 +20,18 @@ public class Ressource extends Objet{
 	public void incrementerRessource() {
 		this.nbRessource ++;
 	}
-	
+
 	public void decrementerRessource(int quantite) {
 		this.nbRessource -= quantite;
 	}
 
-	public void poserBloc (int numeroTuilesCasser, Terrain terrain , int blocAPoser) {  // ensuite rajouter l'objet miner dans l'inventaire 
+	public boolean poserBloc (int numeroTuilesCasser, Terrain terrain , int blocAPoser) {  // ensuite rajouter l'objet miner dans l'inventaire 
+		boolean peutPoser = false;
 		if(terrain.getTabTerrain()[numeroTuilesCasser] ==0) {
 			terrain.getTabTerrain()[numeroTuilesCasser]=blocAPoser; // 0 = le ciel
+			peutPoser = true;
 		}
-		else 
-			System.out.println("impossible de poser");
+		return peutPoser;
 	}
 
 	public void enleverResistance(Ressource r) {

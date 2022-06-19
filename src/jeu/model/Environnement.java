@@ -38,7 +38,6 @@ public class Environnement {
 		this.eren = new Heros(0, 0, terrain, this);
 		this.personnages.add(eren);
 		this.ressources = new ArrayList<Ressource>();
-		creationRessources();
         listeTitans = FXCollections.observableArrayList();
 
 	}
@@ -57,6 +56,9 @@ public class Environnement {
 	}
 
 	public void creationRessources() {
+		ressources.clear();
+		terrain.affichertableau(terrain.getTabTerrain());
+		System.out.println("terrain actuel" + terrain.getTerrainActuel() );
 		for(int i=0 ;i<terrain.getTabTerrain().length;i++) {
 			switch (terrain.getTabTerrain()[i]) {
 			case 0:
