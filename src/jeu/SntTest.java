@@ -40,9 +40,9 @@ public class SntTest {
         assertEquals(eren.getPv(), 4);
     }
 
-    @Test
-    public final void changementTuileTest() {
-        this.terrain.changerTuiles(3, 200);
-        assertEquals(1, 3);
-    }
+//    @Test
+//    public final void changementTuileTest() {
+//        this.terrain.changerTuiles(3, 200);
+//        assertEquals(1, 3);
+//    }
 }
