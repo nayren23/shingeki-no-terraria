@@ -5,7 +5,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
 import jeu.Parametre;
 import jeu.model.Terrain;
-import jeu.model.Tile;
 
 public class TerrainVue {
 
@@ -29,15 +28,18 @@ Bloc de Gaz :  4
 Bloc de Fer : 5
 */
 	private void tableauImageTerrain() {
-		this.imageTerrain = new Image[7] ;  // a changer en fonction du nombre de tuiles
+		this.imageTerrain = new Image[9] ;  // a changer en fonction du nombre de tuiles
 		imageTerrain[0] = new Image("jeu/image/BlocTransparent.png");
 		imageTerrain[1] =new Image("jeu/image/BlocHerbe.png");
 		imageTerrain[2] = new Image("jeu/image/BlocTerre.png");
 		imageTerrain[3] = new Image("jeu/image/BlocCharbon.png");
 		imageTerrain[4] = new Image("jeu/image/BlocGaz.png");
 		imageTerrain[5] = new Image("jeu/image/BlocFer.png");
-		imageTerrain[6] = new Image("jeu/image/BlocBois.png");
+		imageTerrain[6] = new Image("jeu/image/bois.png");
+		imageTerrain[7] = new Image("jeu/image/mer.png");
 
+
+		
 	}
 
 	/**
@@ -51,17 +53,20 @@ Bloc de Fer : 5
 		tableauImageTerrain();
 	}
 
+	
+	
+	
 
 	/**
 	 * On dessine le Terrain qu'une seul fois
 	 */
-	public void dessinerTerrain () {
+	public void dessinerTerrain (int[] terrain) {
 		//tuilesFond.setMaxSize(40*32, 23*32); // largeur * taille tuile hauteur * nb tuiles pour pas que la fenetre quand on l'agrandit change
 		tuilesFond.getChildren().clear(); // on clean le tilePane si jamais
 		ImageView images ;
 		
-		for(int cases = 0; cases < terrain.getTabTerrain().length ; cases++) {
-			switch(terrain.getTabTerrain()[cases]) {
+		for(int cases = 0; cases < terrain.length ; cases++) {
+			switch(terrain[cases]) {
 			case 0 :
 				images = new ImageView(imageTerrain[0]);
 				break;
@@ -92,6 +97,10 @@ Bloc de Fer : 5
 				
 			case 7 :
 				images = new ImageView(imageTerrain[7]);
+				break;
+			
+			case 8 :
+				images = new ImageView(imageTerrain[8]);
 				break;
 
 			default : 

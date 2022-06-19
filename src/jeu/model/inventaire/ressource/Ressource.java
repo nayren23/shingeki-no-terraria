@@ -16,19 +16,24 @@ public class Ressource extends Objet{
 		this.resistance=res;
 		this.nomRessource=nom;
 	}
-	
+
 	public void incrementerRessource() {
 		this.nbRessource ++;
 	}
-	
-	public void poserBloc (int numeroTuilesCasser, Terrain terrain , int blocAPoser) {  // ensuite rajouter l'objet miner dans l'inventaire 
-		
-		//rajouter condition pour pas build au meme endroit
-		if(terrain.getTabTerrain()[numeroTuilesCasser] ==0)     {
-			terrain.getTabTerrain()[numeroTuilesCasser]=blocAPoser; // 0 = le ciel
-		}
+
+	public void decrementerRessource(int quantite) {
+		this.nbRessource -= quantite;
 	}
-	
+
+	public boolean poserBloc (int numeroTuilesCasser, Terrain terrain , int blocAPoser) {  // ensuite rajouter l'objet miner dans l'inventaire 
+		boolean peutPoser = false;
+		if(terrain.getTabTerrain()[numeroTuilesCasser] ==0) {
+			terrain.getTabTerrain()[numeroTuilesCasser]=blocAPoser; // 0 = le ciel
+			peutPoser = true;
+		}
+		return peutPoser;
+	}
+
 	public void enleverResistance(Ressource r) {
 		this.resistance=r.getResistance()-2;
 	}
@@ -47,7 +52,7 @@ public class Ressource extends Objet{
 
 	@Override
 	public String toString() {
-		return "Nom de la ressource = " + this.nomRessource + " nbRessource=" + nbRessource;
+		return "" + nbRessource;
 	}
-	
+
 }

@@ -9,13 +9,19 @@ import jeu.model.Heros;
 import jeu.model.Terrain;
 import jeu.model.inventaire.Inventaire;
 import jeu.model.inventaire.Objet;
+import jeu.model.inventaire.arme.LanceFoudroyante;
+import jeu.model.inventaire.arme.Hand;
+import jeu.model.inventaire.outil.Hache;
 import jeu.model.inventaire.outil.Outil;
 import jeu.model.inventaire.outil.Pelle;
 import jeu.model.inventaire.outil.Pioche;
+import jeu.model.inventaire.ressource.Bois;
 import jeu.model.inventaire.ressource.Charbon;
 import jeu.model.inventaire.ressource.Ciel;
 import jeu.model.inventaire.ressource.Fer;
 import jeu.model.inventaire.ressource.Gaz;
+import jeu.model.inventaire.ressource.Pain;
+import jeu.model.inventaire.ressource.Ressource;
 import jeu.model.inventaire.ressource.Terre;
 import jeu.vue.TerrainVue;
 
@@ -43,67 +49,132 @@ public class MouseClick implements EventHandler<MouseEvent> {
 		int x = (int)arg0.getX()/tailleTuile;
 		int y = (int)arg0.getY()/tailleTuile;
 		int positionTuileDansTableau = (y * tailleMapLongueur  ) + x;
-//		System.out.println("\nAffichage X " + x+ " Affichage Y "+ y);
-
 
 		Objet objet = this.env.getEren().getObjetHeros();
-		
 		int xCase = (int)arg0.getX();
 		int yCase = (int)arg0.getY();
 		//en fonction de l objet equipe ont fait differentes action creuser ou poser un bloc
-//		System.out.println("Coordonnee eren x" +env.getEren().getX());
-//		System.out.println("Coordonnee eren Y" +env.getEren().getY());
-//		System.out.println("\nAffichage X " + xCase+ " Affichage Y "+ yCase);
+		//		System.out.println("Coordonnee eren x" +env.getEren().getX());
+		//		System.out.println("Coordonnee eren Y" +env.getEren().getY());
+		//		System.out.println("\nAffichage X " + xCase+ " Affichage Y "+ yCase);
+		//si pas mort alors peut faire action de la souris
+		if(!env.getEren().estMort()) {
 
+			//	(int coordonneeJoueurX, int coordonneeJoueurY , int positionBlocX, int positionBlocY ,int rangeGauche , int rangeDroite , int rangeHaut ,int rangeBas ) {
 
-		//int rangeGauche , int rangeDroite , int rangeHaut ,int rangeBas
-		if (Parametre.rangePourCasserBloc(env.getEren().getX(), env.getEren().getY(), xCase ,yCase, 20, 47 , 25, 64)) {
+			if (Parametre.rangePourCasserBloc(env.getEren().getX(), env.getEren().getY(), xCase ,yCase, 30*2, 47*2 , 25*2, 64*2)) {
 
-			Inventaire inv = env.getEren().getInventaireHeros();
-			if (objet instanceof Pioche && arg0.getButton() == MouseButton.PRIMARY  ) {
-				env.getEren().getInventaireHeros().faireDegatsBloc((Outil) objet, positionTuileDansTableau);
-				env.getEren().getInventaireHeros().creationBlocCasser((Outil) objet , positionTuileDansTableau);
-				terrainVue.changementTuileMinage(positionTuileDansTableau,env.getTerrain(),Parametre.changementDuBlocCasser);// changer et faire une fonction qui actualise juste l'image chang�			}
+				Inventaire inv = env.getEren().getInventaireHeros();
+				if (objet instanceof Pioche && arg0.getButton() == MouseButton.PRIMARY  ) {
+					env.getEren().getInventaireHeros().faireDegatsBloc((Outil) objet, positionTuileDansTableau, env.getTerrain());
+					env.getEren().getInventaireHeros().creationBlocCasser((Outil) objet , positionTuileDansTableau);
+					terrainVue.changementTuileMinage(positionTuileDansTableau,env.getTerrain(),Parametre.changementDuBlocCasser);
+				}
+
+				else if(objet instanceof Pelle && arg0.getButton() == MouseButton.PRIMARY) {
+					env.getEren().getInventaireHeros().faireDegatsBloc((Outil) objet, positionTuileDansTableau, env.getTerrain());
+					env.getEren().getInventaireHeros().creationBlocCasser((Outil) objet , positionTuileDansTableau);
+					terrainVue.changementTuileMinage(positionTuileDansTableau,env.getTerrain(),Parametre.changementDuBlocCasser);
+				}
+				else if(objet instanceof Hache && arg0.getButton() == MouseButton.PRIMARY) {
+					env.getEren().getInventaireHeros().faireDegatsBloc((Outil) objet, positionTuileDansTableau, env.getTerrain());
+					env.getEren().getInventaireHeros().creationBlocCasser((Outil) objet , positionTuileDansTableau);// changer et faire une fonction qui actualise juste l'image chang�
+					terrainVue.changementTuileMinage(positionTuileDansTableau,env.getTerrain(),Parametre.changementDuBlocCasser);// changer et faire une fonction qui actualise juste l'image chang�			}
+
+				}
+
+				//int rangeGauche , int rangeDroite , int rangeHaut ,int rangeBas
+				else if(objet instanceof Terre && arg0.getButton() == MouseButton.SECONDARY) {
+					Terre terre = new Terre();
+					if(this.env.getEren().getInventaireHeros().verifierRessource(terre)) {
+						if(((Terre) objet).poserBloc(positionTuileDansTableau, env.getTerrain(),Parametre.blocTerre)) {
+							terrainVue.changementTuileMinage(positionTuileDansTableau,env.getTerrain(),Parametre.blocTerre);
+
+							// Inventaire
+							env.getRessources().set(positionTuileDansTableau, terre);
+							env.getEren().getInventaireHeros().detruireRessource(terre);
+						}
+
+					}
+				}
+
+				else if(objet instanceof Fer && arg0.getButton() == MouseButton.SECONDARY) {
+					Fer fer = new Fer();
+					if(this.env.getEren().getInventaireHeros().verifierRessource(fer)) {
+						if(((Fer) objet).poserBloc(positionTuileDansTableau, env.getTerrain(),Parametre.blocFer)) {
+							terrainVue.changementTuileMinage(positionTuileDansTableau,env.getTerrain(),Parametre.blocFer);
+
+							// Inventaire
+							env.getRessources().set(positionTuileDansTableau, fer);
+							env.getEren().getInventaireHeros().detruireRessource(fer);
+						}
+	
+					}
+				}
+
+				else if(objet instanceof Charbon && arg0.getButton() == MouseButton.SECONDARY) {
+					Charbon charbon = new Charbon();
+					if(this.env.getEren().getInventaireHeros().verifierRessource(charbon)) {
+						if(((Charbon) objet).poserBloc(positionTuileDansTableau, env.getTerrain(),Parametre.blocCharbon)) {
+							terrainVue.changementTuileMinage(positionTuileDansTableau,env.getTerrain(),Parametre.blocCharbon);
+
+							// Inventaire
+							env.getRessources().set(positionTuileDansTableau, charbon);
+							env.getEren().getInventaireHeros().detruireRessource(charbon);
+						}
+
+					}
+				}
+
+				else if(objet instanceof Gaz && arg0.getButton() == MouseButton.SECONDARY) {
+					Gaz gaz = new Gaz();
+					if(this.env.getEren().getInventaireHeros().verifierRessource(gaz)) {
+						if(((Gaz) objet).poserBloc(positionTuileDansTableau, env.getTerrain(),Parametre.blocGaz)) {
+							terrainVue.changementTuileMinage(positionTuileDansTableau,env.getTerrain(),Parametre.blocGaz);
+
+							// Inventaire
+							env.getRessources().set(positionTuileDansTableau, gaz);
+							env.getEren().getInventaireHeros().detruireRessource(gaz);
+						}
+
+					}
+				}
+				
+				else if(objet instanceof Bois && arg0.getButton() == MouseButton.SECONDARY) {
+					Bois bois = new Bois();
+					if(this.env.getEren().getInventaireHeros().verifierRessource(bois)) {
+						if(((Bois) objet).poserBloc(positionTuileDansTableau, env.getTerrain(),Parametre.blocBois)) {
+							terrainVue.changementTuileMinage(positionTuileDansTableau,env.getTerrain(),Parametre.blocBois);
+
+							// Inventaire
+							env.getRessources().set(positionTuileDansTableau, bois);
+							env.getEren().getInventaireHeros().detruireRessource(bois);
+						}
+					}
+				}
+			}
+			else if(objet instanceof Pain) {
+				Pain pain = new Pain();
+				env.getEren().augmenterPv(pain);
+				if(this.env.getEren().getInventaireHeros().existeDansInventaire(pain.getIdObjet())) {
+					int positionPain = this.env.getEren().getInventaireHeros().positionRessourceDansListe(pain);
+					if( ((Ressource)this.env.getEren().getInventaireHeros().getInventaire().get(positionPain)).getNbRessource()>1) {
+						((Ressource) this.env.getEren().getInventaireHeros().getInventaire().get(positionPain)).decrementerRessource(positionPain);
+						Hand hand = new Hand();
+						this.env.getEren().equiper(hand);
+					}
+					else
+						env.getEren().getInventaireHeros().detruireRessource(pain);
+				}
+			}
+			else if(objet instanceof LanceFoudroyante ) {
+				LanceFoudroyante arme = (LanceFoudroyante) objet;
+				arme.setLanceAvance(true);
+				//				Parametre.lanceFoudroyante.playSound();
 			}
 
-			else if(objet instanceof Pelle && arg0.getButton() == MouseButton.PRIMARY) {
-				env.getEren().getInventaireHeros().faireDegatsBloc((Outil) objet, positionTuileDansTableau);
-				env.getEren().getInventaireHeros().creationBlocCasser((Outil) objet , positionTuileDansTableau);// changer et faire une fonction qui actualise juste l'image chang�
-				terrainVue.changementTuileMinage(positionTuileDansTableau,env.getTerrain(),Parametre.changementDuBlocCasser);// changer et faire une fonction qui actualise juste l'image chang�			}
-			}
-
-			else if(objet instanceof Terre && arg0.getButton() == MouseButton.SECONDARY) {
-
-				((Terre) objet).poserBloc(positionTuileDansTableau, env.getTerrain(),Parametre.blocTerre);
-				terrainVue.changementTuileMinage(positionTuileDansTableau,env.getTerrain(),Parametre.blocTerre);// changer et faire une fonction qui actualise juste l'image chang�			}
-
-				// Inventaire
-				Terre terre = new Terre();
-				env.getRessources().set(positionTuileDansTableau, terre);
-				System.out.println(" \nAffichage liste changer " +env.getRessources().get(0));
-
-			}
-
-			else if(objet instanceof Fer && arg0.getButton() == MouseButton.SECONDARY) {
-				((Fer) objet).poserBloc(positionTuileDansTableau, env.getTerrain(),Parametre.blocFer);
-				Fer fer = new Fer();
-				env.getRessources().set(positionTuileDansTableau, fer);
-				terrainVue.changementTuileMinage(positionTuileDansTableau,env.getTerrain(),Parametre.blocFer);// changer et faire une fonction qui actualise juste l'image chang�			}
-			}
-
-			else if(objet instanceof Charbon && arg0.getButton() == MouseButton.SECONDARY) {
-				((Charbon) objet).poserBloc(positionTuileDansTableau, env.getTerrain(),Parametre.blocCharbon);
-				Charbon charbon = new Charbon();
-				env.getRessources().set(positionTuileDansTableau, charbon);
-				terrainVue.changementTuileMinage(positionTuileDansTableau,env.getTerrain(),Parametre.blocCharbon);// changer et faire une fonction qui actualise juste l'image chang�			}
-			}
-
-			else if(objet instanceof Gaz && arg0.getButton() == MouseButton.SECONDARY) {
-				((Gaz) objet).poserBloc(positionTuileDansTableau, env.getTerrain(),Parametre.blocGaz);
-				Gaz gaz = new Gaz();
-				env.getRessources().set(positionTuileDansTableau, gaz);
-				terrainVue.changementTuileMinage(positionTuileDansTableau,env.getTerrain(),Parametre.blocGaz);// changer et faire une fonction qui actualise juste l'image chang�			}
-			}
 		}
+
+
 	}
 }

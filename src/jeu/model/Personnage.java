@@ -25,21 +25,10 @@ public abstract class Personnage {
 		this.space = false;
 	}
 
-
 	//-------------------------------------------------------------------//
 
 	//Methodes Abstract//
 
-	//------------------------------------------------------------//
-
-	/**
-	 * // Pour borner un chiffre entre 2 valeurs pour pas que l'image du coeur s'enleve aisni ne pas 
-	 * ainsi ne pas avoir + de 9 pv et - de 0 pv
-	 * @param val1  notre pv actuelle
-	 * @param min valeur la plus basse a ne jamais d�passer
-	 * @param max valeur la plus haute a ne jamais d�passer
-	 * @return  notre valeur comprise entre 0 et 9
-	 */
 	public int clamp (int val1 , int min, int max) {  // Pour borner un chiffre entre 2 valeurs pour pas que l'image s'enleve
 		int valeurClamp = val1;
 
@@ -49,7 +38,7 @@ public abstract class Personnage {
 			valeurClamp= max;
 		return valeurClamp;
 	}
-
+	
 	public void collisions () {
 		int x = this.xProp.get();
 		int y = this.yProp.get();
@@ -64,6 +53,7 @@ public abstract class Personnage {
 		this.xProp.set(xProp.get() + direction);
 		this.yProp.set(yProp.get() + dirY);
 	}
+
 
 
 	public void sauter() {
@@ -85,9 +75,8 @@ public abstract class Personnage {
 		}
 
 		return (x+(y+1)*Parametre.longueurTerrain);
-
-
 	}
+	
 	public void additionnerDirY(int nb) {
 		this.dirY += nb;
 	}
@@ -121,24 +110,34 @@ public abstract class Personnage {
 	}
 
 
-	public void collisionDeDroite (int x,int y) {
+	public boolean collisionDeDroite (int x,int y) {
+			boolean bloque = false;
 		if (verificationDeCollisions(coordoonneTuile(x + Parametre.largeurPersonnage, y - Parametre.hauteurPersonnage)) || verificationDeCollisions(coordoonneTuile(x + Parametre.largeurPersonnage, y - 1))) {
 			this.xProp.set(x - this.direction);
+			bloque = true;
 		}
 		if (verificationDeCollisions(coordoonneTuile(x + Parametre.largeurPersonnage, y - Parametre.hauteurPersonnage)) || verificationDeCollisions(coordoonneTuile(x +  Parametre.largeurPersonnage, y - 1))) {
 			this.xProp.set(this.xProp.get() - 1);
+			bloque= true;
 
 		}
+		return bloque;
+		
 	}
 
 
-	public void collisionDeGauche (int x,int y) {
-		if (verificationDeCollisions(coordoonneTuile(x + 9, y - Parametre.hauteurPersonnage)) || verificationDeCollisions(coordoonneTuile(x + 9, y))) {
+	public boolean collisionDeGauche (int x,int y) {
+		boolean bloque = false;
+
+		if (verificationDeCollisions(coordoonneTuile(x + 9, y - Parametre.hauteurPersonnage)) || verificationDeCollisions(coordoonneTuile(x + 9, y -1))) {
 			this.xProp.set(x - this.direction);
+			bloque = true;
 		}
-		if (verificationDeCollisions(coordoonneTuile(x + 9, y - Parametre.hauteurPersonnage)) || verificationDeCollisions(coordoonneTuile(x + 9, y))) {
+		if (verificationDeCollisions(coordoonneTuile(x + 9, y - Parametre.hauteurPersonnage)) || verificationDeCollisions(coordoonneTuile(x + 9, y-1))) {
 			this.xProp.set(this.xProp.get() + 1);
+			bloque= true;
 		}
+		return bloque;
 	}
 
 

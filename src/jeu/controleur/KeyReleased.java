@@ -24,9 +24,7 @@ public class KeyReleased implements EventHandler<KeyEvent>{
 		}
 		
 		
-//		hero.setSpace(false);
-//		
-//		this.hero.setDirY(0);
+
 		
 	}
 

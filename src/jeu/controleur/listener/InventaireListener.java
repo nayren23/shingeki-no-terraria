@@ -11,19 +11,16 @@ public class InventaireListener {
 		inv.getInventaire().addListener(new ListChangeListener<Objet>() {
 			@Override
 			public void onChanged(Change<? extends Objet> c) {
-//				while (c.next()) 
-//					if (c.wasAdded() || c.wasRemoved() || c.wasUpdated()) { 
-//						invVue.mettreAJourInventaire();
-//						invVue.enleverObjet(inv.connaitreObjetDetruit(c.getRemoved()));
 				
 				c.next();
-				for (int i=0; i<c.getAddedSize(); i++) 
+				for (int i=0; i<c.getAddedSize(); i++) {
+					System.out.println(c.getAddedSubList().get(i));
 					invVue.mettreAJourInventaire();
-				
-				for (int i=0; i<c.getRemovedSize(); i++) {
-					System.out.println(c);
-					invVue.enleverObjet(c.getRemoved().get(i));
 				}
+				
+				for (int i=0; i<c.getRemovedSize(); i++) 
+					invVue.enleverObjet(c.getRemoved().get(i));
+				
 			}
 		});
 	}
