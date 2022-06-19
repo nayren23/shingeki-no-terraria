@@ -9,6 +9,7 @@ import jeu.model.Heros;
 import jeu.model.Terrain;
 import jeu.model.inventaire.Inventaire;
 import jeu.model.inventaire.Objet;
+import jeu.model.inventaire.arme.LanceFoudroyante;
 import jeu.model.inventaire.arme.Hand;
 import jeu.model.inventaire.outil.Hache;
 import jeu.model.inventaire.outil.Outil;
@@ -157,6 +158,12 @@ public class MouseClick implements EventHandler<MouseEvent> {
 						env.getEren().getInventaireHeros().detruireRessource(pain);
 				}
 			}
+			else if(objet instanceof LanceFoudroyante ) {
+				LanceFoudroyante arme = (LanceFoudroyante) objet;
+				arme.setLanceAvance(true);
+				//				Parametre.lanceFoudroyante.playSound();
+			}
+
 		}
 
 

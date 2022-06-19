@@ -26,8 +26,11 @@ public class Ressource extends Objet{
 	}
 
 	public void poserBloc (int numeroTuilesCasser, Terrain terrain , int blocAPoser) {  // ensuite rajouter l'objet miner dans l'inventaire 
-		if(terrain.getTabTerrain()[numeroTuilesCasser] ==0)     
+		if(terrain.getTabTerrain()[numeroTuilesCasser] ==0) {
 			terrain.getTabTerrain()[numeroTuilesCasser]=blocAPoser; // 0 = le ciel
+		}
+		else 
+			System.out.println("impossible de poser");
 	}
 
 	public void enleverResistance(Ressource r) {
