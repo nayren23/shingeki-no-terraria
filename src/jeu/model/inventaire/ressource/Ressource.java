@@ -22,7 +22,7 @@ public class Ressource extends Objet{
 	}
 	
 	public void decrementerRessource(int quantite) {
-		this.nbRessource-=quantite;
+		this.nbRessource -= quantite;
 	}
 
 	public void poserBloc (int numeroTuilesCasser, Terrain terrain , int blocAPoser) {  // ensuite rajouter l'objet miner dans l'inventaire 
@@ -48,7 +48,7 @@ public class Ressource extends Objet{
 
 	@Override
 	public String toString() {
-		return "Nom de la ressource = " + this.nomRessource + " nbRessource=" + nbRessource;
+		return "" + nbRessource;
 	}
 
 }

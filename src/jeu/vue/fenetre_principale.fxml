@@ -8,19 +8,60 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane fx:id="BorderPaneId" prefHeight="361.0" prefWidth="480.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jeu.controleur.Controleur">
    <center>
-      <Pane fx:id="PanePrincipale" prefHeight="361.0" prefWidth="555.0" BorderPane.alignment="CENTER">
+      <Pane fx:id="PanePrincipale" prefHeight="736.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
          <children>
-            <Pane fx:id="panePersoMap" prefHeight="200.0" prefWidth="200.0">
+            <Pane fx:id="panePersoMap" prefHeight="736.0" prefWidth="1281.0">
                <children>
                   <TilePane fx:id="tuilesFond" prefColumns="40" prefRows="23" />
                   <TilePane fx:id="afficherInventaire" prefColumns="10" />
                   <TilePane fx:id="afficherObjet" prefColumns="10" />
+                  <Label fx:id="bois" layoutX="1240.0" layoutY="288.0" prefHeight="17.0" prefWidth="36.0" textFill="#030000">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="qteBois" layoutX="1069.0" layoutY="288.0" prefHeight="16.0" prefWidth="160.0" text="Quantité de bois : " textFill="#000000fb">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="qteFer" layoutX="1069.0" layoutY="307.0" prefHeight="17.0" prefWidth="158.0" text="Quantité de fer : " textFill="#000000fb">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="fer" layoutX="1240.0" layoutY="307.0" prefHeight="17.0" prefWidth="36.0" textFill="#030000">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="qteCharbon" layoutX="1069.0" layoutY="328.0" prefHeight="18.0" prefWidth="160.0" text="Quantité de charbon : " textFill="#000000fb">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="charbon" layoutX="1240.0" layoutY="328.0" prefHeight="17.0" prefWidth="36.0" textFill="#030000">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="qteTerre" layoutX="1069.0" layoutY="349.0" prefHeight="18.0" prefWidth="160.0" text="Quantité de terre: " textFill="#000000fb">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="terre" layoutX="1249.0" layoutY="349.0" prefHeight="17.0" prefWidth="36.0" textFill="#030000">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>                  
                </children>
             </Pane>
-            <Pane fx:id="panePause" opacity="0.9" prefHeight="736.0" prefWidth="1280.0" style="-fx-background-color: black;">
+            <Pane fx:id="panePause" opacity="0.9" prefHeight="736.0" prefWidth="1280.0" style="-fx-background-color: black;" visible="false">
                <children>
                   <Button fx:id="exit" alignment="CENTER" graphicTextGap="100.0" layoutX="588.0" layoutY="429.0" mnemonicParsing="false" onAction="#sortirJeu" textAlignment="CENTER">
                      <graphic>
@@ -39,7 +80,7 @@
                   </ImageView>
                </children>
             </Pane>
-            <Pane fx:id="gameOver" prefHeight="736.0" prefWidth="1280.0" style="-fx-background-color: black;">
+            <Pane fx:id="gameOver" prefHeight="736.0" prefWidth="1280.0" style="-fx-background-color: black;" visible="false">
                <children>
                   <ImageView fitHeight="117.0" fitWidth="471.0" layoutX="405.0" layoutY="231.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -66,7 +107,7 @@
                   </Button>
                </children>
             </Pane>
-            <HBox fx:id="hboxEtabli" alignment="CENTER" layoutX="283.0" layoutY="77.0" prefHeight="151.0" prefWidth="600.0">
+            <HBox fx:id="hboxEtabli" alignment="CENTER" layoutX="283.0" layoutY="77.0" prefHeight="151.0" prefWidth="600.0" visible="false">
                <children>
                   <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black; -fx-background-color: grey;">
                      <children>
@@ -181,7 +222,7 @@
                </children>
             </HBox>
             <Label fx:id="statutConstruction" alignment="CENTER" layoutX="344.0" layoutY="254.0" prefHeight="38.0" prefWidth="480.0" textFill="WHITE" />
-            <Pane fx:id="paneBateau" layoutX="484.0" layoutY="228.0" prefHeight="238.0" prefWidth="200.0" style="-fx-background-color: grey;">
+            <Pane fx:id="paneBateau" layoutX="484.0" layoutY="228.0" prefHeight="238.0" prefWidth="200.0" style="-fx-background-color: grey;" visible="false">
                <children>
                   <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="6.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -198,7 +239,7 @@
                   <Label fx:id="statutConstructionBateau" alignment="CENTER" layoutX="-2.0" layoutY="208.0" prefHeight="16.0" prefWidth="204.0" textAlignment="CENTER" textFill="WHITE" />
                </children>
             </Pane>
-            <Pane fx:id="paneSacha" layoutX="14.0" layoutY="76.0" prefHeight="154.0" prefWidth="142.0" style="-fx-background-color: grey;">
+            <Pane fx:id="paneSacha" layoutX="14.0" layoutY="76.0" prefHeight="154.0" prefWidth="142.0" style="-fx-background-color: grey;" visible="false">
                <children>
                   <ImageView fitHeight="70.0" fitWidth="76.0" layoutX="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>

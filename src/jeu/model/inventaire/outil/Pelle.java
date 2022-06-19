@@ -28,11 +28,14 @@ public class Pelle extends Outil{
 			if(getEnv().getTerrain().getTabTerrain()[numeroTuilesCasser]==1) {
 				getEnv().getTerrain().getTabTerrain()[numeroTuilesCasser] = Parametre.changementDuBlocCasser;
 				indiceBloc = 1;
+				System.out.println("premiere condition");
 			}
 			
 			else if(getEnv().getTerrain().getTabTerrain()[numeroTuilesCasser]==2) {
 				indiceBloc = 2;
 				getEnv().getTerrain().getTabTerrain()[numeroTuilesCasser] = Parametre.changementDuBlocCasser;
+				System.out.println("deuxieme condition");
+
 			}
 			getEnv().getRessources().set(numeroTuilesCasser, new Ciel());  // on change la terre par le ciel dans la liste des ressources
 

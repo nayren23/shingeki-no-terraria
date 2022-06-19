@@ -3,27 +3,19 @@ package jeu;
 import jeu.vue.SoundEffect;
 
 public class Parametre {
-
-	//---------------------------------------------------------------------------------------//
-
-	//Parametre utilise pour la direction avec une enumeration
-	public static enum DIRECTION {
-		RIGHT, LEFT, BOTTOM, TOP, SPACE;
-	} 
 	
-	//---------------------------------------------------------------------------------------//
-	
-	//Ici c'est quand on casse le bloc il sera remplacer par le loc choisit en bas
+		public static enum DIRECTION {
+			RIGHT, LEFT, BOTTOM, TOP, SPACE;
+		} 
+		
+		//Ici c'est quand on casse le bloc il sera remplacer par le loc choisit en bas
 
-	//Parametre du Terrain
-	public static int tailleTuile = 32;
 
+        public static int tailleTuile = 32;
         
         public static int longueurTerrain = 40;
         
-         
-    
-
+  
 	//---------------------------------------------------------------------------------------//
 
 	//Parametre du Heros 
@@ -83,25 +75,27 @@ public class Parametre {
 		return peutCreuser;
 	}
 	
-	//---------------------------------------------------------------------------------------//
-	
-	//   Parametre Titan
+        
+        public static final int blocBois = 6; // Bloc de bois final car pas senser changé
 
-	public  static  int rechargeAttaqueTitans = 0;  	//recharge du titan initialiser a 0
+        //---------------------------------------------------------------------------------------//
+   //   Parametre Titan
 
-	public  static  int rechargeAttaqueTitansTemps = 60; 
+        public  static  int rechargeAttaqueTitans = 0;      //recharge du titan initialiser a 0
 
-	public static int porteeCoupDuTitanX = 50;
+        public  static  int rechargeAttaqueTitansTemps = 60; 
 
-	public static int porteeCoupDuTitanY = 10;
+        public static int porteeCoupDuTitanX = 50;
 
-	public 	static	int vitesseTitan =2;
+        public static int porteeCoupDuTitanY = 10;
 
-	public static int nbTitansGenerer = 6;
+        public     static    int vitesseTitan =2;
 
-	public static int rangeAttaqueErenSurTitanX = 60; 
+        public static int nbTitansGenerer = 6;
 
-	public static int rangeAttaqueErenSurTitanY = 10; 
+        public static int rangeAttaqueErenSurTitanX = 60; 
+
+        public static int rangeAttaqueErenSurTitanY = 10;
 
 	//---------------------------------------------------------------------------------------//
 

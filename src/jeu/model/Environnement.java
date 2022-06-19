@@ -6,6 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import jeu.Parametre;
 import jeu.model.inventaire.Objet;
+import jeu.model.inventaire.ressource.Bois;
 import jeu.model.inventaire.ressource.Charbon;
 import jeu.model.inventaire.ressource.Ciel;
 import jeu.model.inventaire.ressource.Fer;
@@ -23,13 +24,11 @@ public class Environnement {
 	//30*20
 	private Terrain terrain;
 	private int width, height;
-
 	private ArrayList<Personnage> personnages;
 	private ArrayList<Ressource> ressources;
-	private ObservableList<PnjMechantTitan> listeTitans;
-
 	private Heros eren;
-	//private PnjMechantTitan titans ;
+    private ObservableList<PnjMechantTitan> listeTitans;
+
 
 	public Environnement() {
 		this.terrain = new Terrain();
@@ -38,11 +37,10 @@ public class Environnement {
 		this.personnages = new ArrayList<>();
 		this.eren = new Heros(0, 0, terrain, this);
 		this.personnages.add(eren);
-		listeTitans = FXCollections.observableArrayList();
-
-		creationListeTitans();
 		this.ressources = new ArrayList<Ressource>();
 		creationRessources();
+        listeTitans = FXCollections.observableArrayList();
+
 	}
 
 	/**
@@ -68,67 +66,44 @@ public class Environnement {
 			case 1:
 				ressources.add(new Terre());
 				break;
-
+			
 			case 2:
 				ressources.add(new Terre());
 				break;
-
+				
 			case 3:
 				ressources.add(new Charbon());
 				break;
-
+				
 			case 4:
 				ressources.add(new Gaz());
 				break;
-
+				
 			case 5:
 				ressources.add(new Fer());
 				break;
-
+						
+			case 6:
+				ressources.add(new Bois());
+				break;
+				
 			default:
 				break;
 			}
 		}
 	}
-
-	//	public void creationTitans () {
-	////		for(int i=0 ;i<titans.length;i++) {
-	//			new PnjMechantTitan(10, 10, this.getTerrain(), this);
-	////		}
-	//	}
-
-
+	
 	public void detruireBloc (Ressource o) {
 		o.enleverResistance(o);
-		//		if (r.getResistance()<=0) 
-		//			eren.getInventaireHeros().stackRessource(r); Pas utilile car stack ressources dej appeller 
 	}
-
-	//	public PnjMechantTitan getTitans() {
-	//		return titans;
-	//	}
-
-	public ObservableList<PnjMechantTitan> getListeTitans() {
-		return listeTitans;
-	}
-
-
+	
 	public ArrayList<Ressource> getRessources() {
 		return ressources;
 	}
-
+	
 	public Ressource getObjet (int numeroTuile) {
 		return getRessources().get(numeroTuile);
 	}
-
-
-	//	public PnjMechantTitan[] getTitans() {
-	//		return titans;
-	//	}
-	//
-	//	public void setTitans(PnjMechantTitan[] titans) {
-	//		this.titans = titans;
-	//	}
 
 	public int getWidth() {
 		return width;
@@ -141,6 +116,8 @@ public class Environnement {
 	public Terrain getTerrain() {
 		return this.terrain;
 	}
+	
+	
 
 	public Heros getEren() {
 		return eren;
@@ -150,4 +127,8 @@ public class Environnement {
 		return personnages;
 	}
 
+
+public ObservableList<PnjMechantTitan> getListeTitans() {
+		return listeTitans;
+	}
 }

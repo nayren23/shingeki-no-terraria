@@ -42,10 +42,7 @@ public abstract class Arme extends Objet{
 	public String toString() {
 		return "Nom de l'arme= " + nom;
 	}
-
 	public int getDegats() {
-		return degats;
-	}
-	
-
+        return degats;
+    }
 }
