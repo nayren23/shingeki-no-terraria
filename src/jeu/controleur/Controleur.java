@@ -3,6 +3,7 @@ package jeu.controleur;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
+
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -28,17 +29,24 @@ import javafx.util.Duration;
 import jeu.Main;
 import jeu.Parametre;
 import jeu.model.Environnement;
+import jeu.model.Heros;
+import jeu.model.Terrain;
+import jeu.model.inventaire.Inventaire;
 import jeu.vue.HeroVue;
 import jeu.model.inventaire.Objet;
 import jeu.model.inventaire.arme.Epee;
 import jeu.model.inventaire.arme.LanceFoudroyante;
 import jeu.model.inventaire.outil.Hache;
+import jeu.model.inventaire.outil.Hache;
 import jeu.model.inventaire.outil.Pelle;
 import jeu.model.inventaire.outil.Pioche;
 import jeu.model.inventaire.ressource.Bois;
+import jeu.model.inventaire.ressource.Charbon;
 import jeu.model.inventaire.ressource.Fer;
 import jeu.model.inventaire.ressource.Gaz;
 import jeu.model.inventaire.ressource.Pain;
+import jeu.model.inventaire.ressource.Terre;
+import jeu.model.inventaire.ressource.Fer;
 import jeu.model.inventaire.ressource.Terre;
 import jeu.vue.HerosVieVue;
 import jeu.vue.PnjGentilVue;
@@ -54,20 +62,23 @@ public class Controleur implements Initializable{
 	private Timeline gameLoop;
 	private Environnement env;
 	private HeroVue hero1;
+	private int coordonneeMax;
+	private TerrainVue terrainVue;
 	private PnjGentilVue erwin;
 	private PnjGentilVue armin;
 	private PnjGentilVue sacha;
+	private boolean apparitionTitan = true;
+	private boolean apparitionErwin = true;
+	private boolean apparitionArmin = true;
+	private boolean apparitionSacha = true;
 
+	private Image imageErwin;
 	@FXML
 	private TilePane tuilesFond;
 	@FXML
 	private Pane panePersoMap;	
-
-
-
 	@FXML
 	private BorderPane BorderPaneId;
-
 	@FXML
 	private Pane PanePrincipale;
 	@FXML
@@ -77,9 +88,6 @@ public class Controleur implements Initializable{
 	private ImageView eren;
 	@FXML
 	private Pane gameOver;
-
-
-
 	@FXML
 	private TilePane afficherObjet;
 	@FXML
@@ -108,7 +116,33 @@ public class Controleur implements Initializable{
 	private Button echangerPain;
 	@FXML
 	private Label statutEchangePain;
-
+	@FXML
+	private Label qteBois;
+	@FXML
+	private Label qteCharbon;
+	@FXML
+	private Label qteFer;
+	@FXML
+	private Label qteTerre;
+	@FXML
+	private Button exit;
+	@FXML
+	private Pane panePause;
+	@FXML
+	private Label pause;
+	@FXML
+	private Button boutonRestart;
+	@FXML
+	private Label bois;
+	@FXML
+	private Label terre;
+	@FXML
+	private Label fer;
+	@FXML
+	private Label charbon;
+	
+	
+	
 	@FXML
 	void construireRessource(ActionEvent event) {
 		if (event.getSource()==construireBateau) {
@@ -135,17 +169,8 @@ public class Controleur implements Initializable{
 		}
 	}
 
-	@FXML
-	private Button exit;
-
-	@FXML
-	private Pane panePause;
-
-	@FXML
-	private Label pause;
-
-	@FXML
-	private Button boutonRestart;
+	
+	
 
 	@FXML
 	void sortirJeu(ActionEvent event) {
@@ -237,23 +262,21 @@ public class Controleur implements Initializable{
 
 		//------------------------------------------------------------//
 
-		// Ajout d une image de fon dans le BorderPane
 		//on creer l image
-		Image img = new Image("jeu/image/titanSNK.jpg"); //arriereplanSNK.jpg
+		Image img = new Image("jeu/image/arriereplanSNK.jpg");
 
 		//on creer un backgroundImage qui contient notre image
 		BackgroundImage backImage = new BackgroundImage(img,BackgroundRepeat.NO_REPEAT,
 				BackgroundRepeat.NO_REPEAT,
 				BackgroundPosition.DEFAULT,
 				BackgroundSize.DEFAULT);
-		
+
 		//Puis on creer un background qui contient notre Backgroundimage
 		Background backGround = new Background(backImage);
 
 		//Ensuite on ajoute notre background a notre borderpane principale
 		BorderPaneId.setBackground(backGround);
 
-		//------------------------------------------------------------//
 
 		this.paneSacha.setVisible(false);
 		this.statutEchangePain.setVisible(false);
@@ -261,25 +284,33 @@ public class Controleur implements Initializable{
 		this.statutConstructionBateau.setVisible(false);
 		this.hboxEtabli.setVisible(false);
 		this.statutConstruction.setVisible(false);
-
+		this.qteBois.setVisible(true);
+		this.qteBois.toFront();
+		this.bois.toFront();
+		this.bois.setVisible(true);
+		this.qteCharbon.setVisible(true);
+		this.qteCharbon.toFront();
+		this.charbon.toFront();
+		this.charbon.setVisible(true);
+		this.qteFer.setVisible(true);
+		this.qteFer.toFront();
+		this.fer.toFront();
+		this.fer.setVisible(true);
+		this.qteTerre.setVisible(true);
+		this.qteTerre.toFront();
+		this.terre.toFront();
+		this.terre.setVisible(true);
+		
 		//Creation de l'environnement qui lui recupere le Terrain
 		env = new Environnement();
 
-			//------------------------------------------------------------//
+		terrainVue = new TerrainVue(tuilesFond, env.getTerrain());	//cree le terrain vue
+		terrainVue.dessinerTerrain();
 
 		gameOver.setVisible(false);
 		//Creeation de la vue de chaque titan present de la liste qu'on afiche ensuite sur l'ecran
-		for(int i =0 ;i< env.getListeTitans().size() ;i++) {
-			PnjMechantTitanVue  pnjTitanVue = new PnjMechantTitanVue(env.getListeTitans().get(i),env.getEren(),panePersoMap, env);
-			this.panePersoMap.getChildren().add(pnjTitanVue);
-			pnjTitanVue.affichageTitan(env.getListeTitans().get(i));
-		}
 
-		//------------------------------------------------------------//
 
-		// Creation de la Vue du Terrain 
-		TerrainVue terrainVue = new TerrainVue(tuilesFond, env.getTerrain());	//cree le terrain vue
-		terrainVue.dessinerTerrain();
 
 		//------------------------------------------------------------//
 
@@ -289,35 +320,41 @@ public class Controleur implements Initializable{
 		this.PanePrincipale.getChildren().add(hero1);
 		hero1.affichageEren(env.getEren());
 
-				Image imageErwin = new Image("jeu/image/erwin.png");
-				this.erwin = new  PnjGentilVue(imageErwin);
-				this.panePersoMap.getChildren().add(erwin);
-				this.erwin.setOnMouseClicked(mouseEvent -> {
-					this.hboxEtabli.setVisible(!this.hboxEtabli.isVisible());
-					this.statutConstruction.setVisible(!this.statutConstruction.isVisible());
-				this.panePersoMap.requestFocus();
-				});
 
-		//		Image imageArmin = new Image("jeu/image/armin.png");
-		//		this.armin = new PnjGentilVue(imageArmin);
-		//		this.panePersoMap.getChildren().add(armin);
-		//		this.armin.setOnMouseClicked(mouseEvent -> {
-		//			this.paneBateau.setVisible(!this.paneBateau.isVisible());
-		//			this.statutConstructionBateau.setVisible(!this.statutConstructionBateau.isVisible());
-		//		this.panePersoMap.requestFocus();
-		//		});
+		imageErwin = new Image("jeu/image/erwin.png");
+		this.erwin = new PnjGentilVue(imageErwin, 50, 407);
+		this.panePersoMap.getChildren().add(erwin);
+		this.erwin.setVisible(false);
+		this.erwin.setOnMouseClicked(mouseEvent -> {
+			this.hboxEtabli.setVisible(!this.hboxEtabli.isVisible());
+			this.statutConstruction.setVisible(!this.statutConstruction.isVisible());
+			this.panePersoMap.requestFocus();
+		});
 
-//		Image imageSacha = new Image("jeu/image/sacha.png");
-//		this.sacha = new PnjGentilVue(imageSacha);
-//		this.panePersoMap.getChildren().add(sacha);
-//		this.sacha.setOnMouseClicked(mouseEvent -> {
-//			this.paneSacha.setVisible(!this.paneSacha.isVisible());
-//			this.statutEchangePain.setVisible(!this.statutEchangePain.isVisible());
-//			this.panePersoMap.requestFocus();
-//		});
+		Image imageArmin = new Image("jeu/image/armin.png");
+		this.armin = new PnjGentilVue(imageArmin,50, 407);
+		this.panePersoMap.getChildren().add(armin);
+		this.armin.setVisible(false);
+		this.armin.setOnMouseClicked(mouseEvent -> {
+			this.paneBateau.setVisible(!this.paneBateau.isVisible());
+			this.statutConstructionBateau.setVisible(!this.statutConstructionBateau.isVisible());
+			this.panePersoMap.requestFocus();
+		});
+
+		Image imageSacha = new Image("jeu/image/sacha.png");
+		this.sacha = new PnjGentilVue(imageSacha,103,435);
+		this.panePersoMap.getChildren().add(sacha);
+		this.sacha.setVisible(false);
+		this.sacha.setOnMouseClicked(mouseEvent -> {
+			this.paneSacha.setVisible(!this.paneSacha.isVisible());
+			this.statutEchangePain.setVisible(!this.statutEchangePain.isVisible());
+			this.panePersoMap.requestFocus();
+		});
 
 		HerosVieVue viehero = new HerosVieVue(env.getEren(), panePersoMap);
 		viehero.affichageVie(env.getEren().PvProperty().getValue()); //affichage vie hero en haut droite
+
+	
 
 		//------------------------------------------------------------//
 
@@ -343,6 +380,8 @@ public class Controleur implements Initializable{
 		Pioche pioche = new Pioche(env);
 		env.getEren().getInventaireHeros().ajouterDansInventaire(pioche);
 
+		Hache hache = new Hache(env);
+		env.getEren().getInventaireHeros().ajouterDansInventaire(hache);
 		Pain pain = new Pain();
 		env.getEren().getInventaireHeros().ajouterDansInventaire(pain);
 
@@ -396,6 +435,9 @@ public class Controleur implements Initializable{
 		gaz.incrementerRessource();
 		env.getEren().getInventaireHeros().ajouterDansInventaire(gaz);
 
+		
+		
+		
 		initAnimation();
 		// demarre l'animation
 		gameLoop.play();
@@ -415,6 +457,19 @@ public class Controleur implements Initializable{
 				// c'est un eventHandler d'ou le lambda
 				(ev -> {
 
+					//										System.out.println(" x d'eren" + Math.abs(env.getEren().getX()/30));
+					//										System.out.println(" y d'eren" + Math.abs(env.getEren().getY()/30));
+					//										int test = ((env.getEren().getY()/30)*40) + ((env.getEren().getX()/30)+1);
+					//										System.out.println("tuile nm : " + test);
+
+					//										System.out.println(" x d'eren" + Math.abs(env.getEren().getX()));
+					//										System.out.println(" y d'eren" + Math.abs(env.getEren().getY()));
+					hero1.animations(env.getEren());
+
+					
+
+					//					System.out.println(env.getEren().getX());
+					//					System.out.println(env.getEren().getY());
 					env.getEren().collisions();
 					env.getEren().gravite();
 					env.getEren().move();
@@ -425,29 +480,178 @@ public class Controleur implements Initializable{
 							env.getEren().additionnerDirY(1);
 						}
 					}
-
-
-					// Boucle qui verifie en permanance la collission gravite si le titan est present dans la liste
-					for(int i =0 ; i<env.getListeTitans().size() ; i++) {						
-						env.getListeTitans().get(i).collisions();
-						env.getListeTitans().get(i).gravite();
-						env.getListeTitans().get(i).move();
-						env.getListeTitans().get(i).verificationMort();
+					
+					for(int i = 0; i < env.getEren().getInventaireHeros().getInventaire().size(); i++) {
+						if(env.getEren().getInventaireHeros().getInventaire().get(i) instanceof Bois ) {
+							this.bois.setText(env.getEren().getInventaireHeros().getInventaire().get(i) + "");
+						}
+						else if(env.getEren().getInventaireHeros().getInventaire().get(i) instanceof Terre ) {
+							this.terre.setText(env.getEren().getInventaireHeros().getInventaire().get(i) + "");
+						}
+						else if(env.getEren().getInventaireHeros().getInventaire().get(i) instanceof Fer ) {
+							this.fer.setText(env.getEren().getInventaireHeros().getInventaire().get(i) + "");
+						}
+						else if(env.getEren().getInventaireHeros().getInventaire().get(i) instanceof Charbon ) {
+							this.charbon.setText(env.getEren().getInventaireHeros().getInventaire().get(i) + "");
+						}
 					}
-					Objet objet = this.env.getEren().getObjetHeros();
-					if(objet instanceof LanceFoudroyante ) {
-						LanceFoudroyante arme = (LanceFoudroyante) objet;
+					
+
+					//pnj premiere map 
+					if(apparitionErwin && env.getTerrain().parcourrirTab(env.getTerrain().getTabTerrain(),env.getTerrain().getVerifMap().get("2")) ) {
+						erwin.setVisible(true);
+
+					}
+					else if(!env.getTerrain().parcourrirTab(env.getTerrain().getTabTerrain(),env.getTerrain().getVerifMap().get("2"))) {
+						erwin.setVisible(false);
+					}
 
 						if (arme.isLanceAvance() ==true) {
 							arme.estMort();
 
-						}
+					//pnj deuxieme map 
+					if(apparitionArmin && env.getTerrain().parcourrirTab(env.getTerrain().getTabTerrain(),env.getTerrain().getVerifMap().get("3")) ) {
+						armin.setVisible(true);
+
 					}
+					else if(!env.getTerrain().parcourrirTab(env.getTerrain().getTabTerrain(),env.getTerrain().getVerifMap().get("3"))) {
+						armin.setVisible(false);
+					}
+
+
 					
+					
+					//pnj premiere map 
+					if(apparitionSacha && env.getTerrain().parcourrirTab(env.getTerrain().getTabTerrain(),env.getTerrain().getVerifMap().get("5")) ) {
+						sacha.setVisible(true);
+
+					}
+					else if(!env.getTerrain().parcourrirTab(env.getTerrain().getTabTerrain(),env.getTerrain().getVerifMap().get("5"))) {
+						sacha.setVisible(false);
+					}
+					//transition map 1 -> 2
+					if(env.getEren().getX() >= 1257 && env.getTerrain().parcourrirTab(env.getTerrain().getTabTerrain(),env.getTerrain().getVerifMap().get("1"))) {
+
+						//						coordonneeMax = 1257;
+						env.getEren().setX(10);
+						env.getEren().setY(415);
+
+						env.getTerrain().changerTerrain(env.getTerrain().getTabTerrain2());
+						terrainVue = new TerrainVue(tuilesFond, env.getTerrain());	
+						terrainVue.dessinerTerrain();
+
+					}
+
+
+
+					//transition map 2 -> 3
+					if(env.getEren().getX() >= 1257 && env.getTerrain().parcourrirTab(env.getTerrain().getTabTerrain(),env.getTerrain().getVerifMap().get("2"))) {
+						env.getEren().setX(10);
+						env.getEren().setY(447);
+						env.getTerrain().changerTerrain(env.getTerrain().getTabTerrain3());
+						terrainVue = new TerrainVue(tuilesFond, env.getTerrain());	
+						terrainVue.dessinerTerrain();
+
+					}
+
+					//transition map 3 -> 4
+					if(env.getEren().getX() >= 1257 && env.getTerrain().parcourrirTab(env.getTerrain().getTabTerrain(),env.getTerrain().getVerifMap().get("3"))) {
+
+
+
+
+						env.getEren().setX(10);
+						env.getEren().setY(447);
+						env.getTerrain().changerTerrain(env.getTerrain().getTabTerrain4());
+						terrainVue = new TerrainVue(tuilesFond, env.getTerrain());	
+						terrainVue.dessinerTerrain();
+
+					}
+
+
+					//transition map 4 -> 5
+					if(env.getEren().getX() >= 1257 && env.getTerrain().parcourrirTab(env.getTerrain().getTabTerrain(),env.getTerrain().getVerifMap().get("4"))) {
+
+						env.getEren().setX(10);
+						env.getEren().setY(447);
+						env.getTerrain().changerTerrain(env.getTerrain().getTabTerrain5());
+						terrainVue = new TerrainVue(tuilesFond, env.getTerrain());	
+						terrainVue.dessinerTerrain();
+
+					}
+
+
+
+					//transition map 2 -> 1
+					if(env.getEren().getX() <= 0 && env.getTerrain().parcourrirTab(env.getTerrain().getTabTerrain(),env.getTerrain().getVerifMap().get("2"))) {
+						System.out.println("je rentre dans la condition");
+
+
+						env.getEren().setX(1257);
+						env.getEren().setY(447);
+
+						env.getTerrain().changerTerrain(env.getTerrain().getTabTerrain());
+						terrainVue = new TerrainVue(tuilesFond, env.getTerrain());	
+						terrainVue.dessinerTerrain();
+
+					}
+
+
+					//transition map 3 -> 2
+					if(env.getEren().getX() <= 0 && env.getTerrain().parcourrirTab(env.getTerrain().getTabTerrain(),env.getTerrain().getVerifMap().get("3"))) {
+						env.getEren().setX(1257);
+						env.getEren().setY(447);
+						env.getTerrain().changerTerrain(env.getTerrain().getTabTerrain2());
+						terrainVue = new TerrainVue(tuilesFond, env.getTerrain());	
+						terrainVue.dessinerTerrain();
+
+					}
+
+					//transition map 4 -> 3
+					if(env.getEren().getX() <= 0 && env.getTerrain().parcourrirTab(env.getTerrain().getTabTerrain(),env.getTerrain().getVerifMap().get("4"))) {
+						env.getEren().setX(1257);
+						env.getEren().setY(479);
+						env.getTerrain().changerTerrain(env.getTerrain().getTabTerrain3());
+						terrainVue = new TerrainVue(tuilesFond, env.getTerrain());	
+						terrainVue.dessinerTerrain();
+
+					}
+
+					//transition map 5 -> 4
+
+					if(env.getEren().getX() <= 0 && env.getTerrain().parcourrirTab(env.getTerrain().getTabTerrain(),env.getTerrain().getVerifMap().get("5"))) {
+						env.getEren().setX(10);
+						env.getEren().setY(447);
+						env.getTerrain().changerTerrain(env.getTerrain().getTabTerrain5());
+						terrainVue = new TerrainVue(tuilesFond, env.getTerrain());	
+						terrainVue.dessinerTerrain();
+
+					}
+
+
+					//apparition des titans dans l'arene qui est sur la map 4
+					if(apparitionTitan && env.getTerrain().parcourrirTab(env.getTerrain().getTabTerrain(),env.getTerrain().getVerifMap().get("5")) ) {
+						apparitionTitan = false;
+						env.creationListeTitans();
+						for(int i =0 ;i< env.getListeTitans().size() ;i++) {
+							PnjMechantTitanVue  pnjTitanVue = new PnjMechantTitanVue(env.getListeTitans().get(i),env.getEren(),panePersoMap, env);
+							this.panePersoMap.getChildren().add(pnjTitanVue);
+							pnjTitanVue.affichageTitan(env.getListeTitans().get(i));
+						}
+
+						for(int i =0 ; i<env.getListeTitans().size() ; i++) {						
+							env.getListeTitans().get(i).collisions();
+							env.getListeTitans().get(i).gravite();
+							env.getListeTitans().get(i).move();
+							env.getListeTitans().get(i).verificationMort();
+						}
+
+					}
+
 					
 				}
 						));
 		gameLoop.getKeyFrames().add(kf);
-	}
 
+	}
 }

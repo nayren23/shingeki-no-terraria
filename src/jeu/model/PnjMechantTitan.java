@@ -118,6 +118,8 @@ public  class PnjMechantTitan extends Personnage {
 		else 
 			Parametre.rechargeAttaqueTitans++;
 	}
+	
+	
 
 	@Override
 	public String toString() {

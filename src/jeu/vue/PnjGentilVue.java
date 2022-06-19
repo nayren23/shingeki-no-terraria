@@ -8,10 +8,13 @@ public class PnjGentilVue extends ImageView{
 	
 	private Personnage erwin;
 	private Image imageErwin = new Image("jeu/image/erwin.png");
+	private int coordX, coordY;
 	
-	public PnjGentilVue (Image image) {
-		this.setX(50);
-		this.setY(435);
+	public PnjGentilVue (Image image, int coordX, int coordY) {
+		this.coordX = coordX;
+		this.coordY = coordY;
+		this.setX(coordX);
+		this.setY(coordY);
 		this.setImage(image);
 	}
 

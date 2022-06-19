@@ -28,15 +28,18 @@ Bloc de Gaz :  4
 Bloc de Fer : 5
 */
 	private void tableauImageTerrain() {
-		this.imageTerrain = new Image[7] ;  // a changer en fonction du nombre de tuiles
+		this.imageTerrain = new Image[9] ;  // a changer en fonction du nombre de tuiles
 		imageTerrain[0] = new Image("jeu/image/BlocTransparent.png");
 		imageTerrain[1] =new Image("jeu/image/BlocHerbe.png");
 		imageTerrain[2] = new Image("jeu/image/BlocTerre.png");
 		imageTerrain[3] = new Image("jeu/image/BlocCharbon.png");
 		imageTerrain[4] = new Image("jeu/image/BlocGaz.png");
 		imageTerrain[5] = new Image("jeu/image/BlocFer.png");
-		imageTerrain[6] = new Image("jeu/image/BlocBois.png");
+		imageTerrain[6] = new Image("jeu/image/bois.png");
+		imageTerrain[7] = new Image("jeu/image/mer.png");
 
+
+		
 	}
 
 	/**
@@ -91,6 +94,10 @@ Bloc de Fer : 5
 				
 			case 7 :
 				images = new ImageView(imageTerrain[7]);
+				break;
+			
+			case 8 :
+				images = new ImageView(imageTerrain[8]);
 				break;
 
 			default : 

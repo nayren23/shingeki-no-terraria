@@ -16,7 +16,7 @@ public class Heros extends Personnage{
 
 	//changer le type terrain en type environnement
 	public Heros(int x, int y, Terrain terrain, Environnement env) {
-		super(x, y, 9, env);
+		super(555, 417, 9, env);
 		this.mainHeros = new Hand();
 		this.objetHeros= mainHeros;
 		this.inventaireHeros = new Inventaire(super.getEnv());
@@ -29,6 +29,7 @@ public class Heros extends Personnage{
 
 	public void gravite() {
 		setY(getY()  + Parametre.forceGravite);
+
 	}
 
 
@@ -49,17 +50,8 @@ public class Heros extends Personnage{
 	 * @param max valeur la plus haute a ne jamais d�passer
 	 * @return  notre valeur comprise entre 0 et 9
 	 */
-	//	private int clamp (int val1 , int min, int max) {  // Pour borner un chiffre entre 2 valeurs pour pas que l'image s'enleve
-	//		int valeurClamp = val1;
-	//
-	//		if(valeurClamp<min) 
-	//			valeurClamp = min;
-	//		else if(valeurClamp>max) 
-	//			valeurClamp= max;
-	//		return valeurClamp;
-	//	}
+	
 
-	//------------------------------------------------------------//
 
 	/**
 	 * on ne peut pas etre en dessous de 0 pv g�rer grace au clamp
@@ -105,20 +97,35 @@ public class Heros extends Personnage{
 		return this.objetHeros;
 	}
 
+	//------------------------------------------------------------//
+
+	//	public boolean estMort(int pv) { // a finir
+	//			boolean estMort = false;
+	//			
+	//			if(pv==0) {
+	//				estMort =true;
+	//			}
+	//			return estMort;
+	//			
+	//}
+
+	//------------------------------------------------------------//
+
 	//Getters et Setter
 
-
+	
 
 	public Inventaire getInventaireHeros() {
 		return inventaireHeros;
 	}
 
-
-
+	
 	public void setObjetHeros(Objet objetHeros) {
 		this.objetHeros = objetHeros;
 	}
+	
 
+	
 
 	public int getDirectionActuelle() {
 		return directionActuelle;

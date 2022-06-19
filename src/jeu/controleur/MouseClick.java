@@ -11,9 +11,11 @@ import jeu.model.inventaire.Inventaire;
 import jeu.model.inventaire.Objet;
 import jeu.model.inventaire.arme.LanceFoudroyante;
 import jeu.model.inventaire.arme.Hand;
+import jeu.model.inventaire.outil.Hache;
 import jeu.model.inventaire.outil.Outil;
 import jeu.model.inventaire.outil.Pelle;
 import jeu.model.inventaire.outil.Pioche;
+import jeu.model.inventaire.ressource.Bois;
 import jeu.model.inventaire.ressource.Charbon;
 import jeu.model.inventaire.ressource.Ciel;
 import jeu.model.inventaire.ressource.Fer;
@@ -74,7 +76,12 @@ public class MouseClick implements EventHandler<MouseEvent> {
 					env.getEren().getInventaireHeros().creationBlocCasser((Outil) objet , positionTuileDansTableau);
 					terrainVue.changementTuileMinage(positionTuileDansTableau,env.getTerrain(),Parametre.changementDuBlocCasser);
 				}
+				else if(objet instanceof Hache && arg0.getButton() == MouseButton.PRIMARY) {
+					env.getEren().getInventaireHeros().faireDegatsBloc((Outil) objet, positionTuileDansTableau, env.getTerrain());
+					env.getEren().getInventaireHeros().creationBlocCasser((Outil) objet , positionTuileDansTableau);// changer et faire une fonction qui actualise juste l'image chang�
+					terrainVue.changementTuileMinage(positionTuileDansTableau,env.getTerrain(),Parametre.changementDuBlocCasser);// changer et faire une fonction qui actualise juste l'image chang�			}
 
+				}
 
 				//int rangeGauche , int rangeDroite , int rangeHaut ,int rangeBas
 				else if(objet instanceof Terre && arg0.getButton() == MouseButton.SECONDARY) {
@@ -122,6 +129,18 @@ public class MouseClick implements EventHandler<MouseEvent> {
 						// Inventaire
 						env.getRessources().set(positionTuileDansTableau, gaz);
 						env.getEren().getInventaireHeros().detruireRessource(gaz);
+					}
+				}
+				
+				else if(objet instanceof Bois && arg0.getButton() == MouseButton.SECONDARY) {
+					Bois bois = new Bois();
+					if(this.env.getEren().getInventaireHeros().verifierRessource(bois)) {
+						((Bois) objet).poserBloc(positionTuileDansTableau, env.getTerrain(),Parametre.blocBois);
+						terrainVue.changementTuileMinage(positionTuileDansTableau,env.getTerrain(),Parametre.blocBois);
+
+						// Inventaire
+						env.getRessources().set(positionTuileDansTableau, bois);
+						env.getEren().getInventaireHeros().detruireRessource(bois);
 					}
 				}
 			}
