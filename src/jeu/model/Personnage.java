@@ -75,9 +75,8 @@ public abstract class Personnage {
 		}
 
 		return (x+(y+1)*Parametre.longueurTerrain);
-
-
 	}
+	
 	public void additionnerDirY(int nb) {
 		this.dirY += nb;
 	}
@@ -111,24 +110,34 @@ public abstract class Personnage {
 	}
 
 
-	public void collisionDeDroite (int x,int y) {
+	public boolean collisionDeDroite (int x,int y) {
+			boolean bloque = false;
 		if (verificationDeCollisions(coordoonneTuile(x + Parametre.largeurPersonnage, y - Parametre.hauteurPersonnage)) || verificationDeCollisions(coordoonneTuile(x + Parametre.largeurPersonnage, y - 1))) {
 			this.xProp.set(x - this.direction);
+			bloque = true;
 		}
 		if (verificationDeCollisions(coordoonneTuile(x + Parametre.largeurPersonnage, y - Parametre.hauteurPersonnage)) || verificationDeCollisions(coordoonneTuile(x +  Parametre.largeurPersonnage, y - 1))) {
 			this.xProp.set(this.xProp.get() - 1);
+			bloque= true;
 
 		}
+		return bloque;
+		
 	}
 
 
-	public void collisionDeGauche (int x,int y) {
-		if (verificationDeCollisions(coordoonneTuile(x + 9, y - Parametre.hauteurPersonnage)) || verificationDeCollisions(coordoonneTuile(x + 9, y - 1))) {
+	public boolean collisionDeGauche (int x,int y) {
+		boolean bloque = false;
+
+		if (verificationDeCollisions(coordoonneTuile(x + 9, y - Parametre.hauteurPersonnage)) || verificationDeCollisions(coordoonneTuile(x + 9, y -1))) {
 			this.xProp.set(x - this.direction);
+			bloque = true;
 		}
-		if (verificationDeCollisions(coordoonneTuile(x + 9, y - Parametre.hauteurPersonnage)) || verificationDeCollisions(coordoonneTuile(x + 9, y - 1))) {
+		if (verificationDeCollisions(coordoonneTuile(x + 9, y - Parametre.hauteurPersonnage)) || verificationDeCollisions(coordoonneTuile(x + 9, y-1))) {
 			this.xProp.set(this.xProp.get() + 1);
+			bloque= true;
 		}
+		return bloque;
 	}
 
 

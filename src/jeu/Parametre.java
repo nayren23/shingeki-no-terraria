@@ -102,7 +102,7 @@ public class Parametre {
 	//Parametre de ou a ou le titan peut se deplacer
 	public static int coordonneeMinTerrainTitanGauche =325;
 
-	public static int coordonneeMaxTerrainTitanDroite =1045;
+	public static int coordonneeMaxTerrainTitanDroite =1030;
 
 	public static int coordonneeTerrainTitanY =450;
 
@@ -139,8 +139,12 @@ public class Parametre {
 	public static SoundEffect sonAjoutObjetInventaire	 = new SoundEffect("jeu/sound/ajoutItem.wav");
 	public static SoundEffect mortTitan	 = new SoundEffect("jeu/sound/mortTitan.wav");
 	public static SoundEffect epee	 = new SoundEffect("jeu/sound/epee.wav");
+	public static SoundEffect lanceFoudroyante	= new SoundEffect("jeu/sound/lanceFoudroyante.wav");
 
+	//////////////////////// 
+	//		changerImage();
 	
-
+	public static int dimensionLanceHauteur = 32 ;
+	public static int dimensionLanceLargeur= 32 ;
 
 }

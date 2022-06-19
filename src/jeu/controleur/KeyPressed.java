@@ -38,15 +38,19 @@ public class KeyPressed implements EventHandler<KeyEvent>{
 			switch(event.getCode()) {
 			case Q:
 				hero.setDirection(-Parametre.vitessePersonnage);
+				hero.setDirectionActuelle(-3);
 				break;
 			case LEFT:
 				hero.setDirection(-Parametre.vitessePersonnage);
+				hero.setDirectionActuelle(-3);
 				break;
 			case D:
 				hero.setDirection(Parametre.vitessePersonnage);
+				hero.setDirectionActuelle(3);
 				break;
 			case RIGHT:
 				hero.setDirection(Parametre.vitessePersonnage);
+				hero.setDirectionActuelle(3);
 				break;
 			case SPACE:
 				hero.sauter();

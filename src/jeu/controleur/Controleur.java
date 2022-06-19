@@ -33,6 +33,7 @@ import jeu.model.Heros;
 import jeu.model.Terrain;
 import jeu.model.inventaire.Inventaire;
 import jeu.vue.HeroVue;
+import jeu.model.inventaire.Objet;
 import jeu.model.inventaire.arme.Epee;
 import jeu.model.inventaire.arme.LanceFoudroyante;
 import jeu.model.inventaire.outil.Hache;
@@ -52,6 +53,7 @@ import jeu.vue.PnjGentilVue;
 import jeu.vue.PnjMechantTitanVue;
 import jeu.vue.SoundEffect;
 import jeu.vue.TerrainVue;
+import jeu.vue.lanceFoudroyanteVue;
 import jeu.vue.inventaire.InventaireVue;
 
 public class Controleur implements Initializable{
@@ -138,9 +140,9 @@ public class Controleur implements Initializable{
 	private Label fer;
 	@FXML
 	private Label charbon;
-	
-	
-	
+
+
+
 	@FXML
 	void construireRessource(ActionEvent event) {
 		if (event.getSource()==construireBateau) {
@@ -167,8 +169,8 @@ public class Controleur implements Initializable{
 		}
 	}
 
-	
-	
+
+
 
 	@FXML
 	void sortirJeu(ActionEvent event) {
@@ -237,7 +239,10 @@ public class Controleur implements Initializable{
 			}
 		}
 		else if (event.getSource()==construireLanceFoudroyante) {
-			LanceFoudroyante lanceFoudroyante = new LanceFoudroyante();
+			LanceFoudroyante lanceFoudroyante = new LanceFoudroyante(env.getEren().getX() , env.getEren().getY(), env);
+			lanceFoudroyanteVue lanceVue = new lanceFoudroyanteVue(lanceFoudroyante,panePersoMap,env);
+			this.panePersoMap.getChildren().add(lanceVue);
+			lanceVue.affichageTitan(lanceFoudroyante);
 			Gaz gaz = new Gaz();
 			if(this.env.getEren().getInventaireHeros().constructionErwin(lanceFoudroyante, gaz, fer)){
 				this.statutConstruction.setText("CONSTRUIT");
@@ -295,7 +300,7 @@ public class Controleur implements Initializable{
 		this.qteTerre.toFront();
 		this.terre.toFront();
 		this.terre.setVisible(true);
-		
+
 		//Creation de l'environnement qui lui recupere le Terrain
 		env = new Environnement();
 
@@ -349,7 +354,7 @@ public class Controleur implements Initializable{
 		HerosVieVue viehero = new HerosVieVue(env.getEren(), panePersoMap);
 		viehero.affichageVie(env.getEren().PvProperty().getValue()); //affichage vie hero en haut droite
 
-	
+
 
 		//------------------------------------------------------------//
 
@@ -400,6 +405,7 @@ public class Controleur implements Initializable{
 		fer.incrementerRessource();
 		env.getEren().getInventaireHeros().ajouterDansInventaire(fer);
 
+
 		Bois bois = new Bois();
 		bois.incrementerRessource();
 		bois.incrementerRessource();
@@ -429,15 +435,14 @@ public class Controleur implements Initializable{
 		gaz.incrementerRessource();
 		env.getEren().getInventaireHeros().ajouterDansInventaire(gaz);
 
-		
-		
-		
+
+
+
 		initAnimation();
 		// demarre l'animation
 		gameLoop.play();
 
 
-		Parametre.sonMapTitan.playSound();
 	}
 
 
@@ -461,7 +466,7 @@ public class Controleur implements Initializable{
 					//										System.out.println(" y d'eren" + Math.abs(env.getEren().getY()));
 					hero1.animations(env.getEren());
 
-					
+
 
 					//					System.out.println(env.getEren().getX());
 					//					System.out.println(env.getEren().getY());
@@ -475,7 +480,7 @@ public class Controleur implements Initializable{
 							env.getEren().additionnerDirY(1);
 						}
 					}
-					
+
 					for(int i = 0; i < env.getEren().getInventaireHeros().getInventaire().size(); i++) {
 						if(env.getEren().getInventaireHeros().getInventaire().get(i) instanceof Bois ) {
 							this.bois.setText(env.getEren().getInventaireHeros().getInventaire().get(i) + "");
@@ -490,7 +495,7 @@ public class Controleur implements Initializable{
 							this.charbon.setText(env.getEren().getInventaireHeros().getInventaire().get(i) + "");
 						}
 					}
-					
+
 
 					//pnj premiere map 
 					if(apparitionErwin && env.getTerrain().parcourrirTab(env.getTerrain().getTabTerrain(),env.getTerrain().getVerifMap().get("2")) ) {
@@ -512,8 +517,8 @@ public class Controleur implements Initializable{
 					}
 
 
-					
-					
+
+
 					//pnj premiere map 
 					if(apparitionSacha && env.getTerrain().parcourrirTab(env.getTerrain().getTabTerrain(),env.getTerrain().getVerifMap().get("5")) ) {
 						sacha.setVisible(true);
@@ -578,7 +583,7 @@ public class Controleur implements Initializable{
 					//transition map 2 -> 1
 					if(env.getEren().getX() <= 0 && env.getTerrain().parcourrirTab(env.getTerrain().getTabTerrain(),env.getTerrain().getVerifMap().get("2"))) {
 						System.out.println("je rentre dans la condition");
-
+						
 
 						env.getEren().setX(1257);
 						env.getEren().setY(447);
@@ -632,16 +637,26 @@ public class Controleur implements Initializable{
 							pnjTitanVue.affichageTitan(env.getListeTitans().get(i));
 						}
 
-						for(int i =0 ; i<env.getListeTitans().size() ; i++) {						
-							env.getListeTitans().get(i).collisions();
-							env.getListeTitans().get(i).gravite();
-							env.getListeTitans().get(i).move();
-							env.getListeTitans().get(i).verificationMort();
-						}
+
 
 					}
+					for(int i =0 ; i<env.getListeTitans().size() ; i++) {						
+						env.getListeTitans().get(i).collisions();
+						env.getListeTitans().get(i).gravite();
+						env.getListeTitans().get(i).move();
+//						System.out.println("\nregarde je bouge");
+						env.getListeTitans().get(i).verificationMort();
+					}
+					Objet objet = this.env.getEren().getObjetHeros();
+					if(objet instanceof LanceFoudroyante ) {
+						LanceFoudroyante arme = (LanceFoudroyante) objet;
 
-					
+						if (arme.isLanceAvance() ==true) {
+							arme.estMort();
+
+						}
+					}
+
 				}
 						));
 		gameLoop.getKeyFrames().add(kf);
