@@ -43,9 +43,39 @@ public class Parametre {
 	public static final int blocGaz = 4; // Bloc de terre final car pas senser chanegr
 
 	public static final int blocFer = 5; // Bloc de terre final car pas senser chanegr
+	
+    public static final int blocBois = 6; // Bloc de bois final car pas senser changé
+     //---------------------------------------------------------------------------------------//
+//   Parametre Titan
+
+     public  static  int rechargeAttaqueTitans = 0;      //recharge du titan initialiser a 0
+
+     public  static  int rechargeAttaqueTitansTemps = 60; 
+
+     public static int porteeCoupDuTitanX = 50;
+
+     public static int porteeCoupDuTitanY = 10;
+
+     public static int vitesseTitan = 2;
+
+     public static int nbTitansGenerer = 6;
+
+     public static int rangeAttaqueErenSurTitanX = 60; 
+
+     public static int rangeAttaqueErenSurTitanY = 10;
 
 	//---------------------------------------------------------------------------------------//
 
+	//Parametre de ou a ou le titan peut se deplacer
+	public static int coordonneeMinTerrainTitanGauche = 325;
+
+	public static int coordonneeMaxTerrainTitanDroite = 1030;
+
+	public static int coordonneeTerrainTitanY = 450;
+	//---------------------------------------------------------------------------------------//
+
+	
+	
 	/**
 	 *  Fonction pour le calcul de la range pour le minage on creer une sorte de hitbox au joueur 
 	 *  pour qu il ne puisse faire les action de minage qu a une certaine distance autour de lui
@@ -75,38 +105,7 @@ public class Parametre {
 		return peutCreuser;
 	}
 	
-        
-        public static final int blocBois = 6; // Bloc de bois final car pas senser changé
-
-        //---------------------------------------------------------------------------------------//
-   //   Parametre Titan
-
-        public  static  int rechargeAttaqueTitans = 0;      //recharge du titan initialiser a 0
-
-        public  static  int rechargeAttaqueTitansTemps = 60; 
-
-        public static int porteeCoupDuTitanX = 50;
-
-        public static int porteeCoupDuTitanY = 10;
-
-        public     static    int vitesseTitan =2;
-
-        public static int nbTitansGenerer = 6;
-
-        public static int rangeAttaqueErenSurTitanX = 60; 
-
-        public static int rangeAttaqueErenSurTitanY = 10;
-
-	//---------------------------------------------------------------------------------------//
-
-	//Parametre de ou a ou le titan peut se deplacer
-	public static int coordonneeMinTerrainTitanGauche =325;
-
-	public static int coordonneeMaxTerrainTitanDroite =1030;
-
-	public static int coordonneeTerrainTitanY =450;
-
-
+ 
 	/**
 	 * Fonction qui permet de savoir si le joueur se trouve a cote du titan pour qu'il puisse se battre 
 	 * @param coordonneeJoueurX sur la fenetre de jeu

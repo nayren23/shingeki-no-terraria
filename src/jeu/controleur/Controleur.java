@@ -71,6 +71,8 @@ public class Controleur implements Initializable{
 	private boolean apparitionErwin = true;
 	private boolean apparitionArmin = true;
 	private boolean apparitionSacha = true;
+	private boolean bateauConstruit = false;
+	
 
 	private Image imageErwin;
 	@FXML
@@ -148,8 +150,9 @@ public class Controleur implements Initializable{
 		if (event.getSource()==construireBateau) {
 			Bois bois = new Bois();
 			if (this.env.getEren().getInventaireHeros().interactionArminSacha(bois)) {
-				this.statutConstructionBateau.setText("CONSTRUIT");
-				this.statutConstructionBateau.toFront();
+//				this.construireBateau.setVisible(false);
+				this.paneBateau.setVisible(false);
+				this.bateauConstruit = true;
 			}
 			else {
 				this.statutConstructionBateau.setText("PAS ASSEZ DE RESSOURCES");
@@ -410,6 +413,21 @@ public class Controleur implements Initializable{
 		bois.incrementerRessource();
 		bois.incrementerRessource();
 		bois.incrementerRessource();
+		bois.incrementerRessource();
+		bois.incrementerRessource();
+		bois.incrementerRessource();
+		bois.incrementerRessource();
+		bois.incrementerRessource();
+		bois.incrementerRessource();
+		bois.incrementerRessource();
+		bois.incrementerRessource();
+		bois.incrementerRessource();
+		bois.incrementerRessource();
+		bois.incrementerRessource();
+		bois.incrementerRessource();
+		bois.incrementerRessource();
+		bois.incrementerRessource();
+		bois.incrementerRessource();
 		env.getEren().getInventaireHeros().ajouterDansInventaire(bois);
 
 		Terre terre = new Terre();
@@ -553,23 +571,23 @@ public class Controleur implements Initializable{
 					}
 
 					//transition map 3 -> 4
-					if(env.getEren().getX() >= 1257 && env.getTerrain().parcourrirTab(env.getTerrain().getTabTerrain(),env.getTerrain().getVerifMap().get("3"))) {
-
-
-
+					if(env.getTerrain().parcourrirTab(env.getTerrain().getTabTerrain(),env.getTerrain().getVerifMap().get("3")) && bateauConstruit) {
 
 						env.getEren().setX(10);
 						env.getEren().setY(447);
 						env.getTerrain().changerTerrain(env.getTerrain().getTabTerrain4());
 						terrainVue = new TerrainVue(tuilesFond, env.getTerrain());	
 						terrainVue.dessinerTerrain();
+						this.panePersoMap.requestFocus();
+
+						bateauConstruit = false;
+
 
 					}
 
 
 					//transition map 4 -> 5
 					if(env.getEren().getX() >= 1257 && env.getTerrain().parcourrirTab(env.getTerrain().getTabTerrain(),env.getTerrain().getVerifMap().get("4"))) {
-
 						env.getEren().setX(10);
 						env.getEren().setY(447);
 						env.getTerrain().changerTerrain(env.getTerrain().getTabTerrain5());

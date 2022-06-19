@@ -262,8 +262,8 @@ public class Inventaire {
 			if (this.inventaire.get(i).getIdObjet()==r.getIdObjet()) {
 				if (r instanceof Bois) {
 					if (existeDansInventaire(r.getIdObjet())) {
-						if(possibilterConstruire((Ressource)this.inventaire.get(i), 50)) {
-							((Ressource) this.inventaire.get(i)).decrementerRessource(50);
+						if(possibilterConstruire((Ressource)this.inventaire.get(i), 10)) {
+							((Ressource) this.inventaire.get(i)).decrementerRessource(10);
 							if (((Ressource) this.inventaire.get(i)).getNbRessource()==0)
 								this.inventaire.remove(i);
 							return true;
