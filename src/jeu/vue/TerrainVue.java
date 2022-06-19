@@ -53,17 +53,20 @@ Bloc de Fer : 5
 		tableauImageTerrain();
 	}
 
+	
+	
+	
 
 	/**
 	 * On dessine le Terrain qu'une seul fois
 	 */
-	public void dessinerTerrain () {
+	public void dessinerTerrain (int[] terrain) {
 		//tuilesFond.setMaxSize(40*32, 23*32); // largeur * taille tuile hauteur * nb tuiles pour pas que la fenetre quand on l'agrandit change
 		tuilesFond.getChildren().clear(); // on clean le tilePane si jamais
 		ImageView images ;
 		
-		for(int cases = 0; cases < terrain.getTabTerrain().length ; cases++) {
-			switch(terrain.getTabTerrain()[cases]) {
+		for(int cases = 0; cases < terrain.length ; cases++) {
+			switch(terrain[cases]) {
 			case 0 :
 				images = new ImageView(imageTerrain[0]);
 				break;

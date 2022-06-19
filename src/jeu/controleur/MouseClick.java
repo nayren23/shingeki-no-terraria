@@ -87,60 +87,69 @@ public class MouseClick implements EventHandler<MouseEvent> {
 				else if(objet instanceof Terre && arg0.getButton() == MouseButton.SECONDARY) {
 					Terre terre = new Terre();
 					if(this.env.getEren().getInventaireHeros().verifierRessource(terre)) {
-						((Terre) objet).poserBloc(positionTuileDansTableau, env.getTerrain(),Parametre.blocTerre);
-						terrainVue.changementTuileMinage(positionTuileDansTableau,env.getTerrain(),Parametre.blocTerre);
+						if(((Terre) objet).poserBloc(positionTuileDansTableau, env.getTerrain(),Parametre.blocTerre)) {
+							terrainVue.changementTuileMinage(positionTuileDansTableau,env.getTerrain(),Parametre.blocTerre);
 
-						// Inventaire
-						env.getRessources().set(positionTuileDansTableau, terre);
-						env.getEren().getInventaireHeros().detruireRessource(terre);
+							// Inventaire
+							env.getRessources().set(positionTuileDansTableau, terre);
+							env.getEren().getInventaireHeros().detruireRessource(terre);
+						}
+
 					}
 				}
 
 				else if(objet instanceof Fer && arg0.getButton() == MouseButton.SECONDARY) {
 					Fer fer = new Fer();
 					if(this.env.getEren().getInventaireHeros().verifierRessource(fer)) {
-						((Fer) objet).poserBloc(positionTuileDansTableau, env.getTerrain(),Parametre.blocFer);
-						terrainVue.changementTuileMinage(positionTuileDansTableau,env.getTerrain(),Parametre.blocFer);
+						if(((Fer) objet).poserBloc(positionTuileDansTableau, env.getTerrain(),Parametre.blocFer)) {
+							terrainVue.changementTuileMinage(positionTuileDansTableau,env.getTerrain(),Parametre.blocFer);
 
-						// Inventaire
-						env.getRessources().set(positionTuileDansTableau, fer);
-						env.getEren().getInventaireHeros().detruireRessource(fer);
+							// Inventaire
+							env.getRessources().set(positionTuileDansTableau, fer);
+							env.getEren().getInventaireHeros().detruireRessource(fer);
+						}
+	
 					}
 				}
 
 				else if(objet instanceof Charbon && arg0.getButton() == MouseButton.SECONDARY) {
 					Charbon charbon = new Charbon();
 					if(this.env.getEren().getInventaireHeros().verifierRessource(charbon)) {
-						((Charbon) objet).poserBloc(positionTuileDansTableau, env.getTerrain(),Parametre.blocCharbon);
-						terrainVue.changementTuileMinage(positionTuileDansTableau,env.getTerrain(),Parametre.blocCharbon);
+						if(((Charbon) objet).poserBloc(positionTuileDansTableau, env.getTerrain(),Parametre.blocCharbon)) {
+							terrainVue.changementTuileMinage(positionTuileDansTableau,env.getTerrain(),Parametre.blocCharbon);
 
-						// Inventaire
-						env.getRessources().set(positionTuileDansTableau, charbon);
-						env.getEren().getInventaireHeros().detruireRessource(charbon);
+							// Inventaire
+							env.getRessources().set(positionTuileDansTableau, charbon);
+							env.getEren().getInventaireHeros().detruireRessource(charbon);
+						}
+
 					}
 				}
 
 				else if(objet instanceof Gaz && arg0.getButton() == MouseButton.SECONDARY) {
 					Gaz gaz = new Gaz();
 					if(this.env.getEren().getInventaireHeros().verifierRessource(gaz)) {
-						((Gaz) objet).poserBloc(positionTuileDansTableau, env.getTerrain(),Parametre.blocGaz);
-						terrainVue.changementTuileMinage(positionTuileDansTableau,env.getTerrain(),Parametre.blocGaz);
+						if(((Gaz) objet).poserBloc(positionTuileDansTableau, env.getTerrain(),Parametre.blocGaz)) {
+							terrainVue.changementTuileMinage(positionTuileDansTableau,env.getTerrain(),Parametre.blocGaz);
 
-						// Inventaire
-						env.getRessources().set(positionTuileDansTableau, gaz);
-						env.getEren().getInventaireHeros().detruireRessource(gaz);
+							// Inventaire
+							env.getRessources().set(positionTuileDansTableau, gaz);
+							env.getEren().getInventaireHeros().detruireRessource(gaz);
+						}
+
 					}
 				}
 				
 				else if(objet instanceof Bois && arg0.getButton() == MouseButton.SECONDARY) {
 					Bois bois = new Bois();
 					if(this.env.getEren().getInventaireHeros().verifierRessource(bois)) {
-						((Bois) objet).poserBloc(positionTuileDansTableau, env.getTerrain(),Parametre.blocBois);
-						terrainVue.changementTuileMinage(positionTuileDansTableau,env.getTerrain(),Parametre.blocBois);
+						if(((Bois) objet).poserBloc(positionTuileDansTableau, env.getTerrain(),Parametre.blocBois)) {
+							terrainVue.changementTuileMinage(positionTuileDansTableau,env.getTerrain(),Parametre.blocBois);
 
-						// Inventaire
-						env.getRessources().set(positionTuileDansTableau, bois);
-						env.getEren().getInventaireHeros().detruireRessource(bois);
+							// Inventaire
+							env.getRessources().set(positionTuileDansTableau, bois);
+							env.getEren().getInventaireHeros().detruireRessource(bois);
+						}
 					}
 				}
 			}
