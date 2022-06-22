@@ -1,7 +1,5 @@
 package jeu.model;
 
-import jeu.Parametre;
-import jeu.Parametre.DIRECTION;
 import jeu.model.inventaire.Inventaire;
 import jeu.model.inventaire.Objet;
 import jeu.model.inventaire.arme.Hand;
@@ -15,7 +13,7 @@ public class Heros extends Personnage{
 	private int directionActuelle;
 
 	//changer le type terrain en type environnement
-	public Heros(int x, int y, Terrain terrain, Environnement env) {
+	public Heros(Terrain terrain, Environnement env) {
 		super(555, 417, 9, env);
 		this.mainHeros = new Hand();
 		this.objetHeros= mainHeros;
@@ -25,12 +23,6 @@ public class Heros extends Personnage{
 
 
 	//------------------------------------------------------------//
-
-
-	public void gravite() {
-		setY(getY()  + Parametre.forceGravite);
-
-	}
 
 
 	public boolean estMort () {
@@ -51,7 +43,6 @@ public class Heros extends Personnage{
 	 * @return  notre valeur comprise entre 0 et 9
 	 */
 	
-
 
 	/**
 	 * on ne peut pas etre en dessous de 0 pv g�rer grace au clamp
@@ -82,50 +73,22 @@ public class Heros extends Personnage{
 	 * @param numeroTuilesCasser que l on veut casser
 	 * @param terrain sur quel terrain l'action doit se faire
 	 */
-	//	public void casserBloc (int numeroTuilesCasser, Terrain terrain) {  // ensuite rajouter l'objet miner dans l'inventaire 
-	//		System.out.println("casser tuile : " + numeroTuilesCasser);
-	//		terrain.changerTuiles(numeroTuilesCasser,Parametre.changementDuBlocCasser); //changer le 1 en bloc choisit
-	//		System.out.println("C'est cassee Yes");			
-	//	}
+	
 
 	public void equiper (Objet o) {
 		setObjetHeros(o);
-		System.out.println("Objet " +o.getIdObjet());
 	}
 
 	public Objet getObjetHeros() {
 		return this.objetHeros;
 	}
 
-	//------------------------------------------------------------//
 
-	//	public boolean estMort(int pv) { // a finir
-	//			boolean estMort = false;
-	//			
-	//			if(pv==0) {
-	//				estMort =true;
-	//			}
-	//			return estMort;
-	//			
-	//}
 
-	//------------------------------------------------------------//
-
-	//Getters et Setter
-
-	
-
+	/////////////////////Getters ///////////////////////////////
 	public Inventaire getInventaireHeros() {
 		return inventaireHeros;
 	}
-
-	
-	public void setObjetHeros(Objet objetHeros) {
-		this.objetHeros = objetHeros;
-	}
-	
-
-	
 
 	public int getDirectionActuelle() {
 		return directionActuelle;
@@ -133,6 +96,15 @@ public class Heros extends Personnage{
 	
 	public int getPv() {
 		return this.PvProperty().getValue();
+	}
+	
+	
+	
+	
+	
+	/////////////////////////Setters////////////////////////////////////
+	public void setObjetHeros(Objet objetHeros) {
+		this.objetHeros = objetHeros;
 	}
 	
 	public void setPv(int d) {
@@ -143,7 +115,9 @@ public class Heros extends Personnage{
 		this.directionActuelle = directionActuelle;
 	}
 
-
+	public void setInventaireHeros(Inventaire inventaireHeros) {
+        this.inventaireHeros = inventaireHeros;
+    }
 
 
 }

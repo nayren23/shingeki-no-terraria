@@ -6,7 +6,6 @@ public abstract class Arme extends Objet{
 	
 	private int durabilite;
 	private int degats;
-	private int qualite;
 	private String nom;
 	
 	//durabilite est la durée de vie de l'arme, à chaque fois qu'il est utilise il perd 1 pv, il est donc possible de la baisser pour voir si elle se supprime

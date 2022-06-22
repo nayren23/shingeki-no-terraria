@@ -1,13 +1,9 @@
 package jeu.model.inventaire.outil;
 
-import java.util.ArrayList;
 import jeu.Parametre;
 import jeu.model.Environnement;
-import jeu.model.Terrain;
-import jeu.model.inventaire.arme.Arme;
 import jeu.model.inventaire.ressource.Ciel;
-import jeu.model.inventaire.ressource.Ressource;
-import jeu.model.inventaire.ressource.Terre;
+
 
 public class Pelle extends Outil{
 
@@ -28,13 +24,11 @@ public class Pelle extends Outil{
 			if(getEnv().getTerrain().getTabTerrain()[numeroTuilesCasser]==1) {
 				getEnv().getTerrain().getTabTerrain()[numeroTuilesCasser] = Parametre.changementDuBlocCasser;
 				indiceBloc = 1;
-				System.out.println("premiere condition");
 			}
 			
 			else if(getEnv().getTerrain().getTabTerrain()[numeroTuilesCasser]==2) {
 				indiceBloc = 2;
 				getEnv().getTerrain().getTabTerrain()[numeroTuilesCasser] = Parametre.changementDuBlocCasser;
-				System.out.println("deuxieme condition");
 
 			}
 			getEnv().getRessources().set(numeroTuilesCasser, new Ciel());  // on change la terre par le ciel dans la liste des ressources
@@ -45,19 +39,3 @@ public class Pelle extends Outil{
 	}
 
 }
-
-
-//	public void creuser (int numeroTuilesCasser, Terrain terrain) {  // ensuite rajouter l'objet miner dans l'inventaire 
-//		//souci au niveau de la condition car supprime le bloc visuellement 1 tour de trop apres
-//		if(this.blocMinables.contains(terrain.getTerrain()[numeroTuilesCasser] ) /*&& env.getRessources().get(numeroTuilesCasser).getResistance()<=0*/) {
-//			Ressource o= env.getRessources().get(numeroTuilesCasser);
-//
-//			terrain.getTerrain()[numeroTuilesCasser]=Parametre.changementDuBlocCasserPelle; // 0 = le ciel
-//			this.env.getEren().getInventaireHeros().stackRessource();
-//		}
-//		else {
-//			env.enleverResistance(env.getRessources().get(numeroTuilesCasser));
-//		}
-//		
-//	}
-

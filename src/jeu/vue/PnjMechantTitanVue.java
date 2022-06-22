@@ -3,17 +3,14 @@ package jeu.vue;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import jeu.Parametre;
-import jeu.controleur.MouseClickPnj;
 import jeu.model.Environnement;
 import jeu.model.Heros;
 import jeu.model.PnjMechantTitan;
 import jeu.model.inventaire.Objet;
 import jeu.model.inventaire.arme.Arme;
 import jeu.model.inventaire.arme.Epee;
-import jeu.model.inventaire.arme.LanceFoudroyante;
 
 public class PnjMechantTitanVue extends ImageView {
 
@@ -29,7 +26,6 @@ public class PnjMechantTitanVue extends ImageView {
 	public PnjMechantTitanVue (PnjMechantTitan pnj ,Heros hero, Pane PanePrincipale ,Environnement env ) {			// initialisation de l'image et de ses coordoonées de base 
 		this.pnj = pnj;
 		this.setImage(image);
-		this.addEventHandler(MouseEvent.MOUSE_CLICKED, new MouseClickPnj(pnj.getEnv(),this));
 		this.hero = hero;
 		setOnClickListener(); //appelle du listener
 		this.env =env;
@@ -41,7 +37,6 @@ public class PnjMechantTitanVue extends ImageView {
 		barreVie.setPrefSize(40, 10); // on choisit la taille de la barre de d�gat
 
 		this.PanePrincipale.getChildren().add(barreVie);
-		//		&& this.barreVie.getProgress()>=0.9
 		//listener des pv qui retire le titan mort de la vue et du modele
 		pnj.PvProperty().addListener((obs,old,newP) -> { 
 			if(pnj.verificationMort() ) { // on regarde aussi si la barre de vie et complete
@@ -49,7 +44,6 @@ public class PnjMechantTitanVue extends ImageView {
 				supprimerTitan();
 				this.PanePrincipale.getChildren().remove(this.barreVie);  // on supprime la barre de vie 
 				Parametre.mortTitan.playSound();
-				System.out.println("meurrrr");
 			}
 
 		});
@@ -72,8 +66,6 @@ public class PnjMechantTitanVue extends ImageView {
 	public void affichageTitan(PnjMechantTitan pnj) {
 		this.translateXProperty().bind(pnj.xProperty());	//la position du hero va être mise à jour en mm temps que la position du hero dans la vue
 		this.translateYProperty().bind(pnj.yProperty());
-		System.out.println("\n Affichage du x pnj" + xProperty());
-		//		changerImage();
 	}
 
 	/**
@@ -92,7 +84,6 @@ public class PnjMechantTitanVue extends ImageView {
 		//Listener
 		this.setOnMouseClicked(e -> {
 			Objet objet = this.hero.getObjetHeros();
-			//			System.out.println("\npalalal");
 
 			if(Parametre.rangeTitan(env.getEren().getX(),env.getEren().getY(), pnj.getX(), pnj.getY(), Parametre.rangeAttaqueErenSurTitanX,Parametre.rangeAttaqueErenSurTitanY )) {
 				if(objet instanceof Epee ) {
@@ -101,9 +92,7 @@ public class PnjMechantTitanVue extends ImageView {
 					Parametre.epee.playSound();
 					this.barreVie.setProgress(progress); //a chque coup le pnj prend  1 degat 
 					this.pnj.perdrePv(arme);
-					System.out.println("hp titan" + pnj.PvProperty().getValue());
 					arme.decrementerDurabiliteArme(arme);
-					System.out.println("\n barre vie" + this.barreVie.getProgress());
 
 				}
 

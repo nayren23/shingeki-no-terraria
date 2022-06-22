@@ -96,11 +96,6 @@ public class Parametre {
 		if( coordonneeJoueurX -rangeGauche <= positionBlocX  &&  coordonneeJoueurX + rangeDroite >=positionBlocX 
 				&&  (coordonneeJoueurY -rangeHaut <= positionBlocY &&  coordonneeJoueurY + rangeBas >=positionBlocY) ) {
 			peutCreuser = true;
-//			System.out.println("\n tu peux  creuser frerot !!!");
-
-		}
-		else {
-//			System.out.println("\n tu peux pas creuser frerot !!!");
 		}
 		return peutCreuser;
 	}
@@ -123,10 +118,6 @@ public class Parametre {
 		if( (coordonneeJoueurX -rangeErenX <= positionTitanX  &&  coordonneeJoueurX + rangeErenX >=positionTitanX )
 				&&  (coordonneeJoueurY -rangeErenY <= positionTitanY &&  coordonneeJoueurY + rangeErenY >=positionTitanY) ) {
 			peutCreuser = true;
-			//			System.out.println("\n tu peux  le tuer frerot !!!");
-		}
-		else {
-			//			System.out.println("\n tu peux pas le tuer frerot !!!");
 		}
 		return peutCreuser;
 	}
@@ -139,9 +130,13 @@ public class Parametre {
 	public static SoundEffect mortTitan	 = new SoundEffect("jeu/sound/mortTitan.wav");
 	public static SoundEffect epee	 = new SoundEffect("jeu/sound/epee.wav");
 	public static SoundEffect lanceFoudroyante	= new SoundEffect("jeu/sound/lanceFoudroyante.wav");
+	public static SoundEffect win	= new SoundEffect("jeu/sound/musiqueWin.wav");
+	public static SoundEffect musicmap1	= new SoundEffect("jeu/sound/musicmap1.wav");
+	public static SoundEffect musicmap2	= new SoundEffect("jeu/sound/musicmap2.wav");
+	public static SoundEffect musicmap3	= new SoundEffect("jeu/sound/musicmap3.wav");
+	public static SoundEffect musicmap4	= new SoundEffect("jeu/sound/musicmap4.wav");
 
 	//////////////////////// 
-	//		changerImage();
 	
 	public static int dimensionLanceHauteur = 32 ;
 	public static int dimensionLanceLargeur= 32 ;

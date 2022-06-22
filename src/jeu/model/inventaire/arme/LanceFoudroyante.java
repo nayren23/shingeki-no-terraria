@@ -1,13 +1,9 @@
 package jeu.model.inventaire.arme;
 
-import java.util.Iterator;
-
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import jeu.Collisions;
 import jeu.Parametre;
 import jeu.model.Environnement;
-import jeu.model.Personnage;
 
 public class LanceFoudroyante extends Arme{
 
@@ -17,7 +13,6 @@ public class LanceFoudroyante extends Arme{
 	private Environnement env;
 	private boolean droite , gauche;
 	private IntegerProperty pv;
-	private boolean estLancer;
 	private boolean lanceAvance;
 
 	public LanceFoudroyante(int x, int y , Environnement env) {
@@ -59,10 +54,6 @@ public class LanceFoudroyante extends Arme{
 	public void seDeplace(  ) {
 
 
-		//				System.out.println("erenn direction " + env.getEren().getDirection());
-		//				System.out.println("erenn droite" +droite);
-		//				System.out.println("erenn gauceh" +gauche);
-
 		if( env.getEren().getDirectionActuelle() == 3  ) { // on le fait allez jusqu a gauche puis
 			droite = true;
 			gauche =false;
@@ -84,7 +75,6 @@ public class LanceFoudroyante extends Arme{
 			Parametre.lanceFoudroyante.playSound();
 
 		}
-		//		System.out.println("Direction eren" +env.getEren().getDirection());
 
 	}
 
@@ -99,6 +89,7 @@ public class LanceFoudroyante extends Arme{
 		}
 	}
 
+	
 	public boolean estMort () {
 		boolean mort = false;
 		if (this.pv.getValue()<=0) {
@@ -112,76 +103,24 @@ public class LanceFoudroyante extends Arme{
 		}
 		return mort;
 	}
+	
+	
 	public void action () {
-
 		seDeplace();
 		move();
 		attaque();
-//		collisions();
+		
 	}
 
 
 
-	//////////////////////////////////////////////////////
 
-
-	public  void collisions () {
-		int x = this.coordonneeX.get();
-		int y = this.coordonneeX.get();
-
-		//
-		if (collisionDeDroite(x,y) ||   collisionDeGauche(x,y) ) {
-//			pv.set(pv.getValue()-1);
-		}
-
-	}
-
-
-	public boolean collisionDeDroite (int x,int y) {
-		boolean bloque = false;
-		if (Collisions.verificationDeCollisions(Collisions.coordoonneTuile(x + Parametre.dimensionLanceLargeur, y - Parametre.dimensionLanceHauteur),env) || Collisions.verificationDeCollisions(Collisions.coordoonneTuile(x + Parametre.dimensionLanceLargeur, y - 1),env)) {
-			this.coordonneeX.set(x - this.direction);
-			bloque = true;
-		}
-		if (Collisions.verificationDeCollisions(Collisions.coordoonneTuile(x + Parametre.dimensionLanceLargeur, y - Parametre.dimensionLanceHauteur),env) || Collisions.verificationDeCollisions(Collisions.coordoonneTuile(x +  Parametre.dimensionLanceLargeur, y - 1),env)) {
-			this.coordonneeX.set(this.coordonneeX.get() - 1);
-			bloque= true;
-
-		}
-		return bloque;
-
-	}
-
-
-	public boolean collisionDeGauche (int x,int y) {
-		boolean bloque = false;
-
-		if (Collisions.verificationDeCollisions(Collisions.coordoonneTuile(x + 9, y - Parametre.dimensionLanceHauteur),env) || Collisions.verificationDeCollisions(Collisions.coordoonneTuile(x + 9, y -1),env)) {
-			this.coordonneeX.set(x - this.direction);
-			bloque = true;
-		}
-		if (Collisions.verificationDeCollisions(Collisions.coordoonneTuile(x + 9, y - Parametre.dimensionLanceHauteur),env) || Collisions.verificationDeCollisions(Collisions.coordoonneTuile(x + 9, y-1),env)) {
-			this.coordonneeX.set(this.coordonneeX.get() + 1);
-			bloque= true;
-		}
-		return bloque;
-	}
-
-
-	////////////////////////////////////////////////////
-
-
-	public boolean isLanceAvance() {
-		return lanceAvance;
-	}
-
-	public void setLanceAvance(boolean lanceAvance) {
-		this.lanceAvance = lanceAvance;
-	}
+	////////////////////Getters////////////////////////////////
 
 	public IntegerProperty getCoordonneeX() {
 		return coordonneeX;
 	}
+	
 
 
 	public int getX() {
@@ -200,8 +139,29 @@ public class LanceFoudroyante extends Arme{
 	public int getDirection() {
 		return direction;
 	}
+	
+	public Environnement getEnv() {
+		return env;
+	}
 
+	public IntegerProperty getPv() {
+		return pv;
+	}
+	
+	public int getDirY() {
+		return dirY;
+	}
+	
+	public boolean isLanceAvance() {
+		return lanceAvance;
+	}
 
+	////////////////////Setters////////////////////////////////
+
+	
+	public void setLanceAvance(boolean lanceAvance) {
+		this.lanceAvance = lanceAvance;
+	}
 
 	public final void setX(int d) {
 		this.coordonneeX.setValue(d);
@@ -215,28 +175,13 @@ public class LanceFoudroyante extends Arme{
 		this.direction = direction;
 	}
 
-	public Environnement getEnv() {
-		return env;
-	}
-
-	public IntegerProperty getPv() {
-		return pv;
-	}
-
 	public void setPv(IntegerProperty pv) {
 		this.pv = pv;
-	}
-
-	public int getDirY() {
-		return dirY;
 	}
 
 	public void setDirY(int dirY) {
 		this.dirY = dirY;
 	}
-
-
-
 
 }
 
