@@ -38,19 +38,3 @@ public class Pioche extends Outil{
 	}
 }
 
-
-
-//	public void creuser (int numeroTuilesCasser, Terrain terrain) {  // ensuite rajouter l'objet miner dans l'inventaire 
-//		System.out.println("\n Affichage liste"+env.getRessources());
-//		//souci au niveau de la condition car supprime le bloc visuellement 1 tour de trop apres
-//		if(this.blocMinables.contains(terrain.getTerrain()[numeroTuilesCasser] )) {
-//			Ressource o= env.getRessources().get(numeroTuilesCasser);
-//			System.out.println("\nAffichage de la ressource"+o);
-//			this.env.getEren().getInventaireHeros().stackRessource(o);
-//			terrain.getTerrain()[numeroTuilesCasser]=Parametre.changementDuBlocCasserPelle; // 0 = le ciel
-//
-//		}
-//		else {
-//			env.enleverResistance(env.getRessources().get(numeroTuilesCasser));		}
-//	}
-

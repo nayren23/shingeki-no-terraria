@@ -24,9 +24,7 @@ public  class PnjMechantTitan extends Personnage {
 	}
 
 
-	public void gravite() {
-		setY(getY()  + Parametre.forceGravite);
-	}
+	
 
 	/**
 	 * Tant que le titan n a pas atteind sa limite aussi bien a gauceh que a droite on le fait avencer
@@ -72,7 +70,6 @@ public  class PnjMechantTitan extends Personnage {
 				&&  (getY() -Parametre.porteeCoupDuTitanY) <=coordonneErenY && (getY() +Parametre.porteeCoupDuTitanY) >=coordonneErenY
 				) {
 			erenPresent = true;		
-			//			System.out.println("\n on a trouvé");
 
 			if (getX()!= coordonneErenX  ) {
 

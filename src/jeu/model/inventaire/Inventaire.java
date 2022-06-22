@@ -41,7 +41,6 @@ public class Inventaire {
 	public void ajouterDansInventaire (Objet o) {
 		if (verifierPlace()) {
 			this.inventaire.add(o);
-			System.out.println(this.inventaire);
 		}
 	}
 
@@ -59,70 +58,64 @@ public class Inventaire {
 		for (int i=0; i<this.inventaire.size(); i++) {
 			if (this.inventaire.get(i).getIdObjet()==r.getIdObjet()) {
 				if(r instanceof Pain) {
-					this.inventaire.remove(i);
-					System.out.println(this.inventaire);
-				}
+                    Pain pain = (Pain) this.inventaire.get(i);
+                    if (pain.getNbRessource()>1)
+                        pain.decrementerRessource(1);
+                    else
+                        this.inventaire.remove(i);
+                }
 				else if(r instanceof Fer) {
 					Fer fer = (Fer) this.inventaire.get(i);
-					if (fer.getNbRessource()>=1) {
+					if (fer.getNbRessource()> 1) {
 						fer.decrementerRessource(1);
-						System.out.println(this.inventaire);
 					}
 					else {
 						this.inventaire.remove(i);
-						System.out.println(this.inventaire);
 					}
 				}
 				else if(r instanceof Terre) {
 					Terre terre = (Terre) this.inventaire.get(i);
-					if (terre.getNbRessource()>=1) {
+					if (terre.getNbRessource()> 1) {
 						terre.decrementerRessource(1);
-						System.out.println(this.inventaire);
 					}
 					else {
 						this.inventaire.remove(i);
-						System.out.println(this.inventaire);
 					}
 				}
 				else if (r instanceof Gaz) {
 					Gaz gaz = (Gaz) this.inventaire.get(i);
-					if (gaz.getNbRessource()>=1) {
+					if (gaz.getNbRessource()> 1) {
 						gaz.decrementerRessource(1);
-						System.out.println(this.inventaire);
 					}
 					else {
+						gaz.decrementerRessource(1);
 						this.inventaire.remove(i);
-						System.out.println(this.inventaire);
 					}		
 				}
 				else if (r instanceof Charbon) {
 					Charbon charbon= (Charbon) this.inventaire.get(i);
-					if (charbon.getNbRessource()>=1) {
+					if (charbon.getNbRessource() > 1) {
 						charbon.decrementerRessource(1);
-						System.out.println(this.inventaire);
 					}
 					else {
 						this.inventaire.remove(i);
-						System.out.println(this.inventaire);
 					}
 
 				}
 				else if (r instanceof Bois) {
 					Bois bois = (Bois) this.inventaire.get(i);
-					if (bois.getNbRessource() <= 1) {
-						this.inventaire.remove(i);
-						System.out.println(this.inventaire);
-						
+					if (bois.getNbRessource() > 1) {
+						bois.decrementerRessource(1);
+
 					}
 					else{
-						bois.decrementerRessource(1);
-						System.out.println(this.inventaire);
+						this.inventaire.remove(i);
+
 					}
 
 				}
 				else if (r instanceof LiquideTitan) {
 					this.inventaire.remove(i);
-					System.out.println(this.inventaire);
 				}
 			}
 		}
@@ -257,42 +250,67 @@ public class Inventaire {
 		return false;
 	}
 
-	public boolean interactionArminSacha (Ressource r) {
-		for (int i=0; i<this.inventaire.size(); i++) {
-			if (this.inventaire.get(i).getIdObjet()==r.getIdObjet()) {
-				if (r instanceof Bois) {
-					if (existeDansInventaire(r.getIdObjet())) {
-						if(possibilterConstruire((Ressource)this.inventaire.get(i), 10)) {
-							((Ressource) this.inventaire.get(i)).decrementerRessource(10);
-							if (((Ressource) this.inventaire.get(i)).getNbRessource()==0)
-								this.inventaire.remove(i);
-							return true;
-						}
-					}
-				}
-				else if (r instanceof Terre) {
-					if (existeDansInventaire(r.getIdObjet())) {
-						if(possibilterConstruire((Ressource)this.inventaire.get(i), 2)) {
-							((Ressource) this.inventaire.get(i)).decrementerRessource(2);
-							if (((Ressource) this.inventaire.get(i)).getNbRessource()==0)
-								this.inventaire.remove(i);
-							Pain pain = new Pain();
-							if (existeDansInventaire(pain.getIdObjet())) {
-								int positionPain = positionRessourceDansListe(pain);
-								((Ressource)this.inventaire.get(positionPain)).incrementerRessource();
-								System.out.println(this.inventaire.get(positionPain));
-							}
-							else
-								this.inventaire.add(pain);
+	public boolean interactionArmin(Ressource r, Ressource r2) {
+		if (existeDansInventaire(r.getIdObjet()) && existeDansInventaire(r2.getIdObjet())) {
 
-							return true;
-						}
-					}
+			int positionBois = positionRessourceDansListe(r);
+			int positionCharbon = positionRessourceDansListe(r2);
+
+
+			if(possibilterConstruire((Ressource)this.inventaire.get(positionBois), 20) && possibilterConstruire((Ressource)this.inventaire.get(positionCharbon), 10) ) {
+				((Ressource) this.inventaire.get(positionBois)).decrementerRessource(20);
+				((Ressource) this.inventaire.get(positionCharbon)).decrementerRessource(10);
+
+				if(positionBois<positionCharbon) {
+					if (((Ressource) this.inventaire.get(positionBois)).getNbRessource()==0)
+						this.inventaire.remove(positionBois);
+					if (((Ressource) this.inventaire.get(positionCharbon-1)).getNbRessource()==0)
+						this.inventaire.remove(positionCharbon-1);
+					return true;
 				}
+				else {
+					if (((Ressource) this.inventaire.get(positionCharbon)).getNbRessource()==0)
+						this.inventaire.remove(positionCharbon);
+					if (((Ressource) this.inventaire.get(positionBois-1)).getNbRessource()==0)
+						this.inventaire.remove(positionBois-1);
+					return true;
+				}
+
 			}
 		}
 		return false;
+
 	}
+
+
+	public boolean interactionSacha(Ressource r) {
+		if (existeDansInventaire(r.getIdObjet())) {
+			for (int i=0; i<this.inventaire.size(); i++) {
+				if ( r instanceof Terre){
+					if(possibilterConstruire((Ressource)this.inventaire.get(positionRessourceDansListe(r)), 2)) {
+						((Ressource) this.inventaire.get(positionRessourceDansListe(r))).decrementerRessource(2);
+						if (((Ressource) this.inventaire.get(positionRessourceDansListe(r))).getNbRessource()==0)
+							this.inventaire.remove(positionRessourceDansListe(r));
+						Pain pain = new Pain();
+						if (existeDansInventaire(pain.getIdObjet())) {
+							int positionPain = positionRessourceDansListe(pain);
+							((Ressource)this.inventaire.get(positionPain)).incrementerRessource();
+						}
+						else
+							this.inventaire.add(pain);
+
+						return true;
+					}
+				}
+
+			}
+		}
+		return false;
+	} 
+
+
+
+
 
 	public int positionRessourceDansListe(Ressource r) {
 		for (int i=0; i<this.inventaire.size(); i++)
@@ -312,10 +330,6 @@ public class Inventaire {
 		return false;
 	}
 
-	//	public void detruireBloc(Ressource r) {
-	//		int id = r.getIdObjet();
-	//		this.inventaire.remove(id);
-	//	}
 
 	/**
 	 * enleve resistance du bloc et durabilite de l'arme
@@ -355,7 +369,6 @@ public class Inventaire {
 				if (r.getIdObjet()==this.inventaire.get(i).getIdObjet()) {
 					ressource=(Ressource) this.inventaire.get(i);
 					ressource.incrementerRessource();
-					System.out.println(this.inventaire);
 				}
 			}
 		}
@@ -427,20 +440,11 @@ public class Inventaire {
 		return false;
 	}
 
+	
+	//////////////////Getters//////////////////////////////////
 	public ObservableList<Objet> getInventaire() {
 		return inventaire;
 	}
-
-	//	public int getPositionObjetSupprimer(Objet o) {
-	//		Objet inv;
-	//		for (int i=0; i<this.inventaire.size(); i++) {
-	//			if (this.inventaire.contains(o))
-	//				inv=o;
-	//		}
-	//		int position = inv.getIdObjet().
-	//		detruireObjet(inv);
-	//		return position;
-	//	}
 
 	@Override
 	public String toString() {

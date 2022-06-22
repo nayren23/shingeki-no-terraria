@@ -1,11 +1,9 @@
 package jeu;
 
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.fxml.FXMLLoader;
 
@@ -23,14 +21,7 @@ public class Main extends Application {
 			primaryStage.show();
 			primaryStage.getIcons().add(new Image("jeu/image/Eren1.png"));
 			primaryStage.setResizable(false);
-			//Savoir les touches
-			scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-
-				@Override
-				public void handle(KeyEvent event) {
-					System.out.println(event.getCode());
-				}	
-			});
+			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

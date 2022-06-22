@@ -1,11 +1,11 @@
 package jeu.controleur;
 
 import java.net.URL;
-import java.util.HashMap;
 import java.util.ResourceBundle;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -29,14 +29,11 @@ import javafx.util.Duration;
 import jeu.Main;
 import jeu.Parametre;
 import jeu.model.Environnement;
-import jeu.model.Heros;
-import jeu.model.Terrain;
-import jeu.model.inventaire.Inventaire;
+import jeu.model.PnjMechantTitan;
 import jeu.vue.HeroVue;
 import jeu.model.inventaire.Objet;
 import jeu.model.inventaire.arme.Epee;
 import jeu.model.inventaire.arme.LanceFoudroyante;
-import jeu.model.inventaire.outil.Hache;
 import jeu.model.inventaire.outil.Hache;
 import jeu.model.inventaire.outil.Pelle;
 import jeu.model.inventaire.outil.Pioche;
@@ -44,14 +41,10 @@ import jeu.model.inventaire.ressource.Bois;
 import jeu.model.inventaire.ressource.Charbon;
 import jeu.model.inventaire.ressource.Fer;
 import jeu.model.inventaire.ressource.Gaz;
-import jeu.model.inventaire.ressource.Pain;
-import jeu.model.inventaire.ressource.Terre;
-import jeu.model.inventaire.ressource.Fer;
 import jeu.model.inventaire.ressource.Terre;
 import jeu.vue.HerosVieVue;
 import jeu.vue.PnjGentilVue;
 import jeu.vue.PnjMechantTitanVue;
-import jeu.vue.SoundEffect;
 import jeu.vue.TerrainVue;
 import jeu.vue.lanceFoudroyanteVue;
 import jeu.vue.inventaire.InventaireVue;
@@ -62,7 +55,6 @@ public class Controleur implements Initializable{
 	private Timeline gameLoop;
 	private Environnement env;
 	private HeroVue hero1;
-	private int coordonneeMax;
 	private TerrainVue terrainVue;
 	private PnjGentilVue erwin;
 	private PnjGentilVue armin;
@@ -75,6 +67,8 @@ public class Controleur implements Initializable{
 	private Image img = new Image("jeu/image/arriereplanSNK.jpg");
 
 
+	@FXML
+	private Pane win;
 	@FXML
 	private Image imageErwin;
 	@FXML
@@ -145,13 +139,13 @@ public class Controleur implements Initializable{
 	private Label charbon;
 
 
-
+	// permet de construire les ressources de la map
 	@FXML
 	void construireRessource(ActionEvent event) {
 		if (event.getSource()==construireBateau) {
 			Bois bois = new Bois();
-			if (this.env.getEren().getInventaireHeros().interactionArminSacha(bois)) {
-				//				this.construireBateau.setVisible(false);
+			Charbon charbon = new Charbon();
+			if (this.env.getEren().getInventaireHeros().interactionArmin(bois,charbon)) {
 				this.paneBateau.setVisible(false);
 				this.bateauConstruit = true;
 			}
@@ -162,7 +156,7 @@ public class Controleur implements Initializable{
 		}
 		if (event.getSource()==echangerPain) {
 			Terre terre = new Terre();
-			if (this.env.getEren().getInventaireHeros().interactionArminSacha(terre)) {
+			if (this.env.getEren().getInventaireHeros().interactionSacha(terre)) {
 				this.statutEchangePain.setText("Merci pour l'echange!");
 				this.statutEchangePain.toFront();
 			}
@@ -176,24 +170,25 @@ public class Controleur implements Initializable{
 
 
 
+	// pour sortir du jeu
+
 	@FXML
 	void sortirJeu(ActionEvent event) {
-		System.out.println("gateaux");
-
-		//		gameLoop.pause();
-		System.exit(0);  // pour sortir du programme
+		// pour sortir du programme
+		System.exit(0);  
 	}
+
+
 
 	//quand partie perdue
 	@FXML
 	void restart(ActionEvent event) {
-		System.out.println("Je relance le jeu");
 		Main lancement = new Main();
 		((Stage) ((Button) event.getSource()).getScene().getWindow()).close();// pour sortir du programme
 		lancement.start(Stage );
 	}
 
-
+	// construire les outils
 	@FXML
 	void construire(ActionEvent event) {
 		Bois bois = new Bois();
@@ -267,8 +262,8 @@ public class Controleur implements Initializable{
 
 		//------------------------------------------------------------//
 
-		//on creer l image
-		img = new Image("jeu/image/arriereplanSNK.jpg");
+		//on creer "image
+		img = new Image("jeu/image/mapSNKK.jpg");
 
 		//on creer un backgroundImage qui contient notre image
 		BackgroundImage backImage = new BackgroundImage(img,BackgroundRepeat.NO_REPEAT,
@@ -282,7 +277,7 @@ public class Controleur implements Initializable{
 		//Ensuite on ajoute notre background a notre borderpane principale
 		BorderPaneId.setBackground(backGround);
 
-
+		//on set les pane etc
 		this.paneSacha.setVisible(false);
 		this.statutEchangePain.setVisible(false);
 		this.paneBateau.setVisible(false);
@@ -309,6 +304,25 @@ public class Controleur implements Initializable{
 		//Creation de l'environnement qui lui recupere le Terrain
 		env = new Environnement();
 		env.creationRessources();
+
+
+		//Listener pour savoir quand la liste de titans est vide pour pouvoir win le jeu
+		env.getListeTitans().addListener(new ListChangeListener<PnjMechantTitan>() {
+			@Override
+			public void onChanged(Change<? extends PnjMechantTitan> c) {
+				if(env.getListeTitans().size() ==0) {
+					win.setVisible(true);
+					Parametre.win.playSound();
+					Parametre.musicmap1.stopSound();
+					Parametre.musicmap2.stopSound();
+					Parametre.musicmap3.stopSound();
+					Parametre.musicmap4.stopSound();
+					Parametre.sonMapTitan.stopSound();
+					gameLoop.stop();
+				}
+			}
+		}
+				);
 
 
 		terrainVue = new TerrainVue(tuilesFond, env.getTerrain());	//cree le terrain vue
@@ -339,7 +353,7 @@ public class Controleur implements Initializable{
 		});
 
 		Image imageArmin = new Image("jeu/image/armin.png");
-		this.armin = new PnjGentilVue(imageArmin,50, 407);
+		this.armin = new PnjGentilVue(imageArmin,50, 412);
 		this.panePersoMap.getChildren().add(armin);
 		this.armin.setVisible(false);
 		this.armin.setOnMouseClicked(mouseEvent -> {
@@ -373,7 +387,7 @@ public class Controleur implements Initializable{
 		panePause.setVisible(false);
 		//Creation de l usage du clavier
 
-		BorderPaneId.addEventHandler(KeyEvent.KEY_PRESSED,new KeyPressed(env.getEren(), viehero, invVue, hero1,panePause,gameLoop)); //pour savoir les touches qui sont appuee
+		BorderPaneId.addEventHandler(KeyEvent.KEY_PRESSED,new KeyPressed(env.getEren(),invVue,panePause,gameLoop)); //pour savoir les touches qui sont appuee
 		BorderPaneId.addEventHandler(KeyEvent.KEY_RELEASED,new KeyReleased(env.getEren()));//pour savoir les touches qui sont relachee
 
 		//------------------------------------------------------------//
@@ -381,84 +395,16 @@ public class Controleur implements Initializable{
 		//Creation de l usage de la souris 
 		BorderPaneId.addEventHandler(MouseEvent.MOUSE_CLICKED, new MouseClick(env,terrainVue)); //fait la distinction entre les differant click de la souris
 
-		Pelle pelle = new Pelle(env);
-		env.getEren().getInventaireHeros().ajouterDansInventaire(pelle);
-
+		//debut avec les outils de bases
 		Pioche pioche = new Pioche(env);
 		env.getEren().getInventaireHeros().ajouterDansInventaire(pioche);
 
+		Pelle pelle = new Pelle(env);
+		env.getEren().getInventaireHeros().ajouterDansInventaire(pelle);
+
+
 		Hache hache = new Hache(env);
 		env.getEren().getInventaireHeros().ajouterDansInventaire(hache);
-		Pain pain = new Pain();
-		env.getEren().getInventaireHeros().ajouterDansInventaire(pain);
-
-		Epee epee = new Epee();
-		env.getEren().getInventaireHeros().ajouterDansInventaire(epee);
-
-		Fer fer = new Fer();
-		fer.incrementerRessource();
-		fer.incrementerRessource();
-		fer.incrementerRessource();
-		fer.incrementerRessource();
-		fer.incrementerRessource();
-		fer.incrementerRessource();
-		fer.incrementerRessource();
-		fer.incrementerRessource();
-		fer.incrementerRessource();
-		fer.incrementerRessource();
-		fer.incrementerRessource();
-		fer.incrementerRessource();
-		fer.incrementerRessource();
-		fer.incrementerRessource();
-		env.getEren().getInventaireHeros().ajouterDansInventaire(fer);
-
-
-		Bois bois = new Bois();
-		bois.incrementerRessource();
-		bois.incrementerRessource();
-		bois.incrementerRessource();
-		bois.incrementerRessource();
-		bois.incrementerRessource();
-		bois.incrementerRessource();
-		bois.incrementerRessource();
-		bois.incrementerRessource();
-		bois.incrementerRessource();
-		bois.incrementerRessource();
-		bois.incrementerRessource();
-		bois.incrementerRessource();
-		bois.incrementerRessource();
-		bois.incrementerRessource();
-		bois.incrementerRessource();
-		bois.incrementerRessource();
-		bois.incrementerRessource();
-		bois.incrementerRessource();
-		env.getEren().getInventaireHeros().ajouterDansInventaire(bois);
-
-		Terre terre = new Terre();
-		terre.incrementerRessource();
-		terre.incrementerRessource();
-		terre.incrementerRessource();
-		terre.incrementerRessource();
-		terre.incrementerRessource();
-		terre.incrementerRessource();
-		terre.incrementerRessource();
-		terre.incrementerRessource();
-		terre.incrementerRessource();
-		terre.incrementerRessource();
-		terre.incrementerRessource();
-		terre.incrementerRessource();
-		env.getEren().getInventaireHeros().ajouterDansInventaire(terre);
-
-		Gaz gaz = new Gaz();
-		gaz.incrementerRessource();
-		gaz.incrementerRessource();
-		gaz.incrementerRessource();
-		gaz.incrementerRessource();
-		gaz.incrementerRessource();
-		env.getEren().getInventaireHeros().ajouterDansInventaire(gaz);
-
-
-
 
 		initAnimation();
 		// demarre l'animation
@@ -485,36 +431,40 @@ public class Controleur implements Initializable{
 					}
 
 
+					//action du hero
 					env.getEren().collisions();
 					env.getEren().gravite();
 					env.getEren().move();
 					env.getEren().collisionDuBas(env.getEren().getX(), env.getEren().getY());
 
 
-					System.out.println("X : " + env.getEren().getX());
-					System.out.println("Y : " + env.getEren().getY());
-
-					
+					//addition saut + gravité
 					if(!env.getEren().collisionDuBas(env.getEren().getX(), env.getEren().getY())){
 						if(env.getEren().getDirY() < 10) {
 							env.getEren().additionnerDirY(1);
 						}
 					}
 
+
+
 					//changement label ressources
 					for(int i = 0; i < env.getEren().getInventaireHeros().getInventaire().size(); i++) {
 						if(env.getEren().getInventaireHeros().getInventaire().get(i) instanceof Bois ) {
 							this.bois.setText(env.getEren().getInventaireHeros().getInventaire().get(i) + "");
 						}
-						else if(env.getEren().getInventaireHeros().getInventaire().get(i) instanceof Terre ) {
+						if(env.getEren().getInventaireHeros().getInventaire().get(i) instanceof Terre ) {
 							this.terre.setText(env.getEren().getInventaireHeros().getInventaire().get(i) + "");
 						}
-						else if(env.getEren().getInventaireHeros().getInventaire().get(i) instanceof Fer ) {
+				
+						if(env.getEren().getInventaireHeros().getInventaire().get(i) instanceof Fer ) {
 							this.fer.setText(env.getEren().getInventaireHeros().getInventaire().get(i) + "");
 						}
-						else if(env.getEren().getInventaireHeros().getInventaire().get(i) instanceof Charbon ) {
+						
+						if(env.getEren().getInventaireHeros().getInventaire().get(i) instanceof Charbon ) {
 							this.charbon.setText(env.getEren().getInventaireHeros().getInventaire().get(i) + "");
 						}
+					
+						
 					}
 
 
@@ -525,6 +475,7 @@ public class Controleur implements Initializable{
 					}
 					else if(!env.getTerrain().parcourrirTab(env.getTerrain().getTabTerrain(),env.getTerrain().getVerifMap().get("2"))) {
 						erwin.setVisible(false);
+						hboxEtabli.setVisible(false);
 					}
 
 
@@ -535,12 +486,13 @@ public class Controleur implements Initializable{
 					}
 					else if(!env.getTerrain().parcourrirTab(env.getTerrain().getTabTerrain(),env.getTerrain().getVerifMap().get("3"))) {
 						armin.setVisible(false);
+						paneBateau.setVisible(false);
 					}
 
 
 
 
-					//pnj premiere map 
+					//pnj cinquieme map 
 					if(apparitionSacha && env.getTerrain().parcourrirTab(env.getTerrain().getTabTerrain(),env.getTerrain().getVerifMap().get("5")) ) {
 						sacha.setVisible(true);
 
@@ -549,24 +501,66 @@ public class Controleur implements Initializable{
 						sacha.setVisible(false);
 					}
 
+
+
+
+
+					//gestion du son
+					if(env.getTerrain().getTerrainActuel() == "1") {
+						Parametre.musicmap1.playSound();
+						Parametre.musicmap2.stopSound();
+						Parametre.musicmap3.stopSound();
+						Parametre.musicmap4.stopSound();
+					}
+					else if (env.getTerrain().getTerrainActuel() == "2") {
+						Parametre.musicmap1.stopSound();
+						Parametre.musicmap2.playSound();
+						Parametre.musicmap3.stopSound();
+						Parametre.musicmap4.stopSound();
+					}
+
+					else if (env.getTerrain().getTerrainActuel() == "3") {
+						Parametre.musicmap1.stopSound();
+						Parametre.musicmap2.stopSound();
+						Parametre.musicmap3.playSound();
+						Parametre.musicmap4.stopSound();
+					}
+
+					else if (env.getTerrain().getTerrainActuel() == "4") {
+						Parametre.musicmap1.stopSound();
+						Parametre.musicmap2.stopSound();
+						Parametre.musicmap3.stopSound();
+						Parametre.musicmap4.playSound();
+					}
+
+					else if (env.getTerrain().getTerrainActuel() == "5") {
+						Parametre.musicmap1.stopSound();
+						Parametre.musicmap2.stopSound();
+						Parametre.musicmap3.stopSound();
+						Parametre.musicmap4.stopSound();
+						Parametre.sonMapTitan.playSound();
+
+					}
+
+
 					//blocage gauche map 1
 					if(env.getEren().getX() < 0 && env.getTerrain().getTerrainActuel() == "1") {
 						env.getEren().setX(10);
 						env.getEren().setY(447);
 					}
-					
+
 					//blocage droite map 5
 					if(env.getEren().getX() >= 1257 && env.getTerrain().getTerrainActuel() == "5") {
 						env.getEren().setX(1245);
 						env.getEren().setY(env.getEren().getY());
 					}
-					
-					
-					
+
 					//blocage hauteur pour toute les maps
 					if(env.getEren().getY() <= 0) {
 						env.getEren().setY(0);
 					}
+
+
 
 					//transition map 1 -> 2
 					if(env.getEren().getX() >= 1257 && env.getTerrain().getTerrainActuel() == "1") {
@@ -575,88 +569,67 @@ public class Controleur implements Initializable{
 						env.getEren().setY(415);
 						env.getTerrain().setTerrainActuel("2");
 						env.creationRessources();
-
 						env.getTerrain().changerTerrain(env.getTerrain().getTabTerrain());
 						terrainVue.dessinerTerrain(env.getTerrain().getTabTerrain());
-
-
 					}
 
 
 
 					//transition map 2 -> 3
 					if(env.getEren().getX() >= 1257 && env.getTerrain().getTerrainActuel() == "2") {
-
 						env.getEren().setX(10);
 						env.getEren().setY(415);
 						env.getTerrain().setTerrainActuel("3");
 						env.creationRessources();
-
 						env.getTerrain().changerTerrain(env.getTerrain().getTabTerrain());
 						terrainVue.dessinerTerrain(env.getTerrain().getTabTerrain());
 					}
 
 					//transition map 3 -> 4
 					if(env.getTerrain().getTerrainActuel() == "3" && bateauConstruit) {
-
 						hero1.changerImage("jeu/image/bateauEren.png");
 						env.getEren().setX(10);
 						env.getEren().setY(447);
 						env.getTerrain().setTerrainActuel("4");
 						env.creationRessources();
-
 						env.getTerrain().changerTerrain(env.getTerrain().getTabTerrain());
 						terrainVue.dessinerTerrain(env.getTerrain().getTabTerrain());
 						this.panePersoMap.requestFocus();
-
 						bateauConstruit = false;
-
-
 					}
 
 
 					//transition map 4 -> 5
 					if(env.getEren().getX() >= 1257 && env.getTerrain().getTerrainActuel() == "4") {
-
 						env.getEren().setX(10);
 						env.getEren().setY(447);
 						env.getTerrain().setTerrainActuel("5");
 						env.creationRessources();
-
 						env.getTerrain().changerTerrain(env.getTerrain().getTabTerrain());
-
 						terrainVue.dessinerTerrain(env.getTerrain().getTabTerrain());
-
 					}
 
 
 
 					//transition map 2 -> 1
 					if(env.getEren().getX() <= 0 && env.getTerrain().getTerrainActuel() == "2") {
-
-
-						env.getEren().setX(1257);
+						env.getEren().setX(1242);
 						env.getEren().setY(447);
 						env.getTerrain().changerTerrain(env.getTerrain().getTabTerrain());
 						terrainVue.dessinerTerrain(env.getTerrain().getTabTerrain());
-
 					}
 
 
 					//transition map 3 -> 2
 					if(env.getEren().getX() <= 0 && env.getTerrain().getTerrainActuel() == "3") {
-
 						env.getEren().setX(1257);
-						env.getEren().setY(447);
+						env.getEren().setY(415);
 						env.getTerrain().setTerrainActuel("2");
-//						env.getTerrain().changerTerrain(env.getTerrain().getTabTerrain());
 						terrainVue.dessinerTerrain(env.getTerrain().getTabTerrain());
-
 					}
 
 					//transition map 4 -> 3
 					if(env.getEren().getX() <= 0 && env.getTerrain().getTerrainActuel() == "4") {
-
 						env.getEren().setX(1257);
 						env.getEren().setY(479);
 						env.getTerrain().setTerrainActuel("3");
@@ -665,7 +638,6 @@ public class Controleur implements Initializable{
 					}
 
 					//transition map 5 -> 4
-
 					if(env.getEren().getX() <= 0 && env.getTerrain().getTerrainActuel() == "5") {
 
 						env.getEren().setX(10);
@@ -676,7 +648,7 @@ public class Controleur implements Initializable{
 					}
 
 
-					//apparition des titans dans l'arene qui est sur la map 4
+					//apparition des titans dans l'arene qui est sur la map 5
 					if(apparitionTitan && env.getTerrain().getTerrainActuel() == "5" ) {
 						apparitionTitan = false;
 						env.creationListeTitans();
@@ -686,14 +658,12 @@ public class Controleur implements Initializable{
 							pnjTitanVue.affichageTitan(env.getListeTitans().get(i));
 						}
 
-
-
 					}
+
 					for(int i =0 ; i<env.getListeTitans().size() ; i++) {						
 						env.getListeTitans().get(i).collisions();
 						env.getListeTitans().get(i).gravite();
 						env.getListeTitans().get(i).move();
-						//						System.out.println("\nregarde je bouge");
 						env.getListeTitans().get(i).verificationMort();
 					}
 					Objet objet = this.env.getEren().getObjetHeros();
@@ -708,6 +678,10 @@ public class Controleur implements Initializable{
 
 				}
 						));
+
+
+
+
 		gameLoop.getKeyFrames().add(kf);
 
 	}

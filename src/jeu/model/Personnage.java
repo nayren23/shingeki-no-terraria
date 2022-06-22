@@ -4,7 +4,7 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import jeu.Parametre;
 
-public abstract class Personnage {
+public  class Personnage {
 
 	final IntegerProperty xProp,yProp;
 	private int vitesse;
@@ -27,8 +27,6 @@ public abstract class Personnage {
 
 	//-------------------------------------------------------------------//
 
-	//Methodes Abstract//
-
 	public int clamp (int val1 , int min, int max) {  // Pour borner un chiffre entre 2 valeurs pour pas que l'image s'enleve
 		int valeurClamp = val1;
 
@@ -37,6 +35,11 @@ public abstract class Personnage {
 		else if(valeurClamp>max) 
 			valeurClamp= max;
 		return valeurClamp;
+	}
+	
+	
+	public void gravite() {
+		setY(getY()  + Parametre.forceGravite);
 	}
 	
 	public void collisions () {

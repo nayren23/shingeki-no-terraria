@@ -3,14 +3,12 @@ package jeu.vue;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
-import jeu.Parametre;
 import jeu.model.Terrain;
 
 public class TerrainVue {
 
 	//acces au terrain
 	private TilePane tuilesFond;
-	private Terrain terrain;
 	private Image imageTerrain[];
 	
 
@@ -49,7 +47,6 @@ Bloc de Fer : 5
 	 */
 	public TerrainVue(TilePane tuilesFond, Terrain terrain) {
 		this.tuilesFond = tuilesFond;
-		this.terrain=terrain;
 		tableauImageTerrain();
 	}
 

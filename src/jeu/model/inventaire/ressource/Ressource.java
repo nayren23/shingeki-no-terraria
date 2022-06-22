@@ -1,20 +1,18 @@
 package jeu.model.inventaire.ressource;
 
-import jeu.Parametre;
+
 import jeu.model.Terrain;
 import jeu.model.inventaire.Objet;
 
 public class Ressource extends Objet{
 
 	private int nbRessource;
-	private String nomRessource;
 	private int resistance;//vie de la ressource
 
 	public Ressource (int res, int id, String nom) {
 		super(id);
 		this.nbRessource=1;
 		this.resistance=res;
-		this.nomRessource=nom;
 	}
 
 	public void incrementerRessource() {
@@ -38,6 +36,10 @@ public class Ressource extends Objet{
 		this.resistance=r.getResistance()-2;
 	}
 
+	
+	
+/////////////////////Getters///////////////////////
+
 	public int getResistance() {
 		return resistance;
 	}
@@ -45,6 +47,10 @@ public class Ressource extends Objet{
 	public int getNbRessource() {
 		return nbRessource;
 	}
+
+	
+	
+/////////////////////Setters///////////////////////
 
 	public void setNbRessource(int nbRessource) {
 		this.nbRessource = nbRessource;

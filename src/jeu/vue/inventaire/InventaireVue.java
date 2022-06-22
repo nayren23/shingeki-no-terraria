@@ -10,22 +10,8 @@ import javafx.scene.layout.TilePane;
 import jeu.controleur.MouseClickInventaire;
 import jeu.controleur.listener.InventaireListener;
 import jeu.model.Environnement;
-import jeu.model.Heros;
-import jeu.model.inventaire.Inventaire;
 import jeu.model.inventaire.Objet;
-import jeu.model.inventaire.arme.Epee;
-import jeu.model.inventaire.arme.LanceFoudroyante;
-import jeu.model.inventaire.outil.Hache;
-import jeu.model.inventaire.outil.Pelle;
-import jeu.model.inventaire.outil.Pioche;
-import jeu.model.inventaire.ressource.Bois;
-import jeu.model.inventaire.ressource.Charbon;
-import jeu.model.inventaire.ressource.Fer;
-import jeu.model.inventaire.ressource.Gaz;
-import jeu.model.inventaire.ressource.LiquideTitan;
-import jeu.model.inventaire.ressource.Pain;
-import jeu.model.inventaire.ressource.PiqureTitan;
-import jeu.model.inventaire.ressource.Terre;
+
 
 public class InventaireVue extends Pane{
 
@@ -89,7 +75,6 @@ public class InventaireVue extends Pane{
 		ImageView image;
 		int iteration = env.getEren().getInventaireHeros().getInventaire().size()-1;
 		int cas = env.getEren().getInventaireHeros().getInventaire().get(iteration).getIdObjet();
-		System.out.println("CAS = "+cas);
 		switch (cas) {
 
 		case 0:
@@ -166,7 +151,6 @@ public class InventaireVue extends Pane{
 		this.afficherObjet.getChildren().add(image);
 		this.positionImageVue.put(cas, image);
 		image.addEventHandler(MouseEvent.MOUSE_CLICKED, new MouseClickInventaire(env.getEren().getInventaireHeros().getInventaire().get(iteration),env.getEren()));
-		//this.afficherObjet.setVisible(false);
 	}
 
 	public void enleverObjet (Objet o) {

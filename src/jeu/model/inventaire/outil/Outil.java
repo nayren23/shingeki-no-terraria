@@ -2,13 +2,10 @@ package jeu.model.inventaire.outil;
 
 import jeu.model.Environnement;
 import jeu.model.inventaire.Objet;
-import jeu.model.inventaire.arme.Arme;
 
 public abstract class Outil extends Objet{
 	
 	private int durabilite;
-	private int degats;
-	private int qualite;
 	private String nom;
 	private Environnement env;
 
@@ -17,8 +14,7 @@ public abstract class Outil extends Objet{
 
 	public Outil(int id, String nom, Environnement env) {
 		super(id);
-		this.durabilite = 60;
-		this.degats = 2;
+		this.durabilite = 70;
 		this.nom=nom;
 		this.env = env;
 	}
@@ -38,12 +34,15 @@ public abstract class Outil extends Objet{
 			setDegat(8);
 	}
 
+	
+	
+/////////////////////Getters///////////////////////
+	
 	public int getDurabilite() {
 		return durabilite;
 	}
 
 	public void setDegat(int degats) {
-		this.degats = degats;
 	}
 
 	
@@ -51,6 +50,7 @@ public abstract class Outil extends Objet{
 		return env;
 	}
 
+	
 	@Override
 	public String toString() {
 		return "Nom de l'arme= " + nom;

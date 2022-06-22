@@ -18,13 +18,9 @@ public class KeyReleased implements EventHandler<KeyEvent>{
 	@Override
 	public void handle(KeyEvent event) {
 		
-
 		if(event.getCode() == KeyCode.Q || event.getCode() == KeyCode.D ) {
 			this.hero.setDirection(0);
 		}
-		
-		
-
 		
 	}
 

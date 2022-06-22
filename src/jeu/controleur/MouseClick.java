@@ -5,9 +5,6 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import jeu.Parametre;
 import jeu.model.Environnement;
-import jeu.model.Heros;
-import jeu.model.Terrain;
-import jeu.model.inventaire.Inventaire;
 import jeu.model.inventaire.Objet;
 import jeu.model.inventaire.arme.LanceFoudroyante;
 import jeu.model.inventaire.arme.Hand;
@@ -17,7 +14,6 @@ import jeu.model.inventaire.outil.Pelle;
 import jeu.model.inventaire.outil.Pioche;
 import jeu.model.inventaire.ressource.Bois;
 import jeu.model.inventaire.ressource.Charbon;
-import jeu.model.inventaire.ressource.Ciel;
 import jeu.model.inventaire.ressource.Fer;
 import jeu.model.inventaire.ressource.Gaz;
 import jeu.model.inventaire.ressource.Pain;
@@ -54,17 +50,13 @@ public class MouseClick implements EventHandler<MouseEvent> {
 		int xCase = (int)arg0.getX();
 		int yCase = (int)arg0.getY();
 		//en fonction de l objet equipe ont fait differentes action creuser ou poser un bloc
-		//		System.out.println("Coordonnee eren x" +env.getEren().getX());
-		//		System.out.println("Coordonnee eren Y" +env.getEren().getY());
-		//		System.out.println("\nAffichage X " + xCase+ " Affichage Y "+ yCase);
+	
 		//si pas mort alors peut faire action de la souris
 		if(!env.getEren().estMort()) {
 
-			//	(int coordonneeJoueurX, int coordonneeJoueurY , int positionBlocX, int positionBlocY ,int rangeGauche , int rangeDroite , int rangeHaut ,int rangeBas ) {
 
 			if (Parametre.rangePourCasserBloc(env.getEren().getX(), env.getEren().getY(), xCase ,yCase, 30*2, 47*2 , 25*2, 64*2)) {
 
-				Inventaire inv = env.getEren().getInventaireHeros();
 				if (objet instanceof Pioche && arg0.getButton() == MouseButton.PRIMARY  ) {
 					env.getEren().getInventaireHeros().faireDegatsBloc((Outil) objet, positionTuileDansTableau, env.getTerrain());
 					env.getEren().getInventaireHeros().creationBlocCasser((Outil) objet , positionTuileDansTableau);
@@ -83,7 +75,6 @@ public class MouseClick implements EventHandler<MouseEvent> {
 
 				}
 
-				//int rangeGauche , int rangeDroite , int rangeHaut ,int rangeBas
 				else if(objet instanceof Terre && arg0.getButton() == MouseButton.SECONDARY) {
 					Terre terre = new Terre();
 					if(this.env.getEren().getInventaireHeros().verifierRessource(terre)) {
@@ -170,7 +161,6 @@ public class MouseClick implements EventHandler<MouseEvent> {
 			else if(objet instanceof LanceFoudroyante ) {
 				LanceFoudroyante arme = (LanceFoudroyante) objet;
 				arme.setLanceAvance(true);
-				//				Parametre.lanceFoudroyante.playSound();
 			}
 
 		}
